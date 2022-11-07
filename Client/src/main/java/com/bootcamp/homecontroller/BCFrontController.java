@@ -8,8 +8,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.bootcamp.client.command.BCCommand;
+import com.bootcamp.client.command.ListMain_Command;
+import com.bootcamp.client.command.SearchCamp_Command;
 
 
 /**
@@ -56,12 +59,25 @@ public class BCFrontController extends HttpServlet {
 		String conPath = request.getContextPath();
 		String com = uri.substring(conPath.length());
 
-		
-	
-	
-	
-	
-	
-	
+		switch (com) {
+		// ListMain.do 코드 확인 시 타이핑을 줄이기 위해서 main.do로 수정함.
+		case ("/main.do"):
+			System.out.println("List Main");
+			command = new ListMain_Command();
+			command.execute(request, response);
+			viewPage = "Home.jsp";
+			//viewPage = "Home.jsp";
+			break;
+		// searchCamp.do 코드 확인 시 캠핑장을 검색어나 타입에 따라 검색하기 위한 메소.
+		case ("/searchCamp.do"):
+			command = new SearchCamp_Command();
+			command.execute(request, response);
+			// Test를 위해 Home2.jsp로 출력하게 함.
+			viewPage = "Home.jsp";
+			break;
+		}
+				
+		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
+		dispatcher.forward(request,response);
 	}
 }// End
