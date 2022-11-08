@@ -23,7 +23,7 @@ public class SearchCamp_Command implements BCCommand {
 		request.setAttribute("content_view", dto);
 */
 		String query = request.getParameter("content");
-
+		System.out.println("query :"+query+":");
 		MainDao dao = new MainDao();
 		ArrayList<regcampDto> dtos = dao.searchRegCamp(query);
 		request.setAttribute("RegCamp", dtos);
