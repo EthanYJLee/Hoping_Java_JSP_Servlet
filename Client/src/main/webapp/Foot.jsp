@@ -1,81 +1,59 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<style>
+/* pc 화면 */
+@media (min-width: 768px) {
+    #kakao-talk-channel-chat-button {
+    position: fixed;
+    z-index: 999;
+    right: 30px; /* 화면 오른쪽으로부터의 거리, 숫자만 변경 */
+    bottom: 30px; /* 화면 아래쪽으로부터의 거리, 숫자만 변경 */
+    }
+}
+/* 모바일 화면 */
+@media (max-width:767px) {
+    #kakao-talk-channel-chat-button {
+    position: fixed;
+    z-index: 999;
+    right: 15px; /* 화면 오른쪽으로부터의 거리, 숫자만 변경 */
+    bottom: 30px; /* 화면 아래쪽으로부터의 거리, 숫자만 변경 */
+    }
+}
+</style>
+
+	<!-- 
+	2022-11-08 Hosik - 우측하단 카카오톡 1:1 채팅 DIV 추가  -->
+	
+<div id="kakao-talk-channel-chat-button"></div>
+
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script type='text/javascript'>
+  //<![CDATA[
+    // 사용할 앱의 JavaScript 키를 설정해 주세요.
+    Kakao.init('8d20a512bea587bcc64da4d1d6a184b3');
+    // 카카오톡 채널 1:1채팅 버튼을 생성합니다.
+    Kakao.Channel.createChatButton({
+      container: '#kakao-talk-channel-chat-button',
+      channelPublicId: '_cxfgGxj' // 카카오톡 채널 홈 URL에 명시된 ID
+    });
+  //]]>
+</script>
+
+
 <!-- Start Footer -->
-    <footer class="bg-dark" id="tempaltemo_footer">
-        <div class="container">
-            <div class="row">
+     <footer class="my-5 pt-5 text-muted text-center text-small">
+    <p class="mb-1">&copy; 2022–Team Bootcamp </p>
+    <p>Hoping은 통신판매 중개자로서 통신판매의 당사자가 아니며 고객지원을 제외한 상품의 예약, 이용 등과 관련한 의무와 책임 등 모든 거래에 대한 책임은 가맹점에게 있습니다.
+    </p>
+    <ul class="list-inline">
+      <li class="list-inline-item"><a href="#">이용약관</a></li>
+      <li class="list-inline-item"><a href="#">Support</a></li>
+      
 
-                <div class="col-md-4 pt-5">
-                    <h2 class="h2 text-success border-bottom pb-3 border-light logo">HosiX</h2>
-                    <ul class="list-unstyled text-light footer-link-list">
-                        <li>
-                            <i class="fas fa-map-marker-alt fa-fw"></i>
-                            123 Consectetur at ligula 10660
-                        </li>
-                        <li>
-                            <i class="fa fa-phone fa-fw"></i>
-                            <a class="text-decoration-none" href="tel:010-020-0340">010-020-0340</a>
-                        </li>
-                        <li>
-                            <i class="fa fa-envelope fa-fw"></i>
-                            <a class="text-decoration-none" href="mailto:info@company.com">info@company.com</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="col-md-4 pt-5">
-                    <h2 class="h2 text-light border-bottom pb-3 border-light">Products</h2>
-                    <ul class="list-unstyled text-light footer-link-list">
-                        <li><a class="text-decoration-none" href="#">Adidas</a></li>
-                        <li><a class="text-decoration-none" href="#">Nike</a></li>
-                        <li><a class="text-decoration-none" href="#">New Balance</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-md-4 pt-5">
-                    <h2 class="h2 text-light border-bottom pb-3 border-light">Further Info</h2>
-                    <ul class="list-unstyled text-light footer-link-list">
-                        <li><a class="text-decoration-none" href="#">Home</a></li>
-                        <li><a class="text-decoration-none" href="#">About Us</a></li>
-                        <li><a class="text-decoration-none" href="#">Shop Locations</a></li>
-                        <li><a class="text-decoration-none" href="#">FAQs</a></li>
-                        <li><a class="text-decoration-none" href="#">Contact</a></li>
-                    </ul>
-                </div>
-
-            </div>
-
-            <div class="row text-light mb-4">
-                <div class="col-12 mb-3">
-                    <div class="w-100 my-3 border-top border-light"></div>
-                </div>
-                <div class="col-auto me-auto">
-                    <ul class="list-inline text-left footer-icons">
-                        <li class="list-inline-item border border-light rounded-circle text-center">
-                            <a class="text-light text-decoration-none" target="_blank" href="http://facebook.com/"><i class="fab fa-facebook-f fa-lg fa-fw"></i></a>
-                        </li>
-                        <li class="list-inline-item border border-light rounded-circle text-center">
-                            <a class="text-light text-decoration-none" target="_blank" href="https://www.instagram.com/"><i class="fab fa-instagram fa-lg fa-fw"></i></a>
-                        </li>
-                        <li class="list-inline-item border border-light rounded-circle text-center">
-                            <a class="text-light text-decoration-none" target="_blank" href="https://twitter.com/"><i class="fab fa-twitter fa-lg fa-fw"></i></a>
-                        </li>
-                        <li class="list-inline-item border border-light rounded-circle text-center">
-                            <a class="text-light text-decoration-none" target="_blank" href="https://www.linkedin.com/"><i class="fab fa-linkedin fa-lg fa-fw"></i></a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-auto">
-                    <label class="sr-only" for="subscribeEmail">Email address</label>
-                    <div class="input-group mb-2">
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="w-100 bg-black py-3">
-        </div>
-
-    </footer>
+    </ul>
+  </footer>
     <!-- End Footer -->
+    
+    
+    </html>
