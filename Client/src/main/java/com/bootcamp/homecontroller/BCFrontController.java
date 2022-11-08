@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.bootcamp.client.command.BCCommand;
+import com.bootcamp.client.command.BCDetailCommand;
 import com.bootcamp.client.command.ListMain_Command;
 import com.bootcamp.client.command.SearchCamp_Command;
 
@@ -60,6 +61,12 @@ public class BCFrontController extends HttpServlet {
 		String com = uri.substring(conPath.length());
 
 		switch (com) {
+		
+		
+		
+		
+		
+		 // SangHyuk
 		// ListMain.do 코드 확인 시 타이핑을 줄이기 위해서 main.do로 수정함.
 		case ("/main.do"):
 			System.out.println("List Main");
@@ -75,7 +82,25 @@ public class BCFrontController extends HttpServlet {
 			// Test를 위해 Home2.jsp로 출력하게 함.
 			viewPage = "Home.jsp";
 			break;
-		}
+
+		
+		// Hosik
+			// 상세 페이지 보기 
+		case("/detailView.do"):
+			System.out.println("View Detail");
+			command = new BCDetailCommand();
+			command.execute(request, response);
+			viewPage = "DetailView.jsp";
+			System.out.println("View Detail End");
+			break;
+
+		
+		
+		
+		}// switch End
+		
+				
+
 				
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request,response);
