@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+		<!-- 카카오맵 API include 써서 사용하는 용 입니다  -->
 		    	
 		    <div>
 		    <h4> 위치</h4>
@@ -19,6 +19,13 @@
 			<div>${DetailView.regDetailaddress}</div>
 		    <div id="map" class="container" style="width:700px;height:500px;">
 			    <script>
+			    
+			    /* 2022-11-8 Hosik -
+			    변수에 DB에서 regcamp 데이터를 가져와서 사용합니다.
+			   include 사용해서 불러올께 DetailView Command를 거치면은 regcamp regSeq Number로 해당 주소로 사용가능
+			   대신 DB에 주소 입력할때 정확하게 입력하셔야 찾을 수 있어요~ 주소 이상하면 alert 나옴~  */
+			    
+			    
 			     var regName =' ${DetailView.regName}';  // DB에서 불러오는 캠핑장이름 값 
 			     var con1 = '<div style="width:150px;text-align:center;padding:6px 0;">'
 			     var con2 = '</div>'
@@ -59,7 +66,7 @@
 					        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
 					        map.setCenter(coords);
 					    } 
-				     // error check용 else 가 있습니드아!!!!!! 나중에 여기 꼭 처리 하셔야 되요!!!!! <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<Need Check
+ //	>>>>>>>>>>>>>>>>>     error check용 else 가 있습니드아!!!!!! 나중에 여기 꼭 처리 하셔야 되요!!!!! <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<Need Check
 				     else{
 					    	alert('주소가 정확하지 않아요!');
 					    }
