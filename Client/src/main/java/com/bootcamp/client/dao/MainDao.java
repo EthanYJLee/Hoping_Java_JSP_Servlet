@@ -83,7 +83,7 @@ public class MainDao {
 	} // searchRegCampview	
 
 	// 
-	public ArrayList<regcampDto> searchRegCamp(String strQuery){
+	public ArrayList<regcampDto> searchRegCamp(String strQuery, String strContent){
 		ArrayList<regcampDto> dtos = new ArrayList<regcampDto>();
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -94,7 +94,7 @@ public class MainDao {
 		try {
 			connection = dataSource.getConnection();
 			System.out.println("Query start");
-			String query = "select * from regcamp where regdetailaddress like '%"+strQuery+ "%' ";
+			String query = "select * from regcamp where "+strQuery+" like '%"+strContent+ "%' ";
 			System.out.println(query);
 			preparedStatement = connection.prepareStatement(query);
 			resultSet = preparedStatement.executeQuery();

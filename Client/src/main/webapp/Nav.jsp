@@ -44,8 +44,8 @@
         <form action="searchCamp.do"class="col-12 col-lg-auto mb-4 mb-lg-0 me-lg-4" role="search">
 		검색 선택:
 		<select name="query">
-			<option value="name">이름</option>
-			<option value="address" selected="selected">주소</option>
+			<option value="regName">이름</option>
+			<option value="regDetailaddress" selected="selected">주소</option>
 		</select>&nbsp;&nbsp;&nbsp;
           <input class="mysearch" type="search" class="form-control" aria-label="Search" name="content">
        <!--  <a href="searchCamp.do?query=address&content=" class="text-decoration-none"> -->
