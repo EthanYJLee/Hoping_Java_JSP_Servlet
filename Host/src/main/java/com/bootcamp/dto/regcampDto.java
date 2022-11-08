@@ -2,7 +2,6 @@ package com.bootcamp.dto;
 
 import java.sql.Timestamp;
 
-
 public class regcampDto {
 	int regSeq;
 	String regTel;
@@ -18,7 +17,7 @@ public class regcampDto {
 	String regImage3;
 	String regImage4;
 	int host_hSeq;
-	
+
 	public regcampDto() {
 		// TODO Auto-generated constructor stub
 	}
@@ -41,6 +40,14 @@ public class regcampDto {
 		this.regImage3 = regImage3;
 		this.regImage4 = regImage4;
 		this.host_hSeq = host_hSeq;
+	}
+
+	// 호스트 통합 메인 페이지 썸네일용
+	public regcampDto(String regImage1, String regName, String regDetailaddress) {
+		super();
+		this.regImage1 = regImage1;
+		this.regName = regName;
+		this.regDetailaddress = regDetailaddress;
 	}
 
 	public int getRegSeq() {
@@ -155,6 +162,4 @@ public class regcampDto {
 		this.host_hSeq = host_hSeq;
 	}
 
-	
-	
-}//regcampDto End
+}// regcampDto End
