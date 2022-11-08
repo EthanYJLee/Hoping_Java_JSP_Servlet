@@ -36,7 +36,7 @@ import com.bootcamp.dto.regcampDto;
 		Connection connection = null;
 		PreparedStatement preparedStatement = null; // 이거 쓸꺼면 ? 써도 댐 
 		ResultSet resultSet = null;
-		System.out.println("dao DetailView 안의 syso reSeq ="+reSeq);
+		System.out.println("dao DetailView 안의 syso reSeq ="+reSeq);													/* ,<<<<<<<<<<<<<<<<<<<<<<< 8 */
 		
 		try {
 			connection = dataSource.getConnection();
@@ -61,7 +61,7 @@ import com.bootcamp.dto.regcampDto;
 				String regImage3 = resultSet.getString("regImage3");
 				String regImage4 = resultSet.getString("regImage4");
 				int host_hSeq = resultSet.getInt("host_hSeq");
-				System.out.println(regSummary);										/* ,<<<<<<<<<<<<<<<<<<<<<<< 8 */
+				System.out.println("BCBookDao 안에 있는 regSummary = "+regSummary);													/* ,<<<<<<<<<<<<<<<<<<<<<<< 8 */
 				 dto = new regcampDto(regSeq,regTel,regDetailaddress,regName,regDate,regMdate,regDdate,regSummary,regCategory,regImage1,regImage2,regImage3,regImage4,host_hSeq);
 			}
 			

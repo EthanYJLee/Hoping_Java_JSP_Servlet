@@ -48,20 +48,30 @@
 			<option value="address" selected="selected">주소</option>
 		</select>&nbsp;&nbsp;&nbsp;
           <input class="mysearch" type="search" class="form-control" aria-label="Search" name="content">
+       <!--  <a href="searchCamp.do?query=address&content=" class="text-decoration-none"> -->
+			<label for="btnSubmit">
+				<svg class="mysvg" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+					  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+				</svg>
+			</label>
+		<input type="submit" id="btnSubmit" style="display:none;" />
         </form>
 
-        <div class="text-conter">
-        <a href="searchCamp.do" class="text-decoration-none">
-		<svg class="mysvg" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+		
+		<!-- <svg class="mysvg" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
 			  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-		</svg>
-		</a>
-        </div>
+		</svg> -->
+		<!-- </a> -->
+        </div>   <!-- <div class="text-conter"> End -->
         
-      </div>
-    </div>
+      </div>    <!-- <div class="d-flex align-items-center justify-content-center justify-content-lg-center"> End -->
 
-		<form action="searchCamp.do">
+	
+	
+	
+	
+	
+		<!--  <form action="searchCamp.do">
 					<div class="album py-5 bg-light">
 				<div class="container">
 				<div class="row justify-container-center">
@@ -76,6 +86,6 @@
 							</div>
 				</div>
 			</div> 
-	</form>
+	</form>  -->
 </body>
 </html>
