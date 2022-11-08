@@ -69,7 +69,7 @@
 		
 		
 		<select>
-			<option value="">선택해주세요.</option>
+			<option value="">캠핑장을 선택해주세요</option>
 			<c:forEach var="list" items="${regName_list}">
 			<option value="${list}"<c:if test ="${user.selectedList eq list}">selected="selected"</c:if>>${list}</option>
 			</c:forEach>
