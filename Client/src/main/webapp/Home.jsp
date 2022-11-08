@@ -88,8 +88,9 @@ body{
 
 </head>
 <body>
+<!-- Header -->
  <%@ include file = "Nav.jsp" %>
-
+<!-- Header End -->
 <%-- 카드 --%>
 <div class="box container mymcontainer">
 	<div class="row">
@@ -98,16 +99,16 @@ body{
 		  <div class="col-md">
 		    <div class="card mycard">
 		    <a href="detailView.do?regSeq=${dto.regSeq}">
-		      <img src="https://a0.muscache.com/im/pictures/7fde1672-2160-4593-90cd-00bd75da732a.jpg?im_w=1200" class="card-img-top myimage" alt="...">
+		      <img src="${dto.regImage2}" class="card-img-top myimage" alt="...">
 		    </a> 
 		      <div class="card-body mycbody">
 				<p class="card-text">${dto.regDetailaddress}</p>
 				<h5 class="card-title myctitle">${dto.regName}</h5>
 				<p class="card-text myctext">${dto.regTel}</p>
-					<button type="button"
+					<%-- <button type="button"
 						class="btn btn-sm btn-outline-secondary">
 						<a href="detailView.do?reqSeq=${dto.regSeq}">View</a>
-					</button>
+					</button> --%>
 		      </div>
 		    </div>
 		  </div>
@@ -126,8 +127,9 @@ body{
 </div>
 </div>
 
-
-
+<!-- Foot -->
+<%@ include file = "foot.jsp" %>
+<!-- Foot End -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
