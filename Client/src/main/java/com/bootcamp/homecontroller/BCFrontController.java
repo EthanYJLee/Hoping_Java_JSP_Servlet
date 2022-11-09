@@ -12,6 +12,11 @@ import javax.servlet.http.HttpSession;
 
 import com.bootcamp.client.command.BCCommand;
 import com.bootcamp.client.command.BCDetailCommand;
+import com.bootcamp.client.command.Clientdelete_Command;
+import com.bootcamp.client.command.Clientlogin_Command;
+import com.bootcamp.client.command.Clientmodify_Command;
+import com.bootcamp.client.command.ClientmypageView_Command;
+import com.bootcamp.client.command.Clientwrite_Command;
 import com.bootcamp.client.command.ListMain_Command;
 import com.bootcamp.client.command.SearchCamp_Command;
 
@@ -117,12 +122,8 @@ public class BCFrontController extends HttpServlet {
 //			command = new Checkid_Command();
 //			command.execute(request, response);
 //			break;
-		}
-
-
-
-		
-		// Hosik
+			
+			// Hosik
 			// 상세 페이지 보기 
 		case("/detailView.do"):
 			System.out.println("View Detail");
@@ -132,16 +133,10 @@ public class BCFrontController extends HttpServlet {
 			System.out.println("View Detail End");
 			break;
 
-		
-		
-		
-		}// switch End
-		
-				
-
-
-
 		}
+
+
+
 				
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
