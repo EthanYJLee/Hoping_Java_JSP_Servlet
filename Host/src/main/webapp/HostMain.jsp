@@ -119,11 +119,11 @@
 <div class="row align-items-md-stretch py-3">
 	<div class="col-md-6">
 		<div class="h-100 p-5 bg-light border rounded-3">
-			<h2>금일 예약현황</h2>
+			<h2>오늘 예약현황</h2>
 			<br>
-			<p>신규예약</p>
-			<p>금일 체크인 예정</p>
-			<p>금일 체크아웃 예정</p>
+			<p>신규예약 : ${nr}</p>
+			<p>오늘 체크인 예정 : ${todayIn}</p>
+			<p>오늘 체크아웃 예정 : ${todayOut}</p>
 		</div>
 	</div>
 	<div class="col-md-6">
