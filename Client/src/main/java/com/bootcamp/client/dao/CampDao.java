@@ -3,6 +3,7 @@ package com.bootcamp.client.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import javax.naming.Context;
@@ -10,6 +11,8 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import com.bootcamp.joindto.campDto;
+
+
 
 public class CampDao {
 	
@@ -36,7 +39,7 @@ public class CampDao {
 		try {
 			connection = dataSource.getConnection();
 			System.out.println("Query start");
-			String query = "select * from campView where regSeq = "+strregSeq;;
+			String query = "select * from camp where regSeq = "+strregSeq;;
 			preparedStatement = connection.prepareStatement(query);
 			resultSet = preparedStatement.executeQuery();
 			System.out.println("Query Execute");
@@ -44,13 +47,16 @@ public class CampDao {
 			while(resultSet.next()) {
 				int regSeq = resultSet.getInt("regSeq");
 				String regName = resultSet.getString("regName");
+				String regCategory = resultSet.getString("regCategory");
+				
 				int roNum = resultSet.getInt("roNum");
 				int roPrice = resultSet.getInt("roPrice");
-				int roOccupied = resultSet.getInt("roOccupied");
+				int roMax = resultSet.getInt("roMax");
+				
 
-				System.out.println("regSeq:"+regSeq+":");
+				System.out.println("regSeq:"+strregSeq+":");
 
-				dto = new campDto(regSeq, regName, roNum, roPrice, roOccupied);
+				dto = new campDto(regSeq, regName, regCategory, roNum, roPrice, roMax);
 				dtos.add(dto);
 				System.out.println("DTO Add");
 			}
