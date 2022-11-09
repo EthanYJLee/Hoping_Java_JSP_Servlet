@@ -18,7 +18,7 @@
 <link rel="stylesheet" href="css/Design.css">
 <link rel="stylesheet" href="css/HostCard.css">
 <link rel="stylesheet" href="css/TableCenter.css">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/HostStyle.css">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
 <script src="https://https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
