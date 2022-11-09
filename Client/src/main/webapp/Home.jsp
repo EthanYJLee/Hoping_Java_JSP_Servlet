@@ -118,7 +118,7 @@ body{
 </div>
 
 <!-- Foot -->
-<%@ include file = "foot.jsp" %>
+<%@ include file = "Foot.jsp" %>
 <!-- Foot End -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
 

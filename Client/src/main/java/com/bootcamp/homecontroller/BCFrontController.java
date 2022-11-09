@@ -13,6 +13,11 @@ import javax.servlet.http.HttpSession;
 import com.bootcamp.client.command.BCCommand;
 import com.bootcamp.client.command.BCDetailCommand;
 import com.bootcamp.client.command.BCSelectDateCommand;
+import com.bootcamp.client.command.Clientdelete_Command;
+import com.bootcamp.client.command.Clientlogin_Command;
+import com.bootcamp.client.command.Clientmodify_Command;
+import com.bootcamp.client.command.ClientmypageView_Command;
+import com.bootcamp.client.command.Clientwrite_Command;
 import com.bootcamp.client.command.ListMain_Command;
 import com.bootcamp.client.command.SearchCamp_Command;
 
@@ -84,8 +89,42 @@ public class BCFrontController extends HttpServlet {
 			viewPage = "Home.jsp";
 			break;
 
-		
-		// Hosik
+
+		// 로그인
+		case ("/login.do"):
+			command = new Clientlogin_Command();
+			command.execute(request, response);
+			break;
+		// 회원등록
+		case ("/Clientwrite.do"):
+			command = new Clientwrite_Command();
+			command.execute(request, response);
+			viewPage = "login.jsp";
+			break;
+		// 마이페이지
+		case ("/mypageView.do"):
+			command = new ClientmypageView_Command();
+			command.execute(request, response);
+			viewPage = "mypage.jsp";
+			break;
+		// 수정하기
+		case ("/ClientModify.do"):
+			command = new Clientmodify_Command();
+			command.execute(request, response);
+			viewPage = "/main.jsp";
+			break;
+		// 삭제하기
+		case ("/ClientDelete.do"):
+			command = new Clientdelete_Command();
+			command.execute(request, response);
+			viewPage = "/login.jsp";
+			break;
+//		case ("/checkId.do"):
+//			command = new Checkid_Command();
+//			command.execute(request, response);
+//			break;
+			
+			// Hosik
 			// 상세 페이지 보기 
 		case("/detailView.do"):
 			command = new BCDetailCommand();
@@ -108,14 +147,12 @@ public class BCFrontController extends HttpServlet {
 			viewPage = "Book.jsp";
 			break;
 
-		
-		
-		
-		}// switch End
-		
-				
+		}
+
+
 
 				
+
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request,response);
 	}
