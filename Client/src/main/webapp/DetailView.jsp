@@ -118,6 +118,8 @@ body{
 				     	 <img src="${DetailView.regImage3}" class="d-block w-100" alt="Img_1" height="300"  width="700">
 				    </div>
 			  </div> --%>
+			  
+			  <div class="container">
   				 <div class="carousel-inner">
 				   	 <div class="carousel-item active" style="align-content: center;">
 				    	 <img src="${DetailView.regImage1}" class="d-block" alt="Img_1"  height="400" width="100%">
@@ -128,7 +130,9 @@ body{
 				    <div class="carousel-item">
 				     	 <img src="${DetailView.regImage3}" class="d-block  " alt="Img_1" height="400"  width="100%">
 				    </div>
-			  </div>
+			 	 </div>
+			  </div>	 
+			 	 
 				<!-- 이전 이미지 보여주 -->
 				  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
 				    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -163,13 +167,16 @@ body{
 		    </div><!-- camp site end  -->
 		     <hr class="featurette-divider"> 
 		    
-  		<div>
-  		<form action="booking.do" method="post">
+  		<%-- <div>
+  		<form action="post" method="post">
   		  <input type="hidden" name="regSeq" value="${DetailView.regSeq}">
 		    <button type="submit">예약하러 가기</button>
 		    </form>
 		    </div>
-		    <div>
+		    <div> --%>
+		    
+		    <a href="BookSelectDate.do?regSeq=${DetailView.regSeq}">예약하러 가기</a>
+		    
   		<form action="checkBook.do" method="post">
   		  <input type="text" name="rbookSeq" value="1">
 		    <button type="submit">예약정보 확인하러 가기</button>
@@ -185,7 +192,7 @@ body{
 	    </main> 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>	
 <!-- Foot -->
-<%@ include file = "foot.jsp" %>
+<%@ include file = "Foot.jsp" %>
 <!-- Foot End -->
 </body>
 

@@ -70,20 +70,19 @@
 	
 	<table border="1">
 		<tr>
-			<th>번호</th><th>이름</th><th>제목</th><th>날짜</th><th>사진</th>
+			<th>번호</th><th>이름</th><th>전화</th><th>메일</th><th>사진</th>
 		</tr>
 		<c:forEach items="${list}" var="dto">
 			<tr>
-				<td>${dto.bId}</td>
-				<td>${dto.bName}</td>
-				<td><a href="content_view.do?bId=${dto.bId}">${dto.bTitle}</a></td>
-				<td>${dto.bDate}</td>
-				<td>${dto.bImage}</td>
+				<td>${dto.cId}</td>
+				<td><a href="show.do?cId=${dto.cId}">${dto.cName}</a></td>
+				<td>${dto.cPhone}</td>
+				<td>${dto.cEmail}</td>
+				<td>${dto.cImage}</td>
 			</tr>
 		</c:forEach>
-		<tr>
-			<td colspan="5"><a href="write_view.do">글작성</a></td>
-		</tr>
+		
+		
 	</table>
 </body>
 </html>

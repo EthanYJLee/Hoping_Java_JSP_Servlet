@@ -42,15 +42,14 @@
 
 
 <!-- Start Footer -->
-     <footer class="my-5 pt-5 text-muted text-center text-small">
+     <footer class="my-5 pt-5 text-muted text-center text-small album py-5 bg-light">
     <p class="mb-1">&copy; 2022–Team Bootcamp </p>
     <p>Hoping은 통신판매 중개자로서 통신판매의 당사자가 아니며 고객지원을 제외한 상품의 예약, 이용 등과 관련한 의무와 책임 등 모든 거래에 대한 책임은 가맹점에게 있습니다.
     </p>
     <ul class="list-inline">
       <li class="list-inline-item"><a href="#">이용약관</a></li>
       <li class="list-inline-item"><a href="#">Support</a></li>
-      
-
+      <li class="list-inline-item"><a href="#">Support</a></li>
     </ul>
   </footer>
     <!-- End Footer -->

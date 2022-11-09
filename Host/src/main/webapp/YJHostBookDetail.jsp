@@ -1,13 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>	    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Hoping Camp</title>
-<link rel="stylesheet" href="css/style.css">
+<title>Insert title here</title>
+<link rel="stylesheet" href="css/yjstyle.css">
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
@@ -24,8 +22,21 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.js"></script>
 
+<style type="text/css">
+.mybtns {
+	border: 0 solid black;
+	transition: background-color .5s;
+	border-radius: 15px;
+}
+
+.mybtns:hover {
+	background-color: #E94560;
+}
+</style>
+
 </head>
 <body>
+
 <%-- nav --%>
 <div class="container">
    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
@@ -34,7 +45,7 @@
 			<path d="M8 6.982C9.664 5.309 13.825 8.236 8 12 2.175 8.236 6.336 5.309 8 6.982Z"/>
 			<path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.707L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.646a.5.5 0 0 0 .708-.707L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5 5 5Z"/>
 		</svg>
-       <span class="mytitle"><b>Hoping Booking</b></span>
+       <span class="mytitle"><b>Hoping Host</b></span>
      </a>
      
      <ul class="nav nav-pills">
@@ -53,69 +64,49 @@
      </ul>
    </header>
  </div>
-<%--search바 --%>
-<div class="container myscontainer">
-	<div class="row myhtitle">
-		<div><b>예약 하기</b></div>
-	</div>
-	<div class="d-flex align-items-center justify-content-center justify-content-lg-center">
-		<%-- 콤보박스 --%>
-<!--		<select class="col-2 form-select form-select-sm" aria-label=".form-select-sm example">
-		  <option selected>캠핑장 이름</option>
-		  <option value="1">One</option>
-		  <option value="2">Two</option>
-		  <option value="3">Three</option>
-		</select> -->
-		<%-- 달력입니당. --%>
-		<form autocomplete="off">
-			<div class="col-4 col-11" style="margin-right: 0px;">
-				<div class="input-group input-daterange">
-					<input type="text" style="background-color: white; border-radius: 13px; height: 33px; font-size: 13px;" class="mydinput form-control" placeholder="Start" readonly>
-					<input type="text" style="border-radius: 13px; height: 33px; font-size: 13px;" class="secondary form-control" placeholder="End" readonly>
-				</div>
-			</div>
-		</form>
-		<%-- search --%>
-        <div class="col-1 text-conter">
-			<a href="#" class="text-decoration-none">
-				<svg class="mysvg" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-					  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-				</svg>
-			</a>
-        </div>
-	</div>
+ 
+ <%-- 상세정보 --%>
+ <div class="container myscontainer">
+ 	<h4>예약 상세</h4>
+ 	<br>
+ 	<div class="row">
+ 		<div class="col-6 mydtitle">예약 번호 ${bookDetail.boSeq }</div>
+ 		<div class="col-6 mydtitle">${bookDetail.regName }</div>
+ 	</div>
+ 	<div class="row myhdrow">
+ 		<div class="card col-md-6" style="border: 0px solid black;">
+ 			<div class="myhdth">예약자ID</div><div class="myhdtd">${bookDetail.pay_cid }</div>
+ 		</div>
+ 		<div class="card col-md-6" style="border: 0px solid black;">
+ 			<div class="myhdth">자리</div><div class="myhdtd">${bookDetail.roNum }</div>
+ 		</div>
+ 	</div>
+ 	<div class="row myhdrow">
+ 		<div class="card col-md-6" style="border: 0px solid black;">
+ 			<div class="myhdth">날짜</div><div class="myhdtd">${bookDetail.boCheckindate } ~ ${bookDetail.boCheckoutdate }</div>
+ 		</div>
+ 		<div class="card col-md-6" style="border: 0px solid black;">
+ 			<div class="myhdth">총인원</div><div class="myhdtd">${bookDetail.boCount }</div>
+ 		</div>
+ 	</div>
+ 	<div class="row myhdrow">
+ 		<div class="card col-md-6" style="border: 0px solid black;">
+ 			<div class="myhdth">결제일</div><div class="myhdtd">${bookDetail.boDate }</div>
+ 		</div>
+ 		<div class="card col-md-6" style="border: 0px solid black;">
+ 			<div class="myhdth">요금 정보</div><div class="myhdtd">₩${bookDetail.boPrice} x ${bookDetail.boCount }명 = 총 ₩${bookDetail.total }</div>
+ 		</div>
+ 	</div>
+ 	<div class="d-flex flex-row-reverse">
+ 		<div class="p-2">
+ 		<a href="bookList.do" type="button" style="border-radius: 15px; width:70px;" class="btn mybtns btn-secondary">확인</a>
+ 		</div>
+ 	</div>
+ 	<hr style="background-color: gray;">
 </div>
+ 
 
-<%-- 테이블 --%>
-<div class="container">
-	<div class="card myhcard" style="border-radius: 20px;">
-		<table>
-			<tr class="myhtr">
-				<td class="myth">캠핑장 이름</td><td class="myth">사이트 넘버</td><td class="myth">사이트 가격</td><td class="myth">요금</td><td class="myth">예약여부</td><td class="myth">자리</td><td class="myth">체크인 날짜</td><td class="myth">체크아웃 날짜</td><td class="myth">예약 인원</td>
-			</tr>
-					<c:forEach items="${Camp}" var="dto">
-			<tr class="myhtr">
-				<td class="mytd">${dto.regName}</td><td class="mytd">${dto.roNum}</td><td class="mytd">${dto.roPrice}</td><td class="mytd">${dto.roOccupied}</td><td class="mytd">5</td><td class="mytd">6</td><td class="mytd">9</td><td class="mytd">10</td><td class="mytd">11</td>
-			</tr>
-			</c:forEach>
-		</table>	  
-	</div>
-</div>
-    
 
-<script type="text/javascript">
-$(document).ready(function(){
-	
-	$('.input-daterange').datepicker({
-	    format: 'yyyy-mm-dd',
-	    autoclose: true
-	});
-
-});
-</script>
-
-  
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
