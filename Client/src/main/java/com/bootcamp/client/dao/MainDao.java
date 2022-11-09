@@ -39,11 +39,11 @@ public class MainDao {
 		
 		try {
 			connection = dataSource.getConnection();
-			System.out.println("Query start");
+			System.out.println("Query start");                     //<<<<<<<<<<<<<<<<<<<<syso
 			String query = "select * from regcamp";
 			preparedStatement = connection.prepareStatement(query);
 			resultSet = preparedStatement.executeQuery();
-			System.out.println("Query Execute");
+			System.out.println("Query Execute");                     //<<<<<<<<<<<<<<<<<<<<syso
 			
 			while(resultSet.next()) {
 				int regSeq = resultSet.getInt("regSeq");
@@ -60,11 +60,11 @@ public class MainDao {
 				String regImage3 =  resultSet.getString("regImage3");
 				String regImage4 =  resultSet.getString("regImage4");
 				int host_hSeq = resultSet.getInt("host_hSeq");
-				System.out.println("regSeq:"+regSeq+":");
+				System.out.println("regSeq:"+regSeq+":");                     //<<<<<<<<<<<<<<<<<<<<syso
 
 				dto = new regcampDto(regSeq, regTel, regDetailaddress, regName, regDate, regMdate, regDdate, regSummary, regCategory, regImage1,regImage2,regImage3,regImage4, host_hSeq);
 				dtos.add(dto);
-				System.out.println("DTO Add");
+				System.out.println("DTO Add");                     //<<<<<<<<<<<<<<<<<<<<syso
 			}
 			
 		}catch (Exception e) {
@@ -93,12 +93,12 @@ public class MainDao {
 		
 		try {
 			connection = dataSource.getConnection();
-			System.out.println("Query start");
+			System.out.println("Query start");                     //<<<<<<<<<<<<<<<<<<<<syso
 			String query = "select * from regcamp where "+strQuery+" like '%"+strContent+ "%' ";
-			System.out.println(query);
+			System.out.println(query);                     //<<<<<<<<<<<<<<<<<<<<syso
 			preparedStatement = connection.prepareStatement(query);
 			resultSet = preparedStatement.executeQuery();
-			System.out.println("Query Execute");
+			System.out.println("Query Execute");                     //<<<<<<<<<<<<<<<<<<<<syso
 
 			while(resultSet.next()) {
 				int regSeq = resultSet.getInt("regSeq");
@@ -119,7 +119,7 @@ public class MainDao {
 
 				dto = new regcampDto(regSeq, regTel, regDetailaddress, regName, regDate, regMdate, regDdate, regSummary, regCategory, regImage1,regImage2,regImage3,regImage4, host_hSeq);
 				dtos.add(dto);
-				System.out.println("DTO Add");
+				System.out.println("DTO Add");                     //<<<<<<<<<<<<<<<<<<<<syso
 			}
 			
 		}catch (Exception e) {
@@ -149,11 +149,11 @@ public class MainDao {
 		
 		try {
 			connection = dataSource.getConnection();
-			System.out.println("Query start");
+			System.out.println("Query start");                     //<<<<<<<<<<<<<<<<<<<<syso
 			String query = "select * from room where '%"+strQuery+ "%' ";
 			preparedStatement = connection.prepareStatement(query);
 			resultSet = preparedStatement.executeQuery();
-			System.out.println("Query Select * from room where Execute");
+			System.out.println("MainDao 에 있는 searchSiteView      Query Select * from room where Execute");                     //<<<<<<<<<<<<<<<<<<<<syso
 			
 			while(resultSet.next()) {
 				int roSeq = resultSet.getInt("roSeq");
@@ -163,11 +163,11 @@ public class MainDao {
 				int roOccupied = resultSet.getInt("roOccupied");
 				int regcamp_regSeq = resultSet.getInt("regcamp_regSeq");
 				int regcamp_host_hSeq = resultSet.getInt("regcamp_host_hSeq");
-				System.out.println("roSeq:"+roSeq+":");
+				System.out.println("roSeq:"+roSeq+":");                     //<<<<<<<<<<<<<<<<<<<<syso
 
 				dto = new roomDto(roSeq, roNum, roPrice, roMax, roOccupied, regcamp_regSeq, regcamp_host_hSeq);
 				dtos.add(dto);
-				System.out.println("Room DTO Add");
+				System.out.println("Room DTO Add");                     //<<<<<<<<<<<<<<<<<<<<syso
 			}
 			
 		}catch (Exception e) {
@@ -197,7 +197,7 @@ public class MainDao {
 		
 		try {
 			connection = dataSource.getConnection();
-			System.out.println("Query start");
+			System.out.println("Query start");                     //<<<<<<<<<<<<<<<<<<<<syso
 			String query = "select * from wish";
 			preparedStatement = connection.prepareStatement(query);
 			resultSet = preparedStatement.executeQuery();
@@ -208,11 +208,11 @@ public class MainDao {
 				Timestamp wDate = resultSet.getTimestamp("wDate");
 				String client_cId = resultSet.getString("client_cId");
 				int host_hSeq = resultSet.getInt("host_hSeq");
-				System.out.println("wSeq:"+wSeq+":");
+				System.out.println("wSeq:"+wSeq+":");                     //<<<<<<<<<<<<<<<<<<<<syso
 
 				dto = new wishDto(wSeq, wDate, client_cId, host_hSeq);
 				dtos.add(dto);
-				System.out.println("Room DTO Add");
+				System.out.println("MainDao에 있는 searchCampWish Room DTO Add");                         //<<<<<<<<<<<<<<<<<<<<syso
 			}
 			
 		}catch (Exception e) {
@@ -241,11 +241,11 @@ public class MainDao {
 		
 		try {
 			connection = dataSource.getConnection();
-			System.out.println("Query start");
+			System.out.println("Query start");                     //<<<<<<<<<<<<<<<<<<<<syso
 			String query = "select * from review";
 			preparedStatement = connection.prepareStatement(query);
 			resultSet = preparedStatement.executeQuery();
-			System.out.println("Query Select * from review Execute");
+			System.out.println("Query Select * from review Execute");                     //<<<<<<<<<<<<<<<<<<<<syso
 			
 			while(resultSet.next()) {
 				int rvSeq = resultSet.getInt("rvSeq");
@@ -257,11 +257,11 @@ public class MainDao {
 				Timestamp rvTime = resultSet.getTimestamp("rvTime");
 				Timestamp rvMtime = resultSet.getTimestamp("rvMtime");
 				Timestamp rvDtime = resultSet.getTimestamp("rvDtime");
-				System.out.println("rvSeq:"+rvSeq+":");
+				System.out.println("rvSeq:"+rvSeq+":");                     //<<<<<<<<<<<<<<<<<<<<syso
 
 				dto = new reviewDto(rvSeq, rvId, rvName, rvTitle, rvContent, rvStar, rvTime, rvMtime, rvDtime);
 				dtos.add(dto);
-				System.out.println("Review DTO Add");
+				System.out.println("MainDao에 있는 searchReview Review DTO Add");                         //<<<<<<<<<<<<<<<<<<<<syso
 			}
 			
 		}catch (Exception e) {
@@ -290,7 +290,7 @@ public class MainDao {
 		
 		try {
 			connection = dataSource.getConnection();
-			System.out.println("Query start");
+			System.out.println("Query start");                     //<<<<<<<<<<<<<<<<<<<<syso
 			String query = "select count(*) from review";
 			preparedStatement = connection.prepareStatement(query);
 			resultSet = preparedStatement.executeQuery();
@@ -306,11 +306,11 @@ public class MainDao {
 				Timestamp rvTime = resultSet.getTimestamp("rvTime");
 				Timestamp rvMtime = resultSet.getTimestamp("rvMtime");
 				Timestamp rvDtime = resultSet.getTimestamp("rvDtime");
-				System.out.println("rvSeq:"+rvSeq+":");
+				System.out.println("rvSeq:"+rvSeq+":");                     //<<<<<<<<<<<<<<<<<<<<syso
 
 				dto = new reviewDto(rvSeq, rvId, rvName, rvTitle, rvContent, rvStar, rvTime, rvMtime, rvDtime);
 				dtos.add(dto);
-				System.out.println("Room DTO Add");
+				System.out.println("MainDao에 있는 searchReviewCount   Room DTO Add");                         //<<<<<<<<<<<<<<<<<<<<syso
 			}
 			
 		}catch (Exception e) {
