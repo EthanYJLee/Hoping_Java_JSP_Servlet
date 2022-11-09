@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
 
 import com.bootcamp.client.dao.ClientDao;
 
-public class Clientwrite_Command implements Client_Command {
+public class Clientwrite_Command implements BCCommand {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {

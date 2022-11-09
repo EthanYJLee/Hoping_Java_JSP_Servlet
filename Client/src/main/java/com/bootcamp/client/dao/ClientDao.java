@@ -11,7 +11,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import com.bootcamp.client.dto.ClientDto;
+import com.bootcamp.dto.ClientDto;
 
 public class ClientDao {
 
@@ -21,7 +21,7 @@ public class ClientDao {
 
 		try {
 			Context context = new InitialContext();
-			dataSource = (DataSource) context.lookup("java:comp/env/jdbc/Client");
+			dataSource = (DataSource) context.lookup("java:comp/env/jdbc/camping");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -37,7 +37,7 @@ public class ClientDao {
 		try {
 			connection = dataSource.getConnection();
 
-			String query = "select cId, cPhone, cEmail, cPw from Client where cId = ?";
+			String query = "select cId, cPhone, cEmail, cPw from client where cId = ?";
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setString(1, scId);
 			resultSet = preparedStatement.executeQuery();
@@ -79,7 +79,7 @@ public class ClientDao {
 		try {
 			connection = dataSource.getConnection();
 
-			String query = "insert into Client (cId,cPw,cName,cPhone,cEmail,cDate) values(?,?,?,?,?,now()) ";
+			String query = "insert into client (cId,cPw,cName,cPhone,cEmail,cDate) values(?,?,?,?,?,now()) ";
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setString(1, cId);
 			preparedStatement.setString(2, cPw);
@@ -113,7 +113,7 @@ public class ClientDao {
 			try {
 				connection = dataSource.getConnection();
 				
-				String query = "select count(*) from Client where cDdate is null and cId=? and cPw=? " ; //
+				String query = "select count(*) from client where cDdate is null and cId=? and cPw=? " ; //
 				preparedStatement = connection.prepareStatement(query);
 				preparedStatement.setString(1, scId); // 위에 커리문에 물음표 갯수 만큼 작성
 				preparedStatement.setString(2, scPw);
@@ -148,7 +148,7 @@ public class ClientDao {
 	try {
 		connection = dataSource.getConnection();
 //		String query="delete from Client where cId=? ";
-		String query = "update Client set cDdate=now() where cId=?";
+		String query = "update client set cDdate=now() where cId=?";
 
 		preparedStatement = connection.prepareStatement(query);
 		preparedStatement.setString(1, cId);
@@ -174,7 +174,7 @@ public class ClientDao {
 		try {
 			connection = dataSource.getConnection();
 			
-			String query = "update Client set cPhone=? , cEmail=? , cPw=?, cMdate=now() where cId=?";
+			String query = "update client set cPhone=? , cEmail=? , cPw=?, cMdate=now() where cId=?";
 					
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setString(1, cPhone);
@@ -196,49 +196,42 @@ public class ClientDao {
 			}
 		}
 }
-//	//아이디 중복검사
-	public boolean checkId(String cId) {
-		
+	//아이디 중복검사
+	public int checkId(String cId) {  // 유저가 입력한 값을 매개변수로 한다
+//		conn();
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
-		boolean check = false;
-		try {
+		int idCheck = 0;		
+		
+	    try {
 			connection = dataSource.getConnection();
-			//DBMS 연결 객체 가져오기
-			String query = "SELECT COUNT(cId) FROM Client WHERE cId = ?";
-			//String으로 선언된 쿼리를 pstm객체에 전달하기
+			
+	    	String query = "select * from client where cId = ?"; // 입력값이 테이블에 있는지 확인
 			preparedStatement = connection.prepareStatement(query);
-			//SQL 쿼리에 ?가 있다면 알맞는 값으로 지정해주기
 			preparedStatement.setString(1, cId);
-			//쿼리 실행 후 결과를 rs객체에 담기
+			
 			resultSet = preparedStatement.executeQuery();
+					
+			if(resultSet.next() || cId.equals("")) {
+				idCheck = 0;  // 이미 존재하는 경우, 생성 불가능
+			} else {
+				idCheck = 1;  // 존재하지 않는 경우, 생성 가능
+			}
 			
-			//행가져오기
-			resultSet.next();
-			//위에서 가져온 행의 열을 타입에 맞춰서 가져오기
-			check = resultSet.getInt(1) == 1;	//0일 때 중복 없음(false), 1일 때 중복 있음(true)
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (Exception e) {
+	    } catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				if(resultSet != null) {
-					resultSet.close();
-				}
-				if(preparedStatement != null) {
-					preparedStatement.close();
-				}
-				if(connection != null) {
-					preparedStatement.close();
-				}
-			} catch (SQLException e) {
-				throw new RuntimeException(e);
-			}
+			close();
 		}
-		return check;
-//
+		
+		return idCheck;
 	}
-}
+	private void close() {
+		// TODO Auto-generated method stub
+		
+	}
+	}
+	
+	
+

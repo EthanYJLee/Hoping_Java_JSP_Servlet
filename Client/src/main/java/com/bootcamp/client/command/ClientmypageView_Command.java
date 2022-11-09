@@ -5,9 +5,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.bootcamp.client.dao.ClientDao;
-import com.bootcamp.client.dto.ClientDto;
+import com.bootcamp.dto.ClientDto;
 
-public class ClientmypageView_Command implements Client_Command {
+public class ClientmypageView_Command implements BCCommand {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {

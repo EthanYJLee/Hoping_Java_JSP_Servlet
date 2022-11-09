@@ -9,8 +9,9 @@ import javax.servlet.http.HttpSession;
 import javax.swing.JOptionPane;
 
 import com.bootcamp.client.dao.ClientDao;
+import com.mysql.cj.Session;
 
-public class Clientlogin_Command implements Client_Command {
+public class Clientlogin_Command implements BCCommand {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
@@ -25,10 +26,10 @@ public class Clientlogin_Command implements Client_Command {
 			
 		if(result == false) {
 			JOptionPane.showInternalMessageDialog(null, "아이디와 비밀번호를 확인해주세요 ", "로그인", 0, null);
-			page = "ClientLogin.jsp";
+			page = "ClientLoginView.jsp";
 		}if(result == true) {
 			JOptionPane.showInternalMessageDialog(null, "환영합니다 ", "로그인", 0, null);
-			page = "ClientMain.jsp";
+			page = "ClientMainView.jsp";
 		
 		
 //			request.setAttribute("cId", cId);

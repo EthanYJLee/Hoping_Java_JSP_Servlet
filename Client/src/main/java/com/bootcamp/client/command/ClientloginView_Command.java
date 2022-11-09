@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.bootcamp.client.dao.ClientDao;
 import com.mysql.cj.xdevapi.Client;
 
-public class ClientloginView_Command implements Client_Command {
+public class ClientloginView_Command implements BCCommand {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
