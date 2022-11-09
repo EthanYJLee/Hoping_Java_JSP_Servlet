@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>	    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Insert title here</title>
+<title>Hoping Camp</title>
 <link rel="stylesheet" href="css/style.css">
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -33,7 +34,7 @@
 			<path d="M8 6.982C9.664 5.309 13.825 8.236 8 12 2.175 8.236 6.336 5.309 8 6.982Z"/>
 			<path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.707L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.646a.5.5 0 0 0 .708-.707L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5 5 5Z"/>
 		</svg>
-       <span class="mytitle"><b>Hoping Admin</b></span>
+       <span class="mytitle"><b>Hoping Booking</b></span>
      </a>
      
      <ul class="nav nav-pills">
@@ -55,16 +56,16 @@
 <%--search바 --%>
 <div class="container myscontainer">
 	<div class="row myhtitle">
-		<div><b>예약 관리</b></div>
+		<div><b>예약 하기</b></div>
 	</div>
 	<div class="d-flex align-items-center justify-content-center justify-content-lg-center">
 		<%-- 콤보박스 --%>
-		<select class="col-2 form-select form-select-sm" aria-label=".form-select-sm example">
+<!--		<select class="col-2 form-select form-select-sm" aria-label=".form-select-sm example">
 		  <option selected>캠핑장 이름</option>
 		  <option value="1">One</option>
 		  <option value="2">Two</option>
 		  <option value="3">Three</option>
-		</select>
+		</select> -->
 		<%-- 달력입니당. --%>
 		<form autocomplete="off">
 			<div class="col-4 col-11" style="margin-right: 0px;">
@@ -75,9 +76,6 @@
 			</div>
 		</form>
 		<%-- search --%>
-		<form class="col-5 col-lg-auto" role="search">
-			<input class="mysearch" type="search" class="form-control" aria-label="Search">
-		</form>
         <div class="col-1 text-conter">
 			<a href="#" class="text-decoration-none">
 				<svg class="mysvg" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
@@ -93,11 +91,13 @@
 	<div class="card myhcard" style="border-radius: 20px;">
 		<table>
 			<tr class="myhtr">
-				<td class="myth">예약번호</td><td class="myth">캠핑장 번호</td><td class="myth">예약자ID</td><td class="myth">요금</td><td class="myth">예약일</td><td class="myth">자리</td><td class="myth">체크인 날짜</td><td class="myth">체크아웃 날짜</td><td class="myth">예약 인원</td>
+				<td class="myth">캠핑장 이름</td><td class="myth">사이트 넘버</td><td class="myth">사이트 가격</td><td class="myth">요금</td><td class="myth">예약여부</td><td class="myth">자리</td><td class="myth">체크인 날짜</td><td class="myth">체크아웃 날짜</td><td class="myth">예약 인원</td>
 			</tr>
+					<c:forEach items="${Camp}" var="dto">
 			<tr class="myhtr">
-				<td class="mytd">1</td><td class="mytd">2</td><td class="mytd">3</td><td class="mytd">4</td><td class="mytd">5</td><td class="mytd">6</td><td class="mytd">9</td><td class="mytd">10</td><td class="mytd">11</td>
+				<td class="mytd">${dto.regName}</td><td class="mytd">${dto.roNum}</td><td class="mytd">${dto.roPrice}</td><td class="mytd">${dto.roOccupied}</td><td class="mytd">5</td><td class="mytd">6</td><td class="mytd">9</td><td class="mytd">10</td><td class="mytd">11</td>
 			</tr>
+			</c:forEach>
 		</table>	  
 	</div>
 </div>

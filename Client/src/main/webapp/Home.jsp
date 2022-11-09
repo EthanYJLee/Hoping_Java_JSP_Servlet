@@ -99,7 +99,7 @@ body{
 		  <div class="col-md">
 		    <div class="card mycard">
 		    <a href="detailView.do?regSeq=${dto.regSeq}">
-		      <img src="${dto.regImage2}" class="card-img-top myimage" alt="...">
+		      <img src="./images/${dto.regImage2}" class="card-img-top myimage" alt="...">
 		    </a> 
 		      <div class="card-body mycbody">
 				<p class="card-text">

@@ -77,7 +77,7 @@
 </main>
 
 <!-- Foot -->
-<%@ include file = "foot.jsp" %>
+<%@ include file = "Foot.jsp" %>
 <!-- Foot End -->
 
 

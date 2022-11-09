@@ -10,9 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.bootcamp.client.command.BCCampListCommand;
 import com.bootcamp.client.command.BCCommand;
 import com.bootcamp.client.command.BCDetailCommand;
-import com.bootcamp.client.command.BCSelectDateCommand;
+//import com.bootcamp.client.command.BCSelectDateCommand;
 import com.bootcamp.client.command.Clientdelete_Command;
 import com.bootcamp.client.command.Clientlogin_Command;
 import com.bootcamp.client.command.Clientmodify_Command;
@@ -68,10 +69,6 @@ public class BCFrontController extends HttpServlet {
 
 		switch (com) {
 		
-		
-		
-		
-		
 		 // SangHyuk
 		// ListMain.do 코드 확인 시 타이핑을 줄이기 위해서 main.do로 수정함.
 		case ("/main.do"):
@@ -88,7 +85,14 @@ public class BCFrontController extends HttpServlet {
 			// Test를 위해 Home2.jsp로 출력하게 함.
 			viewPage = "Home.jsp";
 			break;
-
+			// 예약 페이지에서 캠프장관련 정보	보기 
+		case("/booking.do"):
+			System.out.println("List camp for Booking");
+			command = new BCCampListCommand();
+			command.execute(request, response);
+			viewPage = "Calendar2.jsp";
+			System.out.println("List camp End");
+			break;
 
 		// 로그인
 		case ("/login.do"):
@@ -134,11 +138,11 @@ public class BCFrontController extends HttpServlet {
 			
 			
 			// 예약하기 누루면 날자먼저 고르러 가는거 
-		case("/BookSelectDate.do"):
-			command = new BCSelectDateCommand();
-			command.execute(request, response);
-			viewPage = "BookSelectDate.jsp";
-			break;
+//		case("/BookSelectDate.do"):
+//			command = new BCSelectDateCommand();
+//			command.execute(request, response);
+//			viewPage = "BookSelectDate.jsp";
+//			break;
 
 			
 		case("/book.do"):
@@ -147,9 +151,12 @@ public class BCFrontController extends HttpServlet {
 			viewPage = "Book.jsp";
 			break;
 
-		}
-
-
+		
+		
+		
+		}// switch End
+		
+				
 
 				
 
