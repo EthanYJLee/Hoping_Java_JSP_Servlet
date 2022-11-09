@@ -44,7 +44,7 @@
 		<ul class="dropdown-menu dropdown-menu-end">
 			<li><a class="dropdown-item" href="#">내 정보</a></li>
 			<li><a class="dropdown-item" href="#">예약목록</a></li>
-			<li><a class="dropdown-item" href="#">문의목록</a></li>
+			<li><a class="dropdown-item" href="askList.do">문의목록</a></li>
             <li><a class="dropdown-item" href="#">수입 및 예약건 통계</a></li>
             <li><a class="dropdown-item" href="host_review_list.do">후기관리</a></li>
             <li><a class="dropdown-item" href="#">캠핑장 추가</a></li>
