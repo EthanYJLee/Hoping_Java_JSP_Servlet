@@ -51,8 +51,8 @@
   <input type="text" class="form-control" placeholder="최대인원" aria-label="inputroommax" aria-describedby="basic-addon1" name="roMax">
 </div>
 
-<input type="submit" value="확인" >
-
+<input type="submit" value="등록" class="btn btn-primary" >
+<a href="host_main.do" type="button" class="btn btn-primary">돌아기기</a>
 </form>
 
 

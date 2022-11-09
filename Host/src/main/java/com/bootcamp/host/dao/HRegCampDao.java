@@ -102,18 +102,20 @@ public class HRegCampDao {
 		return dtos;
 	}
 	
-	public void regcamproom( int roNum, int roPrice, int roMax) {
+	public void regcamproom( int roNum, int roPrice, int roMax, int regcamp_regSeq, int regcamp_host_hSeq) {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
 		try {
 			connection = dataSource.getConnection();
 			
-			String query = "insert into room (roNum, roPrice, roMax) values (?,?,?) ";
+			String query = "insert into room (roNum, roPrice, roMax, regcamp_regSeq, regcamp_host_hSeq) values (?,?,?,?,?) ";
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setInt(1, roNum);
 			preparedStatement.setInt(2, roPrice);
 			preparedStatement.setInt(3, roMax);
+			preparedStatement.setInt(4, regcamp_regSeq);
+			preparedStatement.setInt(5, regcamp_host_hSeq);
 			
 		
 			preparedStatement.executeUpdate();

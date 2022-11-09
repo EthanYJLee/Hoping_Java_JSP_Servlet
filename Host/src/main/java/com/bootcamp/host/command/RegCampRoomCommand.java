@@ -14,9 +14,11 @@ public class RegCampRoomCommand implements BCCommand {
 		int roNum = Integer.parseInt(request.getParameter("roNum"));
 		int roPrice = Integer.parseInt(request.getParameter("roPrice"));
 		int roMax = Integer.parseInt(request.getParameter("roMax"));
+		int regcamp_regSeq = 10;
+		int regcamp_host_hSeq = 1;
 		
 		HRegCampDao dao = new HRegCampDao();
-		dao.regcamproom(roNum, roPrice, roMax);
+		dao.regcamproom(roNum, roPrice, roMax, regcamp_regSeq, regcamp_host_hSeq);
 		
 
 	}

@@ -10,6 +10,7 @@ public class regcampDto {
 	String regDetailaddress = "";
 	String regName = "";
 	String regSummary = "";
+	String regImage1 = "";
 	int host_hSeq;
 	
 
@@ -17,6 +18,16 @@ public class regcampDto {
 	
 	public regcampDto() {
 		// TODO Auto-generated constructor stub
+	}
+
+
+
+
+	public regcampDto(String regImage1, String regName, String regDetailaddress ) {
+		super();
+		this.regImage1 = regImage1;
+		this.regName = regName;
+		this.regDetailaddress = regDetailaddress;
 	}
 
 
@@ -115,6 +126,20 @@ public class regcampDto {
 
 	public void setHost_hSeq(int host_hSeq) {
 		this.host_hSeq = host_hSeq;
+	}
+
+
+
+
+	public String getRegImage1() {
+		return regImage1;
+	}
+
+
+
+
+	public void setRegImage1(String regImage1) {
+		this.regImage1 = regImage1;
 	}
 
 
