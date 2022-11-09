@@ -15,49 +15,47 @@ import com.bootcamp.client.command.BCDetailCommand;
 import com.bootcamp.client.command.ListMain_Command;
 import com.bootcamp.client.command.SearchCamp_Command;
 
+
 /**
  * Servlet implementation class BFrontController
  */
 @WebServlet("*.do")
 public class BCFrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public BCFrontController() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
 	/**
-	 * @see HttpServlet#HttpServlet()
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	public BCFrontController() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		actionDo(request, response);
+		actionDo(request,response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		actionDo(request, response);
+		actionDo(request,response);
 
 	}
 
-	private void actionDo(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	
+	private void actionDo (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-
+		
 		String viewPage = null;
 		BCCommand command = null;
-
+		
+		
 		String uri = request.getRequestURI();
 		String conPath = request.getContextPath();
 		String com = uri.substring(conPath.length());
@@ -75,7 +73,7 @@ public class BCFrontController extends HttpServlet {
 			command = new ListMain_Command();
 			command.execute(request, response);
 			viewPage = "Home.jsp";
-			// viewPage = "Home.jsp";
+			//viewPage = "Home.jsp";
 			break;
 		// searchCamp.do 코드 확인 시 캠핑장을 검색어나 타입에 따라 검색하기 위한 메소.
 		case ("/searchCamp.do"):
@@ -84,6 +82,7 @@ public class BCFrontController extends HttpServlet {
 			// Test를 위해 Home2.jsp로 출력하게 함.
 			viewPage = "Home.jsp";
 			break;
+
 
 		// 로그인
 		case ("/login.do"):
@@ -141,7 +140,11 @@ public class BCFrontController extends HttpServlet {
 				
 
 
+
+		}
+				
+
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
-		dispatcher.forward(request, response);
+		dispatcher.forward(request,response);
 	}
 }// End
