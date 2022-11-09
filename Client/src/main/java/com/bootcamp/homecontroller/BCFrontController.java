@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import com.bootcamp.client.command.BCCommand;
 import com.bootcamp.client.command.BCDetailCommand;
+import com.bootcamp.client.command.BCSelectDateCommand;
 import com.bootcamp.client.command.ListMain_Command;
 import com.bootcamp.client.command.SearchCamp_Command;
 
@@ -87,11 +88,24 @@ public class BCFrontController extends HttpServlet {
 		// Hosik
 			// 상세 페이지 보기 
 		case("/detailView.do"):
-			System.out.println("View Detail");
 			command = new BCDetailCommand();
 			command.execute(request, response);
 			viewPage = "DetailView.jsp";
-			System.out.println("View Detail End");
+			break;
+			
+			
+			// 예약하기 누루면 날자먼저 고르러 가는거 
+		case("/BookSelectDate.do"):
+			command = new BCSelectDateCommand();
+			command.execute(request, response);
+			viewPage = "BookSelectDate.jsp";
+			break;
+
+			
+		case("/book.do"):
+			command = new BCDetailCommand();
+			command.execute(request, response);
+			viewPage = "Book.jsp";
 			break;
 
 		
