@@ -18,5 +18,10 @@ public class BCDetailCommand implements BCCommand {
 
 		request.setAttribute("DetailView", dto);
 	}
+	public Boolean execute1(HttpServletRequest request, HttpServletResponse response) {
+		return null;
+		
+		
+	}
 
 }

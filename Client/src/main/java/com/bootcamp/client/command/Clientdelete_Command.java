@@ -25,5 +25,10 @@ public class Clientdelete_Command implements BCCommand {
 		JOptionPane.showMessageDialog(null, "회원탈퇴가 완료되었습니다.");
 
 	}
+	public Boolean execute1(HttpServletRequest request, HttpServletResponse response) {
+		return null;
+		
+		
+	}
 
 }

@@ -5,4 +5,5 @@
 	
 	public interface BCCommand {
 		public void execute(HttpServletRequest request, HttpServletResponse response);
+		public Boolean execute1(HttpServletRequest request, HttpServletResponse response);
 	}
