@@ -51,13 +51,13 @@
 			  <div class="container">
   				 <div class="carousel-inner">
 				   	 <div class="carousel-item active" style="align-content: center;">
-				    	 <img src="${DetailView.regImage1}" class="d-block" alt="Img_1"  height="400" width="100%">
+				    	 <img src="./images/${DetailView.regImage1}" class="d-block" alt="Img_1"  height="400" width="100%">
 				    </div>
 				    <div class="carousel-item">
-				   		 <img src="${DetailView.regImage2}" class="d-block " alt="Img_2" height="400"  width="100%">
+				   		 <img src="./images/${DetailView.regImage2}" class="d-block " alt="Img_2" height="400"  width="100%">
 				    </div>
 				    <div class="carousel-item">
-				     	 <img src="${DetailView.regImage3}" class="d-block  " alt="Img_1" height="400"  width="100%">
+				     	 <img src="./images/${DetailView.regImage3}" class="d-block  " alt="Img_1" height="400"  width="100%">
 				    </div>
 			 	 </div>
 			  </div>	 
@@ -92,7 +92,7 @@
   		<hr class="featurette-divider">
   		  <div class="justify-content-center">	<!-- camp site -->
 		       	<h4> 캠핑장 배치도 </h4>
-		   	 <img src="${DetailView.regImage4}"  alt="CampSite=${DetailView.regName}"  height="100%" width="100%">
+		   	 <img src="./images/${DetailView.regImage4}"  alt="CampSite=${DetailView.regName}"  height="100%" width="100%">
 		    </div><!-- camp site end  -->
 		     <hr class="featurette-divider"> 
 		    
@@ -104,8 +104,8 @@
 		    </div>
 		    <div> --%>
 		    
-		    <a href="BookSelectDate.do?regSeq=${DetailView.regSeq}">예약하러 가기</a>
-		    
+		    <a href="booking.do?regSeq=${DetailView.regSeq}">예약하러 가기</a>
+		    <!-- 예약 페이지로 이동 되도록 수정 --> 
   		<form action="checkBook.do" method="post">
   		  <input type="text" name="rbookSeq" value="1">
 		    <button type="submit">예약정보 확인하러 가기</button>

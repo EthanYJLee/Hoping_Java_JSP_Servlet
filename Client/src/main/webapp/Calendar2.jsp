@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>	    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>	 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>   
 <!DOCTYPE html>
 <html>
 <head>
@@ -91,11 +92,11 @@
 	<div class="card myhcard" style="border-radius: 20px;">
 		<table>
 			<tr class="myhtr">
-				<td class="myth">캠핑장 이름</td><td class="myth">사이트 넘버</td><td class="myth">사이트 가격</td><td class="myth">요금</td><td class="myth">예약여부</td><td class="myth">자리</td><td class="myth">체크인 날짜</td><td class="myth">체크아웃 날짜</td><td class="myth">예약 인원</td>
+				<td class="myth">캠핑장 이름</td><td class="myth">사이트 넘버</td><td class="myth">카테고리</td><td class="myth">사이트 가격</td><td class="myth">최대수용 인원</td>
 			</tr>
-					<c:forEach items="${Camp}" var="dto">
+			<c:forEach items="${Camp}" var="dto">
 			<tr class="myhtr">
-				<td class="mytd">${dto.regName}</td><td class="mytd">${dto.roNum}</td><td class="mytd">${dto.roPrice}</td><td class="mytd">${dto.roOccupied}</td><td class="mytd">5</td><td class="mytd">6</td><td class="mytd">9</td><td class="mytd">10</td><td class="mytd">11</td>
+				<td class="mytd">${dto.regName}</td><td class="mytd"><a href="pay.do?roNum=${dto.roNum}">${dto.roNum}</a></td><td class="mytd">${dto.regCategory}</td><td class="mytd"><fmt:formatNumber value="${dto.roPrice}" pattern="#,###"/>원</td>><td class="mytd">${dto.roMax}명</td>
 			</tr>
 			</c:forEach>
 		</table>	  

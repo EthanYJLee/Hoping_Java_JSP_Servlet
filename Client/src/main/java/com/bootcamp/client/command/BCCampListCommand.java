@@ -19,6 +19,7 @@ public class BCCampListCommand implements BCCommand {
 		HttpSession session = request.getSession();
 		String cId = (String)session.getAttribute("cId");
 		String regSeq = request.getParameter("regSeq");
+		System.out.println("regSeq:"+regSeq+":");
 		CampDao dao = new CampDao();
 		ArrayList<campDto> dtos = dao.listCamp(regSeq);
 		request.setAttribute("Camp", dtos);
