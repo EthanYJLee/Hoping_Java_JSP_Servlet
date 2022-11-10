@@ -140,7 +140,7 @@ body{
 			</tr>
 			<tr>
 				<td>사진</td>
-				<td><img src="./Hostimage/${fileView.hImage}" style="width:200px; height:400px;"></td>
+				<td><img src="./images/${fileView.hImage}" style="width:200px; height:400px;"></td>
 			</tr>
 			<tr>
 				<td colspan="2"><a href="HostRegMapApi.jsp">캠핑장 등록하기</a></td>

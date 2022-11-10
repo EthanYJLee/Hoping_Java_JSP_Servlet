@@ -16,6 +16,7 @@
 
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
 
@@ -43,7 +44,7 @@
 		
 		<ul class="dropdown-menu dropdown-menu-end">
 			<li><a class="dropdown-item" href="#">내 정보</a></li>
-			<li><a class="dropdown-item" href="#">예약목록</a></li>
+			<li><a class="dropdown-item" href="bookList.do">예약목록</a></li>
 			<li><a class="dropdown-item" href="askList.do">문의목록</a></li>
             <li><a class="dropdown-item" href="#">수입 및 예약건 통계</a></li>
             <li><a class="dropdown-item" href="host_review_list.do">후기관리</a></li>
@@ -118,11 +119,11 @@
 <div class="row align-items-md-stretch py-3">
 	<div class="col-md-6">
 		<div class="h-100 p-5 bg-light border rounded-3">
-			<h2>금일 예약현황</h2>
+			<h2>오늘 예약현황</h2>
 			<br>
-			<p>신규예약</p>
-			<p>금일 체크인 예정</p>
-			<p>금일 체크아웃 예정</p>
+			<p>신규예약 : ${nr}</p>
+			<p>오늘 체크인 예정 : ${todayIn}</p>
+			<p>오늘 체크아웃 예정 : ${todayOut}</p>
 		</div>
 	</div>
 	<div class="col-md-6">
@@ -141,12 +142,16 @@
 		<div class="h-100 p-5 bg-light border rounded-3">
 			<h2>월별 수입 및 예약건</h2>
 			<br>
-			<canvas id="myChart" width="150" height="100"></canvas>
-			<script>
+<canvas id="profitChart" width="150" height="60"></canvas>
+<script>
 // 차트를 그럴 영역을 dom요소로 가져온다.
-var chartArea = document.getElementById('myChart').getContext('2d');
+var chartArea = document.getElementById('profitChart').getContext('2d');
 // 차트를 생성한다. 
-var myChart = new Chart(chartArea, {
+var mpdata = [];
+<c:forEach items="${mp}" var="mp">
+mpdata.push('${mp}');
+</c:forEach>
+var profitChart = new Chart(chartArea, {
 
     // ②차트의 데이터(Object)
     data: {
@@ -154,24 +159,18 @@ var myChart = new Chart(chartArea, {
         labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
         // ④실제 차트에 표시할 데이터들(Array), dataset객체들을 담고 있다.
         datasets: [{
-        	type: 'bar',
+        	type: 'line',
             // ⑤dataset의 이름(String)
             label: '월별 수입',
             // ⑥dataset값(Array)
-            data: [12, 19, 3, 5, 2, 3],
+            data: mpdata,
             // ⑦dataset의 배경색(rgba값을 String으로 표현)
             backgroundColor: 'rgba(255, 99, 132, 0.2)',
             // ⑧dataset의 선 색(rgba값을 String으로 표현)
             borderColor: 'rgba(255, 99, 132, 1)',
             // ⑨dataset의 선 두께(Number)
             borderWidth: 1
-        }, {
-            type: 'line',
-            label: '월별 예약건',
-            data: [10, 40, 50, 30, 20, 10, 15, 12, 34],
-            fill: false,
-            borderColor: 'rgb(54, 162, 235)'
-          }]
+        }]
     },
     // ⑩차트의 설정(Object)
     options: {
@@ -186,6 +185,39 @@ var myChart = new Chart(chartArea, {
     }
 });
 </script>
+<canvas id="reserveChart" width="150" height="60"></canvas>
+			<script>
+var chartArea = document.getElementById('reserveChart').getContext('2d');
+var mrdata = [];
+<c:forEach items="${mr}" var="mr">
+mrdata.push('${mr}');
+</c:forEach>
+var reserveChart = new Chart(chartArea, {
+
+    data: {
+        labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+        datasets: [{
+        	type: 'line',
+            label: '월별 예약',
+            data: mrdata,
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderColor: 'rgba(255, 99, 132, 1)',
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+</script>
+
+
+
+
 		</div>
 	</div>
 	<div class="col-md-6">

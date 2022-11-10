@@ -6,6 +6,8 @@ import javax.swing.JOptionPane;
 
 import com.bootcamp.client.dao.ClientDao;
 
+
+
 public class Clientdelete_Command implements BCCommand {
 
 	@Override
@@ -22,6 +24,11 @@ public class Clientdelete_Command implements BCCommand {
 		dao.ClientDelete(cId, cPw, cName, cPhone, cEmail);
 		JOptionPane.showMessageDialog(null, "회원탈퇴가 완료되었습니다.");
 
+	}
+	public Boolean execute1(HttpServletRequest request, HttpServletResponse response) {
+		return null;
+		
+		
 	}
 
 }

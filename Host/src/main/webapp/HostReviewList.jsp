@@ -18,7 +18,7 @@
 <link rel="stylesheet" href="css/Design.css">
 <link rel="stylesheet" href="css/HostCard.css">
 <link rel="stylesheet" href="css/TableCenter.css">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/HostStyle.css">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
 <script src="https://https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -69,7 +69,7 @@
 		
 		
 		<select>
-			<option value="">선택해주세요.</option>
+			<option value="">캠핑장을 선택해주세요</option>
 			<c:forEach var="list" items="${regName_list}">
 			<option value="${list}"<c:if test ="${user.selectedList eq list}">selected="selected"</c:if>>${list}</option>
 			</c:forEach>

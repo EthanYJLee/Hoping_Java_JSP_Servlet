@@ -5,85 +5,19 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<link href="css/style.css" rel="stylesheet" >
 <style type="text/css">
 @import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800'); 
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
 
-body{
-	font-family: 'Nanum Gothic';
-	
-}
-
-.mybtn {
-	transition: background-color .5s;
-	border-radius: 15px;
-}
-
-.mybtn:hover {
-	border: 0 solid black;
-	background-color: #E94560;
-}
-
-.myscontainer {
-	margin-bottom: 25px;
-}
-
-.mysearch {
-	border-radius: 15px;
-	border: 0.5px solid #808080;
-	box-shadow: 1px 1px 3px 2px #E6E6E6;
-	height: 33px;
-	width: 500px;
-}
-
-
-.mytitle{
-	font-family: 'Ubuntu', sans-serif;
-	color: #E94560;
-	font-size: 20px;	
-	font-weight: bold;
-}
-
-.mysvg{
-	margin-right: 5px;
-	color: #E94560;
-}
-
-.mycard{
-	border: 0px solid black;
-	margin-bottom: 20px;
-}
-
-
-.mycbody{
-	padding: 20px 0 0 0;
-}
-
-.myimage {
-	border-radius: 15px;
-	width: 250px;
-	height: 250px;
-}
-
-.myctitle{
-	font-size: 15px;
-	font-weight: 600;
-}
-
-.myctext{
-	font-weight:100;
-	color: gray;
-	
-}
-
-.mymcontainer{
-	margin-bottom: 50px;
-}
 </style>
 </head>
 <body>
 	<!-- 2022-11-8 Hosik - Hoping svg 클릭시 메인화면으로 링크 달았음 --> 
+	<!-- 2022-11-9 Hosik - 성연씨 코드 받고 회원메뉴 부분 수정함.
+						 - 로그인이 안되어 있을시 로그인 및 회원가입 메뉴 
+						 - 로그인 세션이 있을경우 메뉴가 회원정보수정-탈퇴 , 로그아웃 그리고 예약정보확인 페이지 등록예정 
+							 --> 
 	<%-- nav --%>
 	<div class="container">
 	   <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
@@ -105,10 +39,18 @@ body{
 					<path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z"/>
 				</a>
 				<ul class="dropdown-menu">
-			     <li><a class="dropdown-item" href="#">내 정보 관리</a></li>
+				<% if (session.getAttribute("cId") == null) { %>
+			    <li><a class="dropdown-item" href="ClientLoginView.jsp">로그인</a></li>
+			    <li><a class="dropdown-item" href="ClientSignupView.jsp">회원가입</a></li>
+			       <% } else { 
+			       %>
+			    <li><%=session.getAttribute("cId")  %> 님 환영합니다 </li>
 			    <li><a class="dropdown-item" href="#">예약 정보 관리</a></li>
 			    <li><a class="dropdown-item" href="#">위시 리스트</a></li>
-			    <li><a class="dropdown-item" href="#">로그아웃</a></li>
+			    <li><a class="dropdown-item" href="mypageView.do">마이페이지</a></li>
+			    <li><a class="dropdown-item" href="ClientLogout.jsp">로그아웃</a></li>
+			    
+        <% } %>
 			  </ul>
 			</li>
 	     </ul>

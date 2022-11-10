@@ -159,3 +159,5 @@ $RECYCLE.BIN/
 *.properties
 /servers
 
+Host2/.classpath
+Host2/.project

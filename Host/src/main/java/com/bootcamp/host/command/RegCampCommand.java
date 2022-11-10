@@ -5,8 +5,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.bootcamp.host.dao.HRegCampDao;
 
-
-
 public class RegCampCommand implements BCCommand {
 
 	@Override
@@ -18,12 +16,10 @@ public class RegCampCommand implements BCCommand {
 		
 		String regTel = request.getParameter("regTel");
 		String regCategory = request.getParameter("regCategory");
-		String regDetailaddress = address2 + address1;
+		String regDetailaddress = address2 + " " + address1;
 		String regName = request.getParameter("regName");
 		String regSummary = request.getParameter("regSummary");
 		int host_hSeq = 1;
-		
-		System.out.println(regCategory);
 		
 		HRegCampDao dao = new HRegCampDao();
 		dao.regcamp(regTel, regCategory, regDetailaddress, regName, regSummary, host_hSeq);

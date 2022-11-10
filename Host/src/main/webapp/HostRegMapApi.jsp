@@ -308,7 +308,7 @@ function closeOverlay() {
 
 </script>
 
-<form action="HostCampReg.jsp" >
+<form action="HostCampReg.jsp" method="post" >
 <input type="hidden" value="" id="hostlongitude" name="hostlongitude">
 <input type="hidden" value="" id="hostlatitude" name="hostlatitude">
 주소 : <input type="text" value="숙소의 위치를 지도에서 클릭해주세요!!" id="hostaddress" name="hostaddress" >
