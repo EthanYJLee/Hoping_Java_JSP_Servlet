@@ -1,5 +1,6 @@
 package com.bootcamp.host.command;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,13 +16,18 @@ public class HostInfoFaSelectCommand implements BCCommand {
 
 		String regSeq = request.getParameter("regSeq");
 		String hSeq = request.getParameter("hSeq");
-		
+
 		FacilityDao dao = new FacilityDao();
-		
+
 		ArrayList<FacilityDto> dtos = dao.selectFacility(1, 1);
-		
+
 		request.setAttribute("facility", dtos);
 
+	}
+
+	@Override
+	public Boolean execute1(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		return null;
 	}
 
 }

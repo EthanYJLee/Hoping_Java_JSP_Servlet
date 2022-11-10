@@ -12,19 +12,21 @@ public class HInfoInsertCommand implements BCCommand {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		// TODO Auto-generated method stub
-		
+
 		String hId = request.getParameter("cId");
 		System.out.println("hID" + hId);
-		
+
 		String hSummary = request.getParameter("hSummary");
 		System.out.println("hsummary" + hSummary);
-		
 
-		
 		HInfoDao dao = new HInfoDao();
 		dao.insert(hId, hSummary);
-		
 
+	}
+
+	@Override
+	public Boolean execute1(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		return null;
 	}
 
 }

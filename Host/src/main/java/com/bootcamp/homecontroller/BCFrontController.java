@@ -32,7 +32,7 @@ import com.bootcamp.host.command.HostMonthlyReservation_Command;
 import com.bootcamp.host.command.HostReviewContentView_Command;
 import com.bootcamp.host.command.HostReviewList_Command;
 import com.bootcamp.host.command.HostSendReviewReply_Command;
-import com.bootcamp.host.command.HostTermsAD;
+
 import com.bootcamp.host.command.MyHostBookDetailCommand;
 import com.bootcamp.host.command.RegCampCommand;
 import com.bootcamp.host.command.RegCampRoomCommand;
@@ -92,8 +92,8 @@ public class BCFrontController extends HttpServlet {
 		
 		
 		case ("/term.do"):
-			command = new HInfoCommand();
-			command.execute(request, response);
+			
+		
 			viewPage = "HostTerms.jsp";
 			
 		case ("/show.do"):

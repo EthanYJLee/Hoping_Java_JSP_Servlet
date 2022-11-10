@@ -1,5 +1,7 @@
 package com.bootcamp.host.command;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -21,6 +23,11 @@ public class HostSendReviewReply_Command implements BCCommand {
 
 		dao.setReviewCommentGroup(); // 그룹(rcGroup)을 해당 댓글 (rcomment)의 Seq와 같게 업데이트
 
+	}
+
+	@Override
+	public Boolean execute1(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		return null;
 	}
 
 }

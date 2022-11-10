@@ -130,15 +130,6 @@ body {
 		</header>
 	</div>
 	
-<%
-	request.setCharacterEncoding("utf-8");
-	
-	String cId = request.getParameter("anna");
-	
-	session.setAttribute("CID", cId);
-	
-
-%>
 
 
 
