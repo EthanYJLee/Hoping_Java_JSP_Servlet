@@ -78,7 +78,7 @@
 				<div class="card-body">
 					<h5 class="card-title">1번 캠핑장</h5>
 					<p class="card-text">캠핑장 주소</p>
-					<a href="#" class="btn btn-primary">캠핑장 메인페이지로</a>
+					<a href="host_branch_main.do?regSeq=" class="btn btn-primary">캠핑장 메인페이지로</a>
 				</div>
 			</div></div>
 			
@@ -87,7 +87,7 @@
 				<div class="card-body">
 					<h5 class="card-title">2번 캠핑장</h5>
 					<p class="card-text">캠핑장 주소</p>
-					<a href="#" class="btn btn-primary">캠핑장 메인페이지로</a>
+					<a href="host_branch_main.do?regSeq=" class="btn btn-primary">캠핑장 메인페이지로</a>
 				</div>
 			</div></div>
 			
@@ -96,7 +96,7 @@
 				<div class="card-body">
 					<h5 class="card-title">3번 캠핑장</h5>
 					<p class="card-text">캠핑장 주소</p>
-					<a href="#" class="btn btn-primary">캠핑장 메인페이지로</a>
+					<a href="host_branch_main.do?regSeq=" class="btn btn-primary">캠핑장 메인페이지로</a>
 				</div>
 			</div></div>
 			
@@ -105,7 +105,7 @@
 				<div class="card-body">
 					<h5 class="card-title">4번 캠핑장</h5>
 					<p class="card-text">캠핑장 주소</p>
-					<a href="#" class="btn btn-primary">캠핑장 메인페이지로</a>
+					<a href="host_branch_main.do?regSeq=" class="btn btn-primary">캠핑장 메인페이지로</a>
 				</div>
 			</div></div>
 		</div>
@@ -124,15 +124,21 @@
 			<p>신규예약 : ${nr}</p>
 			<p>오늘 체크인 예정 : ${todayIn}</p>
 			<p>오늘 체크아웃 예정 : ${todayOut}</p>
+			<div class="form-row float-right">
+			<button type="button" class="btn text-secondary">상세보기</button>
+			</div>
 		</div>
 	</div>
 	<div class="col-md-6">
 		<div class="h-100 p-5 bg-light border rounded-3">
-			<h2>금일 문의현황</h2>
+			<h2>오늘 문의현황</h2>
 			<br>
-			<p>총 문의개수</p>
-			<p>답변 완료</p>
-			<p>답변 미완료</p>
+			<p>신규문의 : ${tq}</p>
+			<p>답변 완료 : ${trq}</p>
+			<p>답변 미완료 : ${tnrq}</p>
+			<div class="form-row float-right">
+			<button type="button" class="btn text-secondary">상세보기</button>
+			</div>
 		</div>
 	</div>
 </div>
@@ -222,12 +228,15 @@ var reserveChart = new Chart(chartArea, {
 	</div>
 	<div class="col-md-6">
 		<div class="h-100 p-5 bg-light border rounded-3">
-			<h2>후기현황</h2>
+			<h2>오늘 후기현황</h2>
 			<br>
-			<p>총 후기개수</p>
-			<p>답변 완료</p>
-			<p>답변 미완료</p>
+			<p>신규후기 : ${tr}</p>
+			<p>답변 완료 : ${trr}</p>
+			<p>답변 미완료 : ${tnrr}</p>
 			<p>평균 별점</p>
+			<div class="form-row float-right">
+			<button type="button" class="btn text-secondary">상세보기</button>
+			</div>
 		</div>
 	</div>
 </div>
