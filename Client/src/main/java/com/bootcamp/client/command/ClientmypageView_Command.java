@@ -23,5 +23,10 @@ public class ClientmypageView_Command implements BCCommand {
 		session.setAttribute("mypageview", dto);
 
 	}
+	public Boolean execute1(HttpServletRequest request, HttpServletResponse response) {
+		return null;
+		
+		
+	}
 
 }

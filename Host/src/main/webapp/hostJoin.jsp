@@ -122,7 +122,7 @@ body{
  
  
 	<div class="box container mymcontainer">
-	<div style="margin-bottom: 20px; font-weight: 500; font-size: 25px;">호스트 정보수정</div>
+	<div style="margin-bottom: 20px; font-weight: 500; font-size: 25px;">호스트 정보등록</div>
 	
 	
 	<form action="insert.do" method="post">

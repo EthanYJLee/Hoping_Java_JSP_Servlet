@@ -23,5 +23,10 @@ public class Clientwrite_Command implements BCCommand {
 		JOptionPane.showMessageDialog(null, "회원가입이 완료되었습니다.");
 		
 	}
+	public Boolean execute1(HttpServletRequest request, HttpServletResponse response) {
+		return null;
+		
+		
+	}
 
 }

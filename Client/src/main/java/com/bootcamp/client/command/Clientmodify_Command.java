@@ -27,5 +27,11 @@ public class Clientmodify_Command implements BCCommand {
 		
 		
 	}
+	public Boolean execute1(HttpServletRequest request, HttpServletResponse response) {
+		return null;
+		
+		
+	}
+
 
 }
