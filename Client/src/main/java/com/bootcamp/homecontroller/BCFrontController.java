@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.bootcamp.client.command.BCCampDateCheckCommand;
 import com.bootcamp.client.command.BCCampListCommand;
 import com.bootcamp.client.command.BCCommand;
 import com.bootcamp.client.command.BCDetailCommand;
@@ -85,7 +86,7 @@ public class BCFrontController extends HttpServlet {
 			// Test를 위해 Home2.jsp로 출력하게 함.
 			viewPage = "Home.jsp";
 			break;
-			// 예약 페이지에서 캠프장관련 정보	보기 
+			// 예약 페이지 예약 가능한 날짜 확인을 위한 날짜 체크 sanghyuk
 		case("/booking.do"):
 			System.out.println("List camp for Booking");
 			command = new BCCampListCommand();
@@ -93,7 +94,16 @@ public class BCFrontController extends HttpServlet {
 			viewPage = "Calendar2.jsp";
 			System.out.println("List camp End");
 			break;
-
+			// 예약 가능한 방 리스트 보여주기 sanghyuk
+		case("/bookingdatechek.do"):
+			System.out.println("Date Check for Booking");
+			command = new BCCampDateCheckCommand();
+			command.execute(request, response);
+			viewPage = "Calendar3.jsp";
+			System.out.println("Date Check for Booking End");
+			break;
+			
+			
 		// 로그인
 		case ("/login.do"):
 			command = new Clientlogin_Command();

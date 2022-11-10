@@ -57,7 +57,7 @@
 <%--search바 --%>
 <div class="container myscontainer">
 	<div class="row myhtitle">
-		<div><b>예약 가능 여부 확인</b></div>
+		<div><b>예약 하기 - 방선택하기</b></div>
 	</div>
 	<div class="d-flex align-items-center justify-content-center justify-content-lg-center">
 		<%-- 콤보박스 --%>
@@ -68,15 +68,14 @@
 		  <option value="3">Three</option>
 		</select> -->
 		<%-- 달력입니당. --%>
-		<%-- <form autocomplete="off">--%>
-		<form action="bookingdatechek.do"class="col-12 col-lg-auto mb-4 mb-lg-0 me-lg-4" role="search">
+		<form autocomplete="off">
 			<div class="col-4 col-11" style="margin-right: 0px;">
 				<div class="input-group input-daterange">
-					<input type="text" name="startdate" style="background-color: white; border-radius: 13px; height: 33px; font-size: 13px;" class="mydinput form-control" placeholder="Start" readonly>
-					<input type="text" name="stopdate" style="border-radius: 13px; height: 33px; font-size: 13px;" class="secondary form-control" placeholder="End" readonly>
+					<input type="text" style="background-color: white; border-radius: 13px; height: 33px; font-size: 13px;" class="mydinput form-control" placeholder="Start" readonly>
+					<input type="text" style="border-radius: 13px; height: 33px; font-size: 13px;" class="secondary form-control" placeholder="End" readonly>
 				</div>
 			</div>
-		<%--</form>		 --%>
+		</form>		
 		<%-- search --%>
 <%--         <div class="col-1 text-conter">
 			<a href="#" class="text-decoration-none">
@@ -86,7 +85,7 @@
 			</a>
         </div> --%>
         
-
+         <form action="searchCamp.do"class="col-12 col-lg-auto mb-4 mb-lg-0 me-lg-4" role="search">
 <%--          <input class="mysearch" type="search" class="form-control" aria-label="Search" name="content"> --%>
 			<label for="btnSubmit">
 				<svg class="mysvg" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
@@ -110,10 +109,9 @@
 			<tr class="myhtr">
 				<td class="myth">캠핑장 이름</td><td class="myth">사이트 넘버</td><td class="myth">카테고리</td><td class="myth">사이트 가격</td><td class="myth">최대수용 인원</td>
 			</tr>
-			<c:forEach items="${Camp}" var="dto">
+			<c:forEach items="${Camp}" var="dto">		
 			<tr class="myhtr">
-				<td class="mytd">${dto.regName}</td><td class="mytd">${dto.roNum}</td><td class="mytd">${dto.regCategory}</td><td class="mytd"><fmt:formatNumber value="${dto.roPrice}" pattern="#,###"/>원</td><td class="mytd">${dto.roMax}명</td>
-			<%--	<td class="mytd">${dto.regName}</td><td class="mytd"><a href="pay.do?roNum=${dto.roNum}">${dto.roNum}</a></td><td class="mytd">${dto.regCategory}</td><td class="mytd"><fmt:formatNumber value="${dto.roPrice}" pattern="#,###"/>원</td>><td class="mytd">${dto.roMax}명</td> --%>
+				<td class="mytd">${dto.regName}</td><td class="mytd"><a href="pay.do?roNum=${dto.roNum}">${dto.roNum}</a></td><td class="mytd">${dto.regCategory}</td><td class="mytd"><fmt:formatNumber value="${dto.roPrice}" pattern="#,###"/>원</td><td class="mytd">${dto.roMax}명</td>
 			</tr>
 			</c:forEach>
 		</table>	  

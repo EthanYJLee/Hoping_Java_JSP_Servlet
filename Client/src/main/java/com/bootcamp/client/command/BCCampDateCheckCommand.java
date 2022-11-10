@@ -11,17 +11,20 @@ import com.bootcamp.client.dao.MainDao;
 import com.bootcamp.dto.regcampDto;
 import com.bootcamp.joindto.campDto;
 
-public class BCCampListCommand implements BCCommand {
+public class BCCampDateCheckCommand implements BCCommand {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		
 		HttpSession session = request.getSession();
 		String cId = (String)session.getAttribute("cId");
-		String regSeq = request.getParameter("regSeq");
-		System.out.println("regSeq:"+regSeq+":");
+		String startdate = request.getParameter("startdate");
+		String stopdate = request.getParameter("stopdate");
+		System.out.println("startdate:"+startdate+":");
+		System.out.println("stopdate:"+stopdate+":");
+		
 		CampDao dao = new CampDao();
-		ArrayList<campDto> dtos = dao.listCamp(regSeq);
+		ArrayList<campDto> dtos = dao.dateCheck(startdate,stopdate);
 		request.setAttribute("Camp", dtos);
 		
 /*
