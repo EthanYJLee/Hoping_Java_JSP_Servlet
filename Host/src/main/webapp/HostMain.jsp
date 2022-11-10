@@ -128,11 +128,11 @@
 	</div>
 	<div class="col-md-6">
 		<div class="h-100 p-5 bg-light border rounded-3">
-			<h2>금일 문의현황</h2>
+			<h2>오늘 문의현황</h2>
 			<br>
-			<p>총 문의개수</p>
-			<p>답변 완료</p>
-			<p>답변 미완료</p>
+			<p>신규문의 : ${tq}</p>
+			<p>답변 완료 : ${trq}</p>
+			<p>답변 미완료 : ${tnrq}</p>
 		</div>
 	</div>
 </div>
@@ -222,11 +222,11 @@ var reserveChart = new Chart(chartArea, {
 	</div>
 	<div class="col-md-6">
 		<div class="h-100 p-5 bg-light border rounded-3">
-			<h2>후기현황</h2>
+			<h2>오늘 후기현황</h2>
 			<br>
-			<p>총 후기개수</p>
-			<p>답변 완료</p>
-			<p>답변 미완료</p>
+			<p>신규후기 : ${tr}</p>
+			<p>답변 완료 : ${trr}</p>
+			<p>답변 미완료 : ${tnrr}</p>
 			<p>평균 별점</p>
 		</div>
 	</div>

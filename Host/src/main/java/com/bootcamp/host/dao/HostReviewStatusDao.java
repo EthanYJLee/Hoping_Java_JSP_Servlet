@@ -8,28 +8,30 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-public class HostInquiryStatusDao {
+public class HostReviewStatusDao {
 	DataSource dataSource;
 
-	public HostInquiryStatusDao() {
+	public HostReviewStatusDao() {
 		try {
 			Context context = new InitialContext(); // javax.naming
 			dataSource = (DataSource) context.lookup("java:comp/env/jdbc/camping");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
 	}
 
-	public int mainInquiryCount(int hSeq) { // 오늘 기준 작성된 전체 캠핑장 문의글 카운트
+	public int mainReviewCount(int hSeq) { // 오늘 달린 후기 갯수 전체
 		PreparedStatement ps = null;
 		Connection connection = null;
 		ResultSet rs = null;
-		int todayQ = 0;
+		int todayR = 0;
 
 		try {
 			connection = dataSource.getConnection();
-			String query = "select count(*) from ask a inner join regcamp r on a.aRegSeq = r.regSeq ";
-			String query2 = "where date(a.aTime) = curdate() and a.aDtime is null and r.host_hSeq = ?";
+			String query = "select count(*) from review rv inner join regcamp reg on ";
+			String query2 = "rv.regcamp_regSeq = reg.regSeq where date(rv.rvTime) = curdate() "
+					+ "and rv.rvDtime is null and reg.host_hSeq = ?";
 
 			ps = connection.prepareStatement(query + query2);
 			ps.setInt(1, hSeq);
@@ -37,7 +39,7 @@ public class HostInquiryStatusDao {
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
-				todayQ = rs.getInt(1); // 문의글 수 (오늘 날짜 기준)
+				todayR = rs.getInt(1); // 리뷰 수 (오늘 날짜 기준)
 			}
 
 		} catch (Exception e) {
@@ -52,19 +54,19 @@ public class HostInquiryStatusDao {
 				e.printStackTrace();
 			}
 		}
-		return todayQ;
+		return todayR;
 	}
 
-	public int mainInquiryRepliedCount(int hSeq) { // 오늘 문의글 중 답변 완료된 수 카운트
+	public int mainReviewRepliedCount(int hSeq) { // 오늘 문의글 중 답변 완료된 수 카운트
 		PreparedStatement ps = null;
 		Connection connection = null;
 		ResultSet rs = null;
-		int todayRepliedQ = 0;
+		int todayRepliedR = 0;
 
 		try {
 			connection = dataSource.getConnection();
-			String query = "select count(*) from acomment ac inner join ask a on ac.ask_aSeq = a.aSeq ";
-			String query2 = "where date(a.aTime) = curdate() and date(ac.acTime) = curdate() and ac.host_hSeq = ?";
+			String query = "select count(*) from rcomment rc inner join review rv on rc.review_rvSeq = rv.rvSeq ";
+			String query2 = "where date(rv.rvTime) = curdate() and date(rc.rcTime) = curdate() and rv.regcamp_host_hSeq = ?";
 
 			ps = connection.prepareStatement(query + query2);
 			ps.setInt(1, hSeq);
@@ -72,7 +74,7 @@ public class HostInquiryStatusDao {
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
-				todayRepliedQ = rs.getInt(1); // 문의글 답변완료 수 (오늘 날짜 기준)
+				todayRepliedR = rs.getInt(1); // 문의글 답변완료 수 (오늘 날짜 기준)
 			}
 
 		} catch (Exception e) {
@@ -87,7 +89,7 @@ public class HostInquiryStatusDao {
 				e.printStackTrace();
 			}
 		}
-		return todayRepliedQ;
+		return todayRepliedR;
 
 	}
 
