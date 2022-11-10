@@ -70,12 +70,12 @@
  	<h4>예약 상세</h4>
  	<br>
  	<div class="row">
- 		<div class="col-6 mydtitle">예약 번호 ${bookDetail.boSeq }</div>
+ 		<div class="col-6 mydtitle">예약 번호 ${bookDetail.boGroup }</div>
  		<div class="col-6 mydtitle">${bookDetail.regName }</div>
  	</div>
  	<div class="row myhdrow">
  		<div class="card col-md-6" style="border: 0px solid black;">
- 			<div class="myhdth">예약자ID</div><div class="myhdtd">${bookDetail.pay_cid }</div>
+ 			<div class="myhdth">예약자ID</div><div class="myhdtd">${bookDetail.pay_client_cId }</div>
  		</div>
  		<div class="card col-md-6" style="border: 0px solid black;">
  			<div class="myhdth">자리</div><div class="myhdtd">${bookDetail.roNum }</div>
@@ -83,7 +83,7 @@
  	</div>
  	<div class="row myhdrow">
  		<div class="card col-md-6" style="border: 0px solid black;">
- 			<div class="myhdth">날짜</div><div class="myhdtd">${bookDetail.boCheckindate } ~ ${bookDetail.boCheckoutdate }</div>
+ 			<div class="myhdth">날짜</div><div class="myhdtd">${bookDetail.checkin } ~ ${bookDetail.checkout }</div>
  		</div>
  		<div class="card col-md-6" style="border: 0px solid black;">
  			<div class="myhdth">총인원</div><div class="myhdtd">${bookDetail.boCount }</div>

@@ -1,5 +1,7 @@
 package com.bootcamp.host.command;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,9 +14,14 @@ public class HostInfoRoomDelCommand implements BCCommand {
 		// TODO Auto-generated method stub
 		String roSeq = request.getParameter("roSeq");
 		RoomDao dao = new RoomDao();
-		
+
 		dao.deleteRoom(roSeq);
 
+	}
+
+	@Override
+	public Boolean execute1(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		return null;
 	}
 
 }

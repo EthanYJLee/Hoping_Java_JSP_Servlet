@@ -28,66 +28,24 @@
 </head>
 <body>
 <%-- nav --%>
-<div class="container">
-   <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-		<svg class="mysvg" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-house-heart" viewBox="0 0 16 16">
-			<path d="M8 6.982C9.664 5.309 13.825 8.236 8 12 2.175 8.236 6.336 5.309 8 6.982Z"/>
-			<path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.707L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.646a.5.5 0 0 0 .708-.707L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5 5 5Z"/>
-		</svg>
-       <span class="mytitle"><b>Hoping Booking</b></span>
-     </a>
-     
-     <ul class="nav nav-pills">
-     	<li class="nav-item">
-			<svg class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-person-lines-fill" viewBox="0 0 16 16">
-				<path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z"/>
-			<ul class="dropdown-menu">
-		    <li><a class="dropdown-item" href="#">내 정보</a></li>
-		    <li><a class="dropdown-item" href="#">예약 목록</a></li>
-		    <li><a class="dropdown-item" href="#">문의 목록</a></li>
-		    <li><a class="dropdown-item" href="#">수입 및 예약건 통계</a></li>
-		    <li><a class="dropdown-item" href="#">후기 관리</a></li>
-		    <li><a class="dropdown-item" href="#">로그아웃</a></li>
-		  </ul>
-		</li>
-     </ul>
-   </header>
- </div>
+<!-- Header -->
+ <%@ include file = "Nav2.jsp" %>
+<!-- Header End -->
 <%--search바 --%>
 <div class="container myscontainer">
 	<div class="row myhtitle">
-		<div><b>예약 가능 여부 확인</b></div>
+		<div><b>캠핑장을 이용하실 날짜를 선택해 주세요</b></div>
 	</div>
 	<div class="d-flex align-items-center justify-content-center justify-content-lg-center">
-		<%-- 콤보박스 --%>
-<!--		<select class="col-2 form-select form-select-sm" aria-label=".form-select-sm example">
-		  <option selected>캠핑장 이름</option>
-		  <option value="1">One</option>
-		  <option value="2">Two</option>
-		  <option value="3">Three</option>
-		</select> -->
 		<%-- 달력입니당. --%>
 		<%-- <form autocomplete="off">--%>
-		<form action="bookingdatechek.do"class="col-12 col-lg-auto mb-4 mb-lg-0 me-lg-4" role="search">
+		<form action="bookingdatecheck.do"class="col-12 col-lg-auto mb-4 mb-lg-0 me-lg-4" role="search">
 			<div class="col-4 col-11" style="margin-right: 0px;">
 				<div class="input-group input-daterange">
 					<input type="text" name="startdate" style="background-color: white; border-radius: 13px; height: 33px; font-size: 13px;" class="mydinput form-control" placeholder="Start" readonly>
 					<input type="text" name="stopdate" style="border-radius: 13px; height: 33px; font-size: 13px;" class="secondary form-control" placeholder="End" readonly>
 				</div>
 			</div>
-		<%--</form>		 --%>
-		<%-- search --%>
-<%--         <div class="col-1 text-conter">
-			<a href="#" class="text-decoration-none">
-				<svg class="mysvg" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-					  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-				</svg>
-			</a>
-        </div> --%>
-        
-
-<%--          <input class="mysearch" type="search" class="form-control" aria-label="Search" name="content"> --%>
 			<label for="btnSubmit">
 				<svg class="mysvg" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
 					  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
@@ -135,6 +93,8 @@ $(document).ready(function(){
 
   
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
-
+<!-- Foot -->
+<%@ include file = "Foot.jsp" %>
+<!-- Foot End -->
 </body>
 </html>

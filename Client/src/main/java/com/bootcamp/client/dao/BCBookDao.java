@@ -128,52 +128,48 @@ import com.bootcamp.dto.roomDto;
 		
 	} // selectDate End 
 		
-		// CheckBook  예약한 정보를 불러올꺼임 			// 여기서 받아오는 이름이 밑에서 쓸 변수랑 같으면 안댐, 에러남 그래서 강사님이 sbId라고 받아왔음 
-//		public bookDto checkBook(String rbookSeq) { // 데이터가 1개뿐이라 dto에 담아서 가지고 와서 보여줄 거임 
-//			bookDto dto = null;
-//			Connection connection = null;
-//			PreparedStatement preparedStatement = null; // 이거 쓸꺼면 ? 써도 댐 
-//			ResultSet resultSet = null;
-//			
-//			try {
-//				connection = dataSource.getConnection();
-//				
-//				String query = "select * from book where boSeq = ?";
-//				preparedStatement = connection.prepareStatement(query);
-//				preparedStatement.setInt(1, Integer.parseInt(rbookSeq));
-//				resultSet = preparedStatement.executeQuery();
-//
-//				
-//				if(resultSet.next()) {
-//					int boSeq = resultSet.getInt("boSeq");   // 위에 * 적은게 DB안에 꺼 다 적으면 가능함 .
-//					int boPrice = resultSet.getInt("boPrice");
-//					Timestamp boDate = resultSet.getTimestamp("boDate");
-//					Timestamp boCheckindate = resultSet.getTimestamp("boCheckindate");
-//					Timestamp boCheckoutdate = resultSet.getTimestamp("boCheckoutdate");
-//					int boCount = resultSet.getInt("boCount");
-//					Timestamp boCanceldate = resultSet.getTimestamp("boCanceldate");
-//					int client_cId = resultSet.getInt("client_cId");
-//					int room_roSeq = resultSet.getInt("room_roSeq");
-//					int room_regcamp_regSeq = resultSet.getInt("room_regcamp_regSeq");
-//					int room_regcamp_host_hSeq = resultSet.getInt("room_regcamp_host_hSeq");
-//					int pay_cid = resultSet.getInt("pay_cid");
-//					 dto = new bookDto(boSeq, boPrice, boDate, boCheckindate, boCheckoutdate,boCount,boCanceldate,client_cId,room_roSeq,room_regcamp_regSeq,room_regcamp_host_hSeq,pay_cid);
-//				}
-//				
-//			}catch(Exception e) {
-//				e.printStackTrace();
-//			}finally {
-//				try {
-//					if(resultSet != null) resultSet.close();
-//					if(preparedStatement != null) preparedStatement.close();
-//					if(connection != null) connection.close();
-//				}catch(Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//			return dto;
-//
-//	}//contentView End
+	
+	// 22-11-10 made by Hosik
+	// room을 선택하면 roSeq값으로 요금과 최대인원수를 구할 거임 
+	public roomDto confirmation(int roomSeq) { // 데이터가 1개뿐이라 dto에 담아서 가지고 와서 보여줄 거임 
+		Connection connection = null;
+		PreparedStatement preparedStatement = null; // 이거 쓸꺼면 ? 써도 댐 
+		ResultSet resultSet = null;
+		roomDto dto = null;
+		
+		try {
+			connection = dataSource.getConnection();
+			
+			String query = "select roPrice, roMax, regcamp_regSeq from room where roSeq = ?";
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setInt(1, roomSeq);
+			resultSet = preparedStatement.executeQuery();
+			
+			if(resultSet.next()) {
+				int roPrice = resultSet.getInt("roPrice");   // 위에 * 적은게 DB안에 꺼 다 적으면 가능함 .
+				int roMax = resultSet.getInt("roMax");
+				int regcamp_regSeq = resultSet.getInt("regcamp_regSeq");
+				 dto = new roomDto(roPrice, roMax, regcamp_regSeq);
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(resultSet != null) resultSet.close();
+				if(preparedStatement != null) preparedStatement.close();
+				if(connection != null) connection.close();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return dto;
+	} // DetailView  END
+	
+	
+	
+	
+	
 	
 	
 }//BDao End

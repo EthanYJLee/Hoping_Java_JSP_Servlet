@@ -41,10 +41,10 @@
 			    </div>
 			    <button class="w-100 btn btn-lg btn-primary" type="submit">로그인</button>
 			  	
-			  	<div class="links">
-		            <a href="ClientSignupView.jsp">회원가입</a>
-		            <a href="#">아이디 찾기</a>
-		            <a href="#">비밀번호 찾기</a>
+			  	<div class="links" style="text-decoration: none">
+		            <a href="ClientSignupView.jsp" style="text-decoration: none">회원가입</a>
+		            <a href="#" style="text-decoration: none">아이디 찾기</a>
+		            <a href="#" style="text-decoration: none">비밀번호 찾기</a>
 		        </div>
 			  
 		  </form>

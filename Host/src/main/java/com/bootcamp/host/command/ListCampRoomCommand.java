@@ -1,5 +1,6 @@
 package com.bootcamp.host.command;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +18,11 @@ public class ListCampRoomCommand implements BCCommand {
 		ArrayList<regroomDto> dtos = dao.camproomlist();
 		request.setAttribute("roomlist", dtos);
 		System.out.println(dtos);
+	}
+
+	@Override
+	public Boolean execute1(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		return null;
 	}
 
 }

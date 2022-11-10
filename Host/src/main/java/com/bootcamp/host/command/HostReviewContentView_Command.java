@@ -1,5 +1,7 @@
 package com.bootcamp.host.command;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -16,6 +18,11 @@ public class HostReviewContentView_Command implements BCCommand {
 		dto = dao.reviewContentView(rvSeq);
 		request.setAttribute("review_content_view", dto);
 		request.setAttribute("rvSeq", Integer.toString(rvSeq));
+	}
+
+	@Override
+	public Boolean execute1(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		return null;
 	}
 
 }

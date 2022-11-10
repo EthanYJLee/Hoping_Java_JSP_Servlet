@@ -1,5 +1,7 @@
 package com.bootcamp.host.command;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,6 +19,11 @@ public class HostMonthlyProfit_Command implements BCCommand {
 		mp = dao.monthlyProfit(hSeq);
 		request.setAttribute("mp", mp);
 
+	}
+
+	@Override
+	public Boolean execute1(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		return null;
 	}
 
 }
