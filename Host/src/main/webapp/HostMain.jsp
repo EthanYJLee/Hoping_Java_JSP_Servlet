@@ -78,7 +78,7 @@
 				<div class="card-body">
 					<h5 class="card-title">1번 캠핑장</h5>
 					<p class="card-text">캠핑장 주소</p>
-					<a href="#" class="btn btn-primary">캠핑장 메인페이지로</a>
+					<a href="host_branch_main.do?regSeq=" class="btn btn-primary">캠핑장 메인페이지로</a>
 				</div>
 			</div></div>
 			
@@ -87,7 +87,7 @@
 				<div class="card-body">
 					<h5 class="card-title">2번 캠핑장</h5>
 					<p class="card-text">캠핑장 주소</p>
-					<a href="#" class="btn btn-primary">캠핑장 메인페이지로</a>
+					<a href="host_branch_main.do?regSeq=" class="btn btn-primary">캠핑장 메인페이지로</a>
 				</div>
 			</div></div>
 			
@@ -96,7 +96,7 @@
 				<div class="card-body">
 					<h5 class="card-title">3번 캠핑장</h5>
 					<p class="card-text">캠핑장 주소</p>
-					<a href="#" class="btn btn-primary">캠핑장 메인페이지로</a>
+					<a href="host_branch_main.do?regSeq=" class="btn btn-primary">캠핑장 메인페이지로</a>
 				</div>
 			</div></div>
 			
@@ -105,7 +105,7 @@
 				<div class="card-body">
 					<h5 class="card-title">4번 캠핑장</h5>
 					<p class="card-text">캠핑장 주소</p>
-					<a href="#" class="btn btn-primary">캠핑장 메인페이지로</a>
+					<a href="host_branch_main.do?regSeq=" class="btn btn-primary">캠핑장 메인페이지로</a>
 				</div>
 			</div></div>
 		</div>

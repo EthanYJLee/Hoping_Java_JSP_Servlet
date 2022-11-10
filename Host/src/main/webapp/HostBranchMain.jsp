@@ -18,7 +18,7 @@
 <link rel="stylesheet" href="css/Design.css">
 <link rel="stylesheet" href="css/HostCard.css">
 <link rel="stylesheet" href="css/TableCenter.css">
-<link rel="stylesheet" href="css/HostStyle.css">
+<link rel="stylesheet" href="css/style.css">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
 <script src="https://https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -62,43 +62,25 @@
 <div class="container py-4">
 <div class="p-3 mb-4 bg-light rounded-3">
 	<div class="container-fluid py-3">
-		<h2 class="display-7 fw-bold">나의 캠핑장 정보</h2><br><br>
+		<h2 class="display-7 fw-bold">regName</h2><br><br>
 		<div class="row">
-			<div class="col"><div class="card" style="width: 14rem;">
-				<img src="https://www.incheonin.com/news/photo/202205/87828_122219_3711.jpg" class="card-img-top" alt="...">
-				<div class="card-body">
-					<h5 class="card-title">1번 캠핑장</h5>
-					<p class="card-text">캠핑장 주소</p>
-					<a href="#" class="btn btn-primary">캠핑장 메인페이지로</a>
-				</div>
+			<div class="col"><div class="card" style="width: 30rem; height: 25rem;">
+				<img src="https://www.incheonin.com/news/photo/202205/87828_122219_3711.jpg" class="card-img" alt="...">
+				
 			</div></div>
 			
-			<div class="col"><div class="card" style="width: 14rem;">
-				<img src="https://www.incheonin.com/news/photo/202205/87828_122219_3711.jpg" class="card-img-top" alt="...">
+			<div class="col"><div class="card" style="width: 30rem; height: 25rem;">
 				<div class="card-body">
-					<h5 class="card-title">2번 캠핑장</h5>
-					<p class="card-text">캠핑장 주소</p>
-					<a href="#" class="btn btn-primary">캠핑장 메인페이지로</a>
+					
+					<br>
+					<h5 class="card-title">캠핑장 정보</h5>
+					<p class="card-text">캠핑장 번호</p>
+					<p class="card-text">캠핑장 카테고리</p>
+					<p class="card-text">캠핑장 등등등</p>
 				</div>
-			</div></div>
+			</div>
 			
-			<div class="col"><div class="card" style="width: 14rem;">
-				<img src="https://www.incheonin.com/news/photo/202205/87828_122219_3711.jpg" class="card-img-top" alt="...">
-				<div class="card-body">
-					<h5 class="card-title">3번 캠핑장</h5>
-					<p class="card-text">캠핑장 주소</p>
-					<a href="#" class="btn btn-primary">캠핑장 메인페이지로</a>
-				</div>
-			</div></div>
 			
-			<div class="col"><div class="card" style="width: 14rem;">
-				<img src="https://www.incheonin.com/news/photo/202205/87828_122219_3711.jpg" class="card-img-top" alt="...">
-				<div class="card-body">
-					<h5 class="card-title">4번 캠핑장</h5>
-					<p class="card-text">캠핑장 주소</p>
-					<a href="#" class="btn btn-primary">캠핑장 메인페이지로</a>
-				</div>
-			</div></div>
 		</div>
 	</div>
 </div>
