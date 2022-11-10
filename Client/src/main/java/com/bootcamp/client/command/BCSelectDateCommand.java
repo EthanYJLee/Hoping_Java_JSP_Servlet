@@ -23,5 +23,10 @@ public class BCSelectDateCommand implements BCCommand {
 		
 		request.setAttribute("SelectDateDto", dtos);
 	}
+	public Boolean execute1(HttpServletRequest request, HttpServletResponse response) {
+		return null;
+		
+		
+	}
 
 }
