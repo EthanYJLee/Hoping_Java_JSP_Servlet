@@ -134,7 +134,10 @@ public class CampDao {
 		}
 		return dtos;
 	} // DateCheck	
+//	
+	
 	/*
+	
 	public void insertBook(int boPrice, Timestamp boCheckindate, int boGroup, int boCount, String pay_cid, ) {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
