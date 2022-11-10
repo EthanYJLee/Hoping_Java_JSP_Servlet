@@ -17,12 +17,13 @@ public class BCCampDateCheckCommand implements BCCommand {
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		
 		HttpSession session = request.getSession();
-		String cId = (String)session.getAttribute("cId");
+		
+		
 		String startdate = request.getParameter("startdate");
 		String stopdate = request.getParameter("stopdate");
-		System.out.println("startdate:"+startdate+":");
-		System.out.println("stopdate:"+stopdate+":");
 		
+		session.setAttribute("startdate", startdate);
+		session.setAttribute("stopdate", stopdate);
 		CampDao dao = new CampDao();
 		ArrayList<campDto> dtos = dao.dateCheck(startdate,stopdate);
 		request.setAttribute("Camp", dtos);

@@ -100,7 +100,7 @@ public class BCFrontController extends HttpServlet {
 			System.out.println("List camp End");
 			break;
 			// 예약 가능한 방 리스트 보여주기 sanghyuk
-		case("/bookingdatechek.do"):
+		case("/bookingdatecheck.do"):
 			System.out.println("Date Check for Booking");
 			command = new BCCampDateCheckCommand();
 			command.execute(request, response);
