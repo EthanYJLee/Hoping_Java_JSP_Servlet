@@ -51,7 +51,7 @@
 			  <div class="container">
   				 <div class="carousel-inner">
 				   	 <div class="carousel-item active" style="align-content: center;">
-				    	 <img src="./images/${DetailView.regImage1}" class="d-block" alt="Img_1"  height="400" width="100%">
+				    	 <img src="${DetailView.regImage1}" class="d-block" alt="Img_1"  height="400" width="100%">
 				    </div>
 				    <div class="carousel-item">
 				   		 <img src="${DetailView.regImage2}" class="d-block " alt="Img_2" height="400"  width="100%">

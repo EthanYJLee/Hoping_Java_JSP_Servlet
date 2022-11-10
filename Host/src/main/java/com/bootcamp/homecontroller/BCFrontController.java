@@ -110,8 +110,7 @@ public class BCFrontController extends HttpServlet {
 
 		// ---------------------상준 : 캠핑장 등록 -----------------------------------
 
-		case ("/host_main.do"):
-			command = new HostCampProfileList_Command();
+		
 		case ("/regcamp.do"):
 			System.out.println("Controller regcamp.do");
 			command = new RegCampCommand();
