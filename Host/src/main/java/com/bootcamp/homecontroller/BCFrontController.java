@@ -32,7 +32,7 @@ import com.bootcamp.host.command.HostMonthlyReservation_Command;
 import com.bootcamp.host.command.HostReviewContentView_Command;
 import com.bootcamp.host.command.HostReviewList_Command;
 import com.bootcamp.host.command.HostSendReviewReply_Command;
-import com.bootcamp.host.command.ListCampRoomCommand;
+import com.bootcamp.host.command.HostTermsAD;
 import com.bootcamp.host.command.MyHostBookDetailCommand;
 import com.bootcamp.host.command.RegCampCommand;
 import com.bootcamp.host.command.RegCampRoomCommand;
@@ -110,28 +110,15 @@ public class BCFrontController extends HttpServlet {
 
 		// ---------------------상준 : 캠핑장 등록 -----------------------------------
 
-			//캠핑장 등록
-			case ("/regcamp.do"):
-				command = new RegCampCommand();
+		case ("/host_main.do"):
+			command = new HostCampProfileList_Command();
+		case ("/regcamp.do"):
+			System.out.println("Controller regcamp.do");
+			command = new RegCampCommand();
 			command.execute(request, response);
-			viewPage = "camproomview.do";
+			// 자리 지정 페이지로 가야되지만 아직 완성물이 없어서 우선 메인페이지로 이동
+			viewPage = "HostMain.jsp";
 			break;
-
-				// 캠프 룸 테이블 출력
-			case ("/camproomview.do"):
-				command = new ListCampRoomCommand();
-				command.execute(request, response);
-				viewPage = "HostRegCampRoom.jsp";
-				break;
-
-				
-				//캠핑장 룸 등록
-			case ("/CampRoomAdd.do"):
-				command = new RegCampRoomCommand();
-				command.execute(request, response);
-				viewPage = "camproomview.do";
-				break;
-
 
 		// ---------------------영진: 메인페이지 -----------------------------------
 
