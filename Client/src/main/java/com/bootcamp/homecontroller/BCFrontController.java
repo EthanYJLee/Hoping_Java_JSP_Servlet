@@ -74,7 +74,7 @@ public class BCFrontController extends HttpServlet {
 
 		switch (com) {
 
-		// SangHyuk  ----------------------------------------------------------------
+		// SangHyuk
 		// ListMain.do 코드 확인 시 타이핑을 줄이기 위해서 main.do로 수정함.
 		case ("/main.do"):
 			System.out.println("List Main");
@@ -100,7 +100,7 @@ public class BCFrontController extends HttpServlet {
 			System.out.println("List camp End");
 			break;
 			// 예약 가능한 방 리스트 보여주기 sanghyuk
-		case("/bookingdatecheck.do"):
+		case("/bookingdatechek.do"):
 			System.out.println("Date Check for Booking");
 			command = new BCCampDateCheckCommand();
 			command.execute(request, response);
@@ -109,8 +109,6 @@ public class BCFrontController extends HttpServlet {
 			break;
 			
 			
-			
-		// -- seongyeon  ----------------------------------------------------------------	
 		// 로그인
 		case ("/login.do"):
 			command = new Clientlogin_Command();
@@ -156,21 +154,13 @@ public class BCFrontController extends HttpServlet {
 			viewPage = "/ClientLoginView.jsp";
 			break;
 
-		// Hosik  ----------------------------------------------------------------
+		// Hosik
 		// 상세 페이지 보기
 		case ("/detailView.do"):
 			command = new BCDetailCommand();
 			command.execute(request, response);
 			viewPage = "DetailView.jsp";
 			break;
-			
-			//--- HyunSuk ----------------------------------------------------------------
-//		case ("/Review_List.do"):
-//			   command = new Review_List_Command();
-//			   command.execute(request, response);
-//			   viewPage = "Review_List.jsp";
-//			   break;
-			   
 
 		}// switch End
 

@@ -134,19 +134,28 @@ public class CampDao {
 		}
 		return dtos;
 	} // DateCheck	
-	
-	public void insertBook(String bName, String bTitle, String bContent) {
+	/*
+	public void insertBook(int boPrice, Timestamp boCheckindate, int boGroup, int boCount, String pay_cid, ) {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
 		try {
 			connection = dataSource.getConnection();
 			
-			String query = "insert into book (bName, bTitle, bContent, bDate) values (?,?,?,now())";
+			String query = "insert into book (boPrice, boDate, boCheckindate, boGroup, boCount, ";
+			String query2 = "pay_cid, pay_room_roseq, pay_room_regcamp_regSeq, pay_room_regcamp_host_hSeq, ";
+			String query3 = "pay_client_cid ) values (?,now(),?,?,?,?,?,?,?,?,?)";
 			preparedStatement = connection.prepareStatement(query);
-			preparedStatement.setString(1, bName);
-			preparedStatement.setString(2, bTitle);
-			preparedStatement.setString(3, bContent);
+			preparedStatement.setInt(1, boPrice);
+			preparedStatement.setTimestamp(2, boCheckindate);
+			preparedStatement.setInt(3, boGroup);
+			preparedStatement.setInt(4, boCount);
+			preparedStatement.setString(5, pay_cid);
+			preparedStatement.setString(6, pay_room_roseq);
+			preparedStatement.setInt(7, pay_room_regcamp_regseq);
+			preparedStatement.setString(8, pay_room_regcam_host_hSeq);
+			preparedStatement.setString(9, pay_client_cid);
+			
 			preparedStatement.executeUpdate();
 			
 			
@@ -161,6 +170,7 @@ public class CampDao {
 				e.printStackTrace();
 			}
 		}
-	} //write
+	} //insertbook
+	*/
 	
 }
