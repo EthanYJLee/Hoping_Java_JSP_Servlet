@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.bootcamp.host.command.AskCommentCommand;
 import com.bootcamp.host.command.BCCommand;
-import com.bootcamp.host.command.HFileViewCommand;
 import com.bootcamp.host.command.HImageCommand;
 import com.bootcamp.host.command.HInfoCommand;
 import com.bootcamp.host.command.HInfoInsertCommand;
@@ -36,9 +35,9 @@ import com.bootcamp.host.command.HostSendReviewReply_Command;
 import com.bootcamp.host.command.HostTermsAD;
 import com.bootcamp.host.command.MyHostBookDetailCommand;
 import com.bootcamp.host.command.RegCampCommand;
+import com.bootcamp.host.command.RegCampRoomCommand;
 import com.bootcamp.host.command.askDetailCommand;
 import com.bootcamp.host.command.askListCommand;
-import com.bootcamp.host.command.listCommand;
 
 /**
  * Servlet implementation class homeController
@@ -111,6 +110,7 @@ public class BCFrontController extends HttpServlet {
 
 		// ---------------------상준 : 캠핑장 등록 -----------------------------------
 
+		
 		case ("/regcamp.do"):
 			System.out.println("Controller regcamp.do");
 			command = new RegCampCommand();
