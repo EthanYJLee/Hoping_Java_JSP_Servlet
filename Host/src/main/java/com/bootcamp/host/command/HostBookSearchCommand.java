@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bootcamp.host.dao.BookJoinDao;
-import com.bootcamp.joindto.BookJoinDto;
+import com.bootcamp.joindto.BookListDto;
 
 public class HostBookSearchCommand implements BCCommand {
 
@@ -21,15 +21,16 @@ public class HostBookSearchCommand implements BCCommand {
 
 		BookJoinDao dao = new BookJoinDao();
 
-		ArrayList<BookJoinDto> dtos = dao.bookListCon("1", start, end, strSearch);
+		ArrayList<BookListDto> dtos = dao.bookListCon("1", start, end, strSearch);
 
 		request.setAttribute("list", dtos);
 
 	}
 
-	@Override
 	public Boolean execute1(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		return null;
+			
+		
 	}
 
 }

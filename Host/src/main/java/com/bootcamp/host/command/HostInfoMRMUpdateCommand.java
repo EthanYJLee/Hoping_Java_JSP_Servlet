@@ -12,9 +12,17 @@ public class HostInfoMRMUpdateCommand implements BCCommand {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 
-		String filename = (String) request.getAttribute("FILENAME");
-
 		HostRegMDao dao = new HostRegMDao();
+		
+		String checkNull = (String) request.getAttribute("FILENAME");
+		String filename;
+		
+		if(checkNull == null) {
+			filename = "defaultimage.png";
+		}else {
+			filename = checkNull;
+		}
+		
 		dao.upRoughMap(filename);
 
 	}
