@@ -31,7 +31,8 @@
 	     
 	     <ul class="nav nav-pills">
 	     	<li class="nav-item" style="font-size: 14px;">
-	     		<a href="#" class="link-dark nav-link">호스트 모드</a>
+	     		<!-- <a href="../../../../Host/src/main/webapp/HostTerms.jsp" class="link-dark nav-link">호스트 모드</a> -->
+	     		<a href="../../../../Host/show.do" class="link-dark nav-link">호스트 모드</a>
 	     	</li>
 	     	
 	     	<li class="nav-item">
