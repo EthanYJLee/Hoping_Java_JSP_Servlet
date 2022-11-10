@@ -55,6 +55,11 @@ public class MyregcampDto {
 		this.regDetailaddress = regDetailaddress;
 		this.regSummary = regSummary;
 	}
+	
+	public MyregcampDto(String regImage4) {
+		super();
+		this.regImage4 = regImage4;
+	}
 
 	public int getRegSeq() {
 		return regSeq;

@@ -177,6 +177,227 @@ public class HostRegMDao {
 		}
 	} //write
 	
+	//약도 이미지 select
+		public MyregcampDto selectInfoRoughMap(int regSeq) {
+			
+			MyregcampDto dto = null;
+			Connection connection = null;
+			PreparedStatement preparedStatement = null;
+			ResultSet resultSet = null;
+			
+			try {
+
+				connection = dataSource.getConnection();
+				String query = "select regImage4 from regcamp where regSeq = ?";
+				
+				preparedStatement = connection.prepareStatement(query);
+				preparedStatement.setInt(1, (regSeq));
+				resultSet = preparedStatement.executeQuery();
+				
+				if(resultSet.next()) {
+					//하나니까 if로. 
+					String regImage4 = resultSet.getString("regImage4");
+					
+					dto = new MyregcampDto(regImage4);
+				}
+				
+			}catch(Exception e){
+				
+				e.printStackTrace();
+				
+			}finally {
+				try {
+					if(resultSet != null) resultSet.close();
+					if(preparedStatement != null) preparedStatement.close();
+					if(connection != null) connection.close();
+				}catch(Exception e) {
+					e.printStackTrace();
+				}
+			}
+			return dto;
+		}//selectInfoRoughMap
+		
+		//약도 이미지 업데이트
+		public int upRoughMap(String fileName) {
+			
+			Connection connection = null;
+			PreparedStatement preparedStatement = null;
+			int returnValue = 0;
+			
+			//rs랑 arraylist 필요 x 인서트만 하니까
+			
+			try {
+				
+				connection = dataSource.getConnection();
+				
+				String query = "update regcamp set regImage4 = ? where regSeq = 1 ";
+				
+				preparedStatement = connection.prepareStatement(query);
+				
+				preparedStatement.setString(1, fileName);
+				
+				returnValue = preparedStatement.executeUpdate();
+				
+			}catch(Exception e){
+				e.printStackTrace();
+			}finally {
+				try {
+					
+					if(preparedStatement != null) preparedStatement.close();
+					if(connection != null) connection.close();
+				}catch(Exception e) {
+					e.printStackTrace();
+				}
+			}
+			return returnValue;
+		}//upRoughMap
+		
+		//캠핑장 이미지 select
+		public MyregcampDto selectCampImages(int regSeq) {
+			
+			MyregcampDto dto = null;
+			Connection connection = null;
+			PreparedStatement preparedStatement = null;
+			ResultSet resultSet = null;
+			
+			try {
+
+				connection = dataSource.getConnection();
+				String query = "select regImage1, regImage2, regImage3 from regcamp where regSeq = ? ";
+				
+				preparedStatement = connection.prepareStatement(query);
+				preparedStatement.setInt(1, (regSeq));
+				resultSet = preparedStatement.executeQuery();
+				
+				if(resultSet.next()) {
+					//하나니까 if로. 
+					String regImage1 = resultSet.getString("regImage1");
+					String regImage2 = resultSet.getString("regImage2");
+					String regImage3 = resultSet.getString("regImage3");
+					
+					dto = new MyregcampDto(regImage1, regImage2, regImage3);
+				}
+				
+			}catch(Exception e){
+				
+				e.printStackTrace();
+				
+			}finally {
+				try {
+					if(resultSet != null) resultSet.close();
+					if(preparedStatement != null) preparedStatement.close();
+					if(connection != null) connection.close();
+				}catch(Exception e) {
+					e.printStackTrace();
+				}
+			}
+			return dto;
+		}//selectCampImages
+				
+		//캠핑장 이미지1 업데이트
+		public int upImage1(String fileName) {
+			
+			Connection connection = null;
+			PreparedStatement preparedStatement = null;
+			int returnValue = 0;
+			
+			//rs랑 arraylist 필요 x 인서트만 하니까
+			
+			try {
+				
+				connection = dataSource.getConnection();
+				
+				String query = "update regcamp set regImage1 = ? where regSeq = 1 ";
+				
+				preparedStatement = connection.prepareStatement(query);
+				
+				preparedStatement.setString(1, fileName);
+				
+				returnValue = preparedStatement.executeUpdate();
+				
+			}catch(Exception e){
+				e.printStackTrace();
+			}finally {
+				try {
+					
+					if(preparedStatement != null) preparedStatement.close();
+					if(connection != null) connection.close();
+				}catch(Exception e) {
+					e.printStackTrace();
+				}
+			}
+			return returnValue;
+		}//upRoughMap
+		
+		//캠핑장 이미지2 업데이트
+		public int upImage2(String fileName) {
+			
+			Connection connection = null;
+			PreparedStatement preparedStatement = null;
+			int returnValue = 0;
+			
+			//rs랑 arraylist 필요 x 인서트만 하니까
+			
+			try {
+				
+				connection = dataSource.getConnection();
+				
+				String query = "update regcamp set regImage2 = ? where regSeq = 1 ";
+				
+				preparedStatement = connection.prepareStatement(query);
+				
+				preparedStatement.setString(1, fileName);
+				
+				returnValue = preparedStatement.executeUpdate();
+				
+			}catch(Exception e){
+				e.printStackTrace();
+			}finally {
+				try {
+					
+					if(preparedStatement != null) preparedStatement.close();
+					if(connection != null) connection.close();
+				}catch(Exception e) {
+					e.printStackTrace();
+				}
+			}
+			return returnValue;
+		}//upRoughMap
+		
+		//캠핑장 이미지2 업데이트
+		public int upImage3(String fileName) {
+			
+			Connection connection = null;
+			PreparedStatement preparedStatement = null;
+			int returnValue = 0;
+			
+			//rs랑 arraylist 필요 x 인서트만 하니까
+			
+			try {
+				
+				connection = dataSource.getConnection();
+				
+				String query = "update regcamp set regImage3 = ? where regSeq = 1 ";
+				
+				preparedStatement = connection.prepareStatement(query);
+				
+				preparedStatement.setString(1, fileName);
+				
+				returnValue = preparedStatement.executeUpdate();
+				
+			}catch(Exception e){
+				e.printStackTrace();
+			}finally {
+				try {
+					
+					if(preparedStatement != null) preparedStatement.close();
+					if(connection != null) connection.close();
+				}catch(Exception e) {
+					e.printStackTrace();
+				}
+			}
+			return returnValue;
+		}//upRoughMap
 	
 	
 	
