@@ -84,25 +84,13 @@
 		</select> -->
 		<%-- 달력입니당. --%>
 		<%-- <form autocomplete="off">--%>
-		<form action="bookingdatechek.do"class="col-12 col-lg-auto mb-4 mb-lg-0 me-lg-4" role="search">
+		<form action="bookingdatecheck.do"class="col-12 col-lg-auto mb-4 mb-lg-0 me-lg-4" role="search">
 			<div class="col-4 col-11" style="margin-right: 0px;">
 				<div class="input-group input-daterange">
 					<input type="text" name="startdate" style="background-color: white; border-radius: 13px; height: 33px; font-size: 13px;" class="mydinput form-control" placeholder="Start" readonly>
 					<input type="text" name="stopdate" style="border-radius: 13px; height: 33px; font-size: 13px;" class="secondary form-control" placeholder="End" readonly>
 				</div>
 			</div>
-		<%--</form>		 --%>
-		<%-- search --%>
-<%--         <div class="col-1 text-conter">
-			<a href="#" class="text-decoration-none">
-				<svg class="mysvg" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-					  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-				</svg>
-			</a>
-        </div> --%>
-        
-
-<%--          <input class="mysearch" type="search" class="form-control" aria-label="Search" name="content"> --%>
 			<label for="btnSubmit">
 				<svg class="mysvg" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
 					  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>

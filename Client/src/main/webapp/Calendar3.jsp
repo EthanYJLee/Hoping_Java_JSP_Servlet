@@ -85,22 +85,21 @@
 		<form autocomplete="off">
 			<div class="col-4 col-11" style="margin-right: 0px;">
 				<div class="input-group input-daterange">
-					<input type="text" style="background-color: white; border-radius: 13px; height: 33px; font-size: 13px;" class="mydinput form-control" placeholder="Start" readonly>
-					<input type="text" style="border-radius: 13px; height: 33px; font-size: 13px;" class="secondary form-control" placeholder="End" readonly>
+				
+					<input type="text" name="startdate" style="background-color: white; border-radius: 13px; height: 33px; font-size: 13px;" class="mydinput form-control" placeholder="Start" readonly value=" ${startdate}">
+					<input type="text" name="stopdate"  style="border-radius: 13px; height: 33px; font-size: 13px;" class="secondary form-control" placeholder="End" readonly  value=" ${stopdate}">
 				</div>
 			</div>
 		</form>		
-		<%-- search --%>
-<%--         <div class="col-1 text-conter">
-			<a href="#" class="text-decoration-none">
-				<svg class="mysvg" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-					  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-				</svg>
-			</a>
-        </div> --%>
         
-         <form action="searchCamp.do"class="col-12 col-lg-auto mb-4 mb-lg-0 me-lg-4" role="search">
-<%--          <input class="mysearch" type="search" class="form-control" aria-label="Search" name="content"> --%>
+       <!--   
+       22.11.10. -호식 
+       			- 날자로 검색 한 뒤 맘에 드는게 없으면은 바로 날자를 바꿔서 검색 할 수 있도록	
+       			여기서도 날자 변경을 할 수 있도록 하고 싶었는데 검색을 하면은 뭔가 다르게 가가지고 그냥
+       			일단 다시 검색하고 싶으면 뒤로 가서 바꾸게 그냥 검색버튼 없애버림.
+       			추후에 다시 넣어서 여기서 바로 날자를 바굴 수 있도록 하는게 좋을듯 
+       
+       <form action="bookingdatecheck.do"class="col-12 col-lg-auto mb-4 mb-lg-0 me-lg-4" role="search">
 			<label for="btnSubmit">
 				<svg class="mysvg" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
 					  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
@@ -108,8 +107,8 @@
 			</label>
 		<input type="submit" id="btnSubmit" style="display:none;" />
         </form>
-        
-        
+       
+         -->
         
         
         
