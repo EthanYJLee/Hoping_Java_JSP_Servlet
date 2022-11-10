@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bootcamp.host.dao.BookJoinDao;
-import com.bootcamp.joindto.BookJoinDto;
+import com.bootcamp.joindto.BookListDto;
 
 public class HostBookListCommand implements BCCommand {
 
@@ -17,9 +17,8 @@ public class HostBookListCommand implements BCCommand {
 		BookJoinDao dao = new BookJoinDao();
 
 		String hSeq = request.getParameter("hSeq");
-		System.out.println("hSeq: " + hSeq);
 
-		ArrayList<BookJoinDto> dtos = dao.list("1");
+		ArrayList<BookListDto> dtos = dao.list("1");
 
 		request.setAttribute("list", dtos);
 

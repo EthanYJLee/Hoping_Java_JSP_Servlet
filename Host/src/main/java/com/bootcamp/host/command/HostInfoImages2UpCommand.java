@@ -14,8 +14,15 @@ public class HostInfoImages2UpCommand implements BCCommand {
 
 		HostRegMDao dao = new HostRegMDao();
 
-		String filename = (String) request.getAttribute("FILENAME");
-
+		String checkNull = (String) request.getAttribute("FILENAME");
+		String filename;
+		
+		if(checkNull == null) {
+			filename = "defaultimage.png";
+		}else {
+			filename = checkNull;
+		}
+		
 		dao.upImage2(filename);
 
 	}
