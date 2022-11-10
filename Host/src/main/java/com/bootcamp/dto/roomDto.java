@@ -25,6 +25,15 @@ public class roomDto {
 		this.regcamp_regSeq = regcamp_regSeq;
 		this.regcamp_host_hSeq = regcamp_host_hSeq;
 	}
+	
+	public roomDto(int roSeq, int roNum, int roPrice, int roMax, int roOccupied) {
+		super();
+		this.roSeq = roSeq;
+		this.roNum = roNum;
+		this.roPrice = roPrice;
+		this.roMax = roMax;
+		this.roOccupied = roOccupied;
+	}
 
 	public int getRoSeq() {
 		return roSeq;
