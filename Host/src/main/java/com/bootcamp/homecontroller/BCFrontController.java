@@ -89,6 +89,13 @@ public class BCFrontController extends HttpServlet {
 
 		// --------------------주현: 약관동의 후 호스트 가입(호스트 정보 insert)--------------------
 
+		
+		
+		case ("/term.do"):
+			command = new HInfoCommand();
+			command.execute(request, response);
+			viewPage = "HostTerms.jsp";
+			
 		case ("/show.do"):
 			command = new HInfoCommand();
 			command.execute(request, response);
