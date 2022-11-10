@@ -129,91 +129,91 @@ public class CampDao {
 		}
 		return dtos;
 	} // DateCheck	
-
-	public ArrayList<campDto> BookCheck(String strroNum, String startdate, String stopdate){
-		ArrayList<campDto> dtos = new ArrayList<campDto>();
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-		ResultSet resultSet = null;
-		
-		campDto dto;
- 		
-		int result = 0;
-		try {
-			connection = dataSource.getConnection();
-			System.out.println("Before Query start");
-			String query = "select distinct regSeq, regName, regCategory, roNum, roPrice, roMax from checkDate2 where boCheckindate between '"+startdate+"' and '"+stopdate+"'";;
-			preparedStatement = connection.prepareStatement(query);
-			resultSet = preparedStatement.executeQuery();
-			System.out.println("Query Execute");
-			
-			while(resultSet.next()) {
-				int regSeq = resultSet.getInt("regSeq");
-				int roNum = resultSet.getInt("roNum");
-				System.out.println("startdate:"+startdate+":");
-				System.out.println("stoptdate:"+stopdate+":");
-
-				System.out.println("dateCheck Add");
-
-			}
-		
-		}catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			try {
-				if(resultSet != null) resultSet.close();
-				if(preparedStatement != null) preparedStatement.close();
-				if(connection != null) connection.close();
-				
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
-		}		
-		
-		
-		
-		try {
-			connection = dataSource.getConnection();
-			System.out.println("Query start");
-			String query = "select distinct regSeq, regName, regCategory, roNum, roPrice, roMax from checkDate2 where boCheckindate is null or boCheckindate not between '"+startdate+"' and '"+stopdate+"'";;
-			preparedStatement = connection.prepareStatement(query);
-			resultSet = preparedStatement.executeQuery();
-			System.out.println("Query Execute");
-			
-			while(resultSet.next()) {
-				int regSeq = resultSet.getInt("regSeq");
-				String regName = resultSet.getString("regName");
-				String regCategory = resultSet.getString("regCategory");
-				
-				int roNum = resultSet.getInt("roNum");
-				int roPrice = resultSet.getInt("roPrice");
-				int roMax = resultSet.getInt("roMax");
-				
-
-				System.out.println("startdate:"+startdate+":");
-				System.out.println("stoptdate:"+stopdate+":");
-				
-				dto = new campDto(regSeq, regName, regCategory, roNum, roPrice, roMax);
-				dtos.add(dto);
-				System.out.println("DTO Add");
-
-			}
-		
-		}catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			try {
-				if(resultSet != null) resultSet.close();
-				if(preparedStatement != null) preparedStatement.close();
-				if(connection != null) connection.close();
-				
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
-		}
-		return dtos;
-	} // BookCheck	
-	
+//
+//	public ArrayList<campDto> BookCheck(String strroNum, String startdate, String stopdate){
+//		ArrayList<campDto> dtos = new ArrayList<campDto>();
+//		Connection connection = null;
+//		PreparedStatement preparedStatement = null;
+//		ResultSet resultSet = null;
+//		
+//		campDto dto;
+// 		
+//		int result = 0;
+//		try {
+//			connection = dataSource.getConnection();
+//			System.out.println("Before Query start");
+//			String query = "select distinct regSeq, regName, regCategory, roNum, roPrice, roMax from checkDate2 where boCheckindate between '"+startdate+"' and '"+stopdate+"'";;
+//			preparedStatement = connection.prepareStatement(query);
+//			resultSet = preparedStatement.executeQuery();
+//			System.out.println("Query Execute");
+//			
+//			while(resultSet.next()) {
+//				int regSeq = resultSet.getInt("regSeq");
+//				int roNum = resultSet.getInt("roNum");
+//				System.out.println("startdate:"+startdate+":");
+//				System.out.println("stoptdate:"+stopdate+":");
+//
+//				System.out.println("dateCheck Add");
+//
+//			}
+//		
+//		}catch (Exception e) {
+//			e.printStackTrace();
+//		}finally {
+//			try {
+//				if(resultSet != null) resultSet.close();
+//				if(preparedStatement != null) preparedStatement.close();
+//				if(connection != null) connection.close();
+//				
+//			}catch(Exception e) {
+//				e.printStackTrace();
+//			}
+//		}		
+//		
+//		
+//		
+//		try {
+//			connection = dataSource.getConnection();
+//			System.out.println("Query start");
+//			String query = "select distinct regSeq, regName, regCategory, roNum, roPrice, roMax from checkDate2 where boCheckindate is null or boCheckindate not between '"+startdate+"' and '"+stopdate+"'";;
+//			preparedStatement = connection.prepareStatement(query);
+//			resultSet = preparedStatement.executeQuery();
+//			System.out.println("Query Execute");
+//			
+//			while(resultSet.next()) {
+//				int regSeq = resultSet.getInt("regSeq");
+//				String regName = resultSet.getString("regName");
+//				String regCategory = resultSet.getString("regCategory");
+//				
+//				int roNum = resultSet.getInt("roNum");
+//				int roPrice = resultSet.getInt("roPrice");
+//				int roMax = resultSet.getInt("roMax");
+//				
+//
+//				System.out.println("startdate:"+startdate+":");
+//				System.out.println("stoptdate:"+stopdate+":");
+//				
+//				dto = new campDto(regSeq, regName, regCategory, roNum, roPrice, roMax);
+//				dtos.add(dto);
+//				System.out.println("DTO Add");
+//
+//			}
+//		
+//		}catch (Exception e) {
+//			e.printStackTrace();
+//		}finally {
+//			try {
+//				if(resultSet != null) resultSet.close();
+//				if(preparedStatement != null) preparedStatement.close();
+//				if(connection != null) connection.close();
+//				
+//			}catch(Exception e) {
+//				e.printStackTrace();
+//			}
+//		}
+//		return dtos;
+//	} // BookCheck	
+//	
 	
 	
 	public void insertBook(String bName, String bTitle, String bContent) {

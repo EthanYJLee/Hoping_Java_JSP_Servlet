@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.swing.JOptionPane;
 
+import com.bootcamp.client.command.BCBookingConfirmationCommand;
 import com.bootcamp.client.command.BCCampDateCheckCommand;
 import com.bootcamp.client.command.BCCampListCommand;
 import com.bootcamp.client.command.BCCommand;
@@ -112,6 +113,9 @@ public class BCFrontController extends HttpServlet {
 			
 		// -- seongyeon  ----------------------------------------------------------------	
 		// 로그인
+			
+			
+			// 주현씨 수정함 
 		case ("/login.do"):
 			command = new Clientlogin_Command();
 			command.execute1(request, response);
@@ -157,13 +161,18 @@ public class BCFrontController extends HttpServlet {
 			break;
 
 		// Hosik  ----------------------------------------------------------------
-		// 상세 페이지 보기
+			// 상세 페이지 보기
 		case ("/detailView.do"):
 			command = new BCDetailCommand();
 			command.execute(request, response);
 			viewPage = "DetailView.jsp";
 			break;
-			
+			// 예약. 예약할 인원수 정하고 예약 확정짓기
+		case ("/confirmation.do"):
+			command = new BCBookingConfirmationCommand();
+			command.execute(request, response);
+			viewPage = "Booking.jsp";
+			break;
 			//--- HyunSuk ----------------------------------------------------------------
 //		case ("/Review_List.do"):
 //			   command = new Review_List_Command();
