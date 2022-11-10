@@ -19,6 +19,17 @@ import com.bootcamp.host.command.HostBookListCommand;
 import com.bootcamp.host.command.HostBookSearchCommand;
 import com.bootcamp.host.command.HostCampNameList_Command;
 import com.bootcamp.host.command.HostCampProfileList_Command;
+import com.bootcamp.host.command.HostInfoFaInDelCommand;
+import com.bootcamp.host.command.HostInfoFaSelectCommand;
+import com.bootcamp.host.command.HostInfoKeyInDelCommand;
+import com.bootcamp.host.command.HostInfoKeySelectCommand;
+import com.bootcamp.host.command.HostInfoLMoCommand;
+import com.bootcamp.host.command.HostInfoLSelectCommand;
+import com.bootcamp.host.command.HostInfoNCTMoCommand;
+import com.bootcamp.host.command.HostInfoNCTSelectCommand;
+import com.bootcamp.host.command.HostMainReservationStatus_Command;
+import com.bootcamp.host.command.HostMonthlyProfit_Command;
+import com.bootcamp.host.command.HostMonthlyReservation_Command;
 import com.bootcamp.host.command.HostReviewContentView_Command;
 import com.bootcamp.host.command.HostReviewList_Command;
 import com.bootcamp.host.command.HostSendReviewReply_Command;
@@ -77,7 +88,7 @@ public class BCFrontController extends HttpServlet {
 
 		switch (com) {
 
-		// --------------------약관동의 후 호스트 가입(호스트 정보 insert)--------------------
+		// --------------------주현: 약관동의 후 호스트 가입(호스트 정보 insert)--------------------
 
 		case ("/show.do"):
 			command = new HInfoCommand();
@@ -110,37 +121,48 @@ public class BCFrontController extends HttpServlet {
 
 		// ---------------------영진: 메인페이지 -----------------------------------
 
-		case ("/host_main.do"):
-			command = new HostCampProfileList_Command();
-			command.execute(request, response);
-			viewPage = "HostMain.jsp";
-			break;
 
-		case ("/host_review_list.do"):
-			command = new HostReviewList_Command();
-			command.execute(request, response);
+			
+			
+		case ("/host_main.do"): // 로그인 화면에서 => host_main.do?hSeq= 로 이동할 예정임
+		         command = new HostCampProfileList_Command(); // 호스트 소유 모든 캠핑장의 이름, 사진, 주소 (썸네일용)
+		         command.execute(request, response);
+		         command = new HostMonthlyProfit_Command(); // 월별 총수익 차트에 표시 (올해분)
+		         command.execute(request, response);
+		         command = new HostMonthlyReservation_Command(); // 월별 총예약건수 차트에 표시 (올해분)
+		         command.execute(request, response);
+		         command = new HostMainReservationStatus_Command(); // 오늘의 신규 예약건수, 올해 체크인/체크아웃 예정건수
+		         command.execute(request, response);
+		         viewPage = "HostMain.jsp";
+		         break;
 
-			command = new HostCampNameList_Command();
-			command.execute(request, response);
+		      case ("/host_review_list.do"):
+		         command = new HostReviewList_Command(); // 호스트 소유 캠핑장에 달린 리뷰의 리스트
+		         command.execute(request, response);
 
-			viewPage = "HostReviewList.jsp";
-			break;
+		         command = new HostCampNameList_Command(); // 호스트 소유 캠핑장 이름 리스트 (검색을 위한 콤보박스용)
+		         command.execute(request, response);
 
-		case ("/host_review_content_view.do"): // 리뷰 정보 (작성자, 제목, 내용 등등) 받아오기
-			command = new HostReviewContentView_Command();
-			command.execute(request, response);
-			viewPage = "HostReviewContentView.jsp";
-			break;
+		         viewPage = "HostReviewList.jsp";
+		         break;
 
-		case ("/send_review_reply.do"):
-			command = new HostSendReviewReply_Command();
-			command.execute(request, response);
-			viewPage = "/host_review_list.do";
-			break;
+		      case ("/host_review_content_view.do"):
+		         command = new HostReviewContentView_Command(); // 리뷰 정보 (작성자, 제목, 내용 등등) 받아오기
+		         command.execute(request, response);
+		         viewPage = "HostReviewContentView.jsp";
+		         break;
+
+		      case ("/send_review_reply.do"):
+		         command = new HostSendReviewReply_Command(); // 호스트가 후기에 작성한 답글 insert하고 댓글 그룹 업데이트
+		         command.execute(request, response);
+		         viewPage = "/host_review_list.do";
+		         break;
+
+		      
 
 		// --------------------------호스트 마이페이지에 정보 불러오기--------------------------
 
-		// --------------------------고객문의 리스트 페이지--------------------------
+		// --------------------------주현 : 고객문의 리스트 페이지--------------------------
 		case ("/askList.do"):
 			command = new askListCommand();
 			command.execute(request, response);
@@ -178,8 +200,70 @@ public class BCFrontController extends HttpServlet {
 			viewPage = "HostTotalBookManage.jsp";
 			break;
 
+		// 정보 수정 메인페이지 열기
+		case ("/HostRInfo.do"):
+			viewPage = "HostInfoMMain.jsp";
+			break;
+			
+			
+		// ------------예진 : 캠핑장 정보수정 페이지 ------------------------------------
+		// 정보 수정 메인페이지에서 위치, 설명 수정 페이지로
+		case ("/HostInfoMLoView.do"):
+			command = new HostInfoLSelectCommand();
+			command.execute(request, response);
+			viewPage = "HostInfoMLo.jsp";
+			break;
+
+		// 위치, 설명 수정
+		case ("/HostInfoMLo.do"):
+			command = new HostInfoLMoCommand();
+			command.execute(request, response);
+			viewPage = "HostInfoMMain.jsp";
+			break;
+
+		// 정보 수정 메인페이지에서 이름, 카테고리, 전화번호 수정 페이지로
+		case ("/HostInfoMNCTView.do"):
+			command = new HostInfoNCTSelectCommand();
+			command.execute(request, response);
+			viewPage = "HostInfoMNameCategoryTel.jsp";
+			break;
+
+		// 이름, 카테고리, 전화번호 수정
+		case ("/HostInfoMNCT.do"):
+			command = new HostInfoNCTMoCommand();
+			command.execute(request, response);
+			viewPage = "HostInfoMMain.jsp";
+			break;
+
+		// 정보 수정 메인페이지에서 키워드 수정 페이지로
+		case ("/HostInfoKeyView.do"):
+			command = new HostInfoKeySelectCommand();
+			command.execute(request, response);
+			viewPage = "HostInfoMKeyword.jsp";
+			break;
+
+		// 키워드 삭제와 인서트
+		case ("/HostInfoKeyInDel.do"):
+			command = new HostInfoKeyInDelCommand();
+			command.execute(request, response);
+			viewPage = "HostInfoMMain.jsp";
+			break;
+
+		// 정보 수정 메인페이지에서 키워드 수정 페이지로
+		case ("/HostInfoFaciView.do"):
+			command = new HostInfoFaSelectCommand();
+			command.execute(request, response);
+			viewPage = "HostInfoMFacility.jsp";
+			break;
+
+		// 키워드 삭제와 인서트
+		case ("/HostInfoFaInDel.do"):
+			command = new HostInfoFaInDelCommand();
+			command.execute(request, response);
+			viewPage = "HostInfoMMain.jsp";
+			break;
+
 		}
-		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
-		dispatcher.forward(request, response);
-	}
-}
+
+	RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);dispatcher.forward(request,response);
+}}
