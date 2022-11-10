@@ -26,6 +26,8 @@ public class ClientDao {
 			e.printStackTrace();
 		}
 	}
+	
+	
 	//마이페이지
 	public ClientDto mypageView(String scId) {
 
@@ -118,11 +120,9 @@ public class ClientDao {
 				preparedStatement.setString(1, scId); // 위에 커리문에 물음표 갯수 만큼 작성
 				preparedStatement.setString(2, scPw);
 				resultSet = preparedStatement.executeQuery();
-//				System.out.println(query);
 				if(resultSet.next()) {
 					String count = resultSet.getString("count(*)"); //count(*)값을 가져와야 하기때문에
 					Result = count.equals("1"); // 아이디와 패스워드가 같고 삭제일자가 없으면 1
-//					System.out.println("result = " + count);
 
 				}
 			}catch (Exception e) {
@@ -145,26 +145,25 @@ public class ClientDao {
 	public void ClientDelete(String cId, String cPw, String cName, String cPhone, String cEmail) {
 	Connection connection = null;
 	PreparedStatement preparedStatement = null;
-	try {
-		connection = dataSource.getConnection();
-//		String query="delete from Client where cId=? ";
-		String query = "update client set cDdate=now() where cId=?";
-
-		preparedStatement = connection.prepareStatement(query);
-		preparedStatement.setString(1, cId);
-		preparedStatement.executeUpdate(); //삭제 실행
-	}catch(Exception e) {
-		e.printStackTrace();
-	}finally {
 		try {
-			if(preparedStatement != null) preparedStatement.close();
-			if(connection != null) connection.close();
+			connection = dataSource.getConnection();
+			String query = "update client set cDdate=now() where cId=?";
+	
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setString(1, cId);
+			preparedStatement.executeUpdate(); //삭제 실행
 		}catch(Exception e) {
 			e.printStackTrace();
+		}finally {
+			try {
+				if(preparedStatement != null) preparedStatement.close();
+				if(connection != null) connection.close();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
 		}
-	}
 	
-}//delete
+	}//delete End 
 
 	//수정하기
 	public void ClientModify(String cId, String cPw, String cPhone, String cEmail) {
@@ -195,43 +194,12 @@ public class ClientDao {
 				e.printStackTrace();
 			}
 		}
-}
-	//아이디 중복검사
-	public int checkId(String cId) {  // 유저가 입력한 값을 매개변수로 한다
-//		conn();
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-		ResultSet resultSet = null;
-		int idCheck = 0;		
-		
-	    try {
-			connection = dataSource.getConnection();
-			
-	    	String query = "select * from client where cId = ?"; // 입력값이 테이블에 있는지 확인
-			preparedStatement = connection.prepareStatement(query);
-			preparedStatement.setString(1, cId);
-			
-			resultSet = preparedStatement.executeQuery();
-					
-			if(resultSet.next() || cId.equals("")) {
-				idCheck = 0;  // 이미 존재하는 경우, 생성 불가능
-			} else {
-				idCheck = 1;  // 존재하지 않는 경우, 생성 가능
-			}
-			
-	    } catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close();
-		}
-		
-		return idCheck;
-	}
-	private void close() {
-		// TODO Auto-generated method stub
-		
-	}
-	}
+	}//ClientModify End 
 	
+	
+	
+	
+}// Class end 
+
 	
 

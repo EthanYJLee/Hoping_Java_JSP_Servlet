@@ -93,8 +93,13 @@ public class BCFrontController extends HttpServlet {
 			viewPage = "Calendar2.jsp";
 			System.out.println("List camp End");
 			break;
+			
+			
+			
+			
+			
 
-		// 로그인
+			// 로그인
 		case ("/login.do"):
 			command = new Clientlogin_Command();
 			command.execute(request, response);
@@ -103,30 +108,26 @@ public class BCFrontController extends HttpServlet {
 		case ("/Clientwrite.do"):
 			command = new Clientwrite_Command();
 			command.execute(request, response);
-			viewPage = "login.jsp";
+			viewPage = "ClientLoginView.jsp";
 			break;
 		// 마이페이지
 		case ("/mypageView.do"):
 			command = new ClientmypageView_Command();
 			command.execute(request, response);
-			viewPage = "mypage.jsp";
+			viewPage = "ClientMypageView.jsp";
 			break;
 		// 수정하기
 		case ("/ClientModify.do"):
 			command = new Clientmodify_Command();
 			command.execute(request, response);
-			viewPage = "/main.jsp";
+			viewPage = "/ClientMainView.jsp";
 			break;
 		// 삭제하기
 		case ("/ClientDelete.do"):
 			command = new Clientdelete_Command();
 			command.execute(request, response);
-			viewPage = "/login.jsp";
+			viewPage = "/ClientLoginView.jsp";
 			break;
-//		case ("/checkId.do"):
-//			command = new Checkid_Command();
-//			command.execute(request, response);
-//			break;
 			
 			// Hosik
 			// 상세 페이지 보기 
@@ -136,22 +137,7 @@ public class BCFrontController extends HttpServlet {
 			viewPage = "DetailView.jsp";
 			break;
 			
-			
-			// 예약하기 누루면 날자먼저 고르러 가는거 
-//		case("/BookSelectDate.do"):
-//			command = new BCSelectDateCommand();
-//			command.execute(request, response);
-//			viewPage = "BookSelectDate.jsp";
-//			break;
 
-			
-		case("/book.do"):
-			command = new BCDetailCommand();
-			command.execute(request, response);
-			viewPage = "Book.jsp";
-			break;
-
-		
 		
 		
 		}// switch End
