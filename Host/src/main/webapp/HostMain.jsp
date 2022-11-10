@@ -30,13 +30,10 @@
 		<path d="M8 6.982C9.664 5.309 13.825 8.236 8 12 2.175 8.236 6.336 5.309 8 6.982Z"/>
 		<path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.707L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.646a.5.5 0 0 0 .708-.707L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5 5 5Z"/>
 		</svg>
-		<span class="mytitle"><b>Hoping</b></span>
+		<span class="mytitle"><b>Hoping Host</b></span>
 		</a>
 
     	<ul class="nav nav-pills">
-     	<li class="nav-item" style="font-size: 14px;">
-     		<a href="#" class="link-dark nav-link">호스트 모드</a>
-     	</li>
      	
      	<li class="nav-item">
 		<svg class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-person-lines-fill" viewBox="0 0 16 16">
@@ -78,7 +75,7 @@
 				<div class="card-body">
 					<h5 class="card-title">1번 캠핑장</h5>
 					<p class="card-text">캠핑장 주소</p>
-					<a href="host_branch_main.do?regSeq=" class="btn btn-primary">캠핑장 메인페이지로</a>
+					<a href="host_branch_main.do?regSeq=" class="btn btn-primary">캠핑장 정보 수정</a>
 				</div>
 			</div></div>
 			
@@ -87,7 +84,7 @@
 				<div class="card-body">
 					<h5 class="card-title">2번 캠핑장</h5>
 					<p class="card-text">캠핑장 주소</p>
-					<a href="host_branch_main.do?regSeq=" class="btn btn-primary">캠핑장 메인페이지로</a>
+					<a href="host_branch_main.do?regSeq=" class="btn btn-primary">캠핑장 정보 수정</a>
 				</div>
 			</div></div>
 			
@@ -96,7 +93,7 @@
 				<div class="card-body">
 					<h5 class="card-title">3번 캠핑장</h5>
 					<p class="card-text">캠핑장 주소</p>
-					<a href="host_branch_main.do?regSeq=" class="btn btn-primary">캠핑장 메인페이지로</a>
+					<a href="host_branch_main.do?regSeq=" class="btn btn-primary">캠핑장 정보 수정</a>
 				</div>
 			</div></div>
 			
@@ -105,7 +102,7 @@
 				<div class="card-body">
 					<h5 class="card-title">4번 캠핑장</h5>
 					<p class="card-text">캠핑장 주소</p>
-					<a href="host_branch_main.do?regSeq=" class="btn btn-primary">캠핑장 메인페이지로</a>
+					<a href="host_branch_main.do?regSeq=" class="btn btn-primary">캠핑장 정보 수정</a>
 				</div>
 			</div></div>
 		</div>
@@ -146,7 +143,7 @@
 <div class="row align-items-md-stretch py-3">
 	<div class="col-md-6">
 		<div class="h-100 p-5 bg-light border rounded-3">
-			<h2>월별 수입 및 예약건</h2>
+			<h2>월별 매출 및 예약건</h2>
 			<br>
 <canvas id="profitChart" width="150" height="60"></canvas>
 <script>
@@ -167,7 +164,7 @@ var profitChart = new Chart(chartArea, {
         datasets: [{
         	type: 'line',
             // ⑤dataset의 이름(String)
-            label: '월별 수입',
+            label: '월별 매출',
             // ⑥dataset값(Array)
             data: mpdata,
             // ⑦dataset의 배경색(rgba값을 String으로 표현)
