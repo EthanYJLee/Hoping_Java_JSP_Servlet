@@ -1,5 +1,6 @@
 package com.bootcamp.host.command;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,6 +26,11 @@ public class HostCampProfileList_Command implements BCCommand {
 
 		// Host Main 화면에서 썸네일 담아줌 (사진, 캠핑장이름, 주소)
 
+	}
+
+	@Override
+	public Boolean execute1(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		return null;
 	}
 
 }

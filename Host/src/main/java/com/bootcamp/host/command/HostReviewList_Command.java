@@ -1,5 +1,6 @@
 package com.bootcamp.host.command;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +20,11 @@ public class HostReviewList_Command implements BCCommand {
 		ArrayList<HostReplyReviewDto> dtos = dao.reviewList(hSeq);
 		request.setAttribute("review_list", dtos);
 
+	}
+
+	@Override
+	public Boolean execute1(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		return null;
 	}
 
 }

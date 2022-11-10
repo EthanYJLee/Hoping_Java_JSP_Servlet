@@ -14,6 +14,7 @@ import javax.sql.DataSource;
 import com.bootcamp.dto.AskDto;
 import com.bootcamp.dto.ClientDto;
 import com.bootcamp.dto.HostDto;
+import com.bootcamp.joindto.HostClientDto;
 
 public class HInfoDao {
 	
@@ -30,52 +31,11 @@ public class HInfoDao {
 	}
 
 	//---------------------호스트 정보(마이페이지)-----------------------------
-	// 전체 리스트
-		public ArrayList<ClientDto> List(){
-			ArrayList<ClientDto> dtos = new ArrayList<ClientDto>();
-			Connection connection = null;
-			PreparedStatement preparedStatement = null;
-			ResultSet resultSet = null;
-			
-			try {
-				connection = dataSource.getConnection();
-				
-				String query = "select cId, cName, cPhone, cEmail, cImage from client";
-				preparedStatement = connection.prepareStatement(query);
-				resultSet = preparedStatement.executeQuery();
-				
-				while(resultSet.next()) {
-					String cId = resultSet.getString("cId");
-					String cName = resultSet.getString("cName");
-					String cPhone = resultSet.getString("cPhone");
-					String cEmail = resultSet.getString("cEmail");
-					String cImage = resultSet.getString("cImage");
-					
-					
-					ClientDto dto = new ClientDto(cId, cName, cPhone, cEmail, cImage);
-					dtos.add(dto);
-					
-				
-				}
-				
-			}catch (Exception e) {
-				e.printStackTrace();
-			}finally {
-				try {
-					if(resultSet != null) resultSet.close();
-					if(preparedStatement != null) preparedStatement.close();
-					if(connection != null) connection.close();
-					
-				}catch(Exception e) {
-					e.printStackTrace();
-				}
-			}
-			return dtos;
-		} // list
+	
 		
 		
 	//마이페이지 디테일 정보
-	public ClientDto myPageView(String scId){
+	public ClientDto joinView(String scId){
 		
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -85,9 +45,9 @@ public class HInfoDao {
 		try {
 			connection = dataSource.getConnection();
 			
-			String query = "select cId, cName, cPhone, cEmail, cImage from client where cId='anna' ";
+			String query = "select cId, cName, cPhone, cEmail, cImage from client where cId=? ";
 			preparedStatement = connection.prepareStatement(query);
-			//preparedStatement.setString(1, scId);
+			preparedStatement.setString(1, scId);
 			resultSet = preparedStatement.executeQuery();
 			
 			if(resultSet.next()) {
@@ -99,7 +59,7 @@ public class HInfoDao {
 				
 				
 				dto = new ClientDto(cId, cName, cPhone, cEmail, cImage);
-				
+				System.out.println("hID:" + cId);
 			}
 			
 		}catch (Exception e) {
@@ -153,7 +113,7 @@ public class HInfoDao {
 	
 	
 	//호스트 사진  이미 인서트한 정보에 update
-	public void imageUpdate(String hImage) {
+	public void imageUpdate(String hImage, String hId) {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
@@ -161,11 +121,12 @@ public class HInfoDao {
 		try {
 			connection = dataSource.getConnection();
 			
-			String query = "update host set hImage=? where hId='anna' ";
+			String query = "update host set hImage=? where hId=? ";
 			preparedStatement = connection.prepareStatement(query);
 			
 			
 			preparedStatement.setString(1, hImage);
+			preparedStatement.setString(2, hId);
 			
 			preparedStatement.executeUpdate();
 			
@@ -186,18 +147,20 @@ public class HInfoDao {
 	
 	//file 보여주깅------호스트 모든 정보 show 하기
 		//상세페이지 출력 
-			public HostDto fileView() {
+			public HostDto fileView(String shId) {
 				HostDto dto = null;
 				Connection connection = null;
+				
 				PreparedStatement preparedStatement = null;
 				ResultSet resultSet = null;
 				
 				
 				try {
 					connection = dataSource.getConnection();
-					String query = "select hId, hSummary, hImage from host where hId='anna' ";
+					String query = "select hId, hSummary, hImage from host where hId=? ";
 					
 					preparedStatement = connection.prepareStatement(query);
+					preparedStatement.setString(1, shId);
 					resultSet = preparedStatement.executeQuery();
 					
 					if(resultSet.next()) {
@@ -225,6 +188,51 @@ public class HInfoDao {
 				return dto;
 			}//detail_view
 	
+		//호스트 정보 수정
+			//마이페이지 디테일 정보
+			public HostClientDto myPageView(String hcId){
+				
+				Connection connection = null;
+				PreparedStatement preparedStatement = null;
+				ResultSet resultSet = null;
+				HostClientDto dto = null; 
+				
+				try {
+					connection = dataSource.getConnection();
+					
+					String query = "select hId, cName, cPhone, cEmail, hImage, hSummary from host, client where hId=cId and hId=? ";
+					preparedStatement = connection.prepareStatement(query);
+					//preparedStatement.setString(1, hcId);
+					resultSet = preparedStatement.executeQuery();
+					
+					if(resultSet.next()) {
+						String hId = resultSet.getString("hId");
+						String cName = resultSet.getString("cName");
+						String cPhone = resultSet.getString("cPhone");
+						String cEmail = resultSet.getString("cEmail");
+						String hImage = resultSet.getString("hImage");
+						String hSummary = resultSet.getString("hSummary");
+						
+						
+					
+						dto = new HostClientDto(hId, cName, cPhone, cEmail, hImage, hSummary);
+						
+					}
+					
+				}catch (Exception e) {
+					e.printStackTrace();
+				}finally {
+					try {
+						if(resultSet != null) resultSet.close();
+						if(preparedStatement != null) preparedStatement.close();
+						if(connection != null) connection.close();
+						
+					}catch(Exception e) {
+						e.printStackTrace();
+					}
+				}
+				return dto;
+			} // Content
 			
 			
 			

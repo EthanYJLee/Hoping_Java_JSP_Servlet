@@ -1,5 +1,6 @@
 package com.bootcamp.host.command;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,17 +13,21 @@ public class HostInfoRoomSelectCommand implements BCCommand {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		
+
 		String regSeq = request.getParameter("regSeq");
 		String hSeq = request.getParameter("hSeq");
-		
+
 		RoomDao dao = new RoomDao();
-		
+
 		ArrayList<roomDto> dtos = dao.selectRoom(1, 1);
-		
+
 		request.setAttribute("list", dtos);
-		
-		
+
+	}
+
+	@Override
+	public Boolean execute1(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		return null;
 	}
 
 }

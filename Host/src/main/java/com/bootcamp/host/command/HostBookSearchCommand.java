@@ -1,5 +1,6 @@
 package com.bootcamp.host.command;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,13 +18,18 @@ public class HostBookSearchCommand implements BCCommand {
 		String start = request.getParameter("start");
 		String end = request.getParameter("end");
 		String strSearch = request.getParameter("strSearch");
-		
+
 		BookJoinDao dao = new BookJoinDao();
-		
+
 		ArrayList<BookJoinDto> dtos = dao.bookListCon("1", start, end, strSearch);
-		
+
 		request.setAttribute("list", dtos);
-		
+
+	}
+
+	@Override
+	public Boolean execute1(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		return null;
 	}
 
 }
