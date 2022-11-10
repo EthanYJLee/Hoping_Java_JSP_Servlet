@@ -45,7 +45,7 @@
 		<ul class="dropdown-menu dropdown-menu-end">
 			<li><a class="dropdown-item" href="#">내 정보</a></li>
 			<li><a class="dropdown-item" href="#">예약목록</a></li>
-			<li><a class="dropdown-item" href="askList.do">문의목록</a></li>
+			<li><a class="dropdown-item" href="#">문의목록</a></li>
             <li><a class="dropdown-item" href="#">수입 및 예약건 통계</a></li>
             <li><a class="dropdown-item" href="host_review_list.do">후기관리</a></li>
             <li><a class="dropdown-item" href="#">캠핑장 추가</a></li>
@@ -124,6 +124,9 @@
 			<p>신규예약 : ${nr}</p>
 			<p>오늘 체크인 예정 : ${todayIn}</p>
 			<p>오늘 체크아웃 예정 : ${todayOut}</p>
+			<div class="form-row float-right">
+			<button type="button" class="btn text-secondary">상세보기</button>
+			</div>
 		</div>
 	</div>
 	<div class="col-md-6">
@@ -133,6 +136,9 @@
 			<p>신규문의 : ${tq}</p>
 			<p>답변 완료 : ${trq}</p>
 			<p>답변 미완료 : ${tnrq}</p>
+			<div class="form-row float-right">
+			<button type="button" class="btn text-secondary">상세보기</button>
+			</div>
 		</div>
 	</div>
 </div>
@@ -228,6 +234,9 @@ var reserveChart = new Chart(chartArea, {
 			<p>답변 완료 : ${trr}</p>
 			<p>답변 미완료 : ${tnrr}</p>
 			<p>평균 별점</p>
+			<div class="form-row float-right">
+			<button type="button" class="btn text-secondary">상세보기</button>
+			</div>
 		</div>
 	</div>
 </div>
