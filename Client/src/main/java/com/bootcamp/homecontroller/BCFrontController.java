@@ -24,61 +24,63 @@ import com.bootcamp.client.command.ListMain_Command;
 import com.bootcamp.client.command.SearchCamp_Command;
 import com.bootcamp.client.dao.ClientDao;
 
-
 /**
  * Servlet implementation class BFrontController
  */
 @WebServlet("*.do")
 public class BCFrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public BCFrontController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		actionDo(request,response);
+	public BCFrontController() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		actionDo(request,response);
+		actionDo(request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		actionDo(request, response);
 
 	}
 
-	
-	private void actionDo (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void actionDo(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		
+
 		String viewPage = null;
 		BCCommand command = null;
-		
-		
+
 		String uri = request.getRequestURI();
 		String conPath = request.getContextPath();
 		String com = uri.substring(conPath.length());
 
 		switch (com) {
-		
-		 // SangHyuk
+
+		// SangHyuk
 		// ListMain.do 코드 확인 시 타이핑을 줄이기 위해서 main.do로 수정함.
 		case ("/main.do"):
 			System.out.println("List Main");
 			command = new ListMain_Command();
 			command.execute(request, response);
 			viewPage = "Home.jsp";
-			//viewPage = "Home.jsp";
+			// viewPage = "Home.jsp";
 			break;
 		// searchCamp.do 코드 확인 시 캠핑장을 검색어나 타입에 따라 검색하기 위한 메소.
 		case ("/searchCamp.do"):
@@ -87,44 +89,35 @@ public class BCFrontController extends HttpServlet {
 			// Test를 위해 Home2.jsp로 출력하게 함.
 			viewPage = "Home.jsp";
 			break;
-			// 예약 페이지에서 캠프장관련 정보	보기 
-		case("/booking.do"):
+		// 예약 페이지에서 캠프장관련 정보 보기
+		case ("/booking.do"):
 			System.out.println("List camp for Booking");
 			command = new BCCampListCommand();
 			command.execute(request, response);
 			viewPage = "Calendar2.jsp";
 			System.out.println("List camp End");
 			break;
-			
-			
-			
-			
-			
 
-			// 로그인
+		// 로그인
 		case ("/login.do"):
 			command = new Clientlogin_Command();
-			command.execute(request, response);
+			command.execute1(request, response);
 			String cId = request.getParameter("cId");
 			String cPw = request.getParameter("cPw");
-			
+
 			ClientDao dao = new ClientDao();
-			boolean result =dao.login(cId, cPw);
-					
-				
-			if(result == false) {
+			Boolean result = dao.login(cId, cPw);
+
+			if (result == false) {
 				JOptionPane.showInternalMessageDialog(null, "아이디와 비밀번호를 확인해주세요 ", "로그인", 0, null);
 				viewPage = "ClientLoginView.jsp";
-			}if(result == true) {
+			} else {
 				JOptionPane.showInternalMessageDialog(null, "환영합니다 ", "로그인", 0, null);
-				//page = "ClientMainView.jsp";
+				// page = "ClientMainView.jsp";
 				viewPage = "main.do";
 			}
-			break ;
-			
-			
-			
-			
+			break;
+
 		// 회원등록
 		case ("/Clientwrite.do"):
 			command = new Clientwrite_Command();
@@ -149,25 +142,18 @@ public class BCFrontController extends HttpServlet {
 			command.execute(request, response);
 			viewPage = "/ClientLoginView.jsp";
 			break;
-			
-			// Hosik
-			// 상세 페이지 보기 
-		case("/detailView.do"):
+
+		// Hosik
+		// 상세 페이지 보기
+		case ("/detailView.do"):
 			command = new BCDetailCommand();
 			command.execute(request, response);
 			viewPage = "DetailView.jsp";
 			break;
-			
 
-		
-		
 		}// switch End
-		
-				
-
-				
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
-		dispatcher.forward(request,response);
+		dispatcher.forward(request, response);
 	}
 }// End
