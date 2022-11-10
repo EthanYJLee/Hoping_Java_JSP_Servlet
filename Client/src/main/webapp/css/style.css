@@ -79,6 +79,18 @@ body{
 	border-radius: 15px;
 }
 
+/* ------------ 22.11.10. hosik modify ----------- */
+
+.mybtn {
+	transition: background-color .5s;
+	border-radius: 15px;
+}
+
+.mybtn:hover {
+	border: 0 solid black;
+	background-color: #E94560;
+}
+
 /* --------------------- host ------------------------ */
 
 /* 테이블 */

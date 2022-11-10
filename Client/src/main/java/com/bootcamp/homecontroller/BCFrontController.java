@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.JOptionPane;
 
 import com.bootcamp.client.command.BCCampListCommand;
 import com.bootcamp.client.command.BCCommand;
@@ -21,6 +22,7 @@ import com.bootcamp.client.command.ClientmypageView_Command;
 import com.bootcamp.client.command.Clientwrite_Command;
 import com.bootcamp.client.command.ListMain_Command;
 import com.bootcamp.client.command.SearchCamp_Command;
+import com.bootcamp.client.dao.ClientDao;
 
 
 /**
@@ -103,7 +105,26 @@ public class BCFrontController extends HttpServlet {
 		case ("/login.do"):
 			command = new Clientlogin_Command();
 			command.execute(request, response);
-			break;
+			String cId = request.getParameter("cId");
+			String cPw = request.getParameter("cPw");
+			
+			ClientDao dao = new ClientDao();
+			boolean result =dao.login(cId, cPw);
+					
+				
+			if(result == false) {
+				JOptionPane.showInternalMessageDialog(null, "아이디와 비밀번호를 확인해주세요 ", "로그인", 0, null);
+				viewPage = "ClientLoginView.jsp";
+			}if(result == true) {
+				JOptionPane.showInternalMessageDialog(null, "환영합니다 ", "로그인", 0, null);
+				//page = "ClientMainView.jsp";
+				viewPage = "main.do";
+			}
+			break ;
+			
+			
+			
+			
 		// 회원등록
 		case ("/Clientwrite.do"):
 			command = new Clientwrite_Command();
