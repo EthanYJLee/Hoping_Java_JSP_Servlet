@@ -9,7 +9,9 @@
 <body>
 <h2>메인페이지 입니다</h2><br>
 <%-- <%=request.getAttribute("cId")%>님 환영합니다<br> --%>
-
+<!-- Header Start -->
+    <%@ include file = "Nav.jsp" %>
+    <!-- Header End --> 
 <%=session.getAttribute("cId")%> 님 환영합니다!
 <form action="mypageView.do" method="post">
 <input type="submit" value="마이페이지">

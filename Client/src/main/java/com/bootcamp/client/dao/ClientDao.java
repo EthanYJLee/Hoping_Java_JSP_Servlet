@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import com.bootcamp.dto.ClientDto;
@@ -123,7 +124,7 @@ public class ClientDao {
 				if(resultSet.next()) {
 					String count = resultSet.getString("count(*)"); //count(*)값을 가져와야 하기때문에
 					Result = count.equals("1"); // 아이디와 패스워드가 같고 삭제일자가 없으면 1
-
+				
 				}
 			}catch (Exception e) {
 				e.printStackTrace();
