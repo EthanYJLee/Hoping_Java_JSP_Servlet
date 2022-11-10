@@ -37,6 +37,11 @@ searchReviewCount(후기 갯수 읽어오기)
 		
 		
 	}
+	public Boolean execute1(HttpServletRequest request, HttpServletResponse response) {
+		return null;
+		
+		
+	}
 
 }
 

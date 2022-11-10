@@ -16,18 +16,23 @@ public class Clientlogin_Command implements BCCommand {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
+
+	}
+
+	public Boolean execute1(HttpServletRequest request, HttpServletResponse response) {
+
 		String cId = request.getParameter("cId");
 		String cPw = request.getParameter("cPw");
 
 		ClientDao dao = new ClientDao();
-		boolean result =dao.login(cId, cPw);
-		
-			
-			HttpSession session = request.getSession();
-			session.setAttribute("cId", cId);
-			System.out.println("clientlogin_command에서 보내는 session = "+session.getAttribute(cId));
+		boolean result = dao.login(cId, cPw);
 
-		}
+		HttpSession session = request.getSession();
+		session.setAttribute("cId", cId);
+		System.out.println("clientlogin_command에서 보내는 session = " + session.getAttribute(cId));
 
-}	
-		
+		return null;
+
+	}
+
+}
