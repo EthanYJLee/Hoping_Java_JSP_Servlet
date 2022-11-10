@@ -104,7 +104,6 @@ body{
 		      <div class="card-body mycbody">
 				<p class="card-text">
 					${dto.regDetailaddress}
-					<%@ include file = "hyunsuk/button07.jsp" %>
 				</p>
 				<h5 class="card-title myctitle">${dto.regName}</h5>
 				<p class="card-text myctext">${dto.regTel}</p>
