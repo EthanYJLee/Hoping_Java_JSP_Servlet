@@ -75,36 +75,40 @@ public class ClientDao {
 	}
 
 	// 회원등록
-	public void Clientwrite(String cId, String cPw, String cName, String cPhone, String cEmail) {
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
+		public void Clientwrite(String cId, String cPw, String cName, String cPhone, String cEmail, String zonecode, String address, String buildingName, String detailAddress) {
+			Connection connection = null;
+			PreparedStatement preparedStatement = null;
 
-		try {
-			connection = dataSource.getConnection();
-
-			String query = "insert into client (cId,cPw,cName,cPhone,cEmail,cDate) values(?,?,?,?,?,now()) ";
-			preparedStatement = connection.prepareStatement(query);
-			preparedStatement.setString(1, cId);
-			preparedStatement.setString(2, cPw);
-			preparedStatement.setString(3, cName);
-			preparedStatement.setString(4, cPhone);
-			preparedStatement.setString(5, cEmail);
-
-			preparedStatement.executeUpdate();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
 			try {
-				if (preparedStatement != null)
-					preparedStatement.close();
-				if (connection != null)
-					connection.close();
+				connection = dataSource.getConnection();
+
+				String query = "insert into client (cId,cPw,cName,cPhone,cEmail,cDate,zonecode,address,buildingName,detailAddress) values(?,?,?,?,?,now(),?,?,?,?) ";
+				preparedStatement = connection.prepareStatement(query);
+				preparedStatement.setString(1, cId);
+				preparedStatement.setString(2, cPw);
+				preparedStatement.setString(3, cName);
+				preparedStatement.setString(4, cPhone);
+				preparedStatement.setString(5, cEmail);
+				preparedStatement.setString(6, zonecode);
+				preparedStatement.setString(7, address);
+				preparedStatement.setString(8, buildingName);
+				preparedStatement.setString(9, detailAddress);
+
+				preparedStatement.executeUpdate();
+
 			} catch (Exception e) {
 				e.printStackTrace();
+			} finally {
+				try {
+					if (preparedStatement != null)
+						preparedStatement.close();
+					if (connection != null)
+						connection.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
-		}
-	}// 등록
+		}// 등록
 
 	// Login
 		public boolean login(String scId, String scPw){
