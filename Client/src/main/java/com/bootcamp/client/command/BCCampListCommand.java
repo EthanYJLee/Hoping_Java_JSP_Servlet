@@ -1,5 +1,6 @@
 package com.bootcamp.client.command;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -58,9 +59,6 @@ searchReviewCount(후기 갯수 읽어오기)
 	}
 	public Boolean execute1(HttpServletRequest request, HttpServletResponse response) {
 		return null;
-		
-		
 	}
-
 }
 

@@ -135,8 +135,6 @@ public class CampDao {
 		}
 		return dtos;
 	} // DateCheck	
-	
-	
 	public int readMaxSeq() {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;

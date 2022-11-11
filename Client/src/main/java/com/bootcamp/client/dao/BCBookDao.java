@@ -1,10 +1,15 @@
 package com.bootcamp.client.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -12,6 +17,7 @@ import javax.sql.DataSource;
 
 import com.bootcamp.dto.regcampDto;
 import com.bootcamp.dto.roomDto;
+import com.bootcamp.joindto.checkdate2Dto;
 
 
 
@@ -127,53 +133,56 @@ import com.bootcamp.dto.roomDto;
 		return dtos;
 		
 	} // selectDate End 
-		
-		// CheckBook  예약한 정보를 불러올꺼임 			// 여기서 받아오는 이름이 밑에서 쓸 변수랑 같으면 안댐, 에러남 그래서 강사님이 sbId라고 받아왔음 
-//		public bookDto checkBook(String rbookSeq) { // 데이터가 1개뿐이라 dto에 담아서 가지고 와서 보여줄 거임 
-//			bookDto dto = null;
-//			Connection connection = null;
-//			PreparedStatement preparedStatement = null; // 이거 쓸꺼면 ? 써도 댐 
-//			ResultSet resultSet = null;
-//			
-//			try {
-//				connection = dataSource.getConnection();
-//				
-//				String query = "select * from book where boSeq = ?";
-//				preparedStatement = connection.prepareStatement(query);
-//				preparedStatement.setInt(1, Integer.parseInt(rbookSeq));
-//				resultSet = preparedStatement.executeQuery();
-//
-//				
-//				if(resultSet.next()) {
-//					int boSeq = resultSet.getInt("boSeq");   // 위에 * 적은게 DB안에 꺼 다 적으면 가능함 .
-//					int boPrice = resultSet.getInt("boPrice");
-//					Timestamp boDate = resultSet.getTimestamp("boDate");
-//					Timestamp boCheckindate = resultSet.getTimestamp("boCheckindate");
-//					Timestamp boCheckoutdate = resultSet.getTimestamp("boCheckoutdate");
-//					int boCount = resultSet.getInt("boCount");
-//					Timestamp boCanceldate = resultSet.getTimestamp("boCanceldate");
-//					int client_cId = resultSet.getInt("client_cId");
-//					int room_roSeq = resultSet.getInt("room_roSeq");
-//					int room_regcamp_regSeq = resultSet.getInt("room_regcamp_regSeq");
-//					int room_regcamp_host_hSeq = resultSet.getInt("room_regcamp_host_hSeq");
-//					int pay_cid = resultSet.getInt("pay_cid");
-//					 dto = new bookDto(boSeq, boPrice, boDate, boCheckindate, boCheckoutdate,boCount,boCanceldate,client_cId,room_roSeq,room_regcamp_regSeq,room_regcamp_host_hSeq,pay_cid);
-//				}
-//				
-//			}catch(Exception e) {
-//				e.printStackTrace();
-//			}finally {
-//				try {
-//					if(resultSet != null) resultSet.close();
-//					if(preparedStatement != null) preparedStatement.close();
-//					if(connection != null) connection.close();
-//				}catch(Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//			return dto;
-//
-//	}//contentView End
+
+	
+	
+	// 22-11-11 Created Hosik
+	// DB checkdate2 에서 예약 마지막 페이지에 사용되는 값들 가져와서 dto에 저장함 
+	public checkdate2Dto confirmation(int roomNum, String room_regCamp_Name) { // 데이터가 1개뿐이라 dto에 담아서 가지고 와서 보여줄 거임 
+		Connection connection = null;
+		PreparedStatement preparedStatement = null; // 이거 쓸꺼면 ? 써도 댐 
+		ResultSet resultSet = null;
+		checkdate2Dto dto = null;
+		System.out.println("BCBookDao에 dao실행 확인용 room_regCamp_Name : "+room_regCamp_Name);									//<<<<<<<<<<<<<<<<<<<<<<<<<<<<< syso
+		 
+		try {
+			connection = dataSource.getConnection();
+			
+			String query = "select roPrice, roMax, regcamp_regSeq, regImage4 from checkdate2 where roNum = ? and regName = '"+room_regCamp_Name+"';";
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setInt(1, roomNum);
+			resultSet = preparedStatement.executeQuery();
+			System.out.println("BCBookDao에 dao실행 안쪽 try 안에 있음 ");				//<<<<<<<<<<<<<<<<<<<<<<<<<<<<< syso
+			if(resultSet.next()) {
+				System.out.println("BCBookDao에 confirmation resultset = "+resultSet);
+				int roPrice = resultSet.getInt("roPrice");   // 위에 * 적은게 DB안에 꺼 다 적으면 가능함 .
+				int roMax = resultSet.getInt("roMax");
+				int regcamp_regSeq = resultSet.getInt("regcamp_regSeq");
+				String regImage4 = resultSet.getString("regImage4");
+				System.out.println(regImage4);
+				
+				String regName = room_regCamp_Name;
+				 dto = new checkdate2Dto(roPrice, roMax, regcamp_regSeq, regName, regImage4) ;
+				 
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(resultSet != null) resultSet.close();
+				if(preparedStatement != null) preparedStatement.close();
+				if(connection != null) connection.close();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return dto;
+	} // DetailView  END
+	
+	
+	
+	
 	
 	
 }//BDao End

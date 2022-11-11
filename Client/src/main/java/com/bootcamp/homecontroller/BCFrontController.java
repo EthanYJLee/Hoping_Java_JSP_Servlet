@@ -1,6 +1,7 @@
 package com.bootcamp.homecontroller;
 
 import java.io.IOException;
+import java.text.ParseException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,9 +9,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.swing.JOptionPane;
 
+import com.bootcamp.client.command.BCBookingConfirmationCommand;
 import com.bootcamp.client.command.BCCampDateCheckCommand;
 import com.bootcamp.client.command.BCCampListCommand;
 import com.bootcamp.client.command.BCCommand;
@@ -48,7 +49,12 @@ public class BCFrontController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		actionDo(request, response);
+		try {
+			actionDo(request, response);
+		} catch (ServletException | IOException | ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -58,12 +64,17 @@ public class BCFrontController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		actionDo(request, response);
+		try {
+			actionDo(request, response);
+		} catch (ServletException | IOException | ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
 	private void actionDo(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			throws ServletException, IOException, ParseException {
 		request.setCharacterEncoding("utf-8");
 
 		String viewPage = null;
@@ -82,7 +93,6 @@ public class BCFrontController extends HttpServlet {
 			command = new ListMain_Command();
 			command.execute(request, response);
 			viewPage = "Home.jsp";
-			// viewPage = "Home.jsp";
 			break;
 		// searchCamp.do 코드 확인 시 캠핑장을 검색어나 타입에 따라 검색하기 위한 메소.
 		case ("/searchCamp.do"):
@@ -116,7 +126,10 @@ public class BCFrontController extends HttpServlet {
 			System.out.println("insert for Booking End");
 			break;			
 			
-		// 로그인
+		
+			
+			// 로그인
+			//22-11-10 주현씨 수정함 
 		case ("/login.do"):
 			command = new Clientlogin_Command();
 			command.execute1(request, response);
@@ -161,13 +174,30 @@ public class BCFrontController extends HttpServlet {
 			viewPage = "/ClientLoginView.jsp";
 			break;
 
-		// Hosik
-		// 상세 페이지 보기
+			
+		// Hosik  ----------------------------------------------------------------
+			// 상세 페이지 보기
 		case ("/detailView.do"):
 			command = new BCDetailCommand();
 			command.execute(request, response);
 			viewPage = "DetailView.jsp";
 			break;
+			// 예약. 예약할 인원수 정하고 예약 확정짓기
+		case ("/confirmation.do"):
+			command = new BCBookingConfirmationCommand();
+			command.execute(request, response);
+			viewPage = "Booking.jsp";
+			break;
+			
+			
+			
+			//--- HyunSuk ----------------------------------------------------------------
+//		case ("/Review_List.do"):
+//			   command = new Review_List_Command();
+//			   command.execute(request, response);
+//			   viewPage = "Review_List.jsp";
+//			   break;
+			   
 
 		}// switch End
 

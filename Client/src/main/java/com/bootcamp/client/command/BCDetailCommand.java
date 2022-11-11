@@ -1,5 +1,7 @@
 package com.bootcamp.client.command;
 
+import java.text.ParseException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -20,8 +22,6 @@ public class BCDetailCommand implements BCCommand {
 	}
 	public Boolean execute1(HttpServletRequest request, HttpServletResponse response) {
 		return null;
-		
-		
 	}
 
 }

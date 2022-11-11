@@ -133,7 +133,7 @@ body {
 
 
 	<div class="box container mymcontainer">
-		<form action="HostTermsAD.jsp" method="get">
+		<form action="termsAD.do" method="get">
 			<table width="160" height="650">
 
 				<tr>
@@ -161,7 +161,7 @@ Hoping은 결제 서비스 약관('결제 약관')에 명시된 경우를 제외
 
 Hoping의 역할은 제16조에 자세히 규정되어 있습니다.
 
-Hoping은 당사의 개인정보 수집 및 사용 방식을 설명하는개인정보 처리방침, 에어비앤비 결제 주체(총칭하여 'Hoping Payments')가 회원에게 제공하는 결제 서비스에 적용되는 결제 약관 등 본 약관을 보완하는 기타 약관 및 정책을 유지합니다.
+Hoping은 당사의 개인정보 수집 및 사용 방식을 설명하는개인정보 처리방침, Hoping 결제 주체(총칭하여 'Hoping Payments')가 회원에게 제공하는 결제 서비스에 적용되는 결제 약관 등 본 약관을 보완하는 기타 약관 및 정책을 유지합니다.
 
 호스트 서비스에 적용되는 모든 법규, 규정, 제3자와의 계약을 이해하고 준수할 책임은 호스트에게 있습니다.
 

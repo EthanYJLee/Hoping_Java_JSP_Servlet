@@ -14,25 +14,36 @@ import com.bootcamp.host.command.BCCommand;
 import com.bootcamp.host.command.HImageCommand;
 import com.bootcamp.host.command.HInfoCommand;
 import com.bootcamp.host.command.HInfoInsertCommand;
+import com.bootcamp.host.command.HmyInfoCommand;
+import com.bootcamp.host.command.HmyInfoModifyCommand;
 import com.bootcamp.host.command.HostBookListCommand;
 import com.bootcamp.host.command.HostBookSearchCommand;
 import com.bootcamp.host.command.HostCampNameList_Command;
 import com.bootcamp.host.command.HostCampProfileList_Command;
 import com.bootcamp.host.command.HostInfoFaInDelCommand;
 import com.bootcamp.host.command.HostInfoFaSelectCommand;
+import com.bootcamp.host.command.HostInfoImages1UpCommand;
+import com.bootcamp.host.command.HostInfoImages2UpCommand;
+import com.bootcamp.host.command.HostInfoImages3UpCommand;
+import com.bootcamp.host.command.HostInfoImagesSelectCommand;
 import com.bootcamp.host.command.HostInfoKeyInDelCommand;
 import com.bootcamp.host.command.HostInfoKeySelectCommand;
 import com.bootcamp.host.command.HostInfoLMoCommand;
 import com.bootcamp.host.command.HostInfoLSelectCommand;
+import com.bootcamp.host.command.HostInfoMRMSelectCommand;
+import com.bootcamp.host.command.HostInfoMRMUpdateCommand;
 import com.bootcamp.host.command.HostInfoNCTMoCommand;
 import com.bootcamp.host.command.HostInfoNCTSelectCommand;
+import com.bootcamp.host.command.HostInfoRoomDelCommand;
+import com.bootcamp.host.command.HostInfoRoomInCommand;
+import com.bootcamp.host.command.HostInfoRoomSelectCommand;
 import com.bootcamp.host.command.HostMainReservationStatus_Command;
 import com.bootcamp.host.command.HostMonthlyProfit_Command;
 import com.bootcamp.host.command.HostMonthlyReservation_Command;
 import com.bootcamp.host.command.HostReviewContentView_Command;
 import com.bootcamp.host.command.HostReviewList_Command;
 import com.bootcamp.host.command.HostSendReviewReply_Command;
-import com.bootcamp.host.command.HostTermsAD;
+import com.bootcamp.host.command.HostTermsADCommand;
 import com.bootcamp.host.command.MyHostBookDetailCommand;
 import com.bootcamp.host.command.RegCampCommand;
 import com.bootcamp.host.command.RegCampRoomCommand;
@@ -89,13 +100,26 @@ public class BCFrontController extends HttpServlet {
 
 		// --------------------주현: 약관동의 후 호스트 가입(호스트 정보 insert)--------------------
 
-		
-		
+		// 약관보여주기
 		case ("/term.do"):
-			command = new HInfoCommand();
-			command.execute(request, response);
 			viewPage = "HostTerms.jsp";
-			
+			break;
+		// 약관 동의/비동의
+		case ("/termsAD.do"):
+			command = new HostTermsADCommand();
+			Boolean check = command.execute1(request, response);
+
+			if (check == true) {
+				viewPage = "TermsAgree.jsp";
+
+			} else {
+				// 나중에 클라이언트랑 연결되면 client 메인페이지로 이동
+				viewPage = "list.jsp";
+
+			}
+
+			break;
+		// 호스트 가입 (client 정보 >> host 테이블에 insert)
 		case ("/show.do"):
 			command = new HInfoCommand();
 			command.execute(request, response);
@@ -115,9 +139,25 @@ public class BCFrontController extends HttpServlet {
 			viewPage = "fileShow.jsp";
 			break;
 
+		// ——————————주현: 마이페이지 정보 수정(호스트 정보 update)——————————
+
+		// 마이페이지 내정보 불러오기
+		case ("/myPage.do"):
+			command = new HmyInfoCommand();
+			command.execute(request, response);
+			viewPage = "HostmyPage.jsp";
+			break;
+		// 마이페이지 내정보 수정
+		case ("/modify.do"):
+			command = new HmyInfoModifyCommand();
+			command.execute(request, response);
+			command = new HmyInfoCommand();
+			command.execute(request, response);
+			viewPage = "HostmyPage.jsp";
+			break;
+
 		// ---------------------상준 : 캠핑장 등록 -----------------------------------
 
-		
 		case ("/regcamp.do"):
 			System.out.println("Controller regcamp.do");
 			command = new RegCampCommand();
@@ -128,9 +168,6 @@ public class BCFrontController extends HttpServlet {
 
 		// ---------------------영진: 메인페이지 -----------------------------------
 
-
-			
-			
 		case ("/host_main.do"): // 로그인 화면에서 => host_main.do?hSeq= 로 이동할 예정임
 		         command = new HostCampProfileList_Command(); // 호스트 소유 모든 캠핑장의 이름, 사진, 주소 (썸네일용)
 		         command.execute(request, response);
@@ -187,88 +224,154 @@ public class BCFrontController extends HttpServlet {
 			break;
 
 		// ------------예진 : 예약 리스트 페이지 열기 ------------------------------------
-		case ("/bookList.do"):
+		//예약 리스트 페이지 열기
+		case ("/bookList.do"): 
 			command = new HostBookListCommand();
 			command.execute(request, response);
 			viewPage = "HostTotalBookManage.jsp";
 			break;
-
-		// 예약 리스트 테이블에서 row 클릭시 디테일 페이지
-		case ("/YJHostBookDetail.do"):
+		
+		//예약 리스트 테이블에서 row 클릭시 디테일 페이지
+		case ("/YJHostBookDetail.do"): 
 			command = new MyHostBookDetailCommand();
 			command.execute(request, response);
 			viewPage = "YJHostBookDetail.jsp";
 			break;
-
-		// 예약 리스트 페이지에서 검색
-		case ("/bookSearch.do"):
+		
+		//예약 리스트 페이지에서 검색
+		case ("/bookSearch.do"): 
 			command = new HostBookSearchCommand();
 			command.execute(request, response);
 			viewPage = "HostTotalBookManage.jsp";
 			break;
-
-		// 정보 수정 메인페이지 열기
-		case ("/HostRInfo.do"):
-			viewPage = "HostInfoMMain.jsp";
-			break;
-			
 			
 		// ------------예진 : 캠핑장 정보수정 페이지 ------------------------------------
-		// 정보 수정 메인페이지에서 위치, 설명 수정 페이지로
-		case ("/HostInfoMLoView.do"):
+		
+		//정보 수정 메인페이지 열기
+		case ("/HostRInfo.do"): 
+			viewPage = "HostInfoMMain.jsp";
+			break;
+		
+		//정보 수정 메인페이지 -> 위치, 설명 수정 페이지
+		case ("/HostInfoMLoView.do"): 
 			command = new HostInfoLSelectCommand();
 			command.execute(request, response);
 			viewPage = "HostInfoMLo.jsp";
 			break;
-
-		// 위치, 설명 수정
-		case ("/HostInfoMLo.do"):
+			
+		//위치, 설명 수정
+		case ("/HostInfoMLo.do"): 
 			command = new HostInfoLMoCommand();
 			command.execute(request, response);
 			viewPage = "HostInfoMMain.jsp";
 			break;
-
-		// 정보 수정 메인페이지에서 이름, 카테고리, 전화번호 수정 페이지로
-		case ("/HostInfoMNCTView.do"):
+		
+		//정보 수정 메인페이지 -> 이름, 카테고리, 전화번호 수정 페이지
+		case ("/HostInfoMNCTView.do"): 
 			command = new HostInfoNCTSelectCommand();
 			command.execute(request, response);
 			viewPage = "HostInfoMNameCategoryTel.jsp";
 			break;
-
-		// 이름, 카테고리, 전화번호 수정
-		case ("/HostInfoMNCT.do"):
+			
+		//이름, 카테고리, 전화번호 수정
+		case ("/HostInfoMNCT.do"): 
 			command = new HostInfoNCTMoCommand();
 			command.execute(request, response);
 			viewPage = "HostInfoMMain.jsp";
 			break;
-
-		// 정보 수정 메인페이지에서 키워드 수정 페이지로
-		case ("/HostInfoKeyView.do"):
+			
+		//정보 수정 메인페이지 -> 키워드 수정 페이지
+		case ("/HostInfoKeyView.do"): 
 			command = new HostInfoKeySelectCommand();
 			command.execute(request, response);
 			viewPage = "HostInfoMKeyword.jsp";
 			break;
-
-		// 키워드 삭제와 인서트
-		case ("/HostInfoKeyInDel.do"):
+		
+		//키워드 삭제와 인서트
+		case ("/HostInfoKeyInDel.do"): 
 			command = new HostInfoKeyInDelCommand();
 			command.execute(request, response);
 			viewPage = "HostInfoMMain.jsp";
 			break;
-
-		// 정보 수정 메인페이지에서 키워드 수정 페이지로
-		case ("/HostInfoFaciView.do"):
+			
+		//정보 수정 메인페이지 -> 키워드 수정 페이지로 
+		case ("/HostInfoFaciView.do"): 
 			command = new HostInfoFaSelectCommand();
 			command.execute(request, response);
 			viewPage = "HostInfoMFacility.jsp";
 			break;
-
-		// 키워드 삭제와 인서트
-		case ("/HostInfoFaInDel.do"):
+			
+		//키워드 삭제와 인서트
+		case ("/HostInfoFaInDel.do"): 
 			command = new HostInfoFaInDelCommand();
 			command.execute(request, response);
 			viewPage = "HostInfoMMain.jsp";
 			break;
+		
+		//정보 수정 메인페이지 -> 자리 수정 페이지
+		case ("/HostInfoRoomView.do"): 
+			command = new HostInfoRoomSelectCommand();
+			command.execute(request, response);
+			viewPage = "HostInfoMRoom.jsp";
+			break;
+			
+		//자리 인서트
+		case ("/HostInfoRoomIn.do"): 
+			command = new HostInfoRoomInCommand();
+			command.execute(request, response);
+			viewPage = "HostInfoRoomView.do";
+			break;
+			
+		//자리 delete
+		case ("/HostInfoRoomDel.do"): 
+			command = new HostInfoRoomDelCommand();
+		command.execute(request, response);
+		viewPage = "HostInfoRoomView.do";
+		break;
+		
+		//정보 수정 메인페이지 -> 약도 수정 페이지
+		case ("/HostInfoRoughView.do"): 
+			command = new HostInfoMRMSelectCommand();
+			command.execute(request, response);
+			viewPage = "HostInfoMRoughMap.jsp";
+			break;
+			
+		//약도 이미지 업데이트
+		case ("/roughMapUp.do"): 
+			command = new HostInfoMRMUpdateCommand();
+			command.execute(request, response);
+			viewPage = "HostInfoRoughView.do";
+			break;
+		
+		//정보 수정 메인페이지 -> 이미지 수정 페이지
+		case ("/HostInfoImagesView.do"): 
+			command = new HostInfoImagesSelectCommand();
+			command.execute(request, response);
+			viewPage = "HostInfoMImages.jsp";
+			break;
+		
+		//캠핑장 이미지1 업데이트
+		case ("/image1Up.do"): 
+			command = new HostInfoImages1UpCommand();
+			command.execute(request, response);
+			viewPage = "HostInfoImagesView.do";
+			break;
+			
+		//캠핑장 이미지2 업데이트
+		case ("/image2Up.do"): 
+			command = new HostInfoImages2UpCommand();
+			command.execute(request, response);
+			viewPage = "HostInfoImagesView.do";
+			break;
+		
+		//캠핑장 이미지3 업데이트
+		case ("/image3Up.do"): 
+			command = new HostInfoImages3UpCommand();
+			command.execute(request, response);
+			viewPage = "HostInfoImagesView.do";
+			break;
+			
+		
 
 		}
 
