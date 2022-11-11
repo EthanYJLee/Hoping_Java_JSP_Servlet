@@ -1,5 +1,7 @@
 package com.bootcamp.client.command;
 
+import java.text.ParseException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.swing.JOptionPane;
@@ -29,8 +31,6 @@ public class Clientmodify_Command implements BCCommand {
 	}
 	public Boolean execute1(HttpServletRequest request, HttpServletResponse response) {
 		return null;
-		
-		
 	}
 
 

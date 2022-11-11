@@ -1,6 +1,7 @@
 package com.bootcamp.homecontroller;
 
 import java.io.IOException;
+import java.text.ParseException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,7 +9,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.swing.JOptionPane;
 
 import com.bootcamp.client.command.BCBookingConfirmationCommand;
@@ -48,7 +48,12 @@ public class BCFrontController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		actionDo(request, response);
+		try {
+			actionDo(request, response);
+		} catch (ServletException | IOException | ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -58,12 +63,17 @@ public class BCFrontController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		actionDo(request, response);
+		try {
+			actionDo(request, response);
+		} catch (ServletException | IOException | ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
 	private void actionDo(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			throws ServletException, IOException, ParseException {
 		request.setCharacterEncoding("utf-8");
 
 		String viewPage = null;
@@ -100,7 +110,7 @@ public class BCFrontController extends HttpServlet {
 			System.out.println("List camp End");
 			break;
 			// 예약 가능한 방 리스트 보여주기 sanghyuk
-		case("/bookingdatechek.do"):
+		case("/bookingdatecheck.do"):
 			System.out.println("Date Check for Booking");
 			command = new BCCampDateCheckCommand();
 			command.execute(request, response);
