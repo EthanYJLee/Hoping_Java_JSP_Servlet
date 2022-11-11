@@ -29,4 +29,5 @@ public class HostMainInquiryStatus_Command implements BCCommand {
 	public Boolean execute1(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		return null;
 	}
+}
 
