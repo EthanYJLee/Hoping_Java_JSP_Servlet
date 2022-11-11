@@ -25,9 +25,4 @@ public class HostMainInquiryStatus_Command implements BCCommand {
 		request.setAttribute("tnrq", todayNotRepliedQ); // 답변 미완료
 	}
 
-	@Override
-	public Boolean execute1(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }
