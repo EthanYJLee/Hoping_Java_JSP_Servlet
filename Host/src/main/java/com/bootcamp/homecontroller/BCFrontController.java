@@ -14,6 +14,8 @@ import com.bootcamp.host.command.BCCommand;
 import com.bootcamp.host.command.HImageCommand;
 import com.bootcamp.host.command.HInfoCommand;
 import com.bootcamp.host.command.HInfoInsertCommand;
+import com.bootcamp.host.command.HmyInfoCommand;
+import com.bootcamp.host.command.HmyInfoModifyCommand;
 import com.bootcamp.host.command.HostBookListCommand;
 import com.bootcamp.host.command.HostBookSearchCommand;
 import com.bootcamp.host.command.HostCampNameList_Command;
@@ -41,7 +43,7 @@ import com.bootcamp.host.command.HostMonthlyReservation_Command;
 import com.bootcamp.host.command.HostReviewContentView_Command;
 import com.bootcamp.host.command.HostReviewList_Command;
 import com.bootcamp.host.command.HostSendReviewReply_Command;
-
+import com.bootcamp.host.command.HostTermsADCommand;
 import com.bootcamp.host.command.MyHostBookDetailCommand;
 import com.bootcamp.host.command.RegCampCommand;
 import com.bootcamp.host.command.RegCampRoomCommand;
@@ -98,31 +100,43 @@ public class BCFrontController extends HttpServlet {
 
 		// --------------------주현: 약관동의 후 호스트 가입(호스트 정보 insert)--------------------
 
-		
-		
+		//약관보여주기 
 		case ("/term.do"):
+			viewPage = "HostTerms.jsp";
+			break;
+			
+		//약관 동의/비동의 
+		case("/termsAD.do"):
+			command = new HostTermsADCommand();
+			Boolean check = command.execute1(request, response);
 			
 		
-			viewPage = "HostTerms.jsp";
+			if(check == true){
+				viewPage = "TermsAgree.jsp";
+		   		
+			}else {
+				//나중에 클라이언트랑 연결되면 client 메인페이지로 이동 
+				viewPage = "list.jsp";
+				
+			}
+	
+			break;
 			
-		case ("/show.do"):
-			command = new HInfoCommand();
+		//마이페이지 내정보 불러오기 
+		case ("/myPage.do"):
+			command = new HmyInfoCommand();
 			command.execute(request, response);
-			viewPage = "hostJoin.jsp";
+			viewPage = "HostmyPage.jsp";
 			break;
-
-		// 호스트에 인서트
-		case ("/insert.do"):
-			command = new HInfoInsertCommand();
+				
+		//마이페이지 내정보 수정
+		case ("/modify.do"):
+			command = new HmyInfoModifyCommand();
 			command.execute(request, response);
-			viewPage = "uploadImage.jsp";
-			break;
-		// 호스트 이미지 넣기
-		case ("/fileUp.do"):
-			command = new HImageCommand();
+			command = new HmyInfoCommand();
 			command.execute(request, response);
-			viewPage = "fileShow.jsp";
-			break;
+			viewPage = "HostmyPage.jsp";
+			break;		
 
 		// ---------------------상준 : 캠핑장 등록 -----------------------------------
 
@@ -342,6 +356,8 @@ public class BCFrontController extends HttpServlet {
 			command.execute(request, response);
 			viewPage = "HostInfoImagesView.do";
 			break;
+			
+		
 
 		}
 
