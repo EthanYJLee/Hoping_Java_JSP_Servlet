@@ -34,7 +34,6 @@
 					<tr><td> 비밀번호 :</td> <td><input type="password" size="15" name="cPw" value="${mypageview.cPw }"><br></td></tr> 
 					<tr><td></td><td><input type="submit" value="수정">
 					<a href="ClientDelete.do?cId=${mypageview.cId}" type="submit" class="btn btn-primary">탈퇴</a>
-					<a href="ClientMainView.jsp">메인</a>
 					
 					</table>
 					</form>

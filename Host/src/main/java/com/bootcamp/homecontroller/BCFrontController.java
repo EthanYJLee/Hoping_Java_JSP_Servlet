@@ -14,6 +14,8 @@ import com.bootcamp.host.command.BCCommand;
 import com.bootcamp.host.command.HImageCommand;
 import com.bootcamp.host.command.HInfoCommand;
 import com.bootcamp.host.command.HInfoInsertCommand;
+import com.bootcamp.host.command.HmyInfoCommand;
+import com.bootcamp.host.command.HmyInfoModifyCommand;
 import com.bootcamp.host.command.HostBookListCommand;
 import com.bootcamp.host.command.HostBookSearchCommand;
 import com.bootcamp.host.command.HostCampNameList_Command;
@@ -43,6 +45,10 @@ import com.bootcamp.host.command.HostMonthlyReservation_Command;
 import com.bootcamp.host.command.HostReviewContentView_Command;
 import com.bootcamp.host.command.HostReviewList_Command;
 import com.bootcamp.host.command.HostSendReviewReply_Command;
+<<<<<<< HEAD
+=======
+import com.bootcamp.host.command.HostTermsADCommand;
+>>>>>>> 30fb6f0dce13268069c11d3c4917d654a3792b41
 import com.bootcamp.host.command.MyHostBookDetailCommand;
 import com.bootcamp.host.command.RegCampCommand;
 import com.bootcamp.host.command.askDetailCommand;
@@ -119,6 +125,23 @@ public class BCFrontController extends HttpServlet {
 			command = new HImageCommand();
 			command.execute(request, response);
 			viewPage = "fileShow.jsp";
+			break;
+
+		// ——————————주현: 마이페이지 정보 수정(호스트 정보 update)——————————
+
+		// 마이페이지 내정보 불러오기
+		case ("/myPage.do"):
+			command = new HmyInfoCommand();
+			command.execute(request, response);
+			viewPage = "HostmyPage.jsp";
+			break;
+		// 마이페이지 내정보 수정
+		case ("/modify.do"):
+			command = new HmyInfoModifyCommand();
+			command.execute(request, response);
+			command = new HmyInfoCommand();
+			command.execute(request, response);
+			viewPage = "HostmyPage.jsp";
 			break;
 
 		// ---------------------상준 : 캠핑장 등록 -----------------------------------
@@ -337,6 +360,8 @@ public class BCFrontController extends HttpServlet {
 			command.execute(request, response);
 			viewPage = "HostInfoImagesView.do";
 			break;
+			
+		
 
 		}
 

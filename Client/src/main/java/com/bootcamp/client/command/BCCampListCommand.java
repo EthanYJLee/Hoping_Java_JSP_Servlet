@@ -1,5 +1,6 @@
 package com.bootcamp.client.command;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +20,24 @@ public class BCCampListCommand implements BCCommand {
 		HttpSession session = request.getSession();
 		String cId = (String)session.getAttribute("cId");
 		String regSeq = request.getParameter("regSeq");
+		
+		String startdate = request.getParameter("startdate");
+		String stopdate = request.getParameter("stopdate");
+		System.out.println("startdate"+startdate);
+		System.out.println("stopdate"+stopdate);
+		/*
+		int boPrice = Integer.parseInt(request.getParameter("boPrice"));
+		int boCount = Integer.parseInt(request.getParameter("boCount"));
+		int roNum = Integer.parseInt(request.getParameter("roNum"));
+		int regSeq = Integer.parseInt(request.getParameter("regSeq"));
+		
+		
+		String cId = (String)session.getAttribute("cId");
+*/		
+		session.setAttribute("startdate", startdate);
+		session.setAttribute("stopdate", stopdate);		
+		
+		
 		System.out.println("regSeq:"+regSeq+":");
 		CampDao dao = new CampDao();
 		ArrayList<campDto> dtos = dao.listCamp(regSeq);
@@ -40,9 +59,6 @@ searchReviewCount(후기 갯수 읽어오기)
 	}
 	public Boolean execute1(HttpServletRequest request, HttpServletResponse response) {
 		return null;
-		
-		
 	}
-
 }
 

@@ -25,6 +25,11 @@ public class HostMainReviewStatus_Command implements BCCommand {
 		request.setAttribute("tnrr", todayNotRepliedR);
 
 	}
+	
+	@Override
+	public Boolean execute1(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		return null;
+	}
 
 	@Override
 	public Boolean execute1(HttpServletRequest request, HttpServletResponse response) throws IOException {
