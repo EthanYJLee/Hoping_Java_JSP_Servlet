@@ -37,8 +37,8 @@
 	    <div class="card myhcard h-100">
 	      <div class="card-body ">
 	        <h5 class="card-title myctitle">선택하신 날짜  ></h5>
-				<input type="text" name="startdate" style="background-color: white; border-radius: 13px; height: 33px; font-size: 13px;" class="mydinput form-control" placeholder="Start" readonly value=" ${startdate}">
-				<input type="text" name="stopdate"  style="border-radius: 13px; height: 33px; font-size: 13px;" class="secondary form-control" placeholder="End" readonly  value=" ${stopdate}">
+				${startdate} ~ 
+				${stopdate}
 	      </div>
 	    </div>
 	  </div>
@@ -91,17 +91,22 @@
 	      <hr>
 	      <table class="container">
 	      		<tr><td class="col-6 mytdtext">	
-	      		<fmt:formatNumber value="${bookingInfo.roPrice}" pattern="#,###"/>원</td>
+	      		<fmt:formatNumber value="${bookingInfo.roPrice}" pattern="#,###"/>/박 X ${Days}일 </td>
 	      		<tr><td>${countDate}</td></tr>
+	      		 <tr><td>합 : <fmt:formatNumber value="${bookingInfo.roPrice * Days}" pattern="#,###"/>원 </td></tr>
 	      	</table>
 	      </div>
 	    </div>
 	  </div>
-	  위치 확1
+	 
 	</div>
-		  위치 확2
+		 
+		 <div  class="container-md d-flex justify-content-center" style="margin-top: 20px">
+		 <input type="button" value="예약!">
+		 </div>
+		 
 </div>
-	  위치 확3
+	  
 
 
 <!-- Foot -->
