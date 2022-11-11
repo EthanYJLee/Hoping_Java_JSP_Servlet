@@ -143,13 +143,13 @@ public class CampDao {
 		try {
 			connection = dataSource.getConnection();
 			
-			String query = "select max(boSeq) from book";
+			String query = "select max(boSeq) from book as result";
 			preparedStatement = connection.prepareStatement(query);
 			resultSet = preparedStatement.executeQuery();
 			System.out.println("Query readMaxSeq Execute");
 			
 			if(resultSet.next()) {
-				result = resultSet.getInt("max(boSeq)");
+				result = resultSet.getInt("result");
 			}
 			
 		}catch (Exception e) {
@@ -174,14 +174,14 @@ public class CampDao {
 		try {
 			connection = dataSource.getConnection();
 			
-			String query = "select TimeStampdiff(day,'"+Startdate+"','"+Stopdate+"') as diff";
+			String query = "select TimeStampdiff(day,'"+Startdate+"','"+Stopdate+"') as result";
 			preparedStatement = connection.prepareStatement(query);
 			resultSet = preparedStatement.executeQuery();
 			System.out.println(query);
 			System.out.println("Query diffDate Execute");
 			
 			if(resultSet.next()) {
-				result = resultSet.getInt("diff");
+				result = resultSet.getInt("result");
 			}
 			
 		}catch (Exception e) {
@@ -198,36 +198,58 @@ public class CampDao {
 		return result+1;
 	} //diffDate
 
+	public String Nextday(String Startdate) {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		String result = null;
+		try {
+			connection = dataSource.getConnection();
+			
+			String query = "select adddate('"+Startdate+"',1) as result;";
+			preparedStatement = connection.prepareStatement(query);
+			resultSet = preparedStatement.executeQuery();
+			System.out.println(query);
+			System.out.println("Query diffDate Execute");
+			
+			if(resultSet.next()) {
+				result = resultSet.getString("result");
+			}
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(preparedStatement != null) preparedStatement.close();
+				if(connection != null) connection.close();
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+	} //diffDate
 	
-	public void insertBook(int boPrice, String boCheckindate, int boGroup, int boCount, String cId, int intdiff, int regSeq) {
+	public void insertBook(int boPrice, String boCheckindate, int boGroup, int boCount, String cId, int regSeq) {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
 		try {
 			connection = dataSource.getConnection();
-			// 현재 1개의 insert는 동작하지만 날짜가 여러날 일경우 날짜별 insert가 동작하지 않는 상태임.
 			String query = "insert into book (boPrice, boDate, boCheckindate, boGroup, boCount, ";
 			String query2 = "pay_cid, pay_room_roseq, pay_room_regcamp_regSeq, pay_room_regcamp_host_hSeq, pay_client_cid ) values ";
-			String query3 = "";
-			//String query4  = "";
-			for (int j=0;j<intdiff;j++) {
-				query3 = query3 + "(?,now(),?,?,?,?,?,?,?,?) ";
-			}
-			preparedStatement = connection.prepareStatement(query+query2+query3);
-			System.out.println(query+query2+query3);
-			for (int j=0;j<intdiff;j++) {
-				preparedStatement.setInt((j*9)+1, boPrice);
-				preparedStatement.setString((j*9)+2, boCheckindate);
-				preparedStatement.setInt((j*9)+3, boGroup);
-				preparedStatement.setInt((j*9)+4, boCount);
-				preparedStatement.setString((j*9)+5, "asdf");
-				preparedStatement.setInt((j*9)+6, 13);
-				preparedStatement.setInt((j*9)+7, regSeq);
-				preparedStatement.setInt((j*9)+8, 1);
-				preparedStatement.setString((j*9)+9, cId);
-			}
+			String query3 = "(?,now(),?,?,?,?,?,?,?,?) ";
+			
+			preparedStatement.setInt(1, boPrice);
+			preparedStatement.setString(2, boCheckindate);
+			preparedStatement.setInt(3, boGroup);
+			preparedStatement.setInt(4, boCount);
+			preparedStatement.setString(5, "asdf");
+			preparedStatement.setInt(6, 13);
+			preparedStatement.setInt(7, regSeq);
+			preparedStatement.setInt(8, 1);
+			preparedStatement.setString(9, cId);
 			System.out.println(boPrice);
-			System.out.println(intdiff);
 			System.out.println(cId);
 			System.out.println(query);
 			System.out.println(query2);
@@ -247,27 +269,35 @@ public class CampDao {
 			}
 		}
 	} //insertbook
+
 	
-/*	
-	public static String getNextDate(String currentDate) {
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(getStringToDate(currentDate));
-		cal.add(cal.DATE, +1);
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		return sdf.format(cal.getTime());
+	public void updateBook(int boGroup) {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
 		
-	}
-	
-	public static Date getStringToDate(String dateString) {
-		Calendar calendar = Calendar.getInstance();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		try {
-				Date date = sdf.parse(dateString);
-				return date;
-		} catch(ParseException e) {
+			connection = dataSource.getConnection();
+			// 두번째 값 입력할 경우, 첫번째 값 입력 후 
+			String query = "update book set boGroup = ? where boSeq=? ";
+
+			preparedStatement.setInt(1, boGroup);
+			preparedStatement.setInt(2, boGroup);
+			System.out.println(boGroup);
+			System.out.println(query);
+			preparedStatement.executeUpdate();
+			
+			
+		}catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			try {
+				if(preparedStatement != null) preparedStatement.close();
+				if(connection != null) connection.close();
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
 		}
-		return null;
-	}
-*/	
+	} //insertbook
+	
 }
