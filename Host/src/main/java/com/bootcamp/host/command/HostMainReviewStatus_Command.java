@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.bootcamp.host.dao.HostReviewStatusDao;
 
@@ -11,8 +12,9 @@ public class HostMainReviewStatus_Command implements BCCommand {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-//		int hSeq = Integer.parseInt(request.getParameter("hSeq"));
-		int hSeq = 1;
+		HttpSession session = request.getSession();
+		int hSeq = (int) session.getAttribute("hSeq");
+
 		HostReviewStatusDao dao = new HostReviewStatusDao();
 		int todayR = dao.mainReviewCount(hSeq);
 		int todayRepliedR = dao.mainReviewRepliedCount(hSeq);
@@ -26,6 +28,12 @@ public class HostMainReviewStatus_Command implements BCCommand {
 	
 	@Override
 	public Boolean execute1(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		return null;
+	}
+
+	@Override
+	public Boolean execute1(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		// TODO Auto-generated method stub
 		return null;
 	}
 

@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.bootcamp.host.dao.HostInquiryStatusDao;
 
@@ -11,8 +12,9 @@ public class HostMainInquiryStatus_Command implements BCCommand {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-//		int hSeq = Integer.parseInt(request.getParameter("hSeq"));
-		int hSeq = 1;
+		HttpSession session = request.getSession();
+		int hSeq = (int) session.getAttribute("hSeq");
+
 		HostInquiryStatusDao dao = new HostInquiryStatusDao();
 		int todayQ = dao.mainInquiryCount(hSeq);
 		int todayRepliedQ = dao.mainInquiryRepliedCount(hSeq);
@@ -22,8 +24,16 @@ public class HostMainInquiryStatus_Command implements BCCommand {
 		request.setAttribute("trq", todayRepliedQ); // 답변 완료
 		request.setAttribute("tnrq", todayNotRepliedQ); // 답변 미완료
 	}
+<<<<<<< HEAD
+
+=======
+>>>>>>> 30fb6f0dce13268069c11d3c4917d654a3792b41
 	@Override
 	public Boolean execute1(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		return null;
 	}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 30fb6f0dce13268069c11d3c4917d654a3792b41

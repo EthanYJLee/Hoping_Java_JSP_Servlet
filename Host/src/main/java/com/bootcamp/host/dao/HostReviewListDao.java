@@ -34,7 +34,7 @@ public class HostReviewListDao {
 			connection = dataSource.getConnection();
 			String query = "select rv.rvSeq, reg.regName, rv.rvCId, rv.rvCName, rv.rvTitle, rv.rvTime ";
 			String query2 = "from review rv inner join regcamp reg ";
-			String query3 = "on rv.regcamp_regSeq = reg.regSeq where reg.host_hSeq = ?";
+			String query3 = "on rv.regcamp_regSeq = reg.regSeq where rv.rvDtime is null and reg.host_hSeq = ?";
 			ps = connection.prepareStatement(query + query2 + query3);
 
 			ps.setInt(1, hSeq);

@@ -75,7 +75,7 @@
 				<div class="card-body">
 					<h5 class="card-title">1번 캠핑장</h5>
 					<p class="card-text">캠핑장 주소</p>
-					<a href="host_branch_main.do?regSeq=" class="btn btn-primary">캠핑장 정보 수정</a>
+					<a href="#" class="btn btn-primary">캠핑장 정보 수정</a>
 				</div>
 			</div></div>
 			
@@ -84,7 +84,7 @@
 				<div class="card-body">
 					<h5 class="card-title">2번 캠핑장</h5>
 					<p class="card-text">캠핑장 주소</p>
-					<a href="host_branch_main.do?regSeq=" class="btn btn-primary">캠핑장 정보 수정</a>
+					<a href="#" class="btn btn-primary">캠핑장 정보 수정</a>
 				</div>
 			</div></div>
 			
@@ -93,7 +93,7 @@
 				<div class="card-body">
 					<h5 class="card-title">3번 캠핑장</h5>
 					<p class="card-text">캠핑장 주소</p>
-					<a href="host_branch_main.do?regSeq=" class="btn btn-primary">캠핑장 정보 수정</a>
+					<a href="#" class="btn btn-primary">캠핑장 정보 수정</a>
 				</div>
 			</div></div>
 			
@@ -102,7 +102,7 @@
 				<div class="card-body">
 					<h5 class="card-title">4번 캠핑장</h5>
 					<p class="card-text">캠핑장 주소</p>
-					<a href="host_branch_main.do?regSeq=" class="btn btn-primary">캠핑장 정보 수정</a>
+					<a href="#" class="btn btn-primary">캠핑장 정보 수정</a>
 				</div>
 			</div></div>
 		</div>
@@ -144,6 +144,9 @@
 	<div class="col-md-6">
 		<div class="h-100 p-5 bg-light border rounded-3">
 			<h2>월별 매출 및 예약건</h2>
+			<div class="form-row float-right">
+			<button type="button" class="btn text-secondary" onclick="location.href='host_chart_detail.do'">상세보기</button>
+			</div>
 			<br>
 <canvas id="profitChart" width="150" height="60"></canvas>
 <script>

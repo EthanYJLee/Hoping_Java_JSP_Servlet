@@ -37,7 +37,9 @@ import com.bootcamp.host.command.HostInfoNCTSelectCommand;
 import com.bootcamp.host.command.HostInfoRoomDelCommand;
 import com.bootcamp.host.command.HostInfoRoomInCommand;
 import com.bootcamp.host.command.HostInfoRoomSelectCommand;
+import com.bootcamp.host.command.HostMainInquiryStatus_Command;
 import com.bootcamp.host.command.HostMainReservationStatus_Command;
+import com.bootcamp.host.command.HostMainReviewStatus_Command;
 import com.bootcamp.host.command.HostMonthlyProfit_Command;
 import com.bootcamp.host.command.HostMonthlyReservation_Command;
 import com.bootcamp.host.command.HostReviewContentView_Command;
@@ -46,7 +48,6 @@ import com.bootcamp.host.command.HostSendReviewReply_Command;
 import com.bootcamp.host.command.HostTermsADCommand;
 import com.bootcamp.host.command.MyHostBookDetailCommand;
 import com.bootcamp.host.command.RegCampCommand;
-import com.bootcamp.host.command.RegCampRoomCommand;
 import com.bootcamp.host.command.askDetailCommand;
 import com.bootcamp.host.command.askListCommand;
 
@@ -100,26 +101,10 @@ public class BCFrontController extends HttpServlet {
 
 		// --------------------주현: 약관동의 후 호스트 가입(호스트 정보 insert)--------------------
 
-		// 약관보여주기
 		case ("/term.do"):
+
 			viewPage = "HostTerms.jsp";
-			break;
-		// 약관 동의/비동의
-		case ("/termsAD.do"):
-			command = new HostTermsADCommand();
-			Boolean check = command.execute1(request, response);
 
-			if (check == true) {
-				viewPage = "TermsAgree.jsp";
-
-			} else {
-				// 나중에 클라이언트랑 연결되면 client 메인페이지로 이동
-				viewPage = "list.jsp";
-
-			}
-
-			break;
-		// 호스트 가입 (client 정보 >> host 테이블에 insert)
 		case ("/show.do"):
 			command = new HInfoCommand();
 			command.execute(request, response);
@@ -169,40 +154,42 @@ public class BCFrontController extends HttpServlet {
 		// ---------------------영진: 메인페이지 -----------------------------------
 
 		case ("/host_main.do"): // 로그인 화면에서 => host_main.do?hSeq= 로 이동할 예정임
-		         command = new HostCampProfileList_Command(); // 호스트 소유 모든 캠핑장의 이름, 사진, 주소 (썸네일용)
-		         command.execute(request, response);
-		         command = new HostMonthlyProfit_Command(); // 월별 총수익 차트에 표시 (올해분)
-		         command.execute(request, response);
-		         command = new HostMonthlyReservation_Command(); // 월별 총예약건수 차트에 표시 (올해분)
-		         command.execute(request, response);
-		         command = new HostMainReservationStatus_Command(); // 오늘의 신규 예약건수, 올해 체크인/체크아웃 예정건수
-		         command.execute(request, response);
-		         viewPage = "HostMain.jsp";
-		         break;
+			command = new HostCampProfileList_Command(); // 호스트 소유 모든 캠핑장의 이름, 사진, 주소 (썸네일용)
+			command.execute(request, response);
+			command = new HostMonthlyProfit_Command(); // 월별 총수익 차트에 표시 (올해분)
+			command.execute(request, response);
+			command = new HostMonthlyReservation_Command(); // 월별 총예약건수 차트에 표시 (올해분)
+			command.execute(request, response);
+			command = new HostMainReservationStatus_Command(); // 오늘의 신규 예약건수, 올해 체크인/체크아웃 예정건수
+			command.execute(request, response);
+			command = new HostMainInquiryStatus_Command();
+			command.execute(request, response);
+			command = new HostMainReviewStatus_Command();
+			command.execute(request, response);
+			viewPage = "HostMain.jsp";
+			break;
 
-		      case ("/host_review_list.do"):
-		         command = new HostReviewList_Command(); // 호스트 소유 캠핑장에 달린 리뷰의 리스트
-		         command.execute(request, response);
+		case ("/host_review_list.do"):
+			command = new HostReviewList_Command(); // 호스트 소유 캠핑장에 달린 리뷰의 리스트
+			command.execute(request, response);
 
-		         command = new HostCampNameList_Command(); // 호스트 소유 캠핑장 이름 리스트 (검색을 위한 콤보박스용)
-		         command.execute(request, response);
+			command = new HostCampNameList_Command(); // 호스트 소유 캠핑장 이름 리스트 (검색을 위한 콤보박스용)
+			command.execute(request, response);
 
-		         viewPage = "HostReviewList.jsp";
-		         break;
+			viewPage = "HostReviewList.jsp";
+			break;
 
-		      case ("/host_review_content_view.do"):
-		         command = new HostReviewContentView_Command(); // 리뷰 정보 (작성자, 제목, 내용 등등) 받아오기
-		         command.execute(request, response);
-		         viewPage = "HostReviewContentView.jsp";
-		         break;
+		case ("/host_review_content_view.do"):
+			command = new HostReviewContentView_Command(); // 리뷰 정보 (작성자, 제목, 내용 등등) 받아오기
+			command.execute(request, response);
+			viewPage = "HostReviewContentView.jsp";
+			break;
 
-		      case ("/send_review_reply.do"):
-		         command = new HostSendReviewReply_Command(); // 호스트가 후기에 작성한 답글 insert하고 댓글 그룹 업데이트
-		         command.execute(request, response);
-		         viewPage = "/host_review_list.do";
-		         break;
-
-		      
+		case ("/send_review_reply.do"):
+			command = new HostSendReviewReply_Command(); // 호스트가 후기에 작성한 답글 insert하고 댓글 그룹 업데이트
+			command.execute(request, response);
+			viewPage = "/host_review_list.do";
+			break;
 
 		// --------------------------호스트 마이페이지에 정보 불러오기--------------------------
 
@@ -224,148 +211,148 @@ public class BCFrontController extends HttpServlet {
 			break;
 
 		// ------------예진 : 예약 리스트 페이지 열기 ------------------------------------
-		//예약 리스트 페이지 열기
-		case ("/bookList.do"): 
+		// 예약 리스트 페이지 열기
+		case ("/bookList.do"):
 			command = new HostBookListCommand();
 			command.execute(request, response);
 			viewPage = "HostTotalBookManage.jsp";
 			break;
-		
-		//예약 리스트 테이블에서 row 클릭시 디테일 페이지
-		case ("/YJHostBookDetail.do"): 
+
+		// 예약 리스트 테이블에서 row 클릭시 디테일 페이지
+		case ("/YJHostBookDetail.do"):
 			command = new MyHostBookDetailCommand();
 			command.execute(request, response);
 			viewPage = "YJHostBookDetail.jsp";
 			break;
-		
-		//예약 리스트 페이지에서 검색
-		case ("/bookSearch.do"): 
+
+		// 예약 리스트 페이지에서 검색
+		case ("/bookSearch.do"):
 			command = new HostBookSearchCommand();
 			command.execute(request, response);
 			viewPage = "HostTotalBookManage.jsp";
 			break;
-			
+
 		// ------------예진 : 캠핑장 정보수정 페이지 ------------------------------------
-		
-		//정보 수정 메인페이지 열기
-		case ("/HostRInfo.do"): 
+
+		// 정보 수정 메인페이지 열기
+		case ("/HostRInfo.do"):
 			viewPage = "HostInfoMMain.jsp";
 			break;
-		
-		//정보 수정 메인페이지 -> 위치, 설명 수정 페이지
-		case ("/HostInfoMLoView.do"): 
+
+		// 정보 수정 메인페이지 -> 위치, 설명 수정 페이지
+		case ("/HostInfoMLoView.do"):
 			command = new HostInfoLSelectCommand();
 			command.execute(request, response);
 			viewPage = "HostInfoMLo.jsp";
 			break;
-			
-		//위치, 설명 수정
-		case ("/HostInfoMLo.do"): 
+
+		// 위치, 설명 수정
+		case ("/HostInfoMLo.do"):
 			command = new HostInfoLMoCommand();
 			command.execute(request, response);
 			viewPage = "HostInfoMMain.jsp";
 			break;
-		
-		//정보 수정 메인페이지 -> 이름, 카테고리, 전화번호 수정 페이지
-		case ("/HostInfoMNCTView.do"): 
+
+		// 정보 수정 메인페이지 -> 이름, 카테고리, 전화번호 수정 페이지
+		case ("/HostInfoMNCTView.do"):
 			command = new HostInfoNCTSelectCommand();
 			command.execute(request, response);
 			viewPage = "HostInfoMNameCategoryTel.jsp";
 			break;
-			
-		//이름, 카테고리, 전화번호 수정
-		case ("/HostInfoMNCT.do"): 
+
+		// 이름, 카테고리, 전화번호 수정
+		case ("/HostInfoMNCT.do"):
 			command = new HostInfoNCTMoCommand();
 			command.execute(request, response);
 			viewPage = "HostInfoMMain.jsp";
 			break;
-			
-		//정보 수정 메인페이지 -> 키워드 수정 페이지
-		case ("/HostInfoKeyView.do"): 
+
+		// 정보 수정 메인페이지 -> 키워드 수정 페이지
+		case ("/HostInfoKeyView.do"):
 			command = new HostInfoKeySelectCommand();
 			command.execute(request, response);
 			viewPage = "HostInfoMKeyword.jsp";
 			break;
-		
-		//키워드 삭제와 인서트
-		case ("/HostInfoKeyInDel.do"): 
+
+		// 키워드 삭제와 인서트
+		case ("/HostInfoKeyInDel.do"):
 			command = new HostInfoKeyInDelCommand();
 			command.execute(request, response);
 			viewPage = "HostInfoMMain.jsp";
 			break;
-			
-		//정보 수정 메인페이지 -> 키워드 수정 페이지로 
-		case ("/HostInfoFaciView.do"): 
+
+		// 정보 수정 메인페이지 -> 키워드 수정 페이지로
+		case ("/HostInfoFaciView.do"):
 			command = new HostInfoFaSelectCommand();
 			command.execute(request, response);
 			viewPage = "HostInfoMFacility.jsp";
 			break;
-			
-		//키워드 삭제와 인서트
-		case ("/HostInfoFaInDel.do"): 
+
+		// 키워드 삭제와 인서트
+		case ("/HostInfoFaInDel.do"):
 			command = new HostInfoFaInDelCommand();
 			command.execute(request, response);
 			viewPage = "HostInfoMMain.jsp";
 			break;
-		
-		//정보 수정 메인페이지 -> 자리 수정 페이지
-		case ("/HostInfoRoomView.do"): 
+
+		// 정보 수정 메인페이지 -> 자리 수정 페이지
+		case ("/HostInfoRoomView.do"):
 			command = new HostInfoRoomSelectCommand();
 			command.execute(request, response);
 			viewPage = "HostInfoMRoom.jsp";
 			break;
-			
-		//자리 인서트
-		case ("/HostInfoRoomIn.do"): 
+
+		// 자리 인서트
+		case ("/HostInfoRoomIn.do"):
 			command = new HostInfoRoomInCommand();
 			command.execute(request, response);
 			viewPage = "HostInfoRoomView.do";
 			break;
-			
-		//자리 delete
-		case ("/HostInfoRoomDel.do"): 
+
+		// 자리 delete
+		case ("/HostInfoRoomDel.do"):
 			command = new HostInfoRoomDelCommand();
-		command.execute(request, response);
-		viewPage = "HostInfoRoomView.do";
-		break;
-		
-		//정보 수정 메인페이지 -> 약도 수정 페이지
-		case ("/HostInfoRoughView.do"): 
+			command.execute(request, response);
+			viewPage = "HostInfoRoomView.do";
+			break;
+
+		// 정보 수정 메인페이지 -> 약도 수정 페이지
+		case ("/HostInfoRoughView.do"):
 			command = new HostInfoMRMSelectCommand();
 			command.execute(request, response);
 			viewPage = "HostInfoMRoughMap.jsp";
 			break;
-			
-		//약도 이미지 업데이트
-		case ("/roughMapUp.do"): 
+
+		// 약도 이미지 업데이트
+		case ("/roughMapUp.do"):
 			command = new HostInfoMRMUpdateCommand();
 			command.execute(request, response);
 			viewPage = "HostInfoRoughView.do";
 			break;
-		
-		//정보 수정 메인페이지 -> 이미지 수정 페이지
-		case ("/HostInfoImagesView.do"): 
+
+		// 정보 수정 메인페이지 -> 이미지 수정 페이지
+		case ("/HostInfoImagesView.do"):
 			command = new HostInfoImagesSelectCommand();
 			command.execute(request, response);
 			viewPage = "HostInfoMImages.jsp";
 			break;
-		
-		//캠핑장 이미지1 업데이트
-		case ("/image1Up.do"): 
+
+		// 캠핑장 이미지1 업데이트
+		case ("/image1Up.do"):
 			command = new HostInfoImages1UpCommand();
 			command.execute(request, response);
 			viewPage = "HostInfoImagesView.do";
 			break;
-			
-		//캠핑장 이미지2 업데이트
-		case ("/image2Up.do"): 
+
+		// 캠핑장 이미지2 업데이트
+		case ("/image2Up.do"):
 			command = new HostInfoImages2UpCommand();
 			command.execute(request, response);
 			viewPage = "HostInfoImagesView.do";
 			break;
-		
-		//캠핑장 이미지3 업데이트
-		case ("/image3Up.do"): 
+
+		// 캠핑장 이미지3 업데이트
+		case ("/image3Up.do"):
 			command = new HostInfoImages3UpCommand();
 			command.execute(request, response);
 			viewPage = "HostInfoImagesView.do";
@@ -375,5 +362,7 @@ public class BCFrontController extends HttpServlet {
 
 		}
 
-	RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);dispatcher.forward(request,response);
-}}
+		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
+		dispatcher.forward(request, response);
+	}
+}
