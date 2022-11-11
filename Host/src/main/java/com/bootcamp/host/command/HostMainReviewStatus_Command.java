@@ -31,10 +31,5 @@ public class HostMainReviewStatus_Command implements BCCommand {
 		return null;
 	}
 
-	@Override
-	public Boolean execute1(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }
