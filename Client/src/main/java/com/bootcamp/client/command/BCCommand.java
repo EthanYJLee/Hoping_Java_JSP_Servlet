@@ -1,6 +1,8 @@
 	package com.bootcamp.client.command;
 	
-	import javax.servlet.http.HttpServletRequest;
+	import java.text.ParseException;
+
+import javax.servlet.http.HttpServletRequest;
 	import javax.servlet.http.HttpServletResponse;
 	
 	public interface BCCommand {

@@ -1,5 +1,6 @@
 package com.bootcamp.client.command;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,8 +26,6 @@ public class BCSelectDateCommand implements BCCommand {
 	}
 	public Boolean execute1(HttpServletRequest request, HttpServletResponse response) {
 		return null;
-		
-		
 	}
 
 }

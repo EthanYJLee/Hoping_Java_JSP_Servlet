@@ -49,7 +49,7 @@
     <ul class="list-inline">
       <li class="list-inline-item"><a href="#">이용약관</a></li>
       <li class="list-inline-item"><a href="#">Support</a></li>
-      <li class="list-inline-item"><a href="#">Support</a></li>
+      <li class="list-inline-item"><a href="#">Contact Us</a></li>
     </ul>
   </footer>
     <!-- End Footer -->
