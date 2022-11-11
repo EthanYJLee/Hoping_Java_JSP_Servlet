@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.bootcamp.dto.regcampDto;
 import com.bootcamp.host.dao.HostCampListDao;
@@ -13,11 +14,9 @@ public class HostCampProfileList_Command implements BCCommand {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
+		int hSeq = (int) session.getAttribute("hSeq");
 
-//		int hSeq = Integer.parseInt(request.getParameter("hSeq"));
-		// 로그인 화면 완성되면 hSeq값 받아오도록 바꿀 예정
-
-		int hSeq = 1;
 		HostCampListDao dao = new HostCampListDao();
 
 		ArrayList<regcampDto> dtos = dao.myCampProfileList(hSeq);

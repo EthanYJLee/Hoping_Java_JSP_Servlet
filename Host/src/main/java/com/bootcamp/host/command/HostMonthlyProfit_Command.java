@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.bootcamp.host.dao.HostMonthlyDao;
 
@@ -11,8 +12,8 @@ public class HostMonthlyProfit_Command implements BCCommand {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		int hSeq = 1;
-		// request.getparameter로 바꿀것
+		HttpSession session = request.getSession();
+		int hSeq = (int) session.getAttribute("hSeq");
 
 		HostMonthlyDao dao = new HostMonthlyDao();
 		int[] mp = new int[12];
