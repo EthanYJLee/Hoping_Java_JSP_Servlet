@@ -15,6 +15,7 @@ import com.bootcamp.client.command.BCCampDateCheckCommand;
 import com.bootcamp.client.command.BCCampListCommand;
 import com.bootcamp.client.command.BCCommand;
 import com.bootcamp.client.command.BCDetailCommand;
+import com.bootcamp.client.command.BCInsertBookCommand;
 //import com.bootcamp.client.command.BCSelectDateCommand;
 import com.bootcamp.client.command.Clientdelete_Command;
 import com.bootcamp.client.command.Clientlogin_Command;
@@ -100,14 +101,20 @@ public class BCFrontController extends HttpServlet {
 			System.out.println("List camp End");
 			break;
 			// 예약 가능한 방 리스트 보여주기 sanghyuk
-		case("/bookingdatechek.do"):
+		case("/bookingdatecheck.do"):
 			System.out.println("Date Check for Booking");
 			command = new BCCampDateCheckCommand();
 			command.execute(request, response);
 			viewPage = "Calendar3.jsp";
 			System.out.println("Date Check for Booking End");
 			break;
-			
+		case("/pay.do"):
+			System.out.println("insert for Booking");
+			command = new BCInsertBookCommand();
+			command.execute(request, response);
+			viewPage = "Calendar3.jsp";
+			System.out.println("insert for Booking End");
+			break;			
 			
 		// 로그인
 		case ("/login.do"):
