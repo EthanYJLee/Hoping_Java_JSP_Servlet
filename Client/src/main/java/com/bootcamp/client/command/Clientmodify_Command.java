@@ -1,6 +1,5 @@
 package com.bootcamp.client.command;
 
-import java.text.ParseException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,13 +16,17 @@ public class Clientmodify_Command implements BCCommand {
 		String cId = request.getParameter("cId");
 		String cPhone = request.getParameter("cPhone");
 		String cEmail = request.getParameter("cEmail");
+		String cName = request.getParameter("cName");
 		String cPw = request.getParameter("cPw");
-		
+		String zonecode = request.getParameter("zonecode");
+		String address= request.getParameter("address");
+		String buildingName= request.getParameter("buildingName");
+		String detailAddress= request.getParameter("detailAddress");
 
 		
 		
 		ClientDao dao = new ClientDao();
-		dao.ClientModify(cId, cPw, cPhone, cEmail);
+		dao.ClientModify(cId, cPw, cName, cPhone, cEmail, zonecode, address, buildingName, detailAddress);
 		JOptionPane.showMessageDialog(null, "회원정보 수정이 완료되었습니다.");
 
 		

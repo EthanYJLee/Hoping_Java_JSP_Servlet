@@ -19,7 +19,7 @@
 </head>
 <body>
 	<!-- Header Start -->
-    <%@ include file = "Nav.jsp" %>
+    <%@ include file = "Nav2.jsp" %>
     <!-- Header End --> 
     <!-- Main Start -->
     <main >

@@ -94,6 +94,24 @@ public class ClientDto {
 	}
 	
 	
+	
+	/* 22-11-11 -Hosik
+	  			회원정보 수정에서 img를 제외하고 생성하였음 
+	 */
+	public ClientDto(String cId, String cPw, String cName, String cPhone, String cEmail, String zonecode,
+			String address, String buildingName, String detailAddress) {
+		super();
+		this.cId = cId;
+		this.cPw = cPw;
+		this.cName = cName;
+		this.cPhone = cPhone;
+		this.cEmail = cEmail;
+		this.zonecode = zonecode;
+		this.address = address;
+		this.buildingName = buildingName;
+		this.detailAddress = detailAddress;
+	}
+
 	public ClientDto(String cId, String cPw, Timestamp cDdate) {
 		super();
 		this.cId = cId;

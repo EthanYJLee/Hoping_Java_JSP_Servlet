@@ -40,7 +40,7 @@ public class ClientDao {
 		try {
 			connection = dataSource.getConnection();
 
-			String query = "select cId, cPhone, cEmail, cPw from client where cId = ?";
+			String query = "select cId,cName, cPhone, cEmail, cPw , zonecode, address, buildingName, detailAddress from client where cId = ?";
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setString(1, scId);
 			resultSet = preparedStatement.executeQuery();
@@ -50,8 +50,13 @@ public class ClientDao {
 				String cPhone = resultSet.getString("cPhone");
 				String cEmail = resultSet.getString("cEmail");
 				String cPw = resultSet.getString("cPw");
+				String cName = resultSet.getString("cName");
+				String zonecode = resultSet.getString("zonecode");
+				String address = resultSet.getString("address");
+				String buildingName = resultSet.getString("buildingName");
+				String detailAddress = resultSet.getString("detailAddress");
 
-				dto = new ClientDto(cId, cPw, cPhone, cEmail);
+				dto = new ClientDto(cId, cPw,cName, cPhone, cEmail,zonecode,address,buildingName,detailAddress);
 
 			}
 
@@ -171,20 +176,25 @@ public class ClientDao {
 	}//delete End 
 
 	//수정하기
-	public void ClientModify(String cId, String cPw, String cPhone, String cEmail) {
+	public void ClientModify(String cId, String cPw, String cName, String cPhone, String cEmail, String czonecode, String caddress, String cbuildingName, String cdetailAddress) {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
 		try {
 			connection = dataSource.getConnection();
 			
-			String query = "update client set cPhone=? , cEmail=? , cPw=?, cMdate=now() where cId=?";
+			String query = "update client set cPhone=? , cEmail=? , cPw=?, cName=?, zonecode=?,address=?,buildingName=?, detailAddress=?, cMdate=now() where cId=?";
 					
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setString(1, cPhone);
 			preparedStatement.setString(2, cEmail);
 			preparedStatement.setString(3, cPw);
-			preparedStatement.setString(4, cId);
+			preparedStatement.setString(4, cName);
+			preparedStatement.setString(5, czonecode);
+			preparedStatement.setString(6, caddress);
+			preparedStatement.setString(7, cbuildingName);
+			preparedStatement.setString(8, cdetailAddress);
+			preparedStatement.setString(9, cId);
 			
 		
 			preparedStatement.executeUpdate(); //수정 실행

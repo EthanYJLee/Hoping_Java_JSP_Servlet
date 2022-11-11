@@ -94,27 +94,35 @@
 		       	<h4> 캠핑장 배치도 </h4>
 		   	 <img src="./images/${DetailView.regImage4}"  alt="CampSite=${DetailView.regName}"  height="100%" width="100%">
 		    </div><!-- camp site end  -->
-		     <hr class="featurette-divider"> 
-		    
-  		<%-- <div>
-  		<form action="post" method="post">
-  		  <input type="hidden" name="regSeq" value="${DetailView.regSeq}">
-		    <button type="submit">예약하러 가기</button>
-		    </form>
+		     		    	     <hr class="featurette-divider"> 
+		     
+		    <!-- 예약하러 가기 --> 
+	  		<div class="container-md d-flex justify-content-center" style="margin-top: 10px;	">
+	  			<form action="booking.do" method="post"style="margin: 10px;">
+	  				  <input type="hidden" name="regSeq" value="${DetailView.regSeq}" >
+				      <button type="submit" class="btn btn-primary">예약하러 가기</button>
+		    	</form>
+		    	<form action="ask.do" method="post" style="margin: 10px;">
+	  				  <input type="hidden" name="regSeq" value="${DetailView.regSeq}" >
+				      <button type="submit" class="btn btn-primary">문의하러 가기</button>
+		    	</form>
 		    </div>
-		    <div> --%>
+		    		    	     <hr class="featurette-divider"> 
 		    
-		    <a href="booking.do?regSeq=${DetailView.regSeq}">예약하러 가기</a>
-		    <!-- 예약 페이지로 이동 되도록 수정 --> 
-  		<form action="checkBook.do" method="post">
-  		  <input type="text" name="rbookSeq" value="1">
-		    <button type="submit">예약정보 확인하러 가기</button>
-		    </form>
+		    <div> 
+		  		<form action="checkBook.do" method="post">
+		  			  <input type="text" name="rbookSeq" value="1">
+				      <button type="submit" class="btn btn-primary">예약정보 확인하러 가기</button>
+			    </form>
 		    </div>
+		    
+		    
 		    	     <hr class="featurette-divider"> 
 		    	     <div> 
 		    	     	이 캠핑장이랑 비슷한 캠핑장 둘러보기!
 		    	     </div>
+		    	     
+		    	     
     	     </div><!-- DIV row End -->
 		    </div><!-- DIV row End -->
 	    </div> <!-- DIV container End -->

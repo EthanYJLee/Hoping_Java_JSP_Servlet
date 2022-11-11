@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.swing.JOptionPane;
 
+import com.bootcamp.client.command.BCAskCommand;
 import com.bootcamp.client.command.BCBookingConfirmationCommand;
 import com.bootcamp.client.command.BCCalcDateCommand;
 import com.bootcamp.client.command.BCCampDateCheckCommand;
@@ -170,7 +171,7 @@ public class BCFrontController extends HttpServlet {
 		case ("/ClientModify.do"):
 			command = new Clientmodify_Command();
 			command.execute(request, response);
-			viewPage = "/ClientMainView.jsp";
+			viewPage = "/main.do";
 			break;
 		// 삭제하기
 		case ("/ClientDelete.do"):
@@ -197,6 +198,11 @@ public class BCFrontController extends HttpServlet {
 			break;
 			
 			
+		case ("/ask.do"):
+			command = new BCAskCommand();
+			command.execute(request, response);
+			viewPage = "ClientAsk.jsp";
+			break;
 			
 			//--- HyunSuk ----------------------------------------------------------------
 //		case ("/Review_List.do"):
