@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.swing.JOptionPane;
 
 import com.bootcamp.client.command.BCBookingConfirmationCommand;
+import com.bootcamp.client.command.BCCalcDateCommand;
 import com.bootcamp.client.command.BCCampDateCheckCommand;
 import com.bootcamp.client.command.BCCampListCommand;
 import com.bootcamp.client.command.BCCommand;
@@ -94,6 +95,7 @@ public class BCFrontController extends HttpServlet {
 			command.execute(request, response);
 			viewPage = "Home.jsp";
 			break;
+			
 		// searchCamp.do 코드 확인 시 캠핑장을 검색어나 타입에 따라 검색하기 위한 메소.
 		case ("/searchCamp.do"):
 			command = new SearchCamp_Command();
@@ -111,6 +113,7 @@ public class BCFrontController extends HttpServlet {
 			System.out.println("List camp End");
 			break;
 			// 예약 가능한 방 리스트 보여주기 sanghyuk
+			
 		case("/bookingdatecheck.do"):
 			System.out.println("Date Check for Booking");
 			command = new BCCampDateCheckCommand();
@@ -118,12 +121,14 @@ public class BCFrontController extends HttpServlet {
 			viewPage = "Calendar3.jsp";
 			System.out.println("Date Check for Booking End");
 			break;
+			
+			// sql book table 에 insert 하는 command 이후수정될 여지 많음 
 		case("/pay.do"):
 			System.out.println("insert for Booking");
 			command = new BCInsertBookCommand();
 			command.execute(request, response);
 			viewPage = "Calendar3.jsp";
-			System.out.println("insert for Booking End");
+				System.out.println(" controller case pay.do 에서 보내는 insert for Booking End");
 			break;			
 			
 		
@@ -185,6 +190,8 @@ public class BCFrontController extends HttpServlet {
 			// 예약. 예약할 인원수 정하고 예약 확정짓기
 		case ("/confirmation.do"):
 			command = new BCBookingConfirmationCommand();
+			command.execute(request, response);
+			command = new BCCalcDateCommand();
 			command.execute(request, response);
 			viewPage = "Booking.jsp";
 			break;

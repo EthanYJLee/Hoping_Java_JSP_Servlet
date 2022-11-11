@@ -15,39 +15,39 @@ public class BCInsertBookCommand implements BCCommand {
 		System.out.println("BCInsertBookCommand");
 	
 		String startdate = (String)session.getAttribute("startdate");		
-		String stopdate = (String)session.getAttribute("stopdate");	
-
-/*		
- * 삭제할 문장 필요한 정보를 확인하기 위해서 SQL문을 체크중
- 
-		String query = "insert into book (boPrice, boDate, boCheckindate, boGroup, boCount, ";
-		String query2 = "pay_cid, pay_room_roseq, pay_room_regcamp_regSeq, pay_room_regcamp_host_hSeq, ";
-		String query3 = "pay_client_cid ) values (?,now(),?,?,?,?,?,?,?,?,?)";
-*/		
+		String stopdate = (String)session.getAttribute("stopdate");
+		String cId = (String)session.getAttribute("cId");
+		int boPrice = (int) request.getAttribute("boPrice");
+		
+		System.out.println(cId);
+		System.out.println(boPrice);
 		System.out.println("BCInsertBookCommand ------");
-// InputBook 		
-		
+
+		// InputBook 의 Dao 를 생성함.  		
 		CampDao dao = new CampDao();
-		
+		// 체크인 날짜와 체크 아웃 날짜의 날 수를 계산.
+		int intdiff = dao.diffDate(startdate, stopdate);
+		System.out.println("intdiff:"+intdiff+":");
+		// 체크인 날짜의 예약을 추가한다.
+		dao.insertBook(boPrice, startdate, 0, 3, cId, 1);
+		// 체크인 날짜의 예약의 Seq를 읽어온다.
 		int maxBookSeq = dao.readMaxSeq();
 		System.out.println("maxBookSeq"+maxBookSeq);
-		int intdiff = dao.diffDate(startdate, stopdate);
-		System.out.println("intdiff"+intdiff);
-		//Calendar cal = Calendar.getInstance();
-		
-
-		dao.insertBook(80000, "2022-11-11", maxBookSeq+1, 3, "kevininthewood", intdiff, 1);
-		//request.setAttribute("Camp", dtos);
-		
-/*
- * searchSiteView(가격, 캠핑장 관련 위치 정보)
-searchRegCampImageView(캠핑장 이미지)
-searchCampWish(찜관련 정보)
-searchReview(별점 읽어오기)
-searchReviewCount(후기 갯수 읽어오기)
- * 		
- */
-		
+		// boGroup 의 
+		dao.updateBook(maxBookSeq);
+				
+		// 예약 날짜가 하루 이상이면
+		if (intdiff > 1) {
+			// 체크인 날짜 다음 날짜를 구한다.
+			String nextdate = dao.Nextday(startdate);
+			// boPrice(가격정보), boCheckindate(체크인 날짜), boGroup(예약그룹의 Seq Number), boCount(예약인원), Client Id,intdiff(예약한기간)ß, regcap의 regSeq, HostSeq
+			for(int i=0; i<intdiff;i++) {
+				// 다음 체크인 날짜의 예약을 추가한다.
+				dao.insertBook(boPrice, nextdate, maxBookSeq, 3, cId, 1);
+				// 체크인 날짜 다음 날짜를 구한다.
+				nextdate = dao.Nextday(nextdate);
+			}
+		}
 	}
 
 	@Override
