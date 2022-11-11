@@ -27,8 +27,6 @@ public class HostMainInquiryStatus_Command implements BCCommand {
 
 	@Override
 	public Boolean execute1(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		// TODO Auto-generated method stub
 		return null;
 	}
-
 }
