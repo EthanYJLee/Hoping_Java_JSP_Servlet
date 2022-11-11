@@ -17,7 +17,10 @@
 	<!-- 2022-11-9 Hosik - 성연씨 코드 받고 회원메뉴 부분 수정함.
 						 - 로그인이 안되어 있을시 로그인 및 회원가입 메뉴 
 						 - 로그인 세션이 있을경우 메뉴가 회원정보수정-탈퇴 , 로그아웃 그리고 예약정보확인 페이지 등록예정 
+		2022-11-10 Hosik - Created Navbar2 기존 Navbar에서 검색기능을 없앤 navbar의 필요성을 느껴서 생성 					 	
+						 
 							 --> 
+							 
 	<%-- nav --%>
 	<div class="container">
 	   <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
@@ -57,29 +60,6 @@
 	     </ul>
 	   </header>
  	</div>
-<!-- 2022-11-8 Hosik Form tag 이동 및 검색 자체는 가능하게끔 수정, 검색에서 option 값이 잘 안들어가는거 같아서 수정예정임  -->
-		<%--search --%>
-	<div class="container myscontainer">
-      <div class="d-flex align-items-center justify-content-center justify-content-lg-center">
-
-        <form action="searchCamp.do"class="col-12 col-lg-auto mb-4 mb-lg-0 me-lg-4" role="search">
-		검색 선택:
-		<select name="query">
-			<option value="regName">이름</option>
-			<option value="regDetailaddress" selected="selected">주소</option>
-		</select>&nbsp;&nbsp;&nbsp;
-          <input class="mysearch" type="search" class="form-control" aria-label="Search" name="content">
-			<label for="btnSubmit">
-				<svg class="mysvg" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-					  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-				</svg>
-			</label>
-		<input type="submit" id="btnSubmit" style="display:none;" />
-        </form>
-
-        </div>   <!-- <div class="text-conter"> End -->
-        
-      </div>    <!-- <div class="d-flex align-items-center justify-content-center justify-content-lg-center"> End -->
 
 	
 	

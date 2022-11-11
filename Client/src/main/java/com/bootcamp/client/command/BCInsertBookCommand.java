@@ -11,7 +11,7 @@ import com.bootcamp.client.dao.MainDao;
 import com.bootcamp.dto.regcampDto;
 import com.bootcamp.joindto.campDto;
 
-public class BCCampDateCheckCommand implements BCCommand {
+public class BCInsertBookCommand implements BCCommand {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
@@ -21,13 +21,13 @@ public class BCCampDateCheckCommand implements BCCommand {
 		
 		String startdate = request.getParameter("startdate");
 		String stopdate = request.getParameter("stopdate");
-		
+/*		
 		session.setAttribute("startdate", startdate);
 		session.setAttribute("stopdate", stopdate);
 		CampDao dao = new CampDao();
-		ArrayList<campDto> dtos = dao.dateCheck(startdate,stopdate);
+		ArrayList<campDto> dtos = dao.insertBook(String cId, String stopdate, String aaa);
 		request.setAttribute("Camp", dtos);
-		
+*/		
 /*
  * searchSiteView(가격, 캠핑장 관련 위치 정보)
 searchRegCampImageView(캠핑장 이미지)

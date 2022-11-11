@@ -10,7 +10,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import com.bootcamp.joindto.BookJoinDto;
+import com.bootcamp.joindto.BookListDto;
 
 
 public class BookJoinDao {
@@ -32,9 +32,9 @@ public class BookJoinDao {
 	}//constructor
 	
 	//예약 목록 리스트 -----------
-	public ArrayList<BookJoinDto> list(String hSeq){
+	public ArrayList<BookListDto> list(String hSeq){
 		
-		ArrayList<BookJoinDto> dtos = new ArrayList<>();
+		ArrayList<BookListDto> dtos = new ArrayList<>();
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
@@ -43,10 +43,10 @@ public class BookJoinDao {
 			
 			connection = dataSource.getConnection();
 			
-			String query = "select boSeq, regName, c.cId, boPrice*boCount, boDate, r.roNum, boCheckindate, boCheckoutdate, boCount from book b, pay p, room r, client c, regcamp rc ";
-			String query2 = "where b.pay_cid = p.cid and b.pay_room_roSeq = r.roSeq and b.pay_room_regcamp_regSeq = p.room_regcamp_regSeq ";
-			String query3 = "and b.pay_room_regcamp_regSeq = rc.regSeq and b.pay_room_regcamp_host_hSeq = p.room_regcamp_host_hSeq ";
-			String query4 = "and b.pay_client_cId = c.cId and b.pay_room_regcamp_host_hSeq = ?";
+			String query = "select boGroup, regName, pay_client_cId, total, boDate, ";
+			String query2 = "roNum, min(checkin) as mcheckin, max(checkout) as mcheckout, boCount ";
+			String query3 = "from booklist where pay_room_regcamp_host_hSeq = ? ";
+			String query4 = "group by boGroup, regName, pay_client_cId, total, boDate, roNum, boCount ";
 			
 			preparedStatement = connection.prepareStatement(query + query2 + query3 + query4);
 			preparedStatement.setString(1, hSeq);
@@ -54,17 +54,17 @@ public class BookJoinDao {
 			
 			while(resultSet.next()) {
 				
-				int boSeq = resultSet.getInt("boSeq");
+				int boGroup = resultSet.getInt("boGroup");
 				String regName = resultSet.getString("regName");
-				String pay_cid = resultSet.getString("c.cId");
-				int total = resultSet.getInt("boPrice*boCount");
+				String pay_client_cId = resultSet.getString("pay_client_cId");
+				int total = resultSet.getInt("total");
 				Timestamp boDate = resultSet.getTimestamp("boDate");
-				int roNum = resultSet.getInt("r.roNum");
-				Timestamp boCheckindate = resultSet.getTimestamp("boCheckindate");
-				Timestamp boCheckoutdate = resultSet.getTimestamp("boCheckoutdate");
+				int roNum = resultSet.getInt("roNum");
+				Timestamp mcheckin = resultSet.getTimestamp("mcheckin");
+				Timestamp checkout = resultSet.getTimestamp("mcheckout");
 				int boCount = resultSet.getInt("boCount");
 				
-				BookJoinDto dto = new BookJoinDto(boSeq, regName, pay_cid, total, boDate, roNum, boCheckindate, boCheckoutdate, boCount);
+				BookListDto dto = new BookListDto(boGroup, regName, pay_client_cId, total, boDate, roNum, mcheckin, checkout, boCount);
 				dtos.add(dto);
 				
 			}
@@ -84,10 +84,10 @@ public class BookJoinDao {
 		return dtos;
 	}//list
 	
-	//예약 목록 검색 -----------
-	public ArrayList<BookJoinDto> bookListCon(String hSeq, String start, String end, String strSearch){
+	//예약 목록 검색 (날짜, 텍스트) -----------
+	public ArrayList<BookListDto> bookListCon(String hSeq, String start, String end, String strSearch){
 		
-		ArrayList<BookJoinDto> dtos = new ArrayList<>();
+		ArrayList<BookListDto> dtos = new ArrayList<>();
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
@@ -96,11 +96,11 @@ public class BookJoinDao {
 			
 			connection = dataSource.getConnection();
 			
-			String query = "select boSeq, regName, c.cId, boPrice*boCount, boDate, r.roNum, boCheckindate, boCheckoutdate, boCount from book b, pay p, room r, client c, regcamp rc ";
-			String query2 = "where b.pay_cid = p.cid and b.pay_room_roSeq = r.roSeq and b.pay_room_regcamp_regSeq = p.room_regcamp_regSeq ";
-			String query3 = "and b.pay_room_regcamp_regSeq = rc.regSeq and b.pay_room_regcamp_host_hSeq = p.room_regcamp_host_hSeq ";
-			String query4 = "and b.pay_client_cId = c.cId and b.pay_room_regcamp_host_hSeq = ? ";
-			String query5 = "and regName like '%" +strSearch+ "%' and boDate between ? and ? ";
+			String query = "select boGroup, regName, pay_client_cId, total, boDate, ";
+			String query2 = "roNum, min(checkin) as mcheckin, max(checkout) as mcheckout, boCount ";
+			String query3 = "from booklist where pay_room_regcamp_host_hSeq = ? ";
+			String query4 = "and regName like '%"+strSearch+"%' and boDate between ? and ? ";
+			String query5 = "group by boGroup, regName, pay_client_cId, total, boDate, roNum, boCount ";
 			
 			
 			preparedStatement = connection.prepareStatement(query + query2 + query3 + query4 + query5);
@@ -111,17 +111,72 @@ public class BookJoinDao {
 			
 			while(resultSet.next()) {
 				
-				int boSeq = resultSet.getInt("boSeq");
+				int boGroup = resultSet.getInt("boGroup");
 				String regName = resultSet.getString("regName");
-				String pay_cid = resultSet.getString("c.cId");
-				int total = resultSet.getInt("boPrice*boCount");
+				String pay_client_cId = resultSet.getString("pay_client_cId");
+				int total = resultSet.getInt("total");
 				Timestamp boDate = resultSet.getTimestamp("boDate");
-				int roNum = resultSet.getInt("r.roNum");
-				Timestamp boCheckindate = resultSet.getTimestamp("boCheckindate");
-				Timestamp boCheckoutdate = resultSet.getTimestamp("boCheckoutdate");
+				int roNum = resultSet.getInt("roNum");
+				Timestamp mcheckin = resultSet.getTimestamp("mcheckin");
+				Timestamp checkout = resultSet.getTimestamp("mcheckout");
 				int boCount = resultSet.getInt("boCount");
 				
-				BookJoinDto dto = new BookJoinDto(boSeq, regName, pay_cid, total, boDate, roNum, boCheckindate, boCheckoutdate, boCount);
+				BookListDto dto = new BookListDto(boGroup, regName, pay_client_cId, total, boDate, roNum, mcheckin, checkout, boCount);
+				dtos.add(dto);
+				
+			}
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally {
+			try {
+				if(resultSet != null) resultSet.close();
+				if(preparedStatement != null) preparedStatement.close();
+				if(connection != null) connection.close();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return dtos;
+	}//bookListCon
+	
+	//예약 목록 검색 (텍스트) -----------
+	public ArrayList<BookListDto> bookListName(String hSeq, String strSearch){
+		
+		ArrayList<BookListDto> dtos = new ArrayList<>();
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		
+		try {
+			
+			connection = dataSource.getConnection();
+			
+			String query = "select boGroup, regName, pay_client_cId, total, boDate, ";
+			String query2 = "roNum, min(checkin) as mcheckin, max(checkout) as mcheckout, boCount ";
+			String query3 = "from booklist where pay_room_regcamp_host_hSeq = ? ";
+			String query4 = "and regName like '%"+strSearch+"%' ";
+			String query5 = "group by boGroup, regName, pay_client_cId, total, boDate, roNum, boCount ";
+			
+			
+			preparedStatement = connection.prepareStatement(query + query2 + query3 + query4 + query5);
+			preparedStatement.setString(1, hSeq);
+			resultSet = preparedStatement.executeQuery();
+			
+			while(resultSet.next()) {
+				
+				int boGroup = resultSet.getInt("boGroup");
+				String regName = resultSet.getString("regName");
+				String pay_client_cId = resultSet.getString("pay_client_cId");
+				int total = resultSet.getInt("total");
+				Timestamp boDate = resultSet.getTimestamp("boDate");
+				int roNum = resultSet.getInt("roNum");
+				Timestamp mcheckin = resultSet.getTimestamp("mcheckin");
+				Timestamp checkout = resultSet.getTimestamp("mcheckout");
+				int boCount = resultSet.getInt("boCount");
+				
+				BookListDto dto = new BookListDto(boGroup, regName, pay_client_cId, total, boDate, roNum, mcheckin, checkout, boCount);
 				dtos.add(dto);
 				
 			}
@@ -142,9 +197,9 @@ public class BookJoinDao {
 	}//list
 	
 	//예약 세부 페이지-----------
-	public BookJoinDto detailBook(String sBoSeq){
+	public BookListDto detailBook(String sBoSeq){
 		
-		BookJoinDto dto = null;
+		BookListDto dto = null;
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
@@ -153,10 +208,10 @@ public class BookJoinDao {
 			
 			connection = dataSource.getConnection();
 			
-			String query = "select boSeq, regName, c.cId, boPrice*boCount, boDate, r.roNum, boCheckindate, boCheckoutdate, boCount, boPrice from book b, pay p, room r, client c, regcamp rc ";
-			String query2 = "where b.pay_cid = p.cid and b.pay_room_roSeq = r.roSeq and b.pay_room_regcamp_regSeq = p.room_regcamp_regSeq ";
-			String query3 = "and b.pay_room_regcamp_regSeq = rc.regSeq and b.pay_room_regcamp_host_hSeq = p.room_regcamp_host_hSeq ";
-			String query4 = "and b.pay_client_cId = c.cId and b.boSeq = ?";
+			String query = "select boGroup, regName, pay_client_cId, total, boDate, boPrice, ";
+			String query2 = "roNum, min(checkin) as mcheckin, max(checkout) as mcheckout, boCount ";
+			String query3 = "from booklist where boGroup = ? ";
+			String query4 = "group by boGroup, regName, pay_client_cId, total, boDate, roNum, boCount, boPrice ";
 			
 			preparedStatement = connection.prepareStatement(query + query2 + query3 + query4);
 			preparedStatement.setString(1, sBoSeq);
@@ -164,18 +219,18 @@ public class BookJoinDao {
 			
 			while(resultSet.next()) {
 				
-				int boSeq = resultSet.getInt("boSeq");
+				int boGroup = resultSet.getInt("boGroup");
 				String regName = resultSet.getString("regName");
-				String pay_cid = resultSet.getString("c.cId");
-				int total = resultSet.getInt("boPrice*boCount");
+				String pay_client_cId = resultSet.getString("pay_client_cId");
+				int total = resultSet.getInt("total");
 				Timestamp boDate = resultSet.getTimestamp("boDate");
-				int roNum = resultSet.getInt("r.roNum");
-				Timestamp boCheckindate = resultSet.getTimestamp("boCheckindate");
-				Timestamp boCheckoutdate = resultSet.getTimestamp("boCheckoutdate");
-				int boCount = resultSet.getInt("boCount");
 				int boPrice = resultSet.getInt("boPrice");
+				int roNum = resultSet.getInt("roNum");
+				Timestamp mcheckin = resultSet.getTimestamp("mcheckin");
+				Timestamp checkout = resultSet.getTimestamp("mcheckout");
+				int boCount = resultSet.getInt("boCount");
 				
-				dto = new BookJoinDto(boSeq, regName, pay_cid, total, boDate, roNum, boCheckindate, boCheckoutdate, boCount, boPrice);
+				dto = new BookListDto(boPrice, boGroup, regName, pay_client_cId, total, boDate, roNum, mcheckin, checkout, boCount);
 				
 			}
 			

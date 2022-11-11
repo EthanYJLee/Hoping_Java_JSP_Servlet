@@ -55,6 +55,7 @@
 
 </head>
 <body>
+
 <%-- nav --%>
 <div class="container">
    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
@@ -83,69 +84,130 @@
    </header>
  </div>
 
+
 <%-- 본문 --%>
 <%-- 테이블 --%>
-<div class="container d-flex mycontainer justify-content-center myscontainer" style="width: 100%">
-<div class="align-self-center">
-	<h5 class="col-12" style="margin: 20px 0 20px 0">캠핑장의 자리를 수정하기</h5>
-	<%-- 자리 테이블 --%>
-	<div class="row myscontainer justify-content-center">
-		<div class="card col-8 myhcard" style="border-radius: 20px;">
-			<table>
-				<tr class="myhtr">
-					<td class="myth">자리번호</td><td class="myth">지정가</td><td class="myth">최대인원</td>
-					<td class="myth"></td>
-				</tr>
-				<%-- for문 돌리기 --%>
-				<c:forEach items="${list}" var="dto">
-					<%-- modal 열리는 버튼 --%>
-					<tr class="myhtr ">
-						<td class="mytd">${dto.roNum }</td>
-						<td class="mytd">${dto.roPrice }</td>
-						<td class="mytd">${dto.roMax }</td>
-						<td class="mytd">
-							<a href="HostInfoRoomDel.do?roSeq=${dto.roSeq }" type="button" class="btn btn-secondary" style="height: 30px; font-size: 13px;" >
-								삭제 
-							</a>
-						</td>
-					</tr>
-				</c:forEach>
-			</table>	  
-		</div>
+<div class="container">
+	<div class="row">
+		<h5 class="row" style="margin: 20px 0 20px 0">캠핑장의 자리를 수정하기</h5>
 	</div>
-	<%-- 등록 폼 --%>
-	<div class="container justify-content-center">
-		<form action="HostInfoRoomIn.do">
-			<table class="myscontainer" style="width: 500px; margin-right: 0px">
-				<tr class="row">
-					<td class="col-3">자리 번호</td>
-					<td class="col-3"><input name="roNum" type="text" class="form-control myinfoinput" placeholder="숫자만 입력해주세요" aria-label="text"></td>
-				</tr>
-				<tr class="row">
-					<td class="col-3">지정가</td>
-					<td class="col-3"><input name="roPrice" type="text" class="form-control myinfoinput" aria-label="text"></td>
-				</tr>
-				<tr class="row">
-					<td class="col-3">최대 인원</td>
-					<td class="col-3"><input name="roMax" type="text" class="form-control myinfoinput" aria-label="text"></td>
-				</tr>
-			</table>
-			<%-- 추가, 완료 버튼 --%>
-			<div class="row myscontainer ">
-				<button type="submit" style="border-radius: 15px; width:100px;" class=" col-2 btn mybtns btn-secondary">추가</button>
+	<div class="row">
+		<div class="col"></div>
+		<%-- 자리 테이블 --%>
+		<div class="col">
+			<div class="row myscontainer justify-content-center">
+				<div class="card col-8 myhcard" style="border-radius: 20px;">
+					<table>
+						<tr class="myhtr">
+							<td class="myth">자리번호</td><td class="myth">지정가</td><td class="myth">최대인원</td>
+							<td class="myth"></td>
+						</tr>
+						<%-- for문 돌리기 --%>
+						<c:forEach items="${list}" var="dto">
+							<%-- modal 열리는 버튼 --%>
+							<tr class="myhtr ">
+								<td class="mytd">${dto.roNum }</td>
+								<td class="mytd">${dto.roPrice }</td>
+								<td class="mytd">${dto.roMax }</td>
+								<td class="mytd">
+									<a href="HostInfoRoomDel.do?roSeq=${dto.roSeq }" type="button" class="btn btn-secondary" style="height: 30px; font-size: 13px;" >
+										삭제 
+									</a>
+								</td>
+							</tr>
+						</c:forEach>
+					</table>	  
+				</div>
 			</div>
-		</form>
-		<div class="row justify-content-end">
-			<a href="HostInfoMMain.jsp" type="submit" style="border-radius: 15px; width:100px;" class="col-2 btn mbtn">완료</a>
+		<%-- 등록 폼 --%>
+			<div class="container ">
+				<form name ="Member" action="HostInfoRoomIn.do" method="post">
+					<table class="myscontainer" style="width: 500px; margin-right: 0px">
+						<tr class="row justify-content-center">
+							<td class="col-3">자리 번호</td>
+							<td class="col-3"><input name="roNum" type="text" class="form-control myinfoinput" placeholder="숫자만 입력해주세요" aria-label="text"></td>
+						</tr>
+						<tr class="row justify-content-center">
+							<td class="col-3">지정가</td>
+							<td class="col-3"><input name="roPrice" type="text" class="form-control myinfoinput" placeholder="숫자만 입력해주세요" aria-label="text"></td>
+						</tr>
+						<tr class="row justify-content-center">
+							<td class="col-3">최대 인원</td>
+							<td class="col-3"><input name="roMax" type="text" class="form-control myinfoinput" placeholder="숫자만 입력해주세요" aria-label="text"></td>
+						</tr>
+					</table>
+					<%-- 추가, 완료 버튼 --%>
+					<div class="row myscontainer justify-content-center">
+						<input type="button" onclick="checkMember()" style="border-radius: 15px; width:100px;" value="추가" class=" col-2 btn mybtns btn-secondary">
+					</div>
+				</form>
+				<div class="row justify-content-end">
+					<a href="HostInfoMMain.jsp" style="border-radius: 15px; width:100px;" class="col-2 btn mbtn">완료</a>
+				</div>
+			</div>
 		</div>
+		<div class="col"></div>
 	</div>
-</div>
-</div>
-    
+</div>    
 
-
- 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script type="text/javascript">
+
+//정규식
+function checkMember(){
+	
+	var regExNum = /[^0-9]/g;
+	
+	var form = document.Member
+	
+	let roNum = form.roNum.value
+	let roPrice = form.roPrice.value
+	let roMax = form.roMax.value
+	
+	//null 제한
+	if(roNum == ""){
+		alert("자리번호를 입력해주세요.")
+		form.roNum.focus();
+		return false;
+	}
+	
+	if(roPrice == ""){
+		alert("지정가를 입력해주세요.")
+		form.roPrice.focus();
+		return false;
+	}
+	
+	if(roMax == ""){
+		alert("최대 인원을 입력해주세요.")
+		form.roMax.focus();
+		return false;
+	}
+	
+	//숫자로만 입력
+	if(regExNum.test(roNum)){
+		alert("자리는 숫자만 입력해주세요.")
+		form.roNum.select()
+		return
+	}
+	
+	if(regExNum.test(roPrice)){
+		alert("지정가는 숫자만 입력해주세요.")
+		form.roPrice.select()
+		return
+	}
+	
+	if(regExNum.test(roMax)){
+		alert("최대 인원은 숫자만 입력해주세요.")
+		form.roMax.select()
+		return
+	}
+	
+	form.submit();
+	
+}
+
+</script>
 
 </body>
 </html>

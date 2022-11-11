@@ -20,4 +20,9 @@ public class askListCommand implements BCCommand {
 
 	}
 
+	@Override
+	public Boolean execute1(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		return null;
+	}
+
 }
