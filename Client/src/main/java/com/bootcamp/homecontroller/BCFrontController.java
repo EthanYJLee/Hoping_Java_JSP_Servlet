@@ -16,6 +16,7 @@ import com.bootcamp.client.command.BCCampDateCheckCommand;
 import com.bootcamp.client.command.BCCampListCommand;
 import com.bootcamp.client.command.BCCommand;
 import com.bootcamp.client.command.BCDetailCommand;
+import com.bootcamp.client.command.BCInsertBookCommand;
 //import com.bootcamp.client.command.BCSelectDateCommand;
 import com.bootcamp.client.command.Clientdelete_Command;
 import com.bootcamp.client.command.Clientlogin_Command;
@@ -117,7 +118,13 @@ public class BCFrontController extends HttpServlet {
 			viewPage = "Calendar3.jsp";
 			System.out.println("Date Check for Booking End");
 			break;
-			
+		case("/pay.do"):
+			System.out.println("insert for Booking");
+			command = new BCInsertBookCommand();
+			command.execute(request, response);
+			viewPage = "Calendar3.jsp";
+			System.out.println("insert for Booking End");
+			break;			
 			
 		
 			
