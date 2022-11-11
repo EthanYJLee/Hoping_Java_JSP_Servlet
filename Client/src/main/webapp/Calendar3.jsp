@@ -27,16 +27,27 @@
 
 </head>
 <body>
-<%-- nav --%>
-<!-- Header -->
- <%@ include file = "Nav2.jsp" %>
-<!-- Header End -->
-<%--search바 --%>
-<div class="container myscontainer">
-	<div class="row myhtitle">
-		<div><b>예약 하기 - 방선택하기</b></div>
-	</div>
-	<div class="d-flex align-items-center justify-content-center justify-content-lg-center">
+
+       <!--    
+       22.11.10. -호식 
+       			- 날자로 검색 한 뒤 맘에 드는게 없으면은 바로 날자를 바꿔서 검색 할 수 있도록	
+       			여기서도 날자 변경을 할 수 있도록 하고 싶었는데 검색을 하면은 뭔가 다르게 가가지고 그냥
+       			일단 다시 검색하고 싶으면 뒤로 가서 바꾸게 그냥 검색버튼 없애버림.
+       			추후에 다시 넣어서 여기서 바로 날자를 바굴 수 있도록 하는게 좋을듯 
+       22.11.11 - 호식	
+       			- 기존 사이트넘버 클릭시 다음 예약 화면으로 넘어가는것에서	
+       			  버튼 추가하여 버튼으로 넘어가게끔 변경  -->
+
+	<%-- nav --%>
+	<!-- Header -->
+	 <%@ include file = "Nav2.jsp" %>
+	<!-- Header End -->
+	<%--search바 --%>
+	<div class="container myscontainer">
+		<div class="row myhtitle">
+			<div><b>예약 하기 - 방선택하기</b></div>
+		</div>
+		<div class="d-flex align-items-center justify-content-center justify-content-lg-center">
 		<%-- 달력입니당. --%>
 		<form autocomplete="off">
 			<div class="col-4 col-11" style="margin-right: 0px;">
@@ -48,65 +59,64 @@
 			</div>
 		</form>		
         
-       <!--   
-       22.11.10. -호식 
-       			- 날자로 검색 한 뒤 맘에 드는게 없으면은 바로 날자를 바꿔서 검색 할 수 있도록	
-       			여기서도 날자 변경을 할 수 있도록 하고 싶었는데 검색을 하면은 뭔가 다르게 가가지고 그냥
-       			일단 다시 검색하고 싶으면 뒤로 가서 바꾸게 그냥 검색버튼 없애버림.
-       			추후에 다시 넣어서 여기서 바로 날자를 바굴 수 있도록 하는게 좋을듯 
-       
-       <form action="bookingdatecheck.do"class="col-12 col-lg-auto mb-4 mb-lg-0 me-lg-4" role="search">
+
+      <%-- 날자 선택 후 검색 돋보기 submit --%> 
+      <!--  <form action="bookingdatecheck.do" class="col-12 col-lg-auto mb-4 mb-lg-0 me-lg-4" role="search">
 			<label for="btnSubmit">
 				<svg class="mysvg" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
 					  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
 				</svg>
 			</label>
 		<input type="submit" id="btnSubmit" style="display:none;" />
-        </form>
+        </form> -->
        
-         -->
-        
-        
-        
 	</div>
 </div>
+
+		
 
 <%-- 테이블 --%>
-<div class="container">
-	<div class="card myhcard" style="border-radius: 20px;">
-		<table>
-			<tr class="myhtr">
-				<td class="myth">캠핑장 이름</td><td class="myth">사이트 넘버</td><td class="myth">카테고리</td><td class="myth">사이트 가격</td><td class="myth">최대수용 인원</td>
-			</tr>
-			<c:forEach items="${Camp}" var="dto">		
+	<div class="container">
+		<div class="card myhcard" style="border-radius: 20px;">
+			<table>
 				<tr class="myhtr">
-					<td class="mytd">${dto.regName}</td><td class="mytd">
-						<a href="confirmation.do?roNum=${dto.roNum}">${dto.roNum}</a></td>
-					<td class="mytd">${dto.regCategory}</td><td class="mytd">
-						<fmt:formatNumber value="${dto.roPrice}" pattern="#,###"/>원</td>
-					<td class="mytd">${dto.roMax}명</td>
+					<td class="myth">캠핑장 이름</td><td class="myth">사이트 넘버</td><td class="myth">카테고리</td><td class="myth">사이트 가격</td><td class="myth">최대수용 인원</td><td class="myth"> 이 자리 예약하기!</td>
 				</tr>
-			</c:forEach>
-		</table>	  
+				<c:forEach items="${Camp}" var="dto">		
+					<tr class="myhtr">
+						<td class="mytd">${dto.regName}</td>
+						<td class="mytd">${dto.roNum}</td>
+						<td class="mytd">${dto.regCategory}</td>
+						<td class="mytd"><fmt:formatNumber value="${dto.roPrice}" pattern="#,###"/>원</td>
+						<td class="mytd">${dto.roMax}명</td>
+					 	<td  class="mytd">
+<%-- 							<a href="confirmation.do?regName=${dto.regName}&roNum=${dto.roNum}"> --%>
+							<a href="confirmation.do?regName=${dto.regName}&roNum=${dto.roNum}">
+								<input type="button" value="예약하기">
+							</a>
+						</td>
+					</tr>
+				</c:forEach>
+			</table>	  
+		</div>
 	</div>
-</div>
-    
-
-<script type="text/javascript">
-$(document).ready(function(){
+	    
 	
-	$('.input-daterange').datepicker({
-	    format: 'yyyy-mm-dd',
-	    autoclose: true
+	<script type="text/javascript">
+	$(document).ready(function(){
+		
+		$('.input-daterange').datepicker({
+		    format: 'yyyy-mm-dd',
+		    autoclose: true
+		});
+	
 	});
-
-});
-</script>
-
-  
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Foot -->
-<%@ include file = "Foot.jsp" %>
-<!-- Foot End -->
+	</script>
+	
+	  
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+	<!-- Foot -->
+	<%@ include file = "Foot.jsp" %>
+	<!-- Foot End -->
 </body>
 </html>

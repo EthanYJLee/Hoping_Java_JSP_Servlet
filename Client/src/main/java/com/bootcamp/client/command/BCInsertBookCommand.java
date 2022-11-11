@@ -1,15 +1,10 @@
 package com.bootcamp.client.command;
 
-import java.util.ArrayList;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.bootcamp.client.dao.CampDao;
-import com.bootcamp.client.dao.MainDao;
-import com.bootcamp.dto.regcampDto;
-import com.bootcamp.joindto.campDto;
 
 public class BCInsertBookCommand implements BCCommand {
 
@@ -17,17 +12,33 @@ public class BCInsertBookCommand implements BCCommand {
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		
 		HttpSession session = request.getSession();
-		
-		
-		String startdate = request.getParameter("startdate");
-		String stopdate = request.getParameter("stopdate");
+		System.out.println("BCInsertBookCommand");
+	
+		String startdate = (String)session.getAttribute("startdate");		
+		String stopdate = (String)session.getAttribute("stopdate");	
+
 /*		
-		session.setAttribute("startdate", startdate);
-		session.setAttribute("stopdate", stopdate);
-		CampDao dao = new CampDao();
-		ArrayList<campDto> dtos = dao.insertBook(String cId, String stopdate, String aaa);
-		request.setAttribute("Camp", dtos);
+ * 삭제할 문장 필요한 정보를 확인하기 위해서 SQL문을 체크중
+ 
+		String query = "insert into book (boPrice, boDate, boCheckindate, boGroup, boCount, ";
+		String query2 = "pay_cid, pay_room_roseq, pay_room_regcamp_regSeq, pay_room_regcamp_host_hSeq, ";
+		String query3 = "pay_client_cid ) values (?,now(),?,?,?,?,?,?,?,?,?)";
 */		
+		System.out.println("BCInsertBookCommand ------");
+// InputBook 		
+		
+		CampDao dao = new CampDao();
+		
+		int maxBookSeq = dao.readMaxSeq();
+		System.out.println("maxBookSeq"+maxBookSeq);
+		int intdiff = dao.diffDate(startdate, stopdate);
+		System.out.println("intdiff"+intdiff);
+		//Calendar cal = Calendar.getInstance();
+		
+
+		dao.insertBook(80000, "2022-11-11", maxBookSeq+1, 3, "kevininthewood", intdiff, 1);
+		//request.setAttribute("Camp", dtos);
+		
 /*
  * searchSiteView(가격, 캠핑장 관련 위치 정보)
 searchRegCampImageView(캠핑장 이미지)
@@ -36,10 +47,6 @@ searchReview(별점 읽어오기)
 searchReviewCount(후기 갯수 읽어오기)
  * 		
  */
-		
-		
-		
-		
 		
 	}
 
