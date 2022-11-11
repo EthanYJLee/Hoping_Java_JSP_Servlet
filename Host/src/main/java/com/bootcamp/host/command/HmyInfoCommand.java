@@ -4,28 +4,31 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.bootcamp.dto.HostDto;
 import com.bootcamp.host.dao.HInfoDao;
+import com.bootcamp.joindto.HostClientDto;
 
-public class HInfoInsertCommand implements BCCommand {
+public class HmyInfoCommand implements BCCommand {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		// TODO Auto-generated method stub
 
-		String hId = request.getParameter("cId");
-		System.out.println("hID" + hId);
-
-		String hSummary = request.getParameter("hSummary");
-		System.out.println("hsummary" + hSummary);
-
+		HttpSession session = request.getSession(); 
+		String hId = (String) session.getAttribute("HID");
 		HInfoDao dao = new HInfoDao();
-		dao.insert(hId, hSummary);
+		HostClientDto dto = dao.myPageView(hId);
+		
+		request.setAttribute("hInfo", dto);
+
+		
 
 	}
 
 	@Override
 	public Boolean execute1(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		// TODO Auto-generated method stub
 		return null;
 	}
 

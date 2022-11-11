@@ -70,24 +70,20 @@
 		<form class="col-10" action="bookSearch.do">
 			<div class="row">
 			<div class="col-4" autocomplete="off">
-				<div class="col-4 col-11" style="margin-right: 0px;">
 					<div class="input-group input-daterange">
-						<input name="start" type="text" style="background-color: white; border-radius: 13px; height: 33px; font-size: 13px;" class="mydinput form-control" placeholder="Start" readonly>
+						<input name="start" value="start" type="text" style="background-color: white; border-radius: 13px; height: 33px; font-size: 13px;" class="mydinput form-control" placeholder="Start" readonly>
 						<input name="end" type="text" style="border-radius: 13px; height: 33px; font-size: 13px;" class="secondary form-control" placeholder="End" readonly>
 					</div>
-				</div>
 			</div>
 			<%-- search --%>
-			<div class="col-5 col-lg-auto" role="search">
-				<input name="strSearch" class="mysearch" type="search" class="form-control" aria-label="Search">
+			<div class="col-7" role="search">
+				<input name="strSearch" style="width: 450px;" type="search" class="mysearch " aria-label="Search">
 			</div>
-	        <div class="col-1 text-conter">
-				<button type="submit" class="text-decoration-none">
-					<svg class="mysvg" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-						  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-					</svg>
-				</button>
-	        </div>
+			<button type="submit" class="text-decoration-none col-1" style="background-color:transparent; border: 0px solid black;">
+				<svg class="mysvg" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+					  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+				</svg>
+			</button>
 	        </div>
         </form>
         </div>
@@ -104,14 +100,14 @@
 			<c:forEach items="${list}" var="dto">
 				
 				<tr class="myhtr">
-					<td class="mytd"><a href="YJHostBookDetail.do?boSeq=${dto.boSeq }">${dto.boSeq }</a></td>
+					<td class="mytd"><a href="YJHostBookDetail.do?boSeq=${dto.boGroup }">${dto.boGroup }</a></td>
 					<td class="mytd">${dto.regName }</td>
-					<td class="mytd">${dto.pay_cid }</td>
+					<td class="mytd">${dto.pay_client_cId }</td>
 					<td class="mytd">${dto.total }</td>
 					<td class="mytd">${dto.boDate }</td>
 					<td class="mytd">${dto.roNum }</td>
-					<td class="mytd">${dto.boCheckindate }</td>
-					<td class="mytd">${dto.boCheckoutdate }</td>
+					<td class="mytd">${dto.checkin }</td>
+					<td class="mytd">${dto.checkout }</td>
 					<td class="mytd">${dto.boCount }</td>
 				
 				</tr>
