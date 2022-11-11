@@ -17,7 +17,7 @@ import com.bootcamp.host.command.HInfoInsertCommand;
 import com.bootcamp.host.command.HmyInfoCommand;
 import com.bootcamp.host.command.HmyInfoModifyCommand;
 import com.bootcamp.host.command.HostBookListCommand;
-import com.bootcamp.host.command.HostBookSearchCommand;
+import com.bootcamp.host.command.HostBookTotalPagingCommand;
 import com.bootcamp.host.command.HostCampNameList_Command;
 import com.bootcamp.host.command.HostCampProfileList_Command;
 import com.bootcamp.host.command.HostInfoFaInDelCommand;
@@ -50,6 +50,7 @@ import com.bootcamp.host.command.MyHostBookDetailCommand;
 import com.bootcamp.host.command.RegCampCommand;
 import com.bootcamp.host.command.askDetailCommand;
 import com.bootcamp.host.command.askListCommand;
+import com.bootcamp.host.dao.HostBookPagingDao;
 
 /**
  * Servlet implementation class homeController
@@ -229,6 +230,20 @@ public class BCFrontController extends HttpServlet {
 		// ------------예진 : 예약 리스트 페이지 열기 ------------------------------------
 		// 예약 리스트 페이지 열기
 		case ("/bookList.do"):
+			command = new HostBookTotalPagingCommand();
+			command.execute(request, response);
+			viewPage = "bookList2.do?page=1";
+			break;
+			
+		// 예약 리스트 페이지 열기
+		case ("/bookList2.do"):
+			command = new HostBookListCommand();
+			command.execute(request, response);
+			viewPage = "HostTotalBookManage.jsp";
+			break;
+			
+		// 예약 리스트 검색
+		case ("/bookListSear.do"):
 			command = new HostBookListCommand();
 			command.execute(request, response);
 			viewPage = "HostTotalBookManage.jsp";
@@ -239,13 +254,6 @@ public class BCFrontController extends HttpServlet {
 			command = new MyHostBookDetailCommand();
 			command.execute(request, response);
 			viewPage = "YJHostBookDetail.jsp";
-			break;
-
-		// 예약 리스트 페이지에서 검색
-		case ("/bookSearch.do"):
-			command = new HostBookSearchCommand();
-			command.execute(request, response);
-			viewPage = "HostTotalBookManage.jsp";
 			break;
 
 		// ------------예진 : 캠핑장 정보수정 페이지 ------------------------------------

@@ -32,7 +32,7 @@ public class BookJoinDao {
 	}//constructor
 	
 	//예약 목록 리스트 -----------
-	public ArrayList<BookListDto> list(String hSeq){
+	public ArrayList<BookListDto> list(String hSeq, int startRow, int pageRow){
 		
 		ArrayList<BookListDto> dtos = new ArrayList<>();
 		Connection connection = null;
@@ -46,10 +46,12 @@ public class BookJoinDao {
 			String query = "select boGroup, regName, pay_client_cId, total, boDate, ";
 			String query2 = "roNum, min(checkin) as mcheckin, max(checkout) as mcheckout, boCount ";
 			String query3 = "from booklist where pay_room_regcamp_host_hSeq = ? ";
-			String query4 = "group by boGroup, regName, pay_client_cId, total, boDate, roNum, boCount ";
+			String query4 = "group by boGroup, regName, pay_client_cId, total, boDate, roNum, boCount limit ?, ? ";
 			
 			preparedStatement = connection.prepareStatement(query + query2 + query3 + query4);
 			preparedStatement.setString(1, hSeq);
+			preparedStatement.setInt(2, startRow);
+			preparedStatement.setInt(3, pageRow);
 			resultSet = preparedStatement.executeQuery();
 			
 			while(resultSet.next()) {
@@ -84,8 +86,47 @@ public class BookJoinDao {
 		return dtos;
 	}//list
 	
+	//예약 row 총 개수
+	public int countRow(String hSeq){
+		
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		int rowcount = 0;
+		
+		try {
+			
+			connection = dataSource.getConnection();
+			
+			String query = "select count(*) as rowcount from pagecount where pay_room_regcamp_host_hSeq = ? ";
+			
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setString(1, hSeq);
+			resultSet = preparedStatement.executeQuery();
+			
+			if(resultSet.next()) {
+				
+				rowcount = resultSet.getInt("rowcount");
+				
+			}
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally {
+			try {
+				if(resultSet != null) resultSet.close();
+				if(preparedStatement != null) preparedStatement.close();
+				if(connection != null) connection.close();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return rowcount;
+	}//list
+	
 	//예약 목록 검색 (날짜, 텍스트) -----------
-	public ArrayList<BookListDto> bookListCon(String hSeq, String start, String end, String strSearch){
+	public ArrayList<BookListDto> bookListCon(String hSeq, String startDate, String endDate, String strSearch, int startRow, int pageRow){
 		
 		ArrayList<BookListDto> dtos = new ArrayList<>();
 		Connection connection = null;
@@ -100,13 +141,15 @@ public class BookJoinDao {
 			String query2 = "roNum, min(checkin) as mcheckin, max(checkout) as mcheckout, boCount ";
 			String query3 = "from booklist where pay_room_regcamp_host_hSeq = ? ";
 			String query4 = "and regName like '%"+strSearch+"%' and boDate between ? and ? ";
-			String query5 = "group by boGroup, regName, pay_client_cId, total, boDate, roNum, boCount ";
+			String query5 = "group by boGroup, regName, pay_client_cId, total, boDate, roNum, boCount limit ?, ? ";
 			
 			
 			preparedStatement = connection.prepareStatement(query + query2 + query3 + query4 + query5);
 			preparedStatement.setString(1, hSeq);
-			preparedStatement.setString(2, start);
-			preparedStatement.setString(3, end);
+			preparedStatement.setString(2, startDate);
+			preparedStatement.setString(3, endDate);
+			preparedStatement.setInt(4, startRow);
+			preparedStatement.setInt(5, pageRow);
 			resultSet = preparedStatement.executeQuery();
 			
 			while(resultSet.next()) {
