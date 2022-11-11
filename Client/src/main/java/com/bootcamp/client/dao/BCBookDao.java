@@ -138,7 +138,7 @@ import com.bootcamp.joindto.checkdate2Dto;
 	
 	// 22-11-11 Created Hosik
 	// DB checkdate2 에서 예약 마지막 페이지에 사용되는 값들 가져와서 dto에 저장함 
-	public checkdate2Dto confirmation(int roomNum, String room_regCamp_Name) { // 데이터가 1개뿐이라 dto에 담아서 가지고 와서 보여줄 거임 
+	public checkdate2Dto confirmation(int roomNum, String room_regCamp_Name) { 
 		Connection connection = null;
 		PreparedStatement preparedStatement = null; // 이거 쓸꺼면 ? 써도 댐 
 		ResultSet resultSet = null;

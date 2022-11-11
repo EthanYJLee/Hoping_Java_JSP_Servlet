@@ -101,10 +101,26 @@ public class BCFrontController extends HttpServlet {
 
 		// --------------------주현: 약관동의 후 호스트 가입(호스트 정보 insert)--------------------
 
+		// 약관보여주기
 		case ("/term.do"):
-
 			viewPage = "HostTerms.jsp";
+			break;
+		// 약관 동의/비동의
+		case ("/termsAD.do"):
+			command = new HostTermsADCommand();
+			Boolean check = command.execute1(request, response);
 
+			if (check == true) {
+				viewPage = "TermsAgree.jsp";
+
+			} else {
+				// 나중에 클라이언트랑 연결되면 client 메인페이지로 이동
+				viewPage = "list.jsp";
+
+			}
+
+			break;
+		// 호스트 가입 (client 정보 >> host 테이블에 insert)
 		case ("/show.do"):
 			command = new HInfoCommand();
 			command.execute(request, response);

@@ -24,16 +24,10 @@ public class HostMainInquiryStatus_Command implements BCCommand {
 		request.setAttribute("trq", todayRepliedQ); // 답변 완료
 		request.setAttribute("tnrq", todayNotRepliedQ); // 답변 미완료
 	}
-<<<<<<< HEAD
 
-=======
->>>>>>> 30fb6f0dce13268069c11d3c4917d654a3792b41
 	@Override
 	public Boolean execute1(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		return null;
 	}
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 30fb6f0dce13268069c11d3c4917d654a3792b41
+

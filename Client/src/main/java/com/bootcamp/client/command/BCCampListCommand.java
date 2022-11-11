@@ -1,6 +1,5 @@
 package com.bootcamp.client.command;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,8 +7,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.bootcamp.client.dao.CampDao;
-import com.bootcamp.client.dao.MainDao;
-import com.bootcamp.dto.regcampDto;
 import com.bootcamp.joindto.campDto;
 
 public class BCCampListCommand implements BCCommand {

@@ -1,7 +1,5 @@
 package com.bootcamp.client.command;
 
-import java.text.ParseException;
-import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,9 +7,6 @@ import javax.servlet.http.HttpSession;
 
 import com.bootcamp.client.dao.BCBookDao;
 import com.bootcamp.client.dao.CampDao;
-import com.bootcamp.client.dao.MainDao;
-import com.bootcamp.dto.regcampDto;
-import com.bootcamp.joindto.campDto;
 import com.bootcamp.joindto.checkdate2Dto;
 
 public class BCBookingConfirmationCommand implements BCCommand {
@@ -25,6 +20,20 @@ public class BCBookingConfirmationCommand implements BCCommand {
 		BCBookDao dao = new BCBookDao();
 		checkdate2Dto dto = dao.confirmation(roNum, regName);
 		request.setAttribute("bookingInfo", dto);
+		
+//		22-11-11 호식 
+//		세션값으로 start,end date가져와서 일수 구한다음에 요금에 곱하려고 
+//		했던건데 여기에 안할거 같음 booking.jsp에 일수x요금 나오면 지워도 됨
+//		
+//		HttpSession session = request.getSession();
+//		String startdate = (String)session.getAttribute("startdate");		
+//		String stopdate = (String)session.getAttribute("stopdate");	
+//		
+//		CampDao Cdao = new CampDao();
+//		int days = Cdao.diffDate(startdate, stopdate);
+//		
+//		request.setAttribute("days", days);
+//		
 	}
 	
 	public Boolean execute1(HttpServletRequest request, HttpServletResponse response) {

@@ -166,6 +166,9 @@ public class CampDao {
 		return result;
 	} //readMaxSeq
 	
+	/* 2022-11-11 hosik - 주석추가	
+						  첫날짜와 끝 날짜로 일수를 계산해줌 
+	*/
 	public int diffDate(String Startdate, String Stopdate) {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
