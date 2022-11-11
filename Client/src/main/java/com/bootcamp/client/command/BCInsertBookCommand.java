@@ -29,9 +29,9 @@ public class BCInsertBookCommand implements BCCommand {
 		
 		CampDao dao = new CampDao();
 		
-		int maxBookSeq = dao.readMaxSeq();
+		int maxBookSeq = dao.readMaxSeq(); // 마지막 날짜를불러 와줌 
 		System.out.println("maxBookSeq"+maxBookSeq);
-		int intdiff = dao.diffDate(startdate, stopdate);
+		int intdiff = dao.diffDate(startdate, stopdate); // 시작, 끝 날자 비교해서 일수계산 +1까지 포함되서 return 됨 
 		System.out.println("intdiff"+intdiff);
 		//Calendar cal = Calendar.getInstance();
 		
