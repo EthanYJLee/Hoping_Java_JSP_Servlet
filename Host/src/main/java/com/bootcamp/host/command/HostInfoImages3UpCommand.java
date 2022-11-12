@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.bootcamp.host.dao.HostRegMDao;
 
@@ -12,8 +13,10 @@ public class HostInfoImages3UpCommand implements BCCommand {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 
+		HttpSession session = request.getSession();
+		
 		HostRegMDao dao = new HostRegMDao();
-
+		int regSeq = (int) session.getAttribute("regSeq");
 		
 		String checkNull = (String) request.getAttribute("FILENAME");
 		String filename;
@@ -24,7 +27,7 @@ public class HostInfoImages3UpCommand implements BCCommand {
 			filename = checkNull;
 		}
 		
-		dao.upImage3(filename);
+		dao.upImage3(filename, regSeq);
 
 	}
 

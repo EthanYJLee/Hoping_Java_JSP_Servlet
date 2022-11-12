@@ -43,6 +43,11 @@ public class MyregcampDto {
 		this.host_hSeq = host_hSeq;
 	}
 	
+	public MyregcampDto(int regSeq) {
+		super();
+		this.regSeq = regSeq;
+	}
+
 	public MyregcampDto(String regName, String regCategory, String regTel) {
 		super();
 		this.regTel = regTel;
