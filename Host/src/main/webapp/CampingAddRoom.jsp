@@ -142,7 +142,7 @@
 				
 				<%-- 페이지 넘기는 버튼 --%>
 				<div class="row justify-content-end">
-					<a href="CampingAddimages.jsp" style="border-radius: 15px; width:100px;" class="col-2 btn mbtn">완료</a>
+					<a href="campingAddImgView.do" style="border-radius: 15px; width:100px;" class="col-2 btn mbtn">완료</a>
 				</div>
 			</div>
 		</div>

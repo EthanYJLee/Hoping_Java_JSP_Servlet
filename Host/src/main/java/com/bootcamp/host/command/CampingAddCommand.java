@@ -20,15 +20,16 @@ public class CampingAddCommand implements BCCommand {
 		String regName = request.getParameter("regName");
 		String regTel = request.getParameter("regTel");
 		String regCategory = request.getParameter("regCategory");
-		int hSeq = (int) request.getAttribute("HSEQ");
+		int hSeq = (int) session.getAttribute("HSEQ");
 		
 		HostRegMDao dao = new HostRegMDao();
 		dao.inCampLo(regDetailaddress, regSummary, regName, regTel, regCategory, hSeq);
 		
-		//등록한 캠핑장의 regSeq setAttribute
+		//등록한 캠핑장의 regSeq session
 		int regSeq = dao.selectRegSeq(regDetailaddress, regSummary, regName, regTel, regCategory, hSeq);
 		
-		request.setAttribute("regSeq", regSeq);
+		session.setAttribute("regSeq", regSeq);
+		System.out.println(regSeq);
 		
 	}
 

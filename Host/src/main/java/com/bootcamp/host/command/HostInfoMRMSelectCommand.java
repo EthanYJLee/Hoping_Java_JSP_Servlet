@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.bootcamp.dto.MyregcampDto;
 import com.bootcamp.host.dao.HostRegMDao;
@@ -12,8 +13,9 @@ public class HostInfoMRMSelectCommand implements BCCommand {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-
-		int regSeq = (int) request.getAttribute("regSeq");
+		
+		HttpSession session = request.getSession();
+		int regSeq = (int) session.getAttribute("regSeq");
 		
 		HostRegMDao dao = new HostRegMDao();
 

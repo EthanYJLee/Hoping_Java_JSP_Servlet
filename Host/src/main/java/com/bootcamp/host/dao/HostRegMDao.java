@@ -333,50 +333,50 @@ public class HostRegMDao {
 		return returnValue;
 	}//upRoughMap
 	
-		//캠핑장 이미지 select
-		public MyregcampDto selectCampImages(int regSeq) {
-			
-			MyregcampDto dto = null;
-			Connection connection = null;
-			PreparedStatement preparedStatement = null;
-			ResultSet resultSet = null;
-			
-			try {
+	//캠핑장 이미지 select
+	public MyregcampDto selectCampImages(int regSeq) {
+		
+		MyregcampDto dto = null;
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		
+		try {
 
-				connection = dataSource.getConnection();
-				String query = "select regImage1, regImage2, regImage3 from regcamp where regSeq = ? ";
+			connection = dataSource.getConnection();
+			String query = "select regImage1, regImage2, regImage3 from regcamp where regSeq = ? ";
+			
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setInt(1, (regSeq));
+			resultSet = preparedStatement.executeQuery();
+			
+			if(resultSet.next()) {
+				//하나니까 if로. 
+				String regImage1 = resultSet.getString("regImage1");
+				String regImage2 = resultSet.getString("regImage2");
+				String regImage3 = resultSet.getString("regImage3");
 				
-				preparedStatement = connection.prepareStatement(query);
-				preparedStatement.setInt(1, (regSeq));
-				resultSet = preparedStatement.executeQuery();
-				
-				if(resultSet.next()) {
-					//하나니까 if로. 
-					String regImage1 = resultSet.getString("regImage1");
-					String regImage2 = resultSet.getString("regImage2");
-					String regImage3 = resultSet.getString("regImage3");
-					
-					dto = new MyregcampDto(regImage1, regImage2, regImage3);
-				}
-				
-			}catch(Exception e){
-				
-				e.printStackTrace();
-				
-			}finally {
-				try {
-					if(resultSet != null) resultSet.close();
-					if(preparedStatement != null) preparedStatement.close();
-					if(connection != null) connection.close();
-				}catch(Exception e) {
-					e.printStackTrace();
-				}
+				dto = new MyregcampDto(regImage1, regImage2, regImage3);
 			}
-			return dto;
-		}//selectCampImages
+			
+		}catch(Exception e){
+			
+			e.printStackTrace();
+			
+		}finally {
+			try {
+				if(resultSet != null) resultSet.close();
+				if(preparedStatement != null) preparedStatement.close();
+				if(connection != null) connection.close();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return dto;
+	}//selectCampImages
 				
 		//캠핑장 이미지1 업데이트
-		public int upImage1(String fileName) {
+		public int upImage1(String fileName, int regSeq) {
 			
 			Connection connection = null;
 			PreparedStatement preparedStatement = null;
@@ -388,11 +388,12 @@ public class HostRegMDao {
 				
 				connection = dataSource.getConnection();
 				
-				String query = "update regcamp set regImage1 = ? where regSeq = 1 ";
+				String query = "update regcamp set regImage1 = ? where regSeq = ? ";
 				
 				preparedStatement = connection.prepareStatement(query);
 				
 				preparedStatement.setString(1, fileName);
+				preparedStatement.setInt(2, regSeq);
 				
 				returnValue = preparedStatement.executeUpdate();
 				
@@ -411,7 +412,7 @@ public class HostRegMDao {
 		}//upRoughMap
 		
 		//캠핑장 이미지2 업데이트
-		public int upImage2(String fileName) {
+		public int upImage2(String fileName, int regSeq) {
 			
 			Connection connection = null;
 			PreparedStatement preparedStatement = null;
@@ -423,12 +424,12 @@ public class HostRegMDao {
 				
 				connection = dataSource.getConnection();
 				
-				String query = "update regcamp set regImage2 = ? where regSeq = 1 ";
+				String query = "update regcamp set regImage2 = ? where regSeq = ? ";
 				
 				preparedStatement = connection.prepareStatement(query);
 				
 				preparedStatement.setString(1, fileName);
-				
+				preparedStatement.setInt(2, regSeq);
 				returnValue = preparedStatement.executeUpdate();
 				
 			}catch(Exception e){
@@ -445,8 +446,8 @@ public class HostRegMDao {
 			return returnValue;
 		}//upRoughMap
 		
-		//캠핑장 이미지2 업데이트
-		public int upImage3(String fileName) {
+		//캠핑장 이미지3 업데이트
+		public int upImage3(String fileName, int regSeq) {
 			
 			Connection connection = null;
 			PreparedStatement preparedStatement = null;
@@ -458,12 +459,12 @@ public class HostRegMDao {
 				
 				connection = dataSource.getConnection();
 				
-				String query = "update regcamp set regImage3 = ? where regSeq = 1 ";
+				String query = "update regcamp set regImage3 = ? where regSeq = ? ";
 				
 				preparedStatement = connection.prepareStatement(query);
 				
 				preparedStatement.setString(1, fileName);
-				
+				preparedStatement.setInt(2, regSeq);
 				returnValue = preparedStatement.executeUpdate();
 				
 			}catch(Exception e){

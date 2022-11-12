@@ -18,12 +18,12 @@ public class HostInfoRoomInCommand implements BCCommand {
 		int roNum = Integer.parseInt(request.getParameter("roNum"));
 		int roPrice = Integer.parseInt(request.getParameter("roPrice"));
 		int roMax = Integer.parseInt(request.getParameter("roMax"));
-		int regSeq = Integer.parseInt(request.getParameter("regSeq")); 
-		int hSeq = (int) request.getAttribute("HSEQ");
+		int regSeq = (int) session.getAttribute("regSeq"); 
+		int hSeq = (int) session.getAttribute("HSEQ");
 		
 		
 		RoomDao dao = new RoomDao();
-		dao.insertRoom(roNum, roPrice, roMax, hSeq, regSeq);
+		dao.insertRoom(roNum, roPrice, roMax, regSeq, hSeq);
 
 	}
 

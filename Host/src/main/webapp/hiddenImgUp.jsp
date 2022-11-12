@@ -44,7 +44,6 @@
 	        String type = multi.getContentType(name);
 	        File file = multi.getFile(name);
 
-
 	        out.println("파라미터 이름" + name + "<br>");
 	        out.println("실제 파일 이름" + original + "<br>");
 	        out.println("저장된 파일 이름" + filename + "<br>");
@@ -54,8 +53,10 @@
 		        out.println("크기: " + file.length() + "<br>");
 		    }
 		    
+		    String link = request.getParameter("link");
+		    
 		    request.setAttribute("FILENAME", filename);
-		    RequestDispatcher dispatcher = request.getRequestDispatcher("addRoughMapUp.do");
+		    RequestDispatcher dispatcher = request.getRequestDispatcher(link);
 		    dispatcher.forward(request, response);
 		    
 	    }

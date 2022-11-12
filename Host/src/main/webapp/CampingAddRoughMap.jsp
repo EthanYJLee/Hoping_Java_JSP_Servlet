@@ -104,16 +104,17 @@
  	<%-- 수정할 약도 업로드 --%>
 	<h5 class="row" style="margin: 25px 0 30px 0">약도 이미지를 업로드해주세요.</h5>
 	<%-- map form --%>
- 	<form action = "hiddenCampRoughMapUp.jsp" method = "post" enctype = "multipart/form-data">
+ 	<form action = "hiddenImgUp.jsp?link=addRoughMapUp.do" method = "post" enctype = "multipart/form-data">
 		<input type = "file" name = "file" size = "50" />
 		<br>
 		<input type = "submit" value = "Upload File" size="50" />
+		<input type="hidden" name="link" value="addRoughMapUp.do">
 	</form>
 	
 	<div class="d-flex flex-row-reverse">
- 		<div class="p-2">
+ 		<form class="p-2">
  			<a href="campingAddSelRoom.do" style="border-radius: 15px; width:100px;" class="btn mybtns btn-secondary">다음</a>
- 		</div>
+ 		</form>
  	</div>
 	
 </div>
