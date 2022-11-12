@@ -28,51 +28,30 @@
 			<div><h3>${DetailView.regName}</h3></div>
 		<hr class="featurette-divider">
 		
-		<!-- 캐러셀 시작  -->
-			<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
-			  	<div class="carousel-indicators">
-				    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-				    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-				    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-			  </div>
-			 <%--  <div class="carousel-inner">
-				   	 <div class="carousel-item active">
-				    	 <img src="${DetailView.regImage1}" class="d-block w-100" alt="Img_1"  height="300" width="700">
-				    </div>
-				    <div class="carousel-item">
-				   		 <img src="${DetailView.regImage2}" class="d-block w-100" alt="Img_2" height="300"  width="700">
-				    </div>
-				    <div class="carousel-item">
-				     	 <img src="${DetailView.regImage3}" class="d-block w-100" alt="Img_1" height="300"  width="700">
-				    </div>
-			  </div> --%>
-			  
-			  <div class="container">
-  				 <div class="carousel-inner">
-				   	 <div class="carousel-item active" style="align-content: center;">
-				    	 <img src="./images/${DetailView.regImage1}" class="d-block" alt="Img_1"  height="400" width="100%">
-				    </div>
-				    <div class="carousel-item">
-				   		 <img src="./images/${DetailView.regImage2}" class="d-block " alt="Img_2" height="400"  width="100%">
-				    </div>
-				    <div class="carousel-item">
-				     	 <img src="./images/${DetailView.regImage3}" class="d-block  " alt="Img_1" height="400"  width="100%">
-				    </div>
-			 	 </div>
-			  </div>	 
-			 	 
-				<!-- 이전 이미지 보여주 -->
-				  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-				    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-				    <span class="visually-hidden">Previous</span>
-				  </button>
-				  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-				    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-				    <span class="visually-hidden">Next</span>
-				  </button>
-				</div>
-		  	<!-- 캐러셀 끝 -->
-		<hr class="featurette-divider">  	
+		<%-- 이미지 카드 넣는 컨테이너 --%>
+		<div class="row justify-container-center">
+			
+			<%-- forEach 여기서 돌리세요 --%>
+			<div class="col-md">
+				<img style="margin-bottom: 20px; border-radius: 5px; width: 18rem;"
+					src="https://a0.muscache.com/im/pictures/prohost-api/Hosting-607458038229062130/original/1e20dfc7-ea12-44b2-a837-2bdcd8502133.jpeg?im_w=720" 
+					class="card" alt="...">
+			</div>
+			<div class="col-md">
+				<img style="margin-bottom: 20px; border-radius: 5px; width: 18rem;"
+					src="https://a0.muscache.com/im/pictures/baf9b74b-edc9-409d-b15c-dbd48883486c.jpg?im_w=720" 
+					class="card" alt="...">
+			</div>
+			<div class="col-md">
+				<img style="margin-bottom: 20px; border-radius: 5px; width: 18rem;"
+					src="https://a0.muscache.com/im/pictures/miso/Hosting-646814822102982021/original/a040ce6f-245b-42af-95db-7a5a7c59a272.jpeg?im_w=720" 
+					class="card" alt="...">
+			</div>
+			
+		</div>
+		<hr class="featurette-divider">  
+		
+		
 		   <!-- 캠핑장 설명 --> 
 		    <div>
 		    	<h4> 캠핑장 설명</h4>
