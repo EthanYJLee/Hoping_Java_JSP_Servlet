@@ -3,12 +3,14 @@ package com.bootcamp.client.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import com.bootcamp.dto.bookDto;
 import com.bootcamp.joindto.campDto;
 
 
@@ -338,4 +340,59 @@ public class CampDao {
 		}
 		return result;
 	} //readRoomPrice
+	
+	public ArrayList<bookDto> ViewBooking(String cId){
+		ArrayList<bookDto> dtos = new ArrayList<bookDto>();
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		
+		bookDto dto;
+		
+		try {
+			connection = dataSource.getConnection();
+			System.out.println("Query start");
+			String query = "select * from book where cId = "+cId;;
+			preparedStatement = connection.prepareStatement(query);
+			resultSet = preparedStatement.executeQuery();
+			System.out.println("Query Execute");
+			
+			while(resultSet.next()) {
+				int boSeq = resultSet.getInt("boSeq");
+				int boPrice = resultSet.getInt("boPrice");	
+				Timestamp boDate = resultSet.getTimestamp("boDate");
+				Timestamp boCheckindate = resultSet.getTimestamp("boCheckindate");
+				int boGroup = resultSet.getInt("boGroup");
+				int boCount = resultSet.getInt("boCount");
+				Timestamp boCanceldate = resultSet.getTimestamp("boCanceldate");
+				String pay_cid = resultSet.getString("pay_cid");
+				int pay_room_roSeq = resultSet.getInt("pay_room_roSeq");
+				int pay_room_regcamp_regSeq = resultSet.getInt("pay_room_regcamp_regSeq");
+				int pay_room_regcamp_host_hSeq = resultSet.getInt("pay_room_regcamp_host_hSeq");
+				String pay_client_cId = resultSet.getString("pay_client_cId");
+				
+				System.out.println("cId:"+cId+":");
+
+				dto = new bookDto(boSeq, boPrice, boDate, boCheckindate, boGroup, boCount, boCanceldate, pay_cid, pay_room_roSeq, pay_room_regcamp_regSeq, pay_room_regcamp_host_hSeq, pay_client_cId);
+				dtos.add(dto);
+				System.out.println("DTO book Add");
+			}
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(resultSet != null) resultSet.close();
+				if(preparedStatement != null) preparedStatement.close();
+				if(connection != null) connection.close();
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return dtos;
+	} // ViewBooking	
+
+	
+	
 }

@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.bootcamp.client.dao.CampDao;
+import com.bootcamp.joindto.BookJoinDto;
 
 public class BCInsertBookCommand implements BCCommand {
 
@@ -28,8 +29,7 @@ public class BCInsertBookCommand implements BCCommand {
 		String roNum = (String)session.getAttribute("roNum");
 		String regSeq = (String)session.getAttribute("regSeq");
 		System.out.println("BCInsertBookCommand_________roNum:"+roNum);
-		System.out.println("BCInsertBookCommand_________regSeq:"+regSeq);
-		
+		System.out.println("BCInsertBookCommand_________regSeq:"+regSeq);	
 		// InputBook 의 Dao 를 생성함.  		
 		CampDao dao = new CampDao();
 		// 체크인 날짜와 체크 아웃 날짜의 날 수를 계산.
@@ -46,8 +46,7 @@ public class BCInsertBookCommand implements BCCommand {
 			int maxBookSeq = dao.readMaxSeq();
 			System.out.println("8.maxBookSeq:"+maxBookSeq+":");
 			// boGroup 의 
-			dao.updateBook(maxBookSeq);
-					
+			dao.updateBook(maxBookSeq);				
 			// 예약 날짜가 하루 이상이면
 			if (intdiff > 1) {
 				// 체크인 날짜 다음 날짜를 구한다.
@@ -61,6 +60,15 @@ public class BCInsertBookCommand implements BCCommand {
 				}
 			}
 		}
+/*		
+		BookDto dto = new BookDto();
+		
+		dto.setRegSeq(regSeq);
+		dto.setBoCheckindate(startdate);
+		dto.setBoCheckoutdate(stopdate);
+		
+		request.setAttribute("Book", dto);
+*/
 	}
 
 	@Override

@@ -28,6 +28,7 @@ import com.bootcamp.client.command.ClientmypageView_Command;
 import com.bootcamp.client.command.Clientwrite_Command;
 import com.bootcamp.client.command.ListMain_Command;
 import com.bootcamp.client.command.SearchCamp_Command;
+import com.bootcamp.client.command.BCViewBookingCommand;
 import com.bootcamp.client.dao.ClientDao;
 
 /**
@@ -129,10 +130,18 @@ public class BCFrontController extends HttpServlet {
 			System.out.println("pay for Booking");
 			command = new BCInsertBookCommand();
 			command.execute(request, response);
-			viewPage = "Calendar3.jsp";
+			viewPage = "ViewBooking.jsp";
 			System.out.println(" controller case pay.do 에서 보내는 insert for Booking End");
 			break;			
 
+		case("/bookingView.do"):
+			System.out.println("view for Booking");
+			command = new BCViewBookingCommand();
+			command.execute(request, response);
+			viewPage = "ViewBooking.jsp";
+			System.out.println(" controller case pay.do 에서 보내는 insert for Booking End");
+			break;	
+			
 			
 			// 로그인
 			//22-11-10 주현씨 수정함 
