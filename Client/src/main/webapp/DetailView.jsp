@@ -96,7 +96,7 @@
 		     		    	     <hr class="featurette-divider"> 
 		     
 		    <!-- 예약하러 가기 --> 
-	  		<div class="container-md d-flex justify-content-center" style="margin-top: 10px;	">
+	  		<div class="container-md d-flex justify-content-center" style="margin-top: 10px;">
 	  			<form action="booking.do" method="post"style="margin: 10px;">
 	  				  <input type="hidden" name="regSeq" value="${DetailView.regSeq}" >
 				      <button type="submit" class="btn btn-primary">예약하러 가기</button>

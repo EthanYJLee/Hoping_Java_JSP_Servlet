@@ -36,8 +36,9 @@ import com.bootcamp.joindto.checkdate2Dto;
 		}
 	
 		
+		// DetailView 에서 보여주는 값을 DB에서 받아오는 메쏘드
 	
-	// View							// 여기서 받아오는 이름이 밑에서 쓸 변수랑 같으면 안댐, 에러남 그래서 강사님이 sbId라고 받아왔음 
+	// View				// 여기서 받아오는 이름이 밑에서 쓸 변수랑 같으면 안댐, 에러남 그래서 강사님이 sbId라고 받아왔음 
 	public regcampDto DetailView(String reSeq) { // 데이터가 1개뿐이라 dto에 담아서 가지고 와서 보여줄 거임 
 		regcampDto dto = null;
 		Connection connection = null;
@@ -83,7 +84,6 @@ import com.bootcamp.joindto.checkdate2Dto;
 		}
 		return dto;
 	} // DetailView  END
-//	select roNum from room where regcamp_regSeq='1' and regcamp_host_hSeq=(select host_hSeq from regcamp where regSeq='1');
 	
 		
 	
