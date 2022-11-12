@@ -13,9 +13,11 @@ public class HostInfoMRMSelectCommand implements BCCommand {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 
+		int regSeq = (int) request.getAttribute("regSeq");
+		
 		HostRegMDao dao = new HostRegMDao();
 
-		MyregcampDto dto = dao.selectInfoRoughMap(1);
+		MyregcampDto dto = dao.selectInfoRoughMap(regSeq);
 
 		request.setAttribute("roughMap", dto);
 

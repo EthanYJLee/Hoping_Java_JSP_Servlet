@@ -107,8 +107,6 @@ public class FacilityDao {
 	} //delete
 	
 	//insert---------
-	//regSeq와 hSeq, fName을 받아오고, fNmae 개수만큼,,, insert 실행 (fName을 배열에 넣어서 for문 돌리기??)
-	//command에서 해보면 되나..
 	public void insertFacility(String fName, int hSeq, int regSeq) {
 		
 		Connection connection = null;

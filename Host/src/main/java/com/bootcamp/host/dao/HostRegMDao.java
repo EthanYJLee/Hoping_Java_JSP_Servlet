@@ -28,6 +28,7 @@ public class HostRegMDao {
 		
 	}//생성자
 	
+	//1. ------------------------------캠핑장 추가 등록------------------------------
 	//위치, 설명, 이름, 전화번호, 카테고리 insert ---------
 	public void inCampLo(String regDetailaddress, String regSummary, String regName, String regTel, String regCategory, int hSeq) {
 		
@@ -64,80 +65,123 @@ public class HostRegMDao {
 		}
 	} //inCampLo
 	
-	
+	//위에서 입력한 값을 토대로 regSeq select하기
+	public int selectRegSeq(String regDetailaddress, String regSummary, String regName, String regTel, String regCategory, int hSeq) {
+		
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		int regSeq = 0;
+		
+		try {
+
+			connection = dataSource.getConnection();
+			String query = "select regSeq from regcamp where regDetailaddress = ? and regSummary = ? and regName = ? ";
+			String query2 = "and regTel = ? and regCategory = ? and host_hSeq = ? ";
+			
+			preparedStatement = connection.prepareStatement(query + query2);
+			preparedStatement.setString(1, regDetailaddress);
+			preparedStatement.setString(2, regSummary);
+			preparedStatement.setString(3, regName);
+			preparedStatement.setString(4, regTel);
+			preparedStatement.setString(5, regCategory);
+			preparedStatement.setInt(6, hSeq);
+			resultSet = preparedStatement.executeQuery();
+			
+			if(resultSet.next()) {
+				
+				regSeq = resultSet.getInt("regSeq");
+				
+			}
+			
+		}catch(Exception e){
+			
+			e.printStackTrace();
+			
+		}finally {
+			try {
+				if(resultSet != null) resultSet.close();
+				if(preparedStatement != null) preparedStatement.close();
+				if(connection != null) connection.close();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return regSeq;
+	}//selectRegSeq
 	
 	//위치, 설명 select ---------
-		public MyregcampDto selectInfoLS(int regSeq, int hSeq) {
-			
-			MyregcampDto dto = null;
-			Connection connection = null;
-			PreparedStatement preparedStatement = null;
-			ResultSet resultSet = null;
-			
-			try {
-
-				connection = dataSource.getConnection();
-				String query = "select regDetailaddress, regSummary from regcamp rc, host h ";
-				String query2 = "where rc.host_hSeq = h.hSeq and regSeq = ? and host_hSeq = ? ";
-				
-				preparedStatement = connection.prepareStatement(query + query2);
-				preparedStatement.setInt(1, (regSeq));
-				preparedStatement.setInt(2, (hSeq));
-				resultSet = preparedStatement.executeQuery();
-				
-				if(resultSet.next()) {
-					//하나니까 if로. 
-					String regDetailaddress = resultSet.getString("regDetailaddress");
-					String regSummary = resultSet.getString("regSummary");
-					
-					dto = new MyregcampDto(regDetailaddress, regSummary);
-				}
-				
-			}catch(Exception e){
-				
-				e.printStackTrace();
-				
-			}finally {
-				try {
-					if(resultSet != null) resultSet.close();
-					if(preparedStatement != null) preparedStatement.close();
-					if(connection != null) connection.close();
-				}catch(Exception e) {
-					e.printStackTrace();
-				}
-			}
-			return dto;
-		}//selectInfoLS
+	public MyregcampDto selectInfoLS(int regSeq, int hSeq) {
 		
-		//위치, 설명 update ---------
-		public void upInfoLS(String regDetailaddress, String regSummary, int regSeq) {
+		MyregcampDto dto = null;
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		
+		try {
+
+			connection = dataSource.getConnection();
+			String query = "select regDetailaddress, regSummary from regcamp rc, host h ";
+			String query2 = "where rc.host_hSeq = h.hSeq and regSeq = ? and host_hSeq = ? ";
 			
-			Connection connection = null;
-			PreparedStatement preparedStatement = null;
+			preparedStatement = connection.prepareStatement(query + query2);
+			preparedStatement.setInt(1, (regSeq));
+			preparedStatement.setInt(2, (hSeq));
+			resultSet = preparedStatement.executeQuery();
 			
-			try {
+			if(resultSet.next()) {
+				//하나니까 if로. 
+				String regDetailaddress = resultSet.getString("regDetailaddress");
+				String regSummary = resultSet.getString("regSummary");
 				
-				connection = dataSource.getConnection();
-				
-				String query = "update regcamp set regDetailaddress = ?, regSummary = ? where regSeq = ? ";
-				preparedStatement = connection.prepareStatement(query);
-				preparedStatement.setString(1, regDetailaddress);
-				preparedStatement.setString(2, regSummary);
-				preparedStatement.setInt(3, regSeq);
-				preparedStatement.executeUpdate();
-				
-			}catch (Exception e) {
-				e.printStackTrace();
-			}finally {
-				try {
-					if(preparedStatement != null) preparedStatement.close();
-					if(connection != null) connection.close();
-					
-				}catch(Exception e) {
-					e.printStackTrace();
-				}
+				dto = new MyregcampDto(regDetailaddress, regSummary);
 			}
-		} //upInfoLS
+			
+		}catch(Exception e){
+			
+			e.printStackTrace();
+			
+		}finally {
+			try {
+				if(resultSet != null) resultSet.close();
+				if(preparedStatement != null) preparedStatement.close();
+				if(connection != null) connection.close();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return dto;
+	}//selectInfoLS
+		
+	//위치, 설명 update ---------
+	public void upInfoLS(String regDetailaddress, String regSummary, int regSeq) {
+		
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		try {
+			
+			connection = dataSource.getConnection();
+			
+			String query = "update regcamp set regDetailaddress = ?, regSummary = ? where regSeq = ? ";
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setString(1, regDetailaddress);
+			preparedStatement.setString(2, regSummary);
+			preparedStatement.setInt(3, regSeq);
+			preparedStatement.executeUpdate();
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(preparedStatement != null) preparedStatement.close();
+				if(connection != null) connection.close();
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+	} //upInfoLS
 	
 	//이름, 카테고리, 전화번호 select ---------
 	public MyregcampDto selectInfoNCT(int regSeq, int hSeq) {
@@ -216,80 +260,79 @@ public class HostRegMDao {
 	} //write
 	
 	//약도 이미지 select
-		public MyregcampDto selectInfoRoughMap(int regSeq) {
-			
-			MyregcampDto dto = null;
-			Connection connection = null;
-			PreparedStatement preparedStatement = null;
-			ResultSet resultSet = null;
-			
-			try {
+	public MyregcampDto selectInfoRoughMap(int regSeq) {
+		
+		MyregcampDto dto = null;
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		
+		try {
 
-				connection = dataSource.getConnection();
-				String query = "select regImage4 from regcamp where regSeq = ?";
+			connection = dataSource.getConnection();
+			String query = "select regImage4 from regcamp where regSeq = ?";
+			
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setInt(1, regSeq);
+			resultSet = preparedStatement.executeQuery();
+			
+			if(resultSet.next()) {
+				//하나니까 if로. 
+				String regImage4 = resultSet.getString("regImage4");
 				
-				preparedStatement = connection.prepareStatement(query);
-				preparedStatement.setInt(1, (regSeq));
-				resultSet = preparedStatement.executeQuery();
-				
-				if(resultSet.next()) {
-					//하나니까 if로. 
-					String regImage4 = resultSet.getString("regImage4");
-					
-					dto = new MyregcampDto(regImage4);
-				}
-				
-			}catch(Exception e){
-				
-				e.printStackTrace();
-				
-			}finally {
-				try {
-					if(resultSet != null) resultSet.close();
-					if(preparedStatement != null) preparedStatement.close();
-					if(connection != null) connection.close();
-				}catch(Exception e) {
-					e.printStackTrace();
-				}
+				dto = new MyregcampDto(regImage4);
 			}
-			return dto;
-		}//selectInfoRoughMap
+			
+		}catch(Exception e){
+			
+			e.printStackTrace();
+			
+		}finally {
+			try {
+				if(resultSet != null) resultSet.close();
+				if(preparedStatement != null) preparedStatement.close();
+				if(connection != null) connection.close();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return dto;
+	}//selectInfoRoughMap
 		
-		//약도 이미지 업데이트
-		public int upRoughMap(String fileName) {
+	//약도 이미지 업데이트
+	public int upRoughMap(String fileName, int regSeq) {
+		
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		int returnValue = 0;
+		
+		try {
 			
-			Connection connection = null;
-			PreparedStatement preparedStatement = null;
-			int returnValue = 0;
+			connection = dataSource.getConnection();
 			
-			//rs랑 arraylist 필요 x 인서트만 하니까
+			String query = "update regcamp set regImage4 = ? where regSeq = ? ";
 			
+			preparedStatement = connection.prepareStatement(query);
+			
+			preparedStatement.setString(1, fileName);
+			preparedStatement.setInt(2, regSeq);
+			
+			returnValue = preparedStatement.executeUpdate();
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally {
 			try {
 				
-				connection = dataSource.getConnection();
-				
-				String query = "update regcamp set regImage4 = ? where regSeq = 1 ";
-				
-				preparedStatement = connection.prepareStatement(query);
-				
-				preparedStatement.setString(1, fileName);
-				
-				returnValue = preparedStatement.executeUpdate();
-				
-			}catch(Exception e){
+				if(preparedStatement != null) preparedStatement.close();
+				if(connection != null) connection.close();
+			}catch(Exception e) {
 				e.printStackTrace();
-			}finally {
-				try {
-					
-					if(preparedStatement != null) preparedStatement.close();
-					if(connection != null) connection.close();
-				}catch(Exception e) {
-					e.printStackTrace();
-				}
 			}
-			return returnValue;
-		}//upRoughMap
-		
+		}
+		return returnValue;
+	}//upRoughMap
+	
 		//캠핑장 이미지 select
 		public MyregcampDto selectCampImages(int regSeq) {
 			

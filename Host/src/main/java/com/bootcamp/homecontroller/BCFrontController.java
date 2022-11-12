@@ -55,37 +55,20 @@ import com.bootcamp.host.command.askDetailCommand;
 import com.bootcamp.host.command.askListCommand;
 import com.bootcamp.host.dao.HostBookPagingDao;
 
-/**
- * Servlet implementation class homeController
- */
 @WebServlet("*.do")
 public class BCFrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * Default constructor.
-	 */
 	public BCFrontController() {
-		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		actionDo(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		actionDo(request, response);
 	}
 
@@ -254,31 +237,64 @@ public class BCFrontController extends HttpServlet {
 
 		// ------------예진 : 캠핑장 추가 페이지 ------------------------------------
 			
-		// 이름, 설명, 카테고리 등록
+		// 이름, 설명, 카테고리 등록하고 -> 편의시설 등록 페이지로 이동
 		case ("/campingAddLo.do"):
 			command = new CampingAddCommand();
 			command.execute(request, response);
 			viewPage = "CapmingAddFa.jsp";
 			break;
 		
-		//편의시설 등록
+		//편의시설 등록 -> 키워드 등록 페이지로 이동
 		case ("/campingAddFa.do"):
 			command = new CampingAddFaCommand();
 			command.execute(request, response);
 			viewPage = "CapmingAddKey.jsp";
 			break;
 			
-		//키워드 등록
+		//키워드 등록 -> 약도 등록 페이지
 		case ("/campingAddKey.do"):
 			command = new CampingAddKeyCommand();
 			command.execute(request, response);
-			viewPage = "CampingAddKeyFa.jsp";
+			viewPage = "CampingAddRoughMap.do";
 			break;
 			
+		//약도 이미지 보여주기
+		//페이지 처음 열 때는 디폴트 이미지 보여주고, 업로드 버튼 누르면 그걸 보여주기 위해서 select
+		case ("/CampingAddRoughMap.do"):
+			command = new HostInfoMRMSelectCommand();
+			command.execute(request, response);
+			viewPage = "CampingAddRoughMap.jsp";
+			break;
 			
+		// 약도 이미지 업데이트
+		case ("/addRoughMapUp.do"):
+			command = new HostInfoMRMUpdateCommand();
+			command.execute(request, response);
+			viewPage = "CampingAddRoughMap.do";
+			break;
+		
+		// 약도 -> 자리 select해서 보여주기
+		case ("/campingAddSelRoom.do"):
+			command = new HostInfoRoomSelectCommand();
+			command.execute(request, response);
+			viewPage = "CampingAddRoom.jsp";
+			break;
 			
+		// 자리 인서트
+		case ("/campingAddRoom.do"):
+			command = new HostInfoRoomInCommand();
+			command.execute(request, response);
+			viewPage = "campingAddSelRoom.do";
+			break;
+
+		// 자리 delete
+		case ("/campingAddRoomDel.do"):
+			command = new HostInfoRoomDelCommand();
+			command.execute(request, response);
+			viewPage = "campingAddSelRoom.do";
+			break;
 			
-			
+		
 			
 			
 			

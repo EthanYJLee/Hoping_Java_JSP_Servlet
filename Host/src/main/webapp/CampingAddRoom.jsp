@@ -83,13 +83,12 @@
      </ul>
    </header>
  </div>
-
-
+ 
 <%-- 본문 --%>
 <%-- 테이블 --%>
 <div class="container">
 	<div class="row">
-		<h5 class="row" style="margin: 20px 0 20px 0">캠핑장의 자리를 등록하기</h5>
+		<h5 class="row" style="margin: 20px 0 20px 0">캠핑장의 자리를 수정하기</h5>
 	</div>
 	<div class="row">
 		<div class="col"></div>
@@ -109,7 +108,7 @@
 								<td class="mytd">${dto.roPrice }</td>
 								<td class="mytd">${dto.roMax }</td>
 								<td class="mytd">
-									<a href="HostInfoRoomDel.do?roSeq=${dto.roSeq }" type="button" class="btn btn-secondary" style="height: 30px; font-size: 13px;" >
+									<a href="campingAddRoomDel.do?roSeq=${dto.roSeq }" type="button" class="btn btn-secondary" style="height: 30px; font-size: 13px;" >
 										삭제 
 									</a>
 								</td>
@@ -120,7 +119,8 @@
 			</div>
 		<%-- 등록 폼 --%>
 			<div class="container ">
-				<form name ="Member" action="HostInfoRoomIn.do" method="post">
+				<%-- 추가 form --%>
+				<form name ="Member" action="campingAddRoom.do" method="post">
 					<table class="myscontainer" style="width: 500px; margin-right: 0px">
 						<tr class="row justify-content-center">
 							<td class="col-3">자리 번호</td>
@@ -135,13 +135,14 @@
 							<td class="col-3"><input name="roMax" type="text" class="form-control myinfoinput" placeholder="숫자만 입력해주세요" aria-label="text"></td>
 						</tr>
 					</table>
-					<%-- 추가, 완료 버튼 --%>
 					<div class="row myscontainer justify-content-center">
 						<input type="button" onclick="checkMember()" style="border-radius: 15px; width:100px;" value="추가" class=" col-2 btn mybtns btn-secondary">
 					</div>
 				</form>
+				
+				<%-- 페이지 넘기는 버튼 --%>
 				<div class="row justify-content-end">
-					<a href="host_main.do" style="border-radius: 15px; width:100px;" class="col-2 btn mbtn">완료</a>
+					<a href="CampingAddimages.jsp" style="border-radius: 15px; width:100px;" class="col-2 btn mbtn">완료</a>
 				</div>
 			</div>
 		</div>

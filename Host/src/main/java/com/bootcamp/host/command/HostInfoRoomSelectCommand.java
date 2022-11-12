@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.bootcamp.dto.roomDto;
 import com.bootcamp.host.dao.RoomDao;
@@ -14,12 +15,15 @@ public class HostInfoRoomSelectCommand implements BCCommand {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 
-		String regSeq = request.getParameter("regSeq");
-		String hSeq = request.getParameter("hSeq");
-
+		HttpSession session = request.getSession();
+		
+		int regSeq = (int) request.getAttribute("regSeq");
+		int hSeq = (int) request.getAttribute("HSEQ");
+		
+		
 		RoomDao dao = new RoomDao();
 
-		ArrayList<roomDto> dtos = dao.selectRoom(1, 1);
+		ArrayList<roomDto> dtos = dao.selectRoom(regSeq, hSeq);
 
 		request.setAttribute("list", dtos);
 
