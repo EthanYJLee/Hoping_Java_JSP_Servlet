@@ -210,7 +210,138 @@ public class ClientDao {
 			}
 		}
 	}//ClientModify End 
+
+	/// 아이디 중복검사
+	public int checkId(String cId) { // 유저가 입력한 값을 매개변수로 한다
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+//		int idCheck = 0;
+
+		try {
+			connection = dataSource.getConnection();
+
+			String sql = "select * from client where cId = ? "; // 입력값이 테이블에 있는지 확인
+
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, cId);
+
+			resultSet = preparedStatement.executeQuery();
+
+			if (resultSet.next() || cId.equals("")) {
+				return 0; // 이미 존재하는 경우, 생성 불가능
+			} else {
+				return 1; // 존재하지 않는 경우, 생성 가능
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+				if (connection != null)
+					connection.close();
+				if (resultSet != null)
+					resultSet.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return -1;
+
+	}
+
 	
+	/*
+	 22-11-12 Hosik - 성연씨가 작업해 주신거.
+	 				아이디와 비밀번호 찾기는 email 로 시도해 볼 예정, 안되면 아래꺼 사용하고 되면은 아래껀 사용 안할꺼입니다 
+	  
+	 */
+	// 아이디 찾기
+	public String idsearch(String cName, String cEmail) {
+
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		String cId = null;
+
+		try {
+			connection = dataSource.getConnection();
+
+			String query = "select cId from client where cDdate is null and cName=? and cEmail=?; ";
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setString(1, cName);
+			preparedStatement.setString(2, cEmail);
+
+			resultSet = preparedStatement.executeQuery();
+
+			if (resultSet.next()) {
+				cId = resultSet.getString("cId");
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		} finally {
+			try {
+				if (resultSet != null)
+					resultSet.close();
+				if (preparedStatement != null)
+					preparedStatement.close();
+				if (connection != null)
+					connection.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		}
+		return cId;
+
+	}
+
+	// 비밀번호 찾기
+	public String pwsearch(String cId, String cName, String cEmail) {
+
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		String cPw = null;
+
+		try {
+			connection = dataSource.getConnection();
+
+			String query = "select cPw from client where cDdate is null and cId=? and cName=? and cEmail=? ; ";
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setString(1, cId);
+			preparedStatement.setString(2, cName);
+			preparedStatement.setString(3, cEmail);
+
+			resultSet = preparedStatement.executeQuery();
+
+			if (resultSet.next()) {
+				cPw = resultSet.getString("cPw");
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		} finally {
+			try {
+				if (resultSet != null)
+					resultSet.close();
+				if (preparedStatement != null)
+					preparedStatement.close();
+				if (connection != null)
+					connection.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		}
+		return cPw;
+	}
+
 	
 	
 	

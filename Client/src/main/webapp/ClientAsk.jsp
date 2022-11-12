@@ -27,31 +27,29 @@
 
 	<main>
 	<div  class="container-md d-flex justify-content-center">
-		<form action="" method="post">
+		<form action="ask.do" method="post">
 					
 			<table style="margin-bottom: 25px;">
 					<tr><td colspan="2"><h4 style="margin: 15px 0px 30px 0px;"> 문의 내용 입력하기</h4></td></tr>
 					<tr>
-						<td style="padding-right: 15px" colspan="2">${DetailView.regName} 캠핑장 </td>
+						<td style="padding-right: 15px" colspan="2">${DetailView.regName} </td>
 					</tr>
 					<tr>
-						<td style="padding-right: 15px">제목</td><td><input class="form-control" type="text"></td>
+						<td style="padding-right: 15px">제목</td><td><input class="form-control" type="text" name="aTitle"></td>
 					</tr>
 						<tr>
-						<td style="padding-right: 15px">작성자</td><td>${cId} </td>
-					</tr>
-						<tr>
-						<td style="padding-right: 15px">받는사람 </td><td>${DetailView.regSeq} </td>
+						<td style="padding-right: 15px">작성자</td><td><%=session.getAttribute("cId")  %> </td>
 					</tr>
 					<tr>
 						<td style="padding-right: 15px">문의 내용</td>
 						<td><div class="form-floating">
-	  						<textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 300px; width:400px;"></textarea>
+	  						<textarea class="form-control" name="aContent" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 300px; width:400px;"></textarea>
 	 						<label for="floatingTextarea2">Comments</label></div>
 						</td>
 				</tr>
 				<tr><td></td><td>
-					<input type="hidden" name="host_seq" name="host_seq" value ="<%-- ${ host _seq 가지고 올거임 } --%>">
+					<input type="hidden" name="aRegSeq" value ="${DetailView.regSeq} ">
+					<input type="hidden" name="aCId" value ="<%=session.getAttribute("cId")  %> ">
 					<button type="submit" style="border-radius: 15px; width:100px;" class=" btn btn-secondary">완료</button>
 				</td></tr>
 			</table>

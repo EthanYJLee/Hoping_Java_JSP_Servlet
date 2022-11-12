@@ -208,7 +208,7 @@ public class BCFrontController extends HttpServlet {
 		case ("/ask.do"):
 			command = new BCAskCommand();
 			command.execute(request, response);
-			viewPage = "detailView.jsp";
+			viewPage = "main.do";
 			break;	
 			
 			
@@ -221,7 +221,7 @@ public class BCFrontController extends HttpServlet {
 //			   viewPage = "Review_List.jsp";
 //			   break;
 			   
-
+			
 		}// switch End
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
