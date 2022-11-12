@@ -34,7 +34,7 @@
 			<path d="M8 6.982C9.664 5.309 13.825 8.236 8 12 2.175 8.236 6.336 5.309 8 6.982Z"/>
 			<path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.707L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.646a.5.5 0 0 0 .708-.707L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5 5 5Z"/>
 		</svg>
-       <span class="mytitle"><b>Hoping Admin</b></span>
+       <span class="mytitle"><b>Hoping Host</b></span>
      </a>
      
      <ul class="nav nav-pills">
@@ -67,12 +67,12 @@
 		  <option value="1">One</option>
 		</select>
 		<%-- 달력입니당. --%>
-		<form class="col-10" action="bookSearch.do">
+		<form class="col-10" action="bookList.do?page=1">
 			<div class="row">
 			<div class="col-4" autocomplete="off">
 					<div class="input-group input-daterange">
-						<input name="start" value="start" type="text" style="background-color: white; border-radius: 13px; height: 33px; font-size: 13px;" class="mydinput form-control" placeholder="Start" readonly>
-						<input name="end" type="text" style="border-radius: 13px; height: 33px; font-size: 13px;" class="secondary form-control" placeholder="End" readonly>
+						<input name="startDate" value="start" type="text" style="background-color: white; border-radius: 13px; height: 33px; font-size: 13px;" class="mydinput form-control" placeholder="Start" readonly>
+						<input name="endDate" type="text" style="border-radius: 13px; height: 33px; font-size: 13px;" class="secondary form-control" placeholder="End" readonly>
 					</div>
 			</div>
 			<%-- search --%>
@@ -85,7 +85,7 @@
 				</svg>
 			</button>
 	        </div>
-        </form>
+	    </form>
         </div>
 	</div>
 
@@ -115,6 +115,19 @@
 		</table>	  
 	</div>
 </div>
+
+<form class="container d-flex justify-content-center" style="margin: 30px">
+	
+<%
+
+request.setCharacterEncoding("utf-8");
+int pageCount = Integer.valueOf(request.getAttribute("pageCount").toString()); 
+
+%>
+	<c:forEach begin="1" end="<%=pageCount %>" var="pageCount" step="1" varStatus="vs"> 
+		<input type="submit" name="page" value="${vs.count}" class="btn btn-outline-secondary">
+	</c:forEach>
+</form>
     
 
 <script type="text/javascript">

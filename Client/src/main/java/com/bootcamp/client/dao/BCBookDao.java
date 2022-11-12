@@ -36,8 +36,9 @@ import com.bootcamp.joindto.checkdate2Dto;
 		}
 	
 		
+		// DetailView 에서 보여주는 값을 DB에서 받아오는 메쏘드
 	
-	// View							// 여기서 받아오는 이름이 밑에서 쓸 변수랑 같으면 안댐, 에러남 그래서 강사님이 sbId라고 받아왔음 
+	// View				// 여기서 받아오는 이름이 밑에서 쓸 변수랑 같으면 안댐, 에러남 그래서 강사님이 sbId라고 받아왔음 
 	public regcampDto DetailView(String reSeq) { // 데이터가 1개뿐이라 dto에 담아서 가지고 와서 보여줄 거임 
 		regcampDto dto = null;
 		Connection connection = null;
@@ -83,7 +84,6 @@ import com.bootcamp.joindto.checkdate2Dto;
 		}
 		return dto;
 	} // DetailView  END
-//	select roNum from room where regcamp_regSeq='1' and regcamp_host_hSeq=(select host_hSeq from regcamp where regSeq='1');
 	
 		
 	
@@ -138,7 +138,7 @@ import com.bootcamp.joindto.checkdate2Dto;
 	
 	// 22-11-11 Created Hosik
 	// DB checkdate2 에서 예약 마지막 페이지에 사용되는 값들 가져와서 dto에 저장함 
-	public checkdate2Dto confirmation(int roomNum, String room_regCamp_Name) { 
+	public checkdate2Dto confirmation(String roomNum, String room_regCamp_Name) { 
 		Connection connection = null;
 		PreparedStatement preparedStatement = null; // 이거 쓸꺼면 ? 써도 댐 
 		ResultSet resultSet = null;
@@ -150,7 +150,7 @@ import com.bootcamp.joindto.checkdate2Dto;
 			
 			String query = "select roPrice, roMax, regcamp_regSeq, regImage4 from checkdate2 where roNum = ? and regName = '"+room_regCamp_Name+"';";
 			preparedStatement = connection.prepareStatement(query);
-			preparedStatement.setInt(1, roomNum);
+			preparedStatement.setString(1, roomNum);
 			resultSet = preparedStatement.executeQuery();
 			System.out.println("BCBookDao에 dao실행 안쪽 try 안에 있음 ");				//<<<<<<<<<<<<<<<<<<<<<<<<<<<<< syso
 			if(resultSet.next()) {

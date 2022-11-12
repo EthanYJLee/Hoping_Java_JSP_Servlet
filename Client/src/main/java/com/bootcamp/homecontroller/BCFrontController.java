@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.swing.JOptionPane;
 
 import com.bootcamp.client.command.BCAskCommand;
+import com.bootcamp.client.command.BCAskViewCommand;
 import com.bootcamp.client.command.BCBookingConfirmationCommand;
 import com.bootcamp.client.command.BCCalcDateCommand;
 import com.bootcamp.client.command.BCCampDateCheckCommand;
@@ -125,14 +126,13 @@ public class BCFrontController extends HttpServlet {
 			
 			// sql book table 에 insert 하는 command 이후수정될 여지 많음 
 		case("/pay.do"):
-			System.out.println("insert for Booking");
+			System.out.println("pay for Booking");
 			command = new BCInsertBookCommand();
 			command.execute(request, response);
 			viewPage = "Calendar3.jsp";
-				System.out.println(" controller case pay.do 에서 보내는 insert for Booking End");
+			System.out.println(" controller case pay.do 에서 보내는 insert for Booking End");
 			break;			
-			
-		
+
 			
 			// 로그인
 			//22-11-10 주현씨 수정함 
@@ -197,12 +197,22 @@ public class BCFrontController extends HttpServlet {
 			viewPage = "Booking.jsp";
 			break;
 			
-			
+			// 캠핑장에서 문의하기로 이동시켜주는 커맨드 
 		case ("/askView.do"):
-			command = new BCAskCommand();
+			command = new BCAskViewCommand();
 			command.execute(request, response);
 			viewPage = "ClientAsk.jsp";
 			break;
+			
+			// 문의하는 페이지에서 문의등록 하는 커맨드 
+		case ("/ask.do"):
+			command = new BCAskCommand();
+			command.execute(request, response);
+			viewPage = "detailView.jsp";
+			break;	
+			
+			
+			
 			
 			//--- HyunSuk ----------------------------------------------------------------
 //		case ("/Review_List.do"):

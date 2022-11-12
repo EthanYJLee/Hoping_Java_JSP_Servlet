@@ -1,60 +1,56 @@
 package com.bootcamp.host.command;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bootcamp.host.dao.BookJoinDao;
 import com.bootcamp.host.dao.HostBookPagingDao;
-import com.bootcamp.joindto.BookListDto;
 
-public class HostBookListCommand implements BCCommand {
+public class HostBookTotalPagingCommand implements BCCommand {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
-		BookJoinDao bookJoinDao = new BookJoinDao();
-		HostBookPagingDao hostBookPagingDao = new HostBookPagingDao();
+		
+		HostBookPagingDao dao = new HostBookPagingDao();
+		
 		String hSeq = request.getParameter("hSeq");
 		String strSearch = request.getParameter("strSearch");
 		String startDate = request.getParameter("startDate");
 		String endDate = request.getParameter("endDate");
 		
-		//선택한 페이지
-		int page = Integer.parseInt(request.getParameter("page"));
-
-		//한 페이지당 row 개수 지정
-		int pageRow = 10;
+		System.out.println(startDate);
+		System.out.println(strSearch);
 		
-		//페이지 시작점
-		int startRow = pageRow * (page -1);
-		
-		if(startDate == null) {
-		
+		if(startDate != null) {
+			
+			strSearch = "";		
 			//전체 row 개수
-			int countRow = bookJoinDao.countRow("1");
+			int countRow = dao.countRow("1", strSearch, startDate, endDate);
+			
+			System.out.println("strSearch: " +strSearch);
 			
 			//총 페이지 개수
-			int pageCount = (countRow / 10) + 1;
+			int pageCount = (countRow / 10) +1;
 			request.setAttribute("pageCount", pageCount);
-	
-			ArrayList<BookListDto> dtos = bookJoinDao.list("1", startRow, pageRow);
-	
-			request.setAttribute("list", dtos);
 			
 		}else {
 			
-			ArrayList<BookListDto> dtos = bookJoinDao.bookListCon("1", startDate, endDate, strSearch, startRow, pageRow);
-			request.setAttribute("list", dtos);
-			
+			BookJoinDao bookJoinDao = new BookJoinDao();
+			int countRow = bookJoinDao.countRow("1");
+				System.out.println("countRow: " +countRow);
+			int pageCount = (countRow / 10) + 1;
+				System.out.println("pageCount: " +pageCount);
+			request.setAttribute("pageCount", pageCount);
 		}
-
+		
+		
 	}
 
 	@Override
 	public Boolean execute1(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
