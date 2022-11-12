@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.bootcamp.host.command.AskCommentCommand;
 import com.bootcamp.host.command.BCCommand;
@@ -53,39 +54,22 @@ import com.bootcamp.host.command.MyHostBookDetailCommand;
 import com.bootcamp.host.command.RegCampCommand;
 import com.bootcamp.host.command.askDetailCommand;
 import com.bootcamp.host.command.askListCommand;
-import com.bootcamp.host.dao.HostBookPagingDao;
+import com.bootcamp.host.dao.HostCheckDao;
 
-/**
- * Servlet implementation class homeController
- */
 @WebServlet("*.do")
 public class BCFrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * Default constructor.
-	 */
 	public BCFrontController() {
-		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		actionDo(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		actionDo(request, response);
 	}
 
@@ -173,7 +157,7 @@ public class BCFrontController extends HttpServlet {
 
 		// ---------------------영진: 메인페이지 -----------------------------------
 
-		case ("/host_main.do"): // 로그인 화면에서 => host_main.do?hSeq= 로 이동할 예정임
+		case ("/host_main.do"):
 			command = new HostCampProfileList_Command(); // 호스트 소유 모든 캠핑장의 이름, 사진, 주소 (썸네일용)
 			command.execute(request, response);
 			command = new HostMonthlyProfit_Command(); // 월별 총수익 차트에 표시 (올해분)
@@ -211,6 +195,27 @@ public class BCFrontController extends HttpServlet {
 			viewPage = "/host_review_list.do";
 			break;
 
+		case ("/host_login.do"): // 호스트용 로그인 화면 (임시용임!!!)
+			viewPage = "HostLogin.jsp";
+			break;
+
+		case ("/host_check.do"):
+			String cId = request.getParameter("cId");
+			String cPw = request.getParameter("cPw");
+			String hId = null;
+			HostCheckDao dao = new HostCheckDao();
+			int hSeq = dao.checkHostLogin(cId, cPw);
+			if (hSeq != 0) {
+				hId = cId;
+				HttpSession session = request.getSession();
+				session.setAttribute("hId", hId);
+				session.setAttribute("hSeq", hSeq);
+				viewPage = "host_main.do";
+			} else {
+				viewPage = "HostError.jsp";
+			}
+			break;
+
 		// --------------------------호스트 마이페이지에 정보 불러오기--------------------------
 
 		// --------------------------주현 : 고객문의 리스트 페이지--------------------------
@@ -237,14 +242,14 @@ public class BCFrontController extends HttpServlet {
 			command.execute(request, response);
 			viewPage = "bookList2.do?page=1";
 			break;
-			
+
 		// 예약 리스트 페이지 열기
 		case ("/bookList2.do"):
 			command = new HostBookListCommand();
 			command.execute(request, response);
 			viewPage = "HostTotalBookManage.jsp";
 			break;
-			
+
 		// 예약 리스트 테이블에서 row 클릭시 디테일 페이지
 		case ("/YJHostBookDetail.do"):
 			command = new MyHostBookDetailCommand();
@@ -254,27 +259,94 @@ public class BCFrontController extends HttpServlet {
 
 		// ------------예진 : 캠핑장 추가 페이지 ------------------------------------
 			
-		// 이름, 설명, 카테고리 등록
+		// 이름, 설명, 카테고리 등록하고 -> 편의시설 등록 페이지로 이동
+
 		case ("/campingAddLo.do"):
 			command = new CampingAddCommand();
 			command.execute(request, response);
-			viewPage = "CapmingAddFa.jsp";
+			viewPage = "CampingAddFa.jsp";
 			break;
 		
-		//편의시설 등록
+		//편의시설 등록 -> 키워드 등록 페이지로 이동
+
 		case ("/campingAddFa.do"):
 			command = new CampingAddFaCommand();
 			command.execute(request, response);
-			viewPage = "CapmingAddKey.jsp";
+			viewPage = "CampingAddKey.jsp";
 			break;
 			
-		//키워드 등록
+		//키워드 등록 -> 약도 등록 페이지
+
 		case ("/campingAddKey.do"):
 			command = new CampingAddKeyCommand();
 			command.execute(request, response);
-			viewPage = "CampingAddKeyFa.jsp";
+			viewPage = "CampingAddRoughMap.do";
 			break;
 			
+		//약도 이미지 보여주기
+		//페이지 처음 열 때는 디폴트 이미지 보여주고, 업로드 버튼 누르면 그걸 보여주기 위해서 select
+		case ("/CampingAddRoughMap.do"):
+			command = new HostInfoMRMSelectCommand();
+			command.execute(request, response);
+			viewPage = "CampingAddRoughMap.jsp";
+			break;
+			
+		// 약도 이미지 업데이트
+		case ("/addRoughMapUp.do"):
+			command = new HostInfoMRMUpdateCommand();
+			command.execute(request, response);
+			viewPage = "CampingAddRoughMap.do";
+			break;
+		
+		// 약도 -> 자리 select해서 보여주기
+		case ("/campingAddSelRoom.do"):
+			command = new HostInfoRoomSelectCommand();
+			command.execute(request, response);
+			viewPage = "CampingAddRoom.jsp";
+			break;
+			
+		// 자리 인서트
+		case ("/campingAddRoom.do"):
+			command = new HostInfoRoomInCommand();
+			command.execute(request, response);
+			viewPage = "campingAddSelRoom.do";
+			break;
+
+		// 자리 delete
+		case ("/campingAddRoomDel.do"):
+			command = new HostInfoRoomDelCommand();
+			command.execute(request, response);
+			viewPage = "campingAddSelRoom.do";
+			break;
+			
+		// 자리 등록 페이지 -> 이미지 등록 페이지
+		case ("/campingAddImgView.do"):
+			command = new HostInfoImagesSelectCommand();
+			command.execute(request, response);
+			viewPage = "CampingAddimages.jsp";
+			break;
+			
+		// 캠핑장 이미지1 업데이트
+		case ("/cImage1Up.do"):
+			command = new HostInfoImages1UpCommand();
+			command.execute(request, response);
+			viewPage = "campingAddImgView.do";
+			break;
+
+		// 캠핑장 이미지2 업데이트
+		case ("/cImage2Up.do"):
+			command = new HostInfoImages2UpCommand();
+			command.execute(request, response);
+			viewPage = "campingAddImgView.do";
+			break;
+
+		// 캠핑장 이미지3 업데이트
+		case ("/cImage3Up.do"):
+			command = new HostInfoImages3UpCommand();
+			command.execute(request, response);
+			viewPage = "campingAddImgView.do";
+			break;
+		
 			
 			
 			
@@ -287,10 +359,7 @@ public class BCFrontController extends HttpServlet {
 			
 			
 			
-			
-			
-			
-			
+
 		// ------------예진 : 캠핑장 정보수정 페이지 ------------------------------------
 
 		// 정보 수정 메인페이지 열기
@@ -416,8 +485,6 @@ public class BCFrontController extends HttpServlet {
 			command.execute(request, response);
 			viewPage = "HostInfoImagesView.do";
 			break;
-			
-		
 
 		}
 

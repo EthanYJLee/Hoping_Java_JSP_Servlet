@@ -12,7 +12,7 @@
 	String saveFolder = "images"; // out폴더에 fileSave 폴더 생성
 	String encType = "utf-8";
 	int maxSize = 5*1024*1024; // 최대 업로드 5mb
-	
+
 	ServletContext context = request.getServletContext();
 	realFolder = application.getRealPath(saveFolder);
 	
@@ -44,7 +44,6 @@
 	        String type = multi.getContentType(name);
 	        File file = multi.getFile(name);
 
-
 	        out.println("파라미터 이름" + name + "<br>");
 	        out.println("실제 파일 이름" + original + "<br>");
 	        out.println("저장된 파일 이름" + filename + "<br>");
@@ -54,8 +53,10 @@
 		        out.println("크기: " + file.length() + "<br>");
 		    }
 		    
+		    String link = request.getParameter("link");
+		    
 		    request.setAttribute("FILENAME", filename);
-		    RequestDispatcher dispatcher = request.getRequestDispatcher("image3Up.do");
+		    RequestDispatcher dispatcher = request.getRequestDispatcher(link);
 		    dispatcher.forward(request, response);
 		    
 	    }

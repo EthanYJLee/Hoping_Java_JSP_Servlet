@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.bootcamp.host.dao.FacilityDao;
 
@@ -12,13 +13,18 @@ public class CampingAddFaCommand implements BCCommand {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
+		HttpSession session = request.getSession();
+		
 		String[] facilities = request.getParameterValues("facility");
 		FacilityDao dao = new FacilityDao();
-		dao.deleteFacility(1, 1);
+		
+		//hSeq, regSeq 세션 받아오기
+		int hSeq = (int) session.getAttribute("HSEQ");
+		int regSeq = (int) session.getAttribute("regSeq");
 		
 		// 선택한 편의시설 개수만큼 for문 돌려서 insert
 		for (int i = 0; i < facilities.length; i++) {
-			dao.insertFacility(facilities[i], 1, 1);
+			dao.insertFacility(facilities[i], hSeq, regSeq);
 		}
 		
 	}

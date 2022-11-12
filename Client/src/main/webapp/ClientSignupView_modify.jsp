@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Detail View - ${DetailView.regName}</title>
+<title>회원가입</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -201,78 +201,70 @@
 	<!-- Main Start -->
 	<main>
 		<div class="container-md d-flex justify-content-center">
-		 <div class="row">
-		 <div class="col">
+			<div class="row">
+				<div class="col">
+					<br> <br> &nbsp;&nbsp;&nbsp;
+					<h2>회원가입</h2>
+					&nbsp;&nbsp;&nbsp;
+				</div>
+				
+				
 				
 				<form name="Member" action="Clientwrite.do" method="post">
-					<table>
-						<tr>
-							<th >아이디</th>
-							<td><!-- <input type="text" name="cId" class="input_id"> -->
 							<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-						
+
+					<div class="input_id">아이디 &nbsp;&nbsp;
 							<input type="text" name="cId" class="cId" placeholder="ex ) camp12" required="required">
 							<font id="checkId" size="2"></font>
+					</div>
+					
 							
-							</td>
-						</tr>
-
-						<tr>
-							<th>비밀번호</th>
-							<td>	
-								<input type="password" name="cPw" id="password_1" class="pw"
-									placeholder="ex) ld1397">
-							</td>
-						</tr>
-
-						<tr>
-							<th>비밀번호 확인</th>
-							<td>
-								<input type="password" name="cPw2" id="password_2" class="pw" placeholder="ex) ld1397"> 
-								<span id="alert-success" style="display: none;">
-									<font size="2">비밀번호가 일치합니다.</font>
-								</span> 
-								<span id="alert-danger" style="display: none; font-weight:;">
-								<font size="2" color="#d92742">비밀번호가 일치하지 않습니다.</font>
-								</span>
-							</td>
-						</tr>
-						<tr>
-							<th>이름</th>
-							<td><input type="text" name="cName" size="40" placeholder= "한글로 이름을 작성해 주세요"></td>
-						</tr>
-						<tr>
-							<th>전화번호</th>
-							<th><input type="text" name="cPhone" size="40"></th>
-						</tr>
-						<tr>
-							<th>이메일</th>
-							<td><input type="text" name="cEmail" size="40" placeholder= "example@example.com / E-mail 형식으로 작성해주세요 "></td>
-						</tr>
-
-						<tr>
-							<th>주소</th>
-							<td><input type="text" id="sample4_postcode"
-								placeholder="우편번호" name="zonecode"> <input type="button"
-								onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-								<input type="text" id="sample4_roadAddress" placeholder="도로명주소" name="address"><br>
-								<input type="text" id="sample4_jibunAddress" placeholder="빌딩이름" name="buildingAddress">
-								<input type="text" id="sample4_detailAddress" placeholder="상세주소" name="detailAddress"></td>
-						</tr>
-						<tr>
-							<td colspan="2">
-								<div class="container-md d-flex justify-content-center">
-									<input type="button" value="회원가입"  class="btn btn-primary"
-								onclick="checkMember()" style="WIDTH: 210pt; HEIGHT: 40pt">
-								</div>
-							</td>
-						</tr>
-					</table>
+					<div class="content_title">비밀번호
+						<input type="password" name="cPw" id="password_1" class="pw" placeholder="ex) ld1397">
+					</div>
+					<div class="content_title">비밀번호 확인
+						<input type="password" name="cPw2" id="password_2" class="pw"
+								placeholder="ex) ld1397"> <span id="alert-success"
+								style="display: none;">비밀번호가 일치합니다.</span> <span id="alert-danger"
+								style="display: none; color: #d92742; font-weight:;">비밀번호가
+								일치하지 않습니다.</span>
+					</div>
+						
+					<div class="content_title">이름
+						<input type="text" id="cName" name="cName" placeholder="ex) 이도">
+					</div>
+			
+					<div class="content_title">전화번호
+						<input type="text" id="cPhone" name="cPhone" placeholder="ex) 010-1234-5678">
+					</div>
+			
+					<div class="content_title">이메일
+						<input type="email" name="cEmail" placeholder="ex) luck@naver.com">
+					</div>	
+						
+					<div class="content_title">주소</div>
+					<div>
+						<input type="text" name="zonecode"id="sample4_postcode" placeholder="우편번호">
+						<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기">
+					</div>	
+					<div>
+						
+						<input type="text" id="sample4_roadAddress" placeholder="도로명주소"  name="address"><br>
+						<input type="text" id="sample4_jibunAddress" placeholder="빌딩이름" name="buildingAddress">
+						<input type="text" id="sample4_detailAddress" placeholder="상세주소" name="detailAddress">
+					
+					
+					</div>	
+					<br> <br> <input type="button" value="회원가입" class="btn btn-primary"
+						onclick="checkMember()" style="WIDTH: 210pt; HEIGHT: 40pt">
+					<br> <a href="ClientLoginView.jsp">로그인 페이지로 가기</a>
 				</form>
-				</div>
+
 			</div>
+			<!-- DIV row End -->
 		</div>
 		<!-- DIV row End -->
+		</div>
 		<!-- DIV container End -->
 	</main>
 	<script
