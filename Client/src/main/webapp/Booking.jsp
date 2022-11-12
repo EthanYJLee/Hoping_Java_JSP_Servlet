@@ -100,12 +100,17 @@
 	  </div>
 	 
 	</div>
-		 
+
+<form action="pay.do" method="get">
+		 <input type="hidden" name=roPrice value="${bookingInfo.roPrice}" />
+		 <input type="hidden" name=startdate value="${startdate}" />
+		 <input type="hidden" name=stopdate value="${stopdate}" />
+		 <input type="hidden" name=Days value="${Days}" />
 		 <div  class="container-md d-flex justify-content-center" style="margin-top: 20px">
-		 <input type="button" value="예약!">
+		 <input type="submit" value="예약!" >
 		 </div>
-		 
-</div>
+		 </form>
+ </div>
 	  
 
 
