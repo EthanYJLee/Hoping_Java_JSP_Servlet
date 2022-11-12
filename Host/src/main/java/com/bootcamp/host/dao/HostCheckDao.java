@@ -56,7 +56,7 @@ public class HostCheckDao {
 		return hSeq;
 	}
 
-	public int checkHostLogin(String cId, String cPw) { // 호스트용 로그인 페이지가 따로 있다면 이런 모양일 것.
+	public int checkHostLogin(String cId, String cPw) { // 호스트용 로그인 페이지가 따로 있다면 이런 모양일 것. (임시용임!!!)
 		PreparedStatement ps = null;
 		Connection connection = null;
 		ResultSet rs = null;
@@ -89,6 +89,42 @@ public class HostCheckDao {
 			}
 		}
 		return hSeq;
+
+	}
+
+	public int getRegSeq(int hSeq, String regName) { // 캠핑장 정보 수정을 위한 regSeq
+		PreparedStatement ps = null;
+		Connection connection = null;
+		ResultSet rs = null;
+		int regSeq = 0;
+
+		try {
+			connection = dataSource.getConnection();
+			String query = "select regSeq from regcamp where host_hSeq = ? and regName = '?'";
+			ps = connection.prepareStatement(query);
+
+			ps.setInt(1, hSeq);
+			ps.setString(2, regName);
+
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				regSeq = rs.getInt(1);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (connection != null)
+					connection.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return regSeq;
 
 	}
 
