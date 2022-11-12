@@ -208,8 +208,8 @@ public class BCFrontController extends HttpServlet {
 			if (hSeq != 0) {
 				hId = cId;
 				HttpSession session = request.getSession();
-				session.setAttribute("hId", hId);
-				session.setAttribute("hSeq", hSeq);
+				session.setAttribute("HID", hId);
+				session.setAttribute("HSEQ", hSeq);
 				viewPage = "host_main.do";
 			} else {
 				viewPage = "HostError.jsp";
