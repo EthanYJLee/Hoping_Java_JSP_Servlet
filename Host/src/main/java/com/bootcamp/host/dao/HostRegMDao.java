@@ -28,6 +28,44 @@ public class HostRegMDao {
 		
 	}//생성자
 	
+	//위치, 설명, 이름, 전화번호, 카테고리 insert ---------
+	public void inCampLo(String regDetailaddress, String regSummary, String regName, String regTel, String regCategory, int hSeq) {
+		
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		try {
+			
+			connection = dataSource.getConnection();
+			
+			String query = "insert into regcamp (regDetailaddress, regSummary, regName, regDate, regTel, regCategory, host_hSeq) ";
+			String query2 = "values(?, ?, ?, curdate(), ?, ?, ?) ";
+			
+			preparedStatement = connection.prepareStatement(query + query2);
+			preparedStatement.setString(1, regDetailaddress);
+			preparedStatement.setString(2, regSummary);
+			preparedStatement.setString(3, regName);
+			preparedStatement.setString(4, regTel);
+			preparedStatement.setString(5, regCategory);
+			preparedStatement.setInt(6, hSeq);
+			
+			preparedStatement.executeUpdate();
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(preparedStatement != null) preparedStatement.close();
+				if(connection != null) connection.close();
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+	} //inCampLo
+	
+	
+	
 	//위치, 설명 select ---------
 		public MyregcampDto selectInfoLS(int regSeq, int hSeq) {
 			
