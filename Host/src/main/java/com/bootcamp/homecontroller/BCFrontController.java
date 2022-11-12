@@ -1,6 +1,7 @@
 package com.bootcamp.homecontroller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,7 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.JOptionPane;
 
+import com.bootcamp.dto.HostRegcampDto;
 import com.bootcamp.host.command.AskCommentCommand;
 import com.bootcamp.host.command.BCCommand;
 import com.bootcamp.host.command.CampingAddCommand;
@@ -24,6 +27,7 @@ import com.bootcamp.host.command.HostBookListCommand;
 import com.bootcamp.host.command.HostBookTotalPagingCommand;
 import com.bootcamp.host.command.HostCampNameList_Command;
 import com.bootcamp.host.command.HostCampProfileList_Command;
+import com.bootcamp.host.command.HostDeleteMyCamp_Command;
 import com.bootcamp.host.command.HostInfoFaInDelCommand;
 import com.bootcamp.host.command.HostInfoFaSelectCommand;
 import com.bootcamp.host.command.HostInfoImages1UpCommand;
@@ -55,6 +59,7 @@ import com.bootcamp.host.command.RegCampCommand;
 import com.bootcamp.host.command.askDetailCommand;
 import com.bootcamp.host.command.askListCommand;
 import com.bootcamp.host.dao.HostCheckDao;
+import com.bootcamp.host.dao.HostRegDDao;
 
 @WebServlet("*.do")
 public class BCFrontController extends HttpServlet {
@@ -215,6 +220,47 @@ public class BCFrontController extends HttpServlet {
 				viewPage = "HostError.jsp";
 			}
 			break;
+			
+		case ("/host_modify_camp.do"):
+			// 호스트 통합 메인 페이지에서 캠핑장 정보 수정 버튼 클릭시 hSeq와 regName 받아오기
+			HttpSession session = request.getSession();
+			int myHSeq = (int)session.getAttribute("HSEQ");
+			int myRegSeq = Integer.parseInt(request.getParameter("regSeq"));
+			HostCheckDao myCamp = new HostCheckDao();
+			int result = myCamp.checkHostCampInfoForMod(myHSeq, myRegSeq);
+
+			if (result != 0) {
+				session.setAttribute("REGSEQ", myRegSeq);
+				viewPage = "HostInfoMMain.jsp";
+			} else {
+				JOptionPane.showMessageDialog(null, "잘못된 접근입니다", "Error", JOptionPane.ERROR_MESSAGE);
+				response.sendRedirect("HostError.jsp");
+			}
+			break;
+			
+		case ("/host_confirm_delete.do"):	// 캠핑장 최종삭제 전 확인절차
+			// 남은 예약이 있으면 삭제 불가
+			HttpSession delsession = request.getSession();
+			int regSeq = (int)delsession.getAttribute("REGSEQ");
+			HostRegDDao chkBook = new HostRegDDao();
+			HostRegcampDto dto = chkBook.checkRemainingReservation(regSeq);
+			if (dto==null) {
+				response.setContentType("text/html; charset=utf-8");
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('남은 체크인 예정이 있는지 확인해주세요'); location.href='host_main.do'; </script>");
+				out.flush();
+			} else {
+				request.setAttribute("CHECKDELETE", dto);
+				viewPage = "HostMakeSureToDelete.jsp";
+			}
+			break;
+		
+		case ("/host_delete_camp.do"):	// 캠핑장 정보 최종 삭제 (update regDdate=now())
+			command = new HostDeleteMyCamp_Command();
+			command.execute(request, response);
+			viewPage = "HostDeleteCampCompleted.jsp";
+			break;
+			
 
 		// --------------------------호스트 마이페이지에 정보 불러오기--------------------------
 
