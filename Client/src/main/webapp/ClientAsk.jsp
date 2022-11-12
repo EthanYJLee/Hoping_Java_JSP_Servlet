@@ -31,9 +31,18 @@
 		<form action="" method="post">
 					
 			<table style="margin-bottom: 25px;">
-					<tr><td colspan="2"><h4 style="margin: 15px 0px 30px 0px;">문의 내용 입력하기</h4></td></tr>
+					<tr><td colspan="2"><h4 style="margin: 15px 0px 30px 0px;"> 문의 내용 입력하기</h4></td></tr>
+					<tr>
+						<td style="padding-right: 15px" colspan="2">${regName} 캠핑장 </td>
+					</tr>
 					<tr>
 						<td style="padding-right: 15px">제목</td><td><input class="form-control" type="text"></td>
+					</tr>
+						<tr>
+						<td style="padding-right: 15px">작성자</td><td>${cId} </td>
+					</tr>
+						<tr>
+						<td style="padding-right: 15px">받는사람 </td><td>${hostSeq} </td>
 					</tr>
 					<tr>
 						<td style="padding-right: 15px">문의 내용</td>

@@ -24,7 +24,16 @@ public class AskDao {
 		
 	}//constructor
 	
-	public void AskHost() {
+	
+	
+//	public  setRegcamp(String regName) {
+//		
+//	}
+	
+	
+	
+	
+	public void AsktoHost(int cHostSeq, String clientId ) {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
@@ -32,14 +41,14 @@ public class AskDao {
 			connection = dataSource.getConnection();
 			String query = "insert into book (boPrice, boDate, boCheckindate, boGroup, boCount, ";
 			String query2 = "pay_cid, pay_room_roseq, pay_room_regcamp_regSeq, pay_room_regcamp_host_hSeq, pay_client_cid ) values ";
-			
-			preparedStatement.setInt(1, boPrice);
-			preparedStatement.setString(2, boCheckindate);
-			preparedStatement.setInt(3, boGroup);
-			preparedStatement.setInt(4, boCount);
-			preparedStatement.setString(5, "asdf");
-			preparedStatement.executeUpdate();
-			
+//			
+//			preparedStatement.setInt(1, boPrice);
+//			preparedStatement.setString(2, boCheckindate);
+//			preparedStatement.setInt(3, boGroup);
+//			preparedStatement.setInt(4, boCount);
+//			preparedStatement.setString(5, "asdf");
+//			preparedStatement.executeUpdate();
+//			
 			
 		}catch (Exception e) {
 			e.printStackTrace();

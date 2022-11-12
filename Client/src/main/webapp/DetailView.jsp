@@ -14,7 +14,6 @@
 @import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800'); 
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
 </style>
-		
 </head>
 <body>
 	<!-- Header Start -->
@@ -102,9 +101,10 @@
 	  				  <input type="hidden" name="regSeq" value="${DetailView.regSeq}" >
 				      <button type="submit" class="btn btn-primary">예약하러 가기</button>
 		    	</form>
-		    	<form action="ask.do" method="post" style="margin: 10px;">
+		    	<form action="askView.do" method="post" style="margin: 10px;">
 	  				  <input type="hidden" name="regSeq" value="${DetailView.regSeq}" >
-				      <button type="submit" class="btn btn-primary">문의하러 가기</button>
+	  				  <input type="hidden" name="regName" value="${DetailView.regName}" >
+				      <button type="submit" class="btn btn-primary" <%-- onclick="<!-- /**/ -->" --%>>문의하러 가기</button>
 		    	</form>
 		    </div>
 		    		    	     <hr class="featurette-divider"> 
