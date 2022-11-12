@@ -13,8 +13,13 @@ public class BCBookingConfirmationCommand implements BCCommand {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();		
+		System.out.println("BCBookingConfirmationCommand___________________________________");
 		String regName = request.getParameter("regName");
-		int roNum = Integer.parseInt(request.getParameter("roNum"));
+		String roNum = request.getParameter("roNum");
+		session.setAttribute("roNum",roNum);
+		String roPrice = request.getParameter("roPrice");
+		session.setAttribute("roPrice",roPrice);
 		System.out.println("BCBookingConfirmationCommand 에서 regName : "+regName);
 		System.out.println("BCBookingConfirmationCommand 에서 roNum : "+roNum);
 		BCBookDao dao = new BCBookDao();

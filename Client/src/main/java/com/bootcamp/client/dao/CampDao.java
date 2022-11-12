@@ -1,14 +1,9 @@
 package com.bootcamp.client.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Timestamp;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -30,7 +25,6 @@ public class CampDao {
 			e.printStackTrace();
 		}
 	}	
-	// 
 
 	public ArrayList<campDto> listCamp(String strregSeq){
 		ArrayList<campDto> dtos = new ArrayList<campDto>();
@@ -136,6 +130,8 @@ public class CampDao {
 		return dtos;
 	} // DateCheck	
 	public int readMaxSeq() {
+		// Debug를 위한 주석 추가.room Seqence Number를 읽어옴.
+		System.out.println("readMaxSeq_______________________________________________");
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
@@ -143,8 +139,11 @@ public class CampDao {
 		try {
 			connection = dataSource.getConnection();
 			
-			String query = "select max(boSeq) from book as result";
+			// Max Seq 읽는 SQL문 - alias로 읽히도록 수정함. - 상혁
+			String query = "select max(boSeq) as result from book ";
 			preparedStatement = connection.prepareStatement(query);
+			System.out.println("Query:"+query);
+			
 			resultSet = preparedStatement.executeQuery();
 			System.out.println("Query readMaxSeq Execute");
 			
@@ -201,6 +200,8 @@ public class CampDao {
 		return result+1;
 	} //diffDate
 
+	
+	// 예약을 위해 다음날 구하는 메소드 상혁
 	public String Nextday(String Startdate) {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -233,32 +234,30 @@ public class CampDao {
 		return result;
 	} //diffDate
 	
-	public void insertBook(int boPrice, String boCheckindate, int boGroup, int boCount, String cId, int regSeq) {
+	// 하루를 예약하는 메소드 상혁
+	public int insertBook(int boPrice, String boCheckindate, int boGroup, int boCount, String cId, int regSeq, int host_hSeq) {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
-		
+		int result = 0;
 		try {
 			connection = dataSource.getConnection();
 			String query = "insert into book (boPrice, boDate, boCheckindate, boGroup, boCount, ";
 			String query2 = "pay_cid, pay_room_roseq, pay_room_regcamp_regSeq, pay_room_regcamp_host_hSeq, pay_client_cid ) values ";
-			String query3 = "(?,now(),?,?,?,?,?,?,?,?) ";
-			
-			preparedStatement.setInt(1, boPrice);
-			preparedStatement.setString(2, boCheckindate);
-			preparedStatement.setInt(3, boGroup);
-			preparedStatement.setInt(4, boCount);
-			preparedStatement.setString(5, "asdf");
-			preparedStatement.setInt(6, 13);
-			preparedStatement.setInt(7, regSeq);
-			preparedStatement.setInt(8, 1);
-			preparedStatement.setString(9, cId);
-			System.out.println(boPrice);
-			System.out.println(cId);
+			String query3 = "("+boPrice+",now(),'"+boCheckindate+"',"+boGroup+","+boCount+",'asdfg', 13,1,1,'"+cId+"') ";
+			System.out.println("boPrice"+boPrice);
+			System.out.println("boCheckindate"+boCheckindate);
+			System.out.println("boGroup"+boGroup);
+			System.out.println("boCount"+boCount);
+			System.out.println("cId"+cId);
+			System.out.println("regSeq"+regSeq);
+			System.out.println("host_hSeq"+host_hSeq);
+			preparedStatement = connection.prepareStatement(query+query2+query3);
+
 			System.out.println(query);
 			System.out.println(query2);
 			System.out.println(query3);
-			preparedStatement.executeUpdate();
-			
+			result = preparedStatement.executeUpdate(query+query2+query3);
+			System.out.println("insertBook executeUpdate---------------------------"+result);	
 			
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -271,24 +270,22 @@ public class CampDao {
 				e.printStackTrace();
 			}
 		}
+		return result;
 	} //insertbook
 
-	
+	// 예약 그룹 생성을 위해서 첫번째날 예약에 예약 그룹 번호에 첫번째 예약날의 예약번호로 변경하는 메소드 
 	public void updateBook(int boGroup) {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
-		
+		// SQL 문 사용시 PreparedStatement setString
 		try {
 			connection = dataSource.getConnection();
-			// 두번째 값 입력할 경우, 첫번째 값 입력 후 
-			String query = "update book set boGroup = ? where boSeq=? ";
-
-			preparedStatement.setInt(1, boGroup);
-			preparedStatement.setInt(2, boGroup);
+			String query = "update book set boGroup = "+boGroup+" where boSeq="+boGroup;
+			preparedStatement = connection.prepareStatement(query);
 			System.out.println(boGroup);
 			System.out.println(query);
-			preparedStatement.executeUpdate();
-			
+			preparedStatement.executeUpdate(query);
+			System.out.println("update Book executeUpdate---------------------------");				
 			
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -301,6 +298,44 @@ public class CampDao {
 				e.printStackTrace();
 			}
 		}
-	} //insertbook
+	} //updateBook
 	
+	// RoomPrice가 읽혀오지 않는 문제가 있어서 SQL문에서 읽어오도록 수정함. 상혁	
+	public int readRoomPrice(String regcamp_regSeq, String roNum) {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		int result = 0;
+		System.out.println("readRoomPrice__________________________________________________________");
+		try {
+			connection = dataSource.getConnection();
+			String query = "select roPrice from room where regcamp_regSeq = "+regcamp_regSeq+" and roNum = "+roNum+";";
+			System.out.println("readRoomPrice____"+regcamp_regSeq);
+			System.out.println("readRoomPrice____"+roNum);
+			System.out.println(Integer.parseInt(regcamp_regSeq));
+			System.out.println(Integer.parseInt(roNum));
+			preparedStatement = connection.prepareStatement(query);
+
+			resultSet = preparedStatement.executeQuery(query);
+			System.out.println(query);
+			System.out.println("Query readRoomPrice Execute");
+			
+			if(resultSet.next()) {
+				result = resultSet.getInt("roPrice");
+			}
+			System.out.println("readRoomPrice executeUpdate------------result:"+result+":");				
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(preparedStatement != null) preparedStatement.close();
+				if(connection != null) connection.close();
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+	} //readRoomPrice
 }

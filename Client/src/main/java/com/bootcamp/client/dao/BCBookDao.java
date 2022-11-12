@@ -138,7 +138,7 @@ import com.bootcamp.joindto.checkdate2Dto;
 	
 	// 22-11-11 Created Hosik
 	// DB checkdate2 에서 예약 마지막 페이지에 사용되는 값들 가져와서 dto에 저장함 
-	public checkdate2Dto confirmation(int roomNum, String room_regCamp_Name) { 
+	public checkdate2Dto confirmation(String roomNum, String room_regCamp_Name) { 
 		Connection connection = null;
 		PreparedStatement preparedStatement = null; // 이거 쓸꺼면 ? 써도 댐 
 		ResultSet resultSet = null;
@@ -150,7 +150,7 @@ import com.bootcamp.joindto.checkdate2Dto;
 			
 			String query = "select roPrice, roMax, regcamp_regSeq, regImage4 from checkdate2 where roNum = ? and regName = '"+room_regCamp_Name+"';";
 			preparedStatement = connection.prepareStatement(query);
-			preparedStatement.setInt(1, roomNum);
+			preparedStatement.setString(1, roomNum);
 			resultSet = preparedStatement.executeQuery();
 			System.out.println("BCBookDao에 dao실행 안쪽 try 안에 있음 ");				//<<<<<<<<<<<<<<<<<<<<<<<<<<<<< syso
 			if(resultSet.next()) {

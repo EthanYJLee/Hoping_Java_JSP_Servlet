@@ -124,14 +124,13 @@ public class BCFrontController extends HttpServlet {
 			
 			// sql book table 에 insert 하는 command 이후수정될 여지 많음 
 		case("/pay.do"):
-			System.out.println("insert for Booking");
+			System.out.println("pay for Booking");
 			command = new BCInsertBookCommand();
 			command.execute(request, response);
 			viewPage = "Calendar3.jsp";
-				System.out.println(" controller case pay.do 에서 보내는 insert for Booking End");
+			System.out.println(" controller case pay.do 에서 보내는 insert for Booking End");
 			break;			
-			
-		
+
 			
 			// 로그인
 			//22-11-10 주현씨 수정함 
