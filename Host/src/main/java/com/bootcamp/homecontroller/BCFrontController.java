@@ -241,14 +241,14 @@ public class BCFrontController extends HttpServlet {
 		case ("/campingAddLo.do"):
 			command = new CampingAddCommand();
 			command.execute(request, response);
-			viewPage = "CapmingAddFa.jsp";
+			viewPage = "CampingAddFa.jsp";
 			break;
 		
 		//편의시설 등록 -> 키워드 등록 페이지로 이동
 		case ("/campingAddFa.do"):
 			command = new CampingAddFaCommand();
 			command.execute(request, response);
-			viewPage = "CapmingAddKey.jsp";
+			viewPage = "CampingAddKey.jsp";
 			break;
 			
 		//키워드 등록 -> 약도 등록 페이지
@@ -294,6 +294,33 @@ public class BCFrontController extends HttpServlet {
 			viewPage = "campingAddSelRoom.do";
 			break;
 			
+		// 자리 등록 페이지 -> 이미지 등록 페이지
+		case ("/campingAddImgView.do"):
+			command = new HostInfoImagesSelectCommand();
+			command.execute(request, response);
+			viewPage = "CampingAddimages.jsp";
+			break;
+			
+		// 캠핑장 이미지1 업데이트
+		case ("/cImage1Up.do"):
+			command = new HostInfoImages1UpCommand();
+			command.execute(request, response);
+			viewPage = "campingAddImgView.do";
+			break;
+
+		// 캠핑장 이미지2 업데이트
+		case ("/cImage2Up.do"):
+			command = new HostInfoImages2UpCommand();
+			command.execute(request, response);
+			viewPage = "campingAddImgView.do";
+			break;
+
+		// 캠핑장 이미지3 업데이트
+		case ("/cImage3Up.do"):
+			command = new HostInfoImages3UpCommand();
+			command.execute(request, response);
+			viewPage = "campingAddImgView.do";
+			break;
 		
 			
 			
