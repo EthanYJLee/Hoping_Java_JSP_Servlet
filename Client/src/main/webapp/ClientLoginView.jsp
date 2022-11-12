@@ -19,7 +19,7 @@
 </head>
 <body>
 	<!-- Header Start -->
-    <%@ include file = "Nav.jsp" %>
+    <%@ include file = "Nav2.jsp" %>
     <!-- Header End --> 
     <!-- Main Start -->
     <main >
@@ -31,7 +31,7 @@
 			    <h1 class="h3 mb-3 fw-normal">로그인</h1>
 			
 			    <div class="form-floating">
-			      <input type="text" class="form-control" id="floatingInput" name="cId" placeholder="ID">
+			      <input type="text" class="form-control" id="floatingInput" name="cId" placeholder="ID" >
 			    </div>
 			    <div class="form-floating">
 			      <input type="password" class="form-control" id="floatingPassword" name="cPw" placeholder="PW">
@@ -39,7 +39,7 @@
 			
 			    <div class="checkbox mb-3">
 			    </div>
-			    <button class="w-100 btn btn-lg btn-primary" type="submit">로그인</button>
+			    <button class="w-100 btn btn-lg btn-primary" type="submit" >로그인</button>
 			  	
 			  	<div class="links" style="text-decoration: none">
 		            <a href="ClientSignupView.jsp" style="text-decoration: none">회원가입</a>

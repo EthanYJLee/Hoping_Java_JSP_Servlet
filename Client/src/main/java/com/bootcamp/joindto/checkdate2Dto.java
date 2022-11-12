@@ -68,6 +68,23 @@ public class checkdate2Dto {
 		this.regcamp_regSeq = regcamp_regSeq;
 		this.regName = regName;
 	}
+	
+	
+	
+/* 22-11-12 -Hosik
+  			 Createdcheckdate2Dto(int regcamp_host_hSeq, String pay_client_cId, String regName)
+			 asktoHost. 클라이언트 -> 호스트에게 질문하는데 페이지 넘길때 넘길 값 담은 dto
+			 pay_client_cId의 경우는 pay realation을 사용 안하기로 해서 client ID값을 임의 넣었습니다	
+			 만약에 사용할 일이 있따면 어떻게 따로 만들어야 될 수 도 있는데 이때 사용되는값은
+			 session으로 로그인 한 아이디를 넣을꺼라 아마 안바뀌어도 크게 상관없을꺼라 생각되서 여기에 사용함 
+			
+*/
+	public checkdate2Dto(int regcamp_host_hSeq, String pay_client_cId, String regName) {
+		super();
+		this.regcamp_host_hSeq = regcamp_host_hSeq;
+		this.pay_client_cId = pay_client_cId;
+		this.regName = regName;
+	}
 
 
 	public int getRoPrice() {

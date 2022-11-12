@@ -23,8 +23,10 @@
 </style>
 
 	<!-- 
-	2022-11-08 Hosik - 우측하단 카카오톡 1:1 채팅 DIV 추가  -->
-	
+	2022-11-08 Hosik - 우측하단 카카오톡 1:1 채팅 DIV 추가 
+		 11-11 Hosik - 강사님이 빼라고 하셔서 뺌 
+	 -->
+<!-- 	
 <div id="kakao-talk-channel-chat-button"></div>
 
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
@@ -39,7 +41,7 @@
     });
   //]]>
 </script>
-
+ -->
 
 <!-- Start Footer -->
      <footer class="my-5 pt-5 text-muted text-center text-small album py-5 bg-light">

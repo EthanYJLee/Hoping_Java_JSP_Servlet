@@ -18,6 +18,7 @@ public class ClientmypageView_Command implements BCCommand {
 		HttpSession session = request.getSession();
 		
 		String cId = (String) session.getAttribute("cId");
+		System.out.println("ClientmypageView_Command 에서 보내는 cId : "+cId);
 		ClientDao dao = new ClientDao();
 		ClientDto dto = dao.mypageView(cId);
 		
