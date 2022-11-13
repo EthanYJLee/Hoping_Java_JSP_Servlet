@@ -25,7 +25,7 @@ public class HostBookListCommand implements BCCommand {
 		int page = Integer.parseInt(request.getParameter("page"));
 
 		//한 페이지당 row 개수 지정
-		int pageRow = 10;
+		int pageRow = 8;
 		
 		//페이지 시작점
 		int startRow = pageRow * (page - 1);
@@ -36,7 +36,7 @@ public class HostBookListCommand implements BCCommand {
 			int countRow = bookJoinDao.countRow("1");
 			
 			//총 페이지 개수
-			int pageCount = (countRow / 10) + 1;
+			int pageCount = (countRow / 8) + 1;
 			request.setAttribute("pageCount", pageCount);
 	
 			ArrayList<BookListDto> dtos = bookJoinDao.list("1", startRow, pageRow);
