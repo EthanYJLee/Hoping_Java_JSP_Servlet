@@ -71,7 +71,7 @@
  	
  	<%-- 수정할 약도 업로드 --%>
 	<h5 class="row" style="margin: 25px 0 30px 0">수정할 약도 이미지를 업로드해주세요.</h5>
- 	<form action = "hiddenRoughMapUpload.jsp" method = "post" enctype = "multipart/form-data">
+ 	<form action = "hiddenImgUp.jsp?link=roughMapUp.do" method = "post" enctype = "multipart/form-data">
 		<input type = "file" name = "file" size = "50" />
 		<br>
 		<input type = "submit" value = "Upload File" size="50" />
