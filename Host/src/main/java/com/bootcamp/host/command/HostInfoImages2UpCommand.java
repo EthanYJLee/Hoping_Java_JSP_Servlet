@@ -15,8 +15,8 @@ public class HostInfoImages2UpCommand implements BCCommand {
 
 		HttpSession session = request.getSession();
 		HostRegMDao dao = new HostRegMDao();
-		int regSeq = (int) session.getAttribute("regSeq");
-
+		int regSeq = (int) session.getAttribute("REGSEQ");
+		
 		String checkNull = (String) request.getAttribute("FILENAME");
 		String filename;
 		

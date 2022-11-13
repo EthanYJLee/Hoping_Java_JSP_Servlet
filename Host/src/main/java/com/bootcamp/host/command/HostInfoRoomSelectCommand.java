@@ -17,7 +17,7 @@ public class HostInfoRoomSelectCommand implements BCCommand {
 
 		HttpSession session = request.getSession();
 		
-		int regSeq = (int) session.getAttribute("regSeq");
+		int regSeq = (int) session.getAttribute("REGSEQ");
 		int hSeq = (int) session.getAttribute("HSEQ");
 		
 		
