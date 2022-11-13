@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>캠핑장의 편의시설 수정하기</title>
 <link rel="stylesheet" href="css/yjstyle.css">
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -38,36 +38,41 @@
 <%@ include file = "hnav1.jsp" %>
  
  <%-- 본문 --%>
- <div class="container myicontainer" >
+ <div class="container" >
  	<h5 class="col-12" style="margin: 20px 0 20px 0">캠핑장의 편의시설을 수정하기</h5>
  	<%-- 편의시설 select해서 for문 돌리기 --%>
- 	<div class="myscontainer">등록된 편의시설은 
- 		<c:forEach items="${facility}" var="dto">
-	 		"${dto.fName }" , 
-	 	</c:forEach>이에요 
+ 	<div class="row myscontainer d-flex justify-content-center">
+		<c:forEach items="${facility}" var="dto">
+	 		<div class="col">
+	 			<label class="btn btn-secondary">${dto.fName }</label>
+	 		</div>
+ 		</c:forEach>
  	</div>
  	<%-- 편의시설 채크박스 --%>
  	<form action="HostInfoFaInDel.do">
-	 	<div class="row">
-			<div class="col-2 form-check">
-				<input class="form-check-input" name="facility" type="checkbox" value="화장실" id="flexCheckDefault">
-				<label class="form-check-label" for="flexCheckDefault">화장실</label>
+ 		<div class="row d-flex justify-content-center">
+ 			<div class="col-md">
+			 	<input type="checkbox" class="btn-check" name="facility" id="option1" value="화장실"  autocomplete="off">
+				<label class="btn btn-outline-primary" for="option1" >화장실</label>
 			</div>
-			<div class="col-2 form-check">
-				<input class="form-check-input" name="facility" type="checkbox" value="편의점" id="flexCheckChecked">
-				<label class="form-check-label" for="flexCheckChecked">편의점</label>
+ 			<div class="col-md-2">
+			 	<input type="checkbox" class="btn-check" name="facility" id="option1" value="화장실"  autocomplete="off">
+				<label class="btn btn-outline-primary" for="option1" >캠핑 용품 판매 및 대여</label>
 			</div>
-			<div class="col-2 form-check">
-				<input class="form-check-input" name="facility" type="checkbox" value="샤워실" id="flexCheckDefault">
-				<label class="form-check-label" for="flexCheckDefault">샤워실</label>
+ 			<div class="col-md">
+			 	<input type="checkbox" class="btn-check" name="facility" id="option1" value="화장실"  autocomplete="off">
+				<label class="btn btn-outline-primary" for="option1" >샤워실</label>
 			</div>
-		</div>
-		
-	 	<div class="d-flex flex-row-reverse">
-	 		<div class="p-2">
-	 		<button type="submit" style="border-radius: 15px; width:100px;" class="btn mybtns btn-secondary">완료</button>
-	 		</div>
+ 			<div class="col-md">
+			 	<input type="checkbox" class="btn-check" name="facility" id="option1" value="화장실"  autocomplete="off">
+				<label class="btn btn-outline-primary" for="option1" >편의점</label>
+			</div>
 	 	</div>
+	 	<div class="d-flex flex-row-reverse">
+	 	<div class="p-2">
+	 	<button type="submit" style="border-radius: 15px; width:100px;" class="btn mybtns btn-secondary">완료</button>
+		</div>
+	 </div>
  	</form>
  </div>
 

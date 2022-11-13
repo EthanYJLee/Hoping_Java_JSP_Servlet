@@ -6,24 +6,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.bootcamp.dto.MyregcampDto;
 import com.bootcamp.host.dao.HostRegMDao;
 
-public class HostInfoNCTSelectCommand implements BCCommand {
+public class HostInfoMainRegName implements BCCommand {
 
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) {
-
-		HttpSession session = request.getSession();
+	public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
-		int hSeq = (int) session.getAttribute("HSEQ");
-		int regSeq = (int) session.getAttribute("REGSEQ");
-
+		HttpSession session = request.getSession();
 		HostRegMDao dao = new HostRegMDao();
-		MyregcampDto dto = dao.selectInfoNCT(regSeq, hSeq);
-
-		request.setAttribute("nct", dto);
-
+		
+		int regSeq = (int) session.getAttribute("REGSEQ");
+		String regName = dao.selectRegName(regSeq);
+		
+		request.setAttribute("regName", regName);
+		
 	}
 
 	@Override
