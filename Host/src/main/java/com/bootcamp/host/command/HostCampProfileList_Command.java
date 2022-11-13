@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.bootcamp.dto.HostRegcampDto;
 import com.bootcamp.dto.regcampDto;
 import com.bootcamp.host.dao.HostCampListDao;
 
@@ -19,7 +20,7 @@ public class HostCampProfileList_Command implements BCCommand {
 
 		HostCampListDao dao = new HostCampListDao();
 
-		ArrayList<regcampDto> dtos = dao.myCampProfileList(hSeq);
+		ArrayList<HostRegcampDto> dtos = dao.myCampProfileList(hSeq);
 
 		request.setAttribute("host_camp_profile_list", dtos);
 
