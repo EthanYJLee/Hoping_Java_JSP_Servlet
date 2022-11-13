@@ -88,7 +88,7 @@
 		<div class="h-100 p-5 bg-light border rounded-3">
 			<h2>월별 매출 및 예약건</h2>
 			<div class="form-row float-right">
-			<button type="button" class="btn text-secondary" onclick="location.href='host_chart_detail.do'">상세보기</button>
+			<button type="button" class="btn text-secondary" onclick="location.href='detail_stat_view.do'">상세보기</button>
 			</div>
 			<br>
 <canvas id="profitChart" width="150" height="60"></canvas>
