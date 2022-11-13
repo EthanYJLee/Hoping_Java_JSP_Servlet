@@ -50,7 +50,9 @@
 			    <li><a class="dropdown-item" href="#">위시 리스트</a></li>
 			    <li><a class="dropdown-item" href="mypageView.do">마이페이지</a></li>
 			    <li><a class="dropdown-item" href="ClientLogout.jsp">로그아웃</a></li>
-			    
+			    <li><a class="dropdown-item" href="../../../../Host/HostMain.jsp ">HostMain.jsp</a></li>
+			    <li><a class="dropdown-item" href="../../../../Host/host_main.do">host_main.do</a></li>
+			    <li><a class="dropdown-item" href="../../../../Host/askList.do?cId=test">host_main.do?cId=test></a></li>
         <% } %>
 			  </ul>
 			</li>

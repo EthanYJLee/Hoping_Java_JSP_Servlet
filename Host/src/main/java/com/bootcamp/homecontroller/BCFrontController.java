@@ -157,6 +157,7 @@ public class BCFrontController extends HttpServlet {
 		// ---------------------영진: 메인페이지 -----------------------------------
 
 		case ("/host_main.do"): // 로그인 화면에서 => host_main.do?hSeq= 로 이동할 예정임
+			System.out.println("host controlloer host_main.do syso 출력 확인용");
 			command = new HostCampProfileList_Command(); // 호스트 소유 모든 캠핑장의 이름, 사진, 주소 (썸네일용)
 			command.execute(request, response);
 			command = new HostMonthlyProfit_Command(); // 월별 총수익 차트에 표시 (올해분)
@@ -460,8 +461,7 @@ public class BCFrontController extends HttpServlet {
 			viewPage = "HostInfoImagesView.do";
 			break;
 			
-		
-
+			
 		}
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
