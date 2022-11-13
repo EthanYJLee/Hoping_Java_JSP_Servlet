@@ -18,7 +18,7 @@ public class HostInfoRoomInCommand implements BCCommand {
 		int roNum = Integer.parseInt(request.getParameter("roNum"));
 		int roPrice = Integer.parseInt(request.getParameter("roPrice"));
 		int roMax = Integer.parseInt(request.getParameter("roMax"));
-		int regSeq = (int) session.getAttribute("regSeq"); 
+		int regSeq = (int) session.getAttribute("REGSEQ"); 
 		int hSeq = (int) session.getAttribute("HSEQ");
 		
 		

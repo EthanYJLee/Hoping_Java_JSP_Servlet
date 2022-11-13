@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.bootcamp.dto.FacilityDto;
 import com.bootcamp.host.dao.FacilityDao;
@@ -14,12 +15,14 @@ public class HostInfoFaSelectCommand implements BCCommand {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 
-		String regSeq = request.getParameter("regSeq");
-		String hSeq = request.getParameter("hSeq");
+		HttpSession session = request.getSession();
+		
+		int hSeq = (int) session.getAttribute("HSEQ");
+		int regSeq = (int) session.getAttribute("REGSEQ");
 
 		FacilityDao dao = new FacilityDao();
 
-		ArrayList<FacilityDto> dtos = dao.selectFacility(1, 1);
+		ArrayList<FacilityDto> dtos = dao.selectFacility(regSeq, hSeq);
 
 		request.setAttribute("facility", dtos);
 

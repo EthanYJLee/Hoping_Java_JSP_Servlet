@@ -15,14 +15,18 @@ public class BCInsertBookCommand implements BCCommand {
 		System.out.println("BCInsertBookCommand______________________________________________________");
 	
 		String startdate = (String)session.getAttribute("startdate");
+		String startdate2 = request.getParameter("startdate");
 		System.out.println("1."+startdate);
+		System.out.println("1-2."+startdate2);
 		String stopdate = (String)session.getAttribute("stopdate");
 		System.out.println(stopdate);
 		String cId = (String)session.getAttribute("cId");
 		System.out.println("2."+cId);
 		String roPrice = (String)session.getAttribute("roPrice");
+		String roPrice2 =request.getParameter("roPrice");
 		System.out.println("3.request:roPrice:"+request.getAttribute("roPrice"));
 		System.out.println("4.session:roPrice:"+session.getAttribute("roPrice"));
+		System.out.println("roPrice2 리퀘스트 파라미터"+roPrice2);
 		System.out.println("5.session:roNum:"+session.getAttribute("roNum"));
 		String roNum = (String)session.getAttribute("roNum");
 		String regSeq = (String)session.getAttribute("regSeq");

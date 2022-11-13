@@ -32,7 +32,7 @@ public class BookJoinDao {
 	}//constructor
 	
 	//예약 목록 리스트 -----------
-	public ArrayList<BookListDto> list(String hSeq, int startRow, int pageRow){
+	public ArrayList<BookListDto> list(int hSeq, int startRow, int pageRow){
 		
 		ArrayList<BookListDto> dtos = new ArrayList<>();
 		Connection connection = null;
@@ -49,7 +49,7 @@ public class BookJoinDao {
 			String query4 = "group by boGroup, regName, pay_client_cId, total, boDate, roNum, boCount limit ?, ? ";
 			
 			preparedStatement = connection.prepareStatement(query + query2 + query3 + query4);
-			preparedStatement.setString(1, hSeq);
+			preparedStatement.setInt(1, hSeq);
 			preparedStatement.setInt(2, startRow);
 			preparedStatement.setInt(3, pageRow);
 			resultSet = preparedStatement.executeQuery();
@@ -87,7 +87,7 @@ public class BookJoinDao {
 	}//list
 	
 	//예약 row 총 개수
-	public int countRow(String hSeq){
+	public int countRow(int hSeq){
 		
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -101,7 +101,7 @@ public class BookJoinDao {
 			String query = "select count(*) as rowcount from pagecount where pay_room_regcamp_host_hSeq = ? ";
 			
 			preparedStatement = connection.prepareStatement(query);
-			preparedStatement.setString(1, hSeq);
+			preparedStatement.setInt(1, hSeq);
 			resultSet = preparedStatement.executeQuery();
 			
 			if(resultSet.next()) {
@@ -126,7 +126,7 @@ public class BookJoinDao {
 	}//list
 	
 	//예약 목록 검색 (날짜, 텍스트) -----------
-	public ArrayList<BookListDto> bookListCon(String hSeq, String startDate, String endDate, String strSearch, int startRow, int pageRow){
+	public ArrayList<BookListDto> bookListCon(int hSeq, String startDate, String endDate, String strSearch, int startRow, int pageRow){
 		
 		ArrayList<BookListDto> dtos = new ArrayList<>();
 		Connection connection = null;
@@ -145,7 +145,7 @@ public class BookJoinDao {
 			
 			
 			preparedStatement = connection.prepareStatement(query + query2 + query3 + query4 + query5);
-			preparedStatement.setString(1, hSeq);
+			preparedStatement.setInt(1, hSeq);
 			preparedStatement.setString(2, startDate);
 			preparedStatement.setString(3, endDate);
 			preparedStatement.setInt(4, startRow);
@@ -185,7 +185,7 @@ public class BookJoinDao {
 	}//bookListCon
 	
 	//예약 목록 검색 (텍스트) -----------
-	public ArrayList<BookListDto> bookListName(String hSeq, String strSearch){
+	public ArrayList<BookListDto> bookListName(int hSeq, String strSearch){
 		
 		ArrayList<BookListDto> dtos = new ArrayList<>();
 		Connection connection = null;
@@ -204,7 +204,7 @@ public class BookJoinDao {
 			
 			
 			preparedStatement = connection.prepareStatement(query + query2 + query3 + query4 + query5);
-			preparedStatement.setString(1, hSeq);
+			preparedStatement.setInt(1, hSeq);
 			resultSet = preparedStatement.executeQuery();
 			
 			while(resultSet.next()) {

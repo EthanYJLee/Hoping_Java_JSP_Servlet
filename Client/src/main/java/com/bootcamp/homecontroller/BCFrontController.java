@@ -28,8 +28,12 @@ import com.bootcamp.client.command.Clientmodify_Command;
 import com.bootcamp.client.command.ClientmypageView_Command;
 import com.bootcamp.client.command.Clientwrite_Command;
 import com.bootcamp.client.command.ListMain_Command;
+import com.bootcamp.client.command.ReviewWriteCommand;
+import com.bootcamp.client.command.ReviewerNameCommand;
 import com.bootcamp.client.command.SearchCamp_Command;
 import com.bootcamp.client.command.BCViewBookingCommand;
+import com.bootcamp.client.command.reviewDetailCommand;
+import com.bootcamp.client.command.reviewListCommand;
 import com.bootcamp.client.dao.ClientDao;
 
 /**
@@ -135,6 +139,7 @@ public class BCFrontController extends HttpServlet {
 			command.execute(request, response);
 			viewPage = "bookingView.do";
 			System.out.println(" controller case pay.do 에서 보내는 insert for Booking End");
+			JOptionPane.showInternalMessageDialog(null, "예약이 완료되었습니다 ", "로그인", 0, null);
 			break;			
 
 		case("/bookingView.do"):
@@ -145,7 +150,7 @@ public class BCFrontController extends HttpServlet {
 			System.out.println(" controller case bookingView.do 에서 보내는 select for bookingView End");
 			break;	
 			
-			
+
 			// 로그인
 			//22-11-10 주현씨 수정함 
 		case ("/login.do"):
@@ -195,12 +200,16 @@ public class BCFrontController extends HttpServlet {
 			
 		// Hosik  ----------------------------------------------------------------
 			// 상세 페이지 보기
+		// 상세 페이지 보기
 		case ("/detailView.do"):
 			command = new BCDetailCommand();
 			command.execute(request, response);
+			command = new reviewListCommand();
+			command.execute(request, response);
 			viewPage = "DetailView.jsp";
 			break;
-			// 예약. 예약할 인원수 정하고 예약 확정짓기
+			
+			
 		case ("/confirmation.do"):
 			command = new BCBookingConfirmationCommand();
 			command.execute(request, response);
@@ -224,8 +233,33 @@ public class BCFrontController extends HttpServlet {
 			break;	
 			
 			
-			
-			
+		// ———————————리뷰—————————————————————
+
+		// reviewList 상세 캠핑페이지에 보여주기
+		case ("/reviewDetailView.do"):
+			System.out.println("review detail");
+			command = new reviewDetailCommand();
+			command.execute(request, response);
+			viewPage = "ClientReviewDetail.jsp";
+			break;
+		// review 사용자가 작성하러 가기
+		case ("/writeReview.do"):
+			System.out.println("review go to write");
+			command = new BCDetailCommand();
+			command.execute(request, response);
+			command = new ReviewerNameCommand();
+			command.execute(request, response);
+			viewPage = "reviewWrite.jsp";
+			break;
+		// 작성한 리뷰 insert 하고 캠핑장 상세 페이지로 이동
+		case ("/reviewWrite.do"):
+			System.out.println("review write ");
+			command = new ReviewWriteCommand();
+			command.execute(request, response);
+			viewPage = "/detailView.do";
+			break;
+
+		
 			//--- HyunSuk ----------------------------------------------------------------
 //		case ("/Review_List.do"):
 //			   command = new Review_List_Command();

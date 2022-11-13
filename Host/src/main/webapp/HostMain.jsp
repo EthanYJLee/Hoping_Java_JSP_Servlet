@@ -76,7 +76,7 @@
 				<div class="card-body">
 					<h5 class="card-title">${camplist.regName}</h5>
 					<p class="card-text">${camplist.regDetailaddress}</p>
-					<a href="host_modify_camp.do?regName=${camplist.regName}" class="btn btn-primary">캠핑장 정보 수정</a>
+					<a href="host_modify_camp.do?regSeq=${camplist.regSeq}" class="btn btn-primary">캠핑장 정보 수정</a>
 				</div>
 			</div></div>
 			</c:forEach>

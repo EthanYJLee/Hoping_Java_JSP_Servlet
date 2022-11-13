@@ -31,7 +31,7 @@ public class HostBookPagingDao {
 	}//constructor
 	
 	//예약 row 총 개수
-	public int countRow(String hSeq, String strSearch, String startDate, String endDate){
+	public int countRow(int hSeq, String strSearch, String startDate, String endDate){
 		
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -45,12 +45,12 @@ public class HostBookPagingDao {
 			
 			String query = "select count(*) as rowcount from (select boGroup, regName, pay_client_cId, total, boDate, ";
 			String query2 = "roNum, min(checkin) as mcheckin, max(checkout) as mcheckout, boCount  ";
-			String query3 = "from booklist where pay_room_regcamp_host_hSeq = ? and regName like '% " +strSearch+ "%' ";
-			String query4 = "and boDate between ifnull(?, 18000000) and ifnull(?, curdate()) ";
+			String query3 = "from booklist where pay_room_regcamp_host_hSeq = ? and regName like '%" +strSearch+ "%' ";
+			String query4 = "and boDate between ? and ? ";
 			String query5 = "group by boGroup, regName, pay_client_cId, total, boDate, roNum, boCount) as a ";
 			
 			preparedStatement = connection.prepareStatement(query + query2 + query3 + query4 + query5);
-			preparedStatement.setString(1, hSeq);
+			preparedStatement.setInt(1, hSeq);
 			preparedStatement.setString(2, startDate);
 			preparedStatement.setString(3, endDate);
 			resultSet = preparedStatement.executeQuery();

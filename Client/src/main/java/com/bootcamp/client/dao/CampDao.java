@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -238,7 +239,7 @@ public class CampDao {
 	} //diffDate
 	
 	// 예약에 앞서 Pay를 추가하는 메소드 상혁
-	public int insertPay(int room_roSeq, int room_regcamp_regSeq, int room_regcamp_host_hseq, String client_cId) {
+	public int insertPay(String strRd,int room_roSeq, int room_regcamp_regSeq, int room_regcamp_host_hseq, String client_cId) {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		int result = 0;
@@ -246,7 +247,7 @@ public class CampDao {
 			connection = dataSource.getConnection();
 			String query = "insert into pay (cid, room_roSeq, room_regcamp_regSeq, room_regcamp_host_hseq, client_cId) ";
 			String query2 = " values ";
-			String query3 = "('"+(room_roSeq+client_cId+room_regcamp_regSeq+room_regcamp_host_hseq)+"', "+room_roSeq+","+room_regcamp_regSeq+","+room_regcamp_host_hseq+",'"+client_cId+"') ";
+			String query3 = "('"+strRd+(room_roSeq+client_cId+room_regcamp_regSeq+room_regcamp_host_hseq)+"', "+room_roSeq+","+room_regcamp_regSeq+","+room_regcamp_host_hseq+",'"+client_cId+"') ";
 			System.out.println("room_roSeq"+room_roSeq);
 			System.out.println("room_regcamp_regSeq"+room_regcamp_regSeq);
 			System.out.println("room_regcamp_host_hseq"+room_regcamp_host_hseq);
@@ -503,7 +504,4 @@ public class CampDao {
 		}
 		return dtos;
 	} // ViewBooking	
-
-	
-	
 }

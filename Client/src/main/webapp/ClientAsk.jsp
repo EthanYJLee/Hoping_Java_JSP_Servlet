@@ -35,7 +35,7 @@
 						<td style="padding-right: 15px" colspan="2">${DetailView.regName} </td>
 					</tr>
 					<tr>
-						<td style="padding-right: 15px">제목</td><td><input class="form-control" type="text" name="aTitle"></td>
+						<td style="padding-right: 15px">제목</td><td><input class="form-control" type="text" name="aTitle" required="required"></td>
 					</tr>
 						<tr>
 						<td style="padding-right: 15px">작성자</td><td><%=session.getAttribute("cId")  %> </td>
@@ -43,7 +43,7 @@
 					<tr>
 						<td style="padding-right: 15px">문의 내용</td>
 						<td><div class="form-floating">
-	  						<textarea class="form-control" name="aContent" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 300px; width:400px;"></textarea>
+	  						<textarea class="form-control" name="aContent" placeholder="Leave a comment here" id="floatingTextarea2" required="required" style="height: 300px; width:400px;"></textarea>
 	 						<label for="floatingTextarea2">Comments</label></div>
 						</td>
 				</tr>

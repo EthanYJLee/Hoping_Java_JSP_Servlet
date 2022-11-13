@@ -94,7 +94,6 @@
 </script>
 
 <!-- 성연씨가 작업해주신 정규식  -->
-</head>
 <script type="text/javascript">
 	function checkMember() {
 
@@ -185,11 +184,6 @@
 		form.submit()
 	}
 </script>
-
-
-
-
-
 
 
 

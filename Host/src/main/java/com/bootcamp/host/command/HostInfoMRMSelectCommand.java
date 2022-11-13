@@ -15,7 +15,7 @@ public class HostInfoMRMSelectCommand implements BCCommand {
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		
 		HttpSession session = request.getSession();
-		int regSeq = (int) session.getAttribute("regSeq");
+		int regSeq = (int) session.getAttribute("REGSEQ");
 		
 		HostRegMDao dao = new HostRegMDao();
 

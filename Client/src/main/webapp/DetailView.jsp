@@ -124,7 +124,14 @@
 		     
 		    <!-- 예약하러 가기 --> 
 	  		<div class="container-md d-flex justify-content-center" style="margin-top: 10px;">
-	  			<form action="booking.do" method="post"style="margin: 10px;">
+	  		
+	  		<% if (session.getAttribute("cId") == null) { %>
+	  			<a href="ClientLoginView.jsp">
+			    <button type="submit" class="btn btn-primary">로그인을 하셔야 예약이나 문의를 하실 수 있어요</button>
+			    </a>
+			       <% } else { %>
+			       
+			       <form action="booking.do" method="post"style="margin: 10px;">
 	  				  <input type="hidden" name="regSeq" value="${DetailView.regSeq}" >
 				      <button type="submit" class="btn btn-primary">예약하러 가기</button>
 		    	</form>
@@ -133,21 +140,56 @@
 	  				  <input type="hidden" name="regName" value="${DetailView.regName}" >
 				      <button type="submit" class="btn btn-primary" <%-- onclick="<!-- /**/ -->" --%>>문의하러 가기</button>
 		    	</form>
+        <% } %>
+	  		
+	  		
+	  			
+		    	
+		    	
+		    	
+		    	
+		    	
 		    </div>
 		    		    	     <hr class="featurette-divider"> 
 		    
-		    <div> 
-		  		<form action="checkBook.do" method="post">
-		  			  <input type="text" name="rbookSeq" value="1">
-				      <button type="submit" class="btn btn-primary">예약정보 확인하러 가기</button>
-			    </form>
-		    </div>
 		    
-		    
-		    	     <hr class="featurette-divider"> 
 		    	     <div> 
 		    	     	이 캠핑장이랑 비슷한 캠핑장 둘러보기!
 		    	     </div>
+		    	     <hr class="featurette-divider">
+
+
+				<div>
+					후기보기 &nbsp;&nbsp;&nbsp;
+					<div>${reviewAvg.rvStar}</div>
+
+
+					<div class="container">
+						<div class="card myhcard" style="border-radius: 20px;">
+							<table>
+								<tr class="myhtr">
+									<td class="myth">번호</td>
+									<td class="myth">작성자</td>
+									<td class="myth">제목</td>
+									<td class="myth">작성 시간</td>
+								</tr>
+								<c:forEach items="${reviewList}" var="dto">
+									<tr class="myhtr">
+										<td class="mytd"><a
+											href="reviewDetailView.do?rvSeq=${dto.rvSeq}">${dto.rvSeq}</a></td>
+										<td class="mytd">${dto.rvCId}</td>
+										<td class="mytd">${dto.rvTitle}</td>
+										<td class="mytd">${dto.rvTime}</td>
+										<%--	<td class="mytd">${dto.regName}</td><td class="mytd"><a href="pay.do?roNum=${dto.roNum}">${dto.roNum}</a></td><td class="mytd">${dto.regCategory}</td><td class="mytd"><fmt:formatNumber value="${dto.roPrice}" pattern="#,###"/>원</td>><td class="mytd">${dto.roMax}명</td> --%>
+
+									</tr>
+								</c:forEach>
+							</table>
+							
+						<a href="writeReview.do?regSeq=${DetailView.regSeq}">후기작성하기</a>
+					</div>
+				</div>
+				</div>
 		    	     
 		    	     
     	     </div><!-- DIV row End -->

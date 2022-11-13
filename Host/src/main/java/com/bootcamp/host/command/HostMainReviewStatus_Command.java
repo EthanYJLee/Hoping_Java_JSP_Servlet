@@ -13,7 +13,7 @@ public class HostMainReviewStatus_Command implements BCCommand {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		HttpSession session = request.getSession();
-		int hSeq = (int) session.getAttribute("hSeq");
+		int hSeq = (int) session.getAttribute("HSEQ");
 
 		HostReviewStatusDao dao = new HostReviewStatusDao();
 		int todayR = dao.mainReviewCount(hSeq);
