@@ -1,34 +1,76 @@
 package com.bootcamp.dto;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
 public class reviewDto {
 	int rvSeq;
-	String rvid;
-	String rvName;
+	String rvCId;
+	String rvCName;
 	String rvTitle;
 	String rvContent;
 	int rvStar;
 	Timestamp rvTime;
 	Timestamp rvMtime;
-	Timestamp rvDTime;
+	Timestamp rvDtime;
+	int regcamp_regSeq;
+	int regcamp_host_hSeq;
 	
 	public reviewDto() {
 		
 	}
 
-	public reviewDto(int rvSeq, String rvid, String rvName, String rvTitle, String rvContent, int rvStar,
-			Timestamp rvTime, Timestamp rvMtime, Timestamp rvDTime) {
+	public reviewDto(int rvSeq, String rvCId, String rvCName, String rvTitle, String rvContent, int rvStar,
+			Timestamp rvTime, Timestamp rvMtime, Timestamp rvDtime, int regcamp_regSeq, int regcamp_host_hSeq) {
 		super();
 		this.rvSeq = rvSeq;
-		this.rvid = rvid;
-		this.rvName = rvName;
+		this.rvCId = rvCId;
+		this.rvCName = rvCName;
 		this.rvTitle = rvTitle;
 		this.rvContent = rvContent;
 		this.rvStar = rvStar;
 		this.rvTime = rvTime;
 		this.rvMtime = rvMtime;
-		this.rvDTime = rvDTime;
+		this.rvDtime = rvDtime;
+		this.regcamp_regSeq = regcamp_regSeq;
+		this.regcamp_host_hSeq = regcamp_host_hSeq;
+	}
+
+	public reviewDto(int rvSeq, String rvCId, String rvCName, String rvTitle, String rvContent, int rvStar,
+			Timestamp rvTime, Timestamp rvMtime, Timestamp rvDtime) {
+		super();
+		this.rvSeq = rvSeq;
+		this.rvCId = rvCId;
+		this.rvCName = rvCName;
+		this.rvTitle = rvTitle;
+		this.rvContent = rvContent;
+		this.rvStar = rvStar;
+		this.rvTime = rvTime;
+		this.rvMtime = rvMtime;
+		this.rvDtime = rvDtime;
+	}
+
+	
+	public reviewDto(int rvSeq, String rvCId, String rvCName, String rvTitle, String rvContent, int rvStar,
+			Timestamp rvTime) {
+		super();
+		this.rvSeq = rvSeq;
+		this.rvCId = rvCId;
+		this.rvCName = rvCName;
+		this.rvTitle = rvTitle;
+		this.rvContent = rvContent;
+		this.rvStar = rvStar;
+		this.rvTime = rvTime;
+	}
+
+	public reviewDto(int rvStar) {
+		super();
+		this.rvStar = rvStar;
+	}
+
+	public reviewDto(String rvCName) {
+		super();
+		this.rvCName = rvCName;
 	}
 
 	public int getRvSeq() {
@@ -39,20 +81,20 @@ public class reviewDto {
 		this.rvSeq = rvSeq;
 	}
 
-	public String getRvid() {
-		return rvid;
+	public String getRvCId() {
+		return rvCId;
 	}
 
-	public void setRvid(String rvid) {
-		this.rvid = rvid;
+	public void setRvCId(String rvCId) {
+		this.rvCId = rvCId;
 	}
 
-	public String getRvName() {
-		return rvName;
+	public String getRvCName() {
+		return rvCName;
 	}
 
-	public void setRvName(String rvName) {
-		this.rvName = rvName;
+	public void setRvCName(String rvCName) {
+		this.rvCName = rvCName;
 	}
 
 	public String getRvTitle() {
@@ -95,13 +137,31 @@ public class reviewDto {
 		this.rvMtime = rvMtime;
 	}
 
-	public Timestamp getRvDTime() {
-		return rvDTime;
+	public Timestamp getRvDtime() {
+		return rvDtime;
 	}
 
-	public void setRvDTime(Timestamp rvDTime) {
-		this.rvDTime = rvDTime;
+	public void setRvDTime(Timestamp rvDtime) {
+		this.rvDtime = rvDtime;
 	}
 
+	public int getRegcamp_regSeq() {
+		return regcamp_regSeq;
+	}
+
+	public void setRegcamp_regSeq(int regcamp_regSeq) {
+		this.regcamp_regSeq = regcamp_regSeq;
+	}
+
+	public int getRegcamp_host_hSeq() {
+		return regcamp_host_hSeq;
+	}
+
+	public void setRegcamp_host_hSeq(int regcamp_host_hSeq) {
+		this.regcamp_host_hSeq = regcamp_host_hSeq;
+	}
+
+	
+	
 	
 }

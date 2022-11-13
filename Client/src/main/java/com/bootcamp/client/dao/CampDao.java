@@ -37,7 +37,7 @@ public class CampDao {
 		try {
 			connection = dataSource.getConnection();
 			System.out.println("Query start");
-			String query = "select * from camp where regSeq = "+strregSeq;;
+			String query = "select * from regcamp where regSeq = "+strregSeq;;
 			preparedStatement = connection.prepareStatement(query);
 			resultSet = preparedStatement.executeQuery();
 			System.out.println("Query Execute");

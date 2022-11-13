@@ -50,8 +50,8 @@
     고객지원을 제외한 상품의 예약, 이용 등과 관련한 의무와 책임 등 모든 거래에 대한 책임은 가맹점에게 있습니다.
     </p>
     <ul class="list-inline">
-      <li class="list-inline-item"><a href="#">이용약관</a></li>
-      <li class="list-inline-item"><a href="#">Support</a></li>
+      <li class="list-inline-item"><a href="TermsHomepage.jsp">이용약관</a></li>
+      <li class="list-inline-item"><a href="support.jsp">Support</a></li>
       <li class="list-inline-item"><a href="#">Contact Us</a></li>
     </ul>
   </footer>

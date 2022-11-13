@@ -70,41 +70,16 @@
 	<div class="container-fluid py-3">
 		<h2 class="display-7 fw-bold">나의 캠핑장 정보</h2><br><br>
 		<div class="row">
+			<c:forEach var="camplist" items="${host_camp_profile_list}">
 			<div class="col"><div class="card" style="width: 14rem;">
-				<img src="https://www.incheonin.com/news/photo/202205/87828_122219_3711.jpg" class="card-img-top" alt="...">
+				<img src="${camplist.regImage1}" class="card-img-top" alt="...">
 				<div class="card-body">
-					<h5 class="card-title">1번 캠핑장</h5>
-					<p class="card-text">캠핑장 주소</p>
-					<a href="#" class="btn btn-primary">캠핑장 정보 수정</a>
+					<h5 class="card-title">${camplist.regName}</h5>
+					<p class="card-text">${camplist.regDetailaddress}</p>
+					<a href="host_modify_camp.do?regName=${camplist.regName}" class="btn btn-primary">캠핑장 정보 수정</a>
 				</div>
 			</div></div>
-			
-			<div class="col"><div class="card" style="width: 14rem;">
-				<img src="https://www.incheonin.com/news/photo/202205/87828_122219_3711.jpg" class="card-img-top" alt="...">
-				<div class="card-body">
-					<h5 class="card-title">2번 캠핑장</h5>
-					<p class="card-text">캠핑장 주소</p>
-					<a href="#" class="btn btn-primary">캠핑장 정보 수정</a>
-				</div>
-			</div></div>
-			
-			<div class="col"><div class="card" style="width: 14rem;">
-				<img src="https://www.incheonin.com/news/photo/202205/87828_122219_3711.jpg" class="card-img-top" alt="...">
-				<div class="card-body">
-					<h5 class="card-title">3번 캠핑장</h5>
-					<p class="card-text">캠핑장 주소</p>
-					<a href="#" class="btn btn-primary">캠핑장 정보 수정</a>
-				</div>
-			</div></div>
-			
-			<div class="col"><div class="card" style="width: 14rem;">
-				<img src="https://www.incheonin.com/news/photo/202205/87828_122219_3711.jpg" class="card-img-top" alt="...">
-				<div class="card-body">
-					<h5 class="card-title">4번 캠핑장</h5>
-					<p class="card-text">캠핑장 주소</p>
-					<a href="#" class="btn btn-primary">캠핑장 정보 수정</a>
-				</div>
-			</div></div>
+			</c:forEach>
 		</div>
 	</div>
 </div>
