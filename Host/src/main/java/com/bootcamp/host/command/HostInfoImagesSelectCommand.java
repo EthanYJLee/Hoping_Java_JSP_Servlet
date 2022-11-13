@@ -17,8 +17,8 @@ public class HostInfoImagesSelectCommand implements BCCommand {
 		HttpSession session = request.getSession();
 		
 		HostRegMDao dao = new HostRegMDao();
-		int regSeq = (int) session.getAttribute("regSeq");
-
+		int regSeq = (int) session.getAttribute("REGSEQ");
+		
 		MyregcampDto dto = dao.selectCampImages(regSeq);
 
 		request.setAttribute("images", dto);
