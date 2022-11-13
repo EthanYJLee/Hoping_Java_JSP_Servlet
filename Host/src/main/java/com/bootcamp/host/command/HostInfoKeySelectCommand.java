@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.bootcamp.dto.KeyDto;
 import com.bootcamp.host.dao.KeyDao;
@@ -14,13 +15,15 @@ public class HostInfoKeySelectCommand implements BCCommand {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-
-		String regSeq = request.getParameter("regSeq");
-		String hSeq = request.getParameter("hSeq");
+		
+		HttpSession session = request.getSession();
+		
+		int hSeq = (int) session.getAttribute("HSEQ");
+		int regSeq = (int) session.getAttribute("REGSEQ");
 
 		KeyDao dao = new KeyDao();
 
-		ArrayList<KeyDto> dtos = dao.selectKeyword(1, 1);
+		ArrayList<KeyDto> dtos = dao.selectKeyword(regSeq, hSeq);
 
 		request.setAttribute("keywords", dtos);
 

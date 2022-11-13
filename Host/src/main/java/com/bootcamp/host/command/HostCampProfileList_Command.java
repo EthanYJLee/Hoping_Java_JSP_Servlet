@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.bootcamp.dto.HostRegcampDto;
-import com.bootcamp.dto.regcampDto;
 import com.bootcamp.host.dao.HostCampListDao;
 
 public class HostCampProfileList_Command implements BCCommand {
@@ -24,7 +23,7 @@ public class HostCampProfileList_Command implements BCCommand {
 
 		request.setAttribute("host_camp_profile_list", dtos);
 
-		// Host Main 화면에서 썸네일 담아줌 (사진, 캠핑장이름, 주소)
+		// Host Main 화면에서 썸네일 담아줌 (HSEQ, 사진, 캠핑장이름, 주소)
 
 	}
 

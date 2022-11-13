@@ -20,7 +20,7 @@ public class CampingAddFaCommand implements BCCommand {
 		
 		//hSeq, regSeq 세션 받아오기
 		int hSeq = (int) session.getAttribute("HSEQ");
-		int regSeq = (int) session.getAttribute("regSeq");
+		int regSeq = (int) session.getAttribute("REGSEQ");
 		
 		// 선택한 편의시설 개수만큼 for문 돌려서 insert
 		for (int i = 0; i < facilities.length; i++) {
