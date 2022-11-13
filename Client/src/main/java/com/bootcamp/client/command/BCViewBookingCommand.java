@@ -8,6 +8,9 @@ import javax.servlet.http.HttpSession;
 
 import com.bootcamp.client.dao.CampDao;
 import com.bootcamp.dto.bookDto;
+import com.bootcamp.joindto.BookJoinDto;
+import com.bootcamp.joindto.BookingJoinDto;
+
 
 public class BCViewBookingCommand implements BCCommand {
 
@@ -20,7 +23,9 @@ public class BCViewBookingCommand implements BCCommand {
 		System.out.println("BCViewBookingCommand------------------------------session.setAttribute(\"cId\", cId);"+cId);
 
 		CampDao dao = new CampDao();
-		ArrayList<bookDto> dtos = dao.ViewBooking(cId);
+
+		ArrayList<BookJoinDto> dtos = dao.ViewBooking(cId);
+
 		request.setAttribute("Booking", dtos);
 
 	}

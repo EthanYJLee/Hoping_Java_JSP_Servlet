@@ -175,9 +175,4 @@ import com.bootcamp.joindto.checkdate2Dto;
 		return dto;
 	} // DetailView  END
 	
-	
-	
-	
-	
-	
 }//BDao End

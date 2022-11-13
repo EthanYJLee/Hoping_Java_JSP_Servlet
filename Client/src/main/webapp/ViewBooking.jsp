@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>	
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>   
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,18 +25,19 @@
 <div class="box container mymcontainer">
 	<div class="row">
 
-		<c:forEach items="${RegCamp}" var="dto">
-		  <div class="col-md">
+
+		<c:forEach items="${Booking}" var="dto">
+		  <div class="col-md-4">
 		    <div class="card mycard">
-		    <a href="detailView.do?regSeq=${dto.regSeq}">
 		      <img src="./images/${dto.regImage2}" class="card-img-top myimage" alt="...">
-		    </a> 
-		      <div class="card-body mycbody">
+		    	장소 : ${dto.regName}
+		        <div class="card-body mycbody">
 				<p class="card-text">
-					${dto.regDetailaddress}
+					${dto.regCategory}
 				</p>
-				<h5 class="card-title myctitle">${dto.regName}</h5>
-				<p class="card-text myctext">${dto.regTel}</p>
+				<h5 class="card-title myctitle">자리 번호 : ${dto.roNum}</h5>
+				<p class="card-text myctext">가격 : <fmt:formatNumber value="${dto.roPrice}" pattern="#,###"/>원 </p>
+				<p class="card-text myctext">예약일 : <fmt:formatDate value="${dto.boCheckindate}" pattern="yyyy-MM-dd"/> </p>
 		      </div>
 		    </div>
 		  </div>
