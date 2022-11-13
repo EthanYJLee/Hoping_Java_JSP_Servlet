@@ -116,7 +116,8 @@
 	</div>
 </div>
 
-<form class="container d-flex justify-content-center" style="margin: 30px">
+<%-- 페이징 --%>
+<form action="bookList2.do" class="container d-flex justify-content-center" style="margin: 30px">
 	
 <%
 
