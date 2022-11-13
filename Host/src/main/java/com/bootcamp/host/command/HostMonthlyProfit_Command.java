@@ -13,7 +13,7 @@ public class HostMonthlyProfit_Command implements BCCommand {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
-		int hSeq = (int) session.getAttribute("hSeq");
+		int hSeq = (int) session.getAttribute("HSEQ");
 
 		HostMonthlyDao dao = new HostMonthlyDao();
 		int[] mp = new int[12];

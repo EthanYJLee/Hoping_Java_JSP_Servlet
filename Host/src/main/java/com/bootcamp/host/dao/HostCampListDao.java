@@ -9,7 +9,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import com.bootcamp.dto.regcampDto;
+import com.bootcamp.dto.HostRegcampDto;
 
 public class HostCampListDao { // 호스트 각각이 보유한 캠핑장 리스트
 	DataSource dataSource;
@@ -31,7 +31,7 @@ public class HostCampListDao { // 호스트 각각이 보유한 캠핑장 리스
 
 		try {
 			connection = dataSource.getConnection();
-			String query = "select regName from regcamp where host_hSeq = ?";
+			String query = "select regName from regcamp where host_hSeq = ? and regDdate is null";
 			ps = connection.prepareStatement(query);
 
 			ps.setInt(1, hSeq);
@@ -60,16 +60,16 @@ public class HostCampListDao { // 호스트 각각이 보유한 캠핑장 리스
 		return arr;
 	}
 
-	public ArrayList<regcampDto> myCampProfileList(int hSeq) {
-		ArrayList<regcampDto> dtos = new ArrayList<regcampDto>();
+	public ArrayList<HostRegcampDto> myCampProfileList(int hSeq) {
+		ArrayList<HostRegcampDto> dtos = new ArrayList<HostRegcampDto>();
 		Connection connection = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 
 		try {
 			connection = dataSource.getConnection();
-			String query = "select regImage1, regName, regDetailaddress from regcamp ";
-			String query2 = "where host_hSeq = ?";
+			String query = "select regSeq, regImage1, regName, regDetailaddress from regcamp ";
+			String query2 = "where host_hSeq = ? and regDdate is null";
 			ps = connection.prepareStatement(query + query2);
 
 			ps.setInt(1, hSeq);
@@ -77,10 +77,11 @@ public class HostCampListDao { // 호스트 각각이 보유한 캠핑장 리스
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
+				int regSeq = rs.getInt("regSeq");
 				String regImage1 = rs.getString("regImage1");
 				String regName = rs.getString("regName");
 				String regDetailaddress = rs.getString("regDetailaddress");
-				regcampDto dto = new regcampDto(regImage1, regName, regDetailaddress);
+				HostRegcampDto dto = new HostRegcampDto(regSeq, regImage1, regName, regDetailaddress);
 				dtos.add(dto);
 			}
 

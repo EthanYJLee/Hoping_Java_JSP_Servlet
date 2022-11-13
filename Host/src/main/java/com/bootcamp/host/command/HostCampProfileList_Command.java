@@ -15,7 +15,7 @@ public class HostCampProfileList_Command implements BCCommand {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
-		int hSeq = (int) session.getAttribute("hSeq");
+		int hSeq = (int) session.getAttribute("HSEQ");
 
 		HostCampListDao dao = new HostCampListDao();
 

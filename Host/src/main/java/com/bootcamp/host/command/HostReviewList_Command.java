@@ -15,7 +15,7 @@ public class HostReviewList_Command implements BCCommand {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
-		int hSeq = (int) session.getAttribute("hSeq");
+		int hSeq = (int) session.getAttribute("HSEQ");
 
 		HostReviewListDao dao = new HostReviewListDao();
 		ArrayList<HostReplyReviewDto> dtos = dao.reviewList(hSeq);

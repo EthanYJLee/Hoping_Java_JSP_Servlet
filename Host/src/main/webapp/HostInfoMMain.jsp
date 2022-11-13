@@ -81,6 +81,7 @@
  	</div>
  	<div class="row myhdrow">
  		<div class="col-6 "><a href="HostInfoRoomView.do" type="button" style="border-radius: 10px; width:400px; height: 60px;" class="btn mybtns btn-secondary">자리 수정</a></div>
+ 		<div class="col-6 "><a href="host_confirm_delete.do" type="button" style="border-radius: 10px; width:400px; height: 60px;" class="btn mybtns btn-secondary">캠핑장 삭제</a></div>
  	</div>
  </div>
  

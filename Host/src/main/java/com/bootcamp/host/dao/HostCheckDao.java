@@ -92,24 +92,28 @@ public class HostCheckDao {
 
 	}
 
-	public int getRegSeq(int hSeq, String regName) { // 캠핑장 정보 수정을 위한 regSeq
+	public int checkHostCampInfoForMod(int hSeq, int regSeq) {	
+		// 호스트와 캠핑장 정보가 모두 일치하는지 확인 후 regSeq를 세션에 넣기 위한 작업
+		// 수정 or 삭제 작업이 완료되면 regSeq만 invalidate 시킬 것.
 		PreparedStatement ps = null;
 		Connection connection = null;
 		ResultSet rs = null;
-		int regSeq = 0;
+		int result = 0;
 
 		try {
 			connection = dataSource.getConnection();
-			String query = "select regSeq from regcamp where host_hSeq = ? and regName = '?'";
-			ps = connection.prepareStatement(query);
+			String query = "select count(*) from regcamp reg inner join host h "
+					+ "on reg.host_hSeq = h.hSeq ";
+			String query2 = "where reg.regSeq = ? and h.hSeq = ? and reg.regDdate is null";
+			ps = connection.prepareStatement(query + query2);
 
-			ps.setInt(1, hSeq);
-			ps.setString(2, regName);
+			ps.setInt(1, regSeq);
+			ps.setInt(2, hSeq);
 
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
-				regSeq = rs.getInt(1);
+				result = rs.getInt(1);
 			}
 
 		} catch (Exception e) {
@@ -124,8 +128,7 @@ public class HostCheckDao {
 				e.printStackTrace();
 			}
 		}
-		return regSeq;
-
+		return result;
 	}
 
 }

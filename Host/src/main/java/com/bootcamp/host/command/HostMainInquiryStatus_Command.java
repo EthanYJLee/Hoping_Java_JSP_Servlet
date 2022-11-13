@@ -13,7 +13,7 @@ public class HostMainInquiryStatus_Command implements BCCommand {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		HttpSession session = request.getSession();
-		int hSeq = (int) session.getAttribute("hSeq");
+		int hSeq = (int) session.getAttribute("HSEQ");
 
 		HostInquiryStatusDao dao = new HostInquiryStatusDao();
 		int todayQ = dao.mainInquiryCount(hSeq);
