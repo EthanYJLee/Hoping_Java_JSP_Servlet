@@ -16,7 +16,6 @@ public class HostBookListCommand implements BCCommand {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
 		BookJoinDao bookJoinDao = new BookJoinDao();
-		HostBookPagingDao hostBookPagingDao = new HostBookPagingDao();
 		String hSeq = request.getParameter("hSeq");
 		String strSearch = request.getParameter("strSearch");
 		String startDate = request.getParameter("startDate");
@@ -29,7 +28,7 @@ public class HostBookListCommand implements BCCommand {
 		int pageRow = 10;
 		
 		//페이지 시작점
-		int startRow = pageRow * (page -1);
+		int startRow = pageRow * (page - 1);
 		
 		if(startDate == null) {
 		
@@ -46,7 +45,8 @@ public class HostBookListCommand implements BCCommand {
 			
 		}else {
 			
-			ArrayList<BookListDto> dtos = bookJoinDao.bookListCon("1", startDate, endDate, strSearch, startRow, pageRow);
+			System.out.println("blcommand else");
+			ArrayList<BookListDto> dtos = bookJoinDao.bookListCon("1", startDate.replace("-", ""), endDate.replace("-", ""), strSearch, startRow, pageRow);
 			request.setAttribute("list", dtos);
 			
 		}
