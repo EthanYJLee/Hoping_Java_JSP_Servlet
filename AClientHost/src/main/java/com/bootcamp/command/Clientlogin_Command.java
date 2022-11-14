@@ -31,7 +31,7 @@ public class Clientlogin_Command implements BCCommand {
 
 		HttpSession session = request.getSession();
 		session.setAttribute("CID", cId);
-		System.out.println("clientlogin_command에서 보내는 session = " + session.getAttribute(cId));
+		System.out.println("clientlogin_command에서 보내는 session = " + session.getAttribute("CID"));
 
 		return null;
 	}

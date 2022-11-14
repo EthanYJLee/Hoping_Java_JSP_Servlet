@@ -29,7 +29,7 @@ public class HImageCommand implements BCCommand {
 		HostDto dto = dao.fileView(hId);
 
 		request.setAttribute("fileView", dto);
-	System.out.println(hImage);
+	System.out.println("내정보수정이미지:"+hImage);
 	
 	}
 
