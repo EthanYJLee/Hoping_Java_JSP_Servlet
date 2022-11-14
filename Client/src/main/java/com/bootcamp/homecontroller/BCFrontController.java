@@ -24,6 +24,8 @@ import com.bootcamp.client.command.BCInsertBookCommand;
 import com.bootcamp.client.command.BCInsertPayCommand;
 //import com.bootcamp.client.command.BCSelectDateCommand;
 import com.bootcamp.client.command.Clientdelete_Command;
+import com.bootcamp.client.command.ClientfindId_Command;
+import com.bootcamp.client.command.ClientfindPw_Command;
 import com.bootcamp.client.command.Clientlogin_Command;
 import com.bootcamp.client.command.Clientmodify_Command;
 import com.bootcamp.client.command.ClientmypageView_Command;
@@ -196,6 +198,16 @@ public class BCFrontController extends HttpServlet {
 			command = new Clientdelete_Command();
 			command.execute(request, response);
 			viewPage = "/ClientLoginView.jsp";
+			break;
+		// 아이디 찾기
+		case ("/idsearch.do"):
+			command = new ClientfindId_Command();
+			command.execute(request, response);
+			break;
+		// 비밀번호 찾기
+		case ("/pwsearch.do"):
+			command = new ClientfindPw_Command();
+			command.execute(request, response);
 			break;
 
 			
