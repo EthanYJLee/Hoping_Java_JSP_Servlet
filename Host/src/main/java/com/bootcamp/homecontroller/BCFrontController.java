@@ -199,7 +199,7 @@ public class BCFrontController extends HttpServlet {
 		case ("/send_review_reply.do"):
 			command = new HostSendReviewReply_Command(); // 호스트가 후기에 작성한 답글 insert하고 댓글 그룹 업데이트
 			command.execute(request, response);
-			viewPage = "/host_review_list.do";
+			viewPage = "host_review_list.do";
 			break;
 
 		case ("/host_login.do"): // 호스트용 로그인 화면 (임시용임!!!)

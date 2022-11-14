@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="css/Design.css">
 <link rel="stylesheet" href="css/HostCard.css">
 <link rel="stylesheet" href="css/TableCenter.css">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/HostStyle.css">
 <link rel="stylesheet" href="css/carousel.css">
 
 
