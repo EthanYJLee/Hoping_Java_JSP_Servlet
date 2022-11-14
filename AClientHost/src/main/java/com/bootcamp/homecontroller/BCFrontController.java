@@ -77,8 +77,7 @@ public class BCFrontController extends HttpServlet {
 		String conPath = request.getContextPath();
 		String com = uri.substring(conPath.length());
 		HttpSession session = request.getSession();
-		
-		
+
 		switch (com) {
 
 		case ("/check.do"):
@@ -87,7 +86,7 @@ public class BCFrontController extends HttpServlet {
 			command.execute(request, response);
 			command = new ClientToHostCommand();
 			Boolean Result = command.execute1(request, response);
-			
+
 			System.out.println("clientcontroller: " + Result);
 			if (Result == true) {
 				viewPage = "/host_main.do";
@@ -157,7 +156,7 @@ public class BCFrontController extends HttpServlet {
 		case ("/login.do"):
 			command = new Clientlogin_Command();
 			boolean result = command.execute1(request, response);
-			//homecontroller host랑 client랑 합칠 때 겹치는 변수명 있어서 바꿈요 (cId>>cId4)
+			// homecontroller host랑 client랑 합칠 때 겹치는 변수명 있어서 바꿈요 (cId>>cId4)
 //			String cId4 = request.getParameter("cId");
 //			String cPw = request.getParameter("cPw");
 //
@@ -170,18 +169,18 @@ public class BCFrontController extends HttpServlet {
 				viewPage = "ClientLoginView.jsp";
 			} else {
 
-				//JOptionPane.showInternalMessageDialog(null, "환영합니다 ", "로그인", 0, null);
+				// JOptionPane.showInternalMessageDialog(null, "환영합니다 ", "로그인", 0, null);
 
 				// page = "ClientMainView.jsp";
 				viewPage = "main.do";
 			}
 			break;
 
-		//logout
-		case("/ClientLogout.do"):
+		// logout
+		case ("/ClientLogout.do"):
 			session.invalidate();
 			viewPage = "ClientLoginView.jsp";
-		break;
+			break;
 		// 회원등록
 		case ("/Clientwrite.do"):
 			command = new Clientwrite_Command();
@@ -218,7 +217,7 @@ public class BCFrontController extends HttpServlet {
 			break;
 
 		// // ------------호식 : 상세페이지, 문의하기 ------------------------------------
-			
+
 		// 상세 페이지 보기
 		case ("/detailView.do"):
 			command = new BCDetailCommand();
@@ -258,8 +257,6 @@ public class BCFrontController extends HttpServlet {
 			command.execute(request, response);
 			viewPage = "ClientCheckHistory.jsp";
 			break;
-			
-			
 
 		// ———————————리뷰—————주현————————————
 
@@ -294,48 +291,40 @@ public class BCFrontController extends HttpServlet {
 //			   viewPage = "Review_List.jsp";
 //			   break;
 
-			
-			//wishList 등록 삭제 리스트
-			
-			case ("/wishList_View.do"):
-				command = new WishList_View_Command();
-				command.execute(request, response);
-				viewPage = "WishList_view.jsp";
-				break; 
-					
-					
-				  //위시리스트 등록
-					
-			case ("/wish_write.do"): //wish리스트에 등록
-				command = new wish_write_Command();
-			command.execute(request, response);
-			  break; //위시리스트 등록
-			  
-			  
-			  
-			case ("/wish_delete.do")://wish리스트에서 삭제
-				command = new wish_delete_Command();
-			command.execute(request, response);
-			break;//위시리스트 삭제
+		// wishList 등록 삭제 리스트
 
-			
-			case ("/count.do"): // 먼저 wish리스트에 해당 캠핑장이 등록되어 있는지 확인
-				   command = new count_Command();
-				  Boolean check = command.execute1(request, response);
-				   
-				  	//만약 wish리스트에 등록이 되어있지 않다면 check값이 false가 되어 등록이 됨
+		case ("/wishList_View.do"):
+			command = new WishList_View_Command();
+			command.execute(request, response);
+			viewPage = "WishList_view.jsp";
+			break;
+
+		// 위시리스트 등록
+
+		case ("/wish_write.do"): // wish리스트에 등록
+			command = new wish_write_Command();
+			command.execute(request, response);
+			break; // 위시리스트 등록
+
+		case ("/wish_delete.do"):// wish리스트에서 삭제
+			command = new wish_delete_Command();
+			command.execute(request, response);
+			break;// 위시리스트 삭제
+
+		case ("/count.do"): // 먼저 wish리스트에 해당 캠핑장이 등록되어 있는지 확인
+			command = new count_Command();
+			Boolean check = command.execute1(request, response);
+
+			// 만약 wish리스트에 등록이 되어있지 않다면 check값이 false가 되어 등록이 됨
 			if (check == false) {
 				JOptionPane.showInternalMessageDialog(null, "위시리스트에 등록됐습니다.", "위시리스트", 0, null);
 				viewPage = "wish_write.do";
-			} else {//만ㅇ냑 wish리스트에 등록이 되어있으면 check값이 true가 되어 삭제가 됨
+			} else {// 만ㅇ냑 wish리스트에 등록이 되어있으면 check값이 true가 되어 삭제가 됨
 				JOptionPane.showInternalMessageDialog(null, "위시리스트에서 삭제되었습니다 ", "위시리스트", 0, null);
 				viewPage = "wish_delete.do";
 			}
 			break;// 위시리스트에 있는지 없는지 확인 후 등록 or 삭제 결정
-			
-			
-			
-			
+
 		// --------------------주현: 약관동의 후 호스트 가입(호스트 정보 insert)--------------------
 
 		// 약관보여주기
@@ -375,6 +364,10 @@ public class BCFrontController extends HttpServlet {
 			command = new HImageCommand();
 			command.execute(request, response);
 			viewPage = "fileShow.jsp";
+			break;
+		case ("/fileView.do"):
+			
+			viewPage = "host_main.do";
 			break;
 
 		// ——————————주현: 마이페이지 정보 수정(호스트 정보 update)——————————
@@ -451,7 +444,7 @@ public class BCFrontController extends HttpServlet {
 			break;
 
 		case ("/host_check.do"):
-			//homecontroller host랑 client랑 합칠 때 겹치는 변수명 있어서 바꿈요 (cPw>>cPw1)
+			// homecontroller host랑 client랑 합칠 때 겹치는 변수명 있어서 바꿈요 (cPw>>cPw1)
 			String cId = request.getParameter("cId");
 			String cPw1 = request.getParameter("cPw");
 			String hId = null;
@@ -459,7 +452,7 @@ public class BCFrontController extends HttpServlet {
 			int hSeq = dao3.checkHostLogin(cId, cPw1);
 			if (hSeq != 0) {
 				hId = cId;
-				
+
 				session.setAttribute("HID", hId);
 				session.setAttribute("HSEQ", hSeq);
 				viewPage = "host_main.do";
@@ -470,7 +463,7 @@ public class BCFrontController extends HttpServlet {
 
 		case ("/host_modify_camp.do"):
 			// 호스트 통합 메인 페이지에서 캠핑장 정보 수정 버튼 클릭시 hSeq와 regName 받아오기
-			
+
 			int myHSeq = (int) session.getAttribute("HSEQ");
 			int myRegSeq = Integer.parseInt(request.getParameter("regSeq"));
 			HostCheckDao myCamp = new HostCheckDao();
@@ -487,8 +480,8 @@ public class BCFrontController extends HttpServlet {
 
 		case ("/host_confirm_delete.do"): // 캠핑장 최종삭제 전 확인절차
 			// 남은 예약이 있으면 삭제 불가
-			//주현:HttpSession case문 밖으로 보내고 session 이름통일시킴 delsession>>>session
-			
+			// 주현:HttpSession case문 밖으로 보내고 session 이름통일시킴 delsession>>>session
+
 			int regSeq = (int) session.getAttribute("REGSEQ");
 			HostRegDDao chkBook = new HostRegDDao();
 			HostRegcampDto dto = chkBook.checkRemainingReservation(regSeq);
@@ -523,7 +516,7 @@ public class BCFrontController extends HttpServlet {
 
 		// --------------------------주현 : 고객문의 리스트 페이지--------------------------
 		case ("/askList.do"):
-			command = new askListCommand();// 22-11-15 호식 수정함 
+			command = new askListCommand();// 22-11-15 호식 수정함
 			command.execute(request, response);
 			command = new askListCommand();
 			command.execute1(request, response);
