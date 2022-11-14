@@ -150,7 +150,7 @@ style type ="text /css ">.mybtns {
 					<div class="p-2">
 						<input type="submit"
 							style="border-radius: 15px; width: 70px;"
-							class="btn mybtns btn-secondary" value="답변등록">
+							class="btn mybtns btn-secondary" value="등록">
 					</div>
 				</div>
 			</div>
