@@ -34,10 +34,7 @@
 				<td style="width: 80px;">아이디</td>
 				<td><input type="text" name="cId" size="20" value="${mypage.cId}"></td>
 			</tr>
-			<tr>
-				<td>이름</td>
-				<td><input type="text" name="cName" size="20" value="${mypage.cName}"></td>
-			</tr>
+			
 			<tr>
 				<td>전화번호</td>
 				<td><input type="text" name="cPhone" size="50" value="${mypage.cPhone}"></td>
