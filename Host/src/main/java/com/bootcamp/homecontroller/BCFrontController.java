@@ -27,6 +27,7 @@ import com.bootcamp.host.command.HostBookListCommand;
 import com.bootcamp.host.command.HostBookTotalPagingCommand;
 import com.bootcamp.host.command.HostCampNameList_Command;
 import com.bootcamp.host.command.HostCampProfileList_Command;
+import com.bootcamp.host.command.HostChartDetail_Command;
 import com.bootcamp.host.command.HostDeleteMyCamp_Command;
 import com.bootcamp.host.command.HostInfoFaInDelCommand;
 import com.bootcamp.host.command.HostInfoFaSelectCommand;
@@ -262,6 +263,11 @@ public class BCFrontController extends HttpServlet {
 			viewPage = "HostDeleteCampCompleted.jsp";
 			break;
 			
+		case ("/detail_stat_view.do"):	// 차트 상세 (모든 캠핑장)
+			command = new HostChartDetail_Command();
+			command.execute(request, response);
+			viewPage = "HostDetailStatView.jsp";
+			break;
 
 		// --------------------------호스트 마이페이지에 정보 불러오기--------------------------
 

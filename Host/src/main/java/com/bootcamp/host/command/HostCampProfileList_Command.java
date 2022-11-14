@@ -21,7 +21,7 @@ public class HostCampProfileList_Command implements BCCommand {
 
 		ArrayList<HostRegcampDto> dtos = dao.myCampProfileList(hSeq);
 
-		request.setAttribute("host_camp_profile_list", dtos);
+		request.setAttribute("host_camp_thumbnail", dtos);
 
 		// Host Main 화면에서 썸네일 담아줌 (HSEQ, 사진, 캠핑장이름, 주소)
 
