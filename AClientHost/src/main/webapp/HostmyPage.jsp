@@ -66,7 +66,7 @@
 			</tr>
 			<tr>
 				<td>사진</td>
-				<td><img src="./images/${fileView.hImage}" style="width:200px; height:400px;"></td>
+				<td><img src="./images/${hInfo.hImage}" style="width:200px; height:400px;"></td>
 			</tr>
 			
 			<tr>

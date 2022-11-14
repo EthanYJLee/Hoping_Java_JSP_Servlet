@@ -367,6 +367,7 @@ public class BCFrontController extends HttpServlet {
 			break;
 		// 호스트 이미지 넣기
 		case ("/fileUp.do"):
+			System.out.println("사진 인서트 controller");
 			command = new HImageCommand();
 			command.execute(request, response);
 			viewPage = "fileShow.jsp";
