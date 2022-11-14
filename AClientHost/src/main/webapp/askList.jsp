@@ -102,7 +102,7 @@ $(document).ready(function(){
 						<td class="mytd">${dto.aCId}</td>
 						<td class="mytd"><a href="askDetail.do?aSeq=${dto.aSeq}">${dto.aTitle}</a></td>
 						<td class="mytd">${dto.aTime}</td>				
-						<td class="mytd">O- 적용안되어있음 </td>
+						<td class="mytd">${dtosAnswer}</td>
 						<!-- 22-11-15 AM 2:40 Hosik -->
 						
 						
