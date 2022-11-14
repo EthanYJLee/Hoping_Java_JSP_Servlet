@@ -1,4 +1,4 @@
-package com.bootcamp.client.command;
+package com.bootcamp.command;
 
 import java.util.ArrayList;
 

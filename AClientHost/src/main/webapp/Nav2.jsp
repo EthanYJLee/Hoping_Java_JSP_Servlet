@@ -50,7 +50,7 @@
 			       %>
 			    <li><%=session.getAttribute("CID")  %> 님 환영합니다 </li>
 			    <li><a class="dropdown-item" href="bookingView.do">예약 정보 관리</a></li>
-			    <li><a class="dropdown-item" href="#">위시 리스트</a></li>
+			    <li><a class="dropdown-item" href="wishList_View.do">위시 리스트</a></li>
 			    <li><a class="dropdown-item" href="mypageView.do">마이페이지</a></li>
 			    <li><a class="dropdown-item" href="ClientLogout.jsp">로그아웃</a></li>
         <% } %>

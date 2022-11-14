@@ -1,4 +1,4 @@
-package com.bootcamp.client.command;
+package com.bootcamp.command;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
