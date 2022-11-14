@@ -39,7 +39,7 @@
 		<h2 class="display-7 fw-bold">나의 캠핑장 정보</h2><br><br>
 		<div class="row">
 			<c:forEach var="camplist" items="${host_camp_thumbnail}">
-			<div class="col"><div class="card" style="width: 14rem;">
+			<div class="col"><div class="card mx-auto" style="width: 14rem;">
 				<img src="${camplist.regImage1}" class="card-img-top" alt="...">
 				<div class="card-body">
 					<h5 class="card-title">${camplist.regName}</h5>
