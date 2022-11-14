@@ -21,6 +21,7 @@ import com.bootcamp.client.command.BCClientHistory;
 import com.bootcamp.client.command.BCCommand;
 import com.bootcamp.client.command.BCDetailCommand;
 import com.bootcamp.client.command.BCInsertBookCommand;
+import com.bootcamp.client.command.BCInsertPayCommand;
 //import com.bootcamp.client.command.BCSelectDateCommand;
 import com.bootcamp.client.command.Clientdelete_Command;
 import com.bootcamp.client.command.Clientlogin_Command;
@@ -31,6 +32,7 @@ import com.bootcamp.client.command.ListMain_Command;
 import com.bootcamp.client.command.ReviewWriteCommand;
 import com.bootcamp.client.command.ReviewerNameCommand;
 import com.bootcamp.client.command.SearchCamp_Command;
+import com.bootcamp.client.command.BCViewBookingCommand;
 import com.bootcamp.client.command.reviewDetailCommand;
 import com.bootcamp.client.command.reviewListCommand;
 import com.bootcamp.client.dao.ClientDao;
@@ -95,7 +97,7 @@ public class BCFrontController extends HttpServlet {
 		switch (com) {
 
 		// SangHyuk
-		// ListMain.do 코드 확인 시 타이핑을 줄이기 위해서 main.do로 수정함.
+		// 예약기본루틴 1. ListMain.do 코드 확인 시 타이핑을 줄이기 위해서 main.do로 수정함.
 		case ("/main.do"):
 			System.out.println("List Main");
 			command = new ListMain_Command();
@@ -103,7 +105,7 @@ public class BCFrontController extends HttpServlet {
 			viewPage = "Home.jsp";
 			break;
 			
-		// searchCamp.do 코드 확인 시 캠핑장을 검색어나 타입에 따라 검색하기 위한 메소.
+		// searchCamp.do 코드 확인 시 캠핑장을 검색어나 타입에 따라 검색하기 위한 메소드.
 		case ("/searchCamp.do"):
 			command = new SearchCamp_Command();
 			command.execute(request, response);
@@ -111,7 +113,7 @@ public class BCFrontController extends HttpServlet {
 			viewPage = "Home.jsp";
 			break;
 
-			// 예약 페이지 예약 가능한 날짜 확인을 위한 날짜 체크 sanghyuk
+			// 예약기본루틴 2. 캠프장 선택 예약 페이지 예약 가능한 날짜 확인을 위한 날짜 체크 sanghyuk
 		case("/booking.do"):
 			System.out.println("List camp for Booking");
 			command = new BCCampListCommand();
@@ -119,7 +121,7 @@ public class BCFrontController extends HttpServlet {
 			viewPage = "Calendar2.jsp";
 			System.out.println("List camp End");
 			break;
-			// 예약 가능한 방 리스트 보여주기 sanghyuk
+			// 예약기본루틴 3. 예약 가능한 방 리스트 보여주기 sanghyuk
 			
 		case("/bookingdatecheck.do"):
 			System.out.println("Date Check for Booking");
@@ -132,12 +134,23 @@ public class BCFrontController extends HttpServlet {
 			// sql book table 에 insert 하는 command 이후수정될 여지 많음 
 		case("/pay.do"):
 			System.out.println("pay for Booking");
+			command = new BCInsertPayCommand();
+			command.execute(request, response);
 			command = new BCInsertBookCommand();
 			command.execute(request, response);
-			viewPage = "Calendar3.jsp";
+			viewPage = "bookingView.do";
 			System.out.println(" controller case pay.do 에서 보내는 insert for Booking End");
 			JOptionPane.showInternalMessageDialog(null, "예약이 완료되었습니다 ", "로그인", 0, null);
 			break;			
+
+		case("/bookingView.do"):
+			System.out.println("view for Booking");
+			command = new BCViewBookingCommand();
+			command.execute(request, response);
+			viewPage = "ViewBooking.jsp";
+			System.out.println(" controller case bookingView.do 에서 보내는 select for bookingView End");
+			break;	
+			
 
 			// 로그인
 			//22-11-10 주현씨 수정함 

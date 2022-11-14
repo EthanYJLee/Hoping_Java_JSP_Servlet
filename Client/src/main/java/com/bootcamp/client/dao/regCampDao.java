@@ -5,22 +5,24 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Random;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import com.bootcamp.joindto.campDto;
-import com.bootcamp.dto.roomDto;
+import com.bootcamp.dto.bookDto;
+import com.bootcamp.dto.regcampDto;
 import com.bootcamp.joindto.BookJoinDto;
+import com.bootcamp.joindto.BookingJoinDto;
+import com.bootcamp.joindto.campDto;
 
 
-public class CampDao {
+
+public class regCampDao {
 	
 	DataSource dataSource;
 
-	public CampDao() {
+	public regCampDao() {
 		try {
 			Context context = new InitialContext();
 			dataSource = (DataSource) context.lookup("java:comp/env/jdbc/camping");
@@ -29,42 +31,41 @@ public class CampDao {
 		}
 	}	
 
-	
-	
-	/* 22-11-14 호식 
-				room table에 roNum이 없음. roNum 주석처리 
-				쿼리문 수정 
-				select * from regcamp where regSeq = "+strregSeq;;
-			->> select * from camp where regSeq = "+strregSeq;;	
-	*/
-	public ArrayList<campDto> listCamp(String strregSeq){
-		ArrayList<campDto> dtos = new ArrayList<campDto>();
+	public ArrayList<regcampDto> listRegCamp(String strregSeq){
+		ArrayList<regcampDto> dtos = new ArrayList<regcampDto>();
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 		
-		campDto dto;
+		regcampDto dto;
 		
 		try {
 			connection = dataSource.getConnection();
 			System.out.println("Query start");
-			String query = "select distinct * from rch where regSeq = "+strregSeq;;
+			String query = "select * from regcamp where regSeq = "+strregSeq;;
 			preparedStatement = connection.prepareStatement(query);
 			resultSet = preparedStatement.executeQuery();
 			System.out.println("Query Execute");
 			
 			while(resultSet.next()) {
 				int regSeq = resultSet.getInt("regSeq");
+				String regTel = resultSet.getString("regTel");
+				String regDetailaddress = resultSet.getString("regDetailaddress");
 				String regName = resultSet.getString("regName");
+				Timestamp regDate = resultSet.getTimestamp("regDate");
+				Timestamp regMdate = resultSet.getTimestamp("regMdate");
+				Timestamp regDdate = resultSet.getTimestamp("regDdate");
+				String regSummary = resultSet.getString("regSummary");
 				String regCategory = resultSet.getString("regCategory");
-
-				int roNum = resultSet.getInt("roNum");  //-호식 주석처리 
-				int roPrice = resultSet.getInt("roPrice");
-				int roMax = resultSet.getInt("roMax");
+				String regImage1 = resultSet.getString("regImage1");
+				String regImage2 = resultSet.getString("regImage2");
+				String regImage3 = resultSet.getString("regImage3");
+				String regImage4 = resultSet.getString("regImage4");
+				int host_hSeq = resultSet.getInt("host_hSeq");
 
 				System.out.println("regSeq:"+strregSeq+":");
 
-				dto = new campDto(regSeq, regName, regCategory,roNum, roPrice, roMax); // 
+				dto = new regcampDto(regSeq, regTel, regDetailaddress, regName, regDate, regMdate, regDdate, regSummary,regCategory, regImage1,regImage2,regImage3,regImage4,host_hSeq);
 				dtos.add(dto);
 				System.out.println("DTO Add");
 			}
@@ -85,15 +86,12 @@ public class CampDao {
 	} // listCamp	
 
 	
-	public ArrayList<campDto> dateCheck(String strregSeq, String startdate, String stopdate){
+	public ArrayList<campDto> dateCheck(String startdate, String stopdate){
 		ArrayList<campDto> dtos = new ArrayList<campDto>();
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
-		System.out.println("dateCheck---------------------------------------------------------");
-		System.out.println("strregSeq:"+strregSeq+":");
-		System.out.println("startdate:"+startdate+":");
-		System.out.println("stopdate:"+stopdate+":");
+		
 		campDto dto;
 		
 		try {
@@ -102,8 +100,9 @@ public class CampDao {
 			
 			// 특정일 사이에 방이 예약가능한지 알아보는 SQL 문 (특정일 사이의 방번호를 제외하고 방번호 중에서 그 값을 제외하고 출력) - 상혁
 			// 캠핑장에 따라 인자 값 추가 필요 - 상혁
-			String query = "select distinct * from rch where regSeq='"+strregSeq+"' and roNum not in ( select distinct roNum from BPRCH where boCheckindate between '"+startdate+"' and '"+stopdate+"')";; 
-			System.out.println("dateCheck startdate:"+startdate+"stopdate:"+stopdate);
+			
+			String query = "select distinct * from checkDate2 where roNum not in ( select distinct roNum from checkDate2 where boCheckindate between '"+startdate+"' and '"+stopdate+"')";; 
+			
 			preparedStatement = connection.prepareStatement(query);
 			resultSet = preparedStatement.executeQuery();
 			System.out.println("Query Execute");
@@ -246,73 +245,8 @@ public class CampDao {
 		return result;
 	} //diffDate
 	
-	// 예약에 앞서 Pay를 추가하는 메소드 상혁
-	public int insertPay(String strRd,int room_roSeq, int room_regcamp_regSeq, int room_regcamp_host_hseq, String client_cId) {
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-		int result = 0;
-		try {
-			connection = dataSource.getConnection();
-			String query = "insert into pay (cid, room_roSeq, room_regcamp_regSeq, room_regcamp_host_hseq, client_cId) ";
-			String query2 = " values ";
-			String query3 = "('"+strRd+(room_roSeq+client_cId+room_regcamp_regSeq+room_regcamp_host_hseq)+"', "+room_roSeq+","+room_regcamp_regSeq+","+room_regcamp_host_hseq+",'"+client_cId+"') ";
-			System.out.println("room_roSeq"+room_roSeq);
-			System.out.println("room_regcamp_regSeq"+room_regcamp_regSeq);
-			System.out.println("room_regcamp_host_hseq"+room_regcamp_host_hseq);
-			System.out.println("client_cId"+client_cId);
-			preparedStatement = connection.prepareStatement(query+query2+query3);
-
-			System.out.println(query+query2+query3);
-			result = preparedStatement.executeUpdate(query+query2+query3);
-			System.out.println("insertPay executeUpdate---------------------------"+result);	
-			
-		}catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			try {
-				if(preparedStatement != null) preparedStatement.close();
-				if(connection != null) connection.close();
-				
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
-		}
-		return result;
-	} //insertPay
-
-	// 예약에 앞서 Pay를 추가하는 메소드 상혁
-	public int pay(int room_roSeq, int room_regcamp_regSeq, int room_regcamp_host_hseq, String client_cId) {
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-		int result = 0;
-		try {
-			connection = dataSource.getConnection();
-			String query = "select cid, room_roSeq, room_regcamp_regSeq, room_regcamp_host_hseq, client_cId from pay where client_cId = '"+client_cId +"' and cid = ";
-			System.out.println("room_roSeq"+room_roSeq);
-			System.out.println("room_regcamp_regSeq"+room_regcamp_regSeq);
-			System.out.println("room_regcamp_host_hseq"+room_regcamp_host_hseq);
-			System.out.println("client_cId"+client_cId);
-			result = preparedStatement.executeUpdate(query);
-			System.out.println("insertpay executeUpdate---------------------------"+result);	
-			
-		}catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			try {
-				if(preparedStatement != null) preparedStatement.close();
-				if(connection != null) connection.close();
-				
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
-		}
-		return result;
-	} //insertpay	
-	
-	
-	
 	// 하루를 예약하는 메소드 상혁
-	public int insertBook(int boPrice, String boCheckindate, int boGroup, int boCount, String cId, int roseq, String client_cId, int regSeq, int host_hSeq) {
+	public int insertBook(int boPrice, String boCheckindate, int boGroup, int boCount, String cId, int regSeq, int host_hSeq) {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		int result = 0;
@@ -320,7 +254,7 @@ public class CampDao {
 			connection = dataSource.getConnection();
 			String query = "insert into book (boPrice, boDate, boCheckindate, boGroup, boCount, ";
 			String query2 = "pay_cid, pay_room_roseq, pay_room_regcamp_regSeq, pay_room_regcamp_host_hSeq, pay_client_cid ) values ";
-			String query3 = "("+boPrice+",now(),'"+boCheckindate+"',"+boGroup+","+boCount+",'"+cId+"', "+roseq+","+regSeq+","+host_hSeq+",'"+client_cId+"') ";
+			String query3 = "("+boPrice+",now(),'"+boCheckindate+"',"+boGroup+","+boCount+",'asdfg', 13,1,1,'"+cId+"') ";
 			System.out.println("boPrice"+boPrice);
 			System.out.println("boCheckindate"+boCheckindate);
 			System.out.println("boGroup"+boGroup);
@@ -387,7 +321,12 @@ public class CampDao {
 		try {
 			connection = dataSource.getConnection();
 			String query = "select roPrice from room where regcamp_regSeq = "+regcamp_regSeq+" and roNum = "+roNum+";";
+			System.out.println("readRoomPrice____"+regcamp_regSeq);
+			System.out.println("readRoomPrice____"+roNum);
+			System.out.println(Integer.parseInt(regcamp_regSeq));
+			System.out.println(Integer.parseInt(roNum));
 			preparedStatement = connection.prepareStatement(query);
+
 			resultSet = preparedStatement.executeQuery(query);
 			System.out.println(query);
 			System.out.println("Query readRoomPrice Execute");
@@ -410,57 +349,7 @@ public class CampDao {
 		}
 		return result;
 	} //readRoomPrice
-	// ReadRoom가 Pay를 입력하기 위해 읽어옴. 상혁	
-	public roomDto readRoom(String strregcamp_regSeq, String strroNum) {
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-		ResultSet resultSet = null;
-		roomDto dto = null;
-		System.out.println("readRoom__________________________________________________________");
-		try {
-			connection = dataSource.getConnection();
-			String query = "select * from room where regcamp_regSeq = "+strregcamp_regSeq+" and roNum = "+strroNum+";";
-			System.out.println("readRoom____regcamp_regSeq"+strregcamp_regSeq);
-			System.out.println("readRoom____roNum"+strroNum);
-			preparedStatement = connection.prepareStatement(query);
-
-			resultSet = preparedStatement.executeQuery(query);
-			System.out.println(query);
-			System.out.println("Query readRoom Execute");
-			
-			if(resultSet.next()) {
-				int roSeq = resultSet.getInt("roSeq");
-				System.out.println("roSeq"+roSeq);
-				int roNum = resultSet.getInt("roNum");
-				System.out.println("roNum"+roNum);
-				int roPrice = resultSet.getInt("roPrice");
-				System.out.println("roPrice"+roPrice);
-				int roMax = resultSet.getInt("roMax");
-				System.out.println("roMax"+roMax);
-				int roOccupied = resultSet.getInt("roOccupied");
-				System.out.println("roOccupied"+roOccupied);
-				int regcamp_regSeq = resultSet.getInt("regcamp_regSeq");
-				System.out.println("regcamp_regSeq"+regcamp_regSeq);
-				int regcamp_host_hSeq = resultSet.getInt("regcamp_host_hSeq");
-				System.out.println("regcamp_host_hSeq"+regcamp_host_hSeq);
-					
-				dto = new roomDto(roSeq, roNum, roPrice, roMax, roOccupied, regcamp_regSeq, regcamp_host_hSeq);
-			}
-			System.out.println("readRoom executeUpdate---------------------------------");				
-			
-		}catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			try {
-				if(preparedStatement != null) preparedStatement.close();
-				if(connection != null) connection.close();
-				
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
-		}
-		return dto;
-	} //readRoomPrice	
+	
 	public ArrayList<BookJoinDto> ViewBooking(String cId){
 		ArrayList<BookJoinDto> dtos = new ArrayList<BookJoinDto>();
 		Connection connection = null;
@@ -472,14 +361,12 @@ public class CampDao {
 		try {
 			connection = dataSource.getConnection();
 			System.out.println("Query start");
-
-			String query = "select distinct regSeq, regName, regCategory, roNum, roPrice, boCheckindate, boGroup, client_cId, regImage2 from BPRCH where boCheckindate > now() and client_cId = '"+cId+"'";
+			String query = "select * from bookingView where client_cId = '"+cId+"'";
 			preparedStatement = connection.prepareStatement(query);
 			resultSet = preparedStatement.executeQuery();
 			System.out.println("Query Execute");
 			
 			while(resultSet.next()) {
-
 				String regSeq = resultSet.getString("regSeq");
 				String regName = resultSet.getString("regName");
 				String regCategory= resultSet.getString("regCategory");
@@ -487,13 +374,12 @@ public class CampDao {
 				int roPrice = resultSet.getInt("roPrice");	
 				Timestamp boCheckindate = resultSet.getTimestamp("boCheckindate");
 				int boGroup = resultSet.getInt("boGroup");
-				//int boSeq = resultSet.getInt("boSeq");	
+				int boSeq = resultSet.getInt("boSeq");	
 				String client_cId = resultSet.getString("client_cId");
-				String regImage2 = resultSet.getString("regImage2");
 				
 				System.out.println("cId:"+cId+":");
 
-				dto = new BookJoinDto(regSeq, regName, regCategory, roNum, roPrice, boCheckindate, boGroup, client_cId, regImage2);
+				dto = new BookJoinDto(regSeq, regName, regCategory, roNum, roPrice, boCheckindate, boGroup, boSeq, client_cId);
 				dtos.add(dto);
 				System.out.println("DTO bookingView Add");
 			}
@@ -512,4 +398,7 @@ public class CampDao {
 		}
 		return dtos;
 	} // ViewBooking	
+
+	
+	
 }

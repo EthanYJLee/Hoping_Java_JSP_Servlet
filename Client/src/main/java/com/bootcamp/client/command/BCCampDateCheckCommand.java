@@ -16,28 +16,18 @@ public class BCCampDateCheckCommand implements BCCommand {
 		
 		HttpSession session = request.getSession();
 		
-		
 		String startdate = request.getParameter("startdate");
 		String stopdate = request.getParameter("stopdate");
-		session.setAttribute("startdate", startdate);
-		session.setAttribute("stopdate", stopdate);
+				
+		session.setAttribute("startdate",startdate);
+		session.setAttribute("stopdate",stopdate);
+		System.out.println("startdate:"+startdate);
+		System.out.println("stopdate:"+stopdate);	
+		String regSeq = (String)session.getAttribute("regSeq");
+		
 		CampDao dao = new CampDao();
-		ArrayList<campDto> dtos = dao.dateCheck(startdate,stopdate);
+		ArrayList<campDto> dtos = dao.dateCheck(regSeq,startdate,stopdate);
 		request.setAttribute("Camp", dtos);
-		
-/*
- * searchSiteView(가격, 캠핑장 관련 위치 정보)
-searchRegCampImageView(캠핑장 이미지)
-searchCampWish(찜관련 정보)
-searchReview(별점 읽어오기)
-searchReviewCount(후기 갯수 읽어오기)
- * 		
- */
-		
-		
-		
-		
-		
 	}
 
 	@Override
