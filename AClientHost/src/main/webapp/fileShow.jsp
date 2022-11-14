@@ -18,38 +18,46 @@
 
 <%-- nav --%>
 
-<div class="container">
-<%-- nav include   22.11.14 호식 수정 --%>
+<%-- nav include   22.11.14 호식 수정 
+				   22.11.15 호식 수정 - 디테일 추가 
+--%>
 <%@ include file = "hnav1.jsp" %>
 
- </div>
 
  
+ <main class="form-signin w-50 m-auto">
+	<div align="center">
  
- 
-	<div class="box container mymcontainer">
-	<div style="margin-bottom: 20px; font-weight: 500; font-size: 25px;">호스트 사진확인</div>
-
-	<form action="fileView.do" method="get" enctype="multipart/form-data">
-		
-		<table border="0">
-			<tr>
-				<td>아이디</td>
-				<td><input type="text" name="hId" size="20" value="${fileView.hId}"></td>
-			</tr>
-			<tr>
-				<td>소개</td>
-				<td><textarea name="hSummary" rows="10" cols="50">${fileView.hSummary}</textarea></td>
-			</tr>
-			<tr>
-				<td>사진</td>
-				<td><img src="./images/${fileView.hImage}" style="width:200px; height:400px;"></td>
-			</tr>
-			<tr>
-				<td colspan="2"><a href="HostRegMapApi.jsp">캠핑장 등록하기</a></td>
-			</tr>
-		</table>
-	</form>
-	</div>
+		<div style="margin-bottom: 20px; font-weight: 500; font-size: 25px;">호스트 사진확인</div>
+	
+			<form action="fileView.do" method="get" enctype="multipart/form-data">
+			
+				<table border="0" style="margin: 5px">
+					<tr>
+						<td style="margin-right: 10px; width: 90px;">아이디</td>
+						<td>${fileView.hId}
+							<input type="hidden" name="hId"  value="${fileView.hId}">
+						</td>
+					</tr>
+					<tr>
+						<td>소개</td>
+						<td><textarea name="hSummary" rows="10" cols="50" readonly="readonly">${fileView.hSummary}</textarea></td>
+					</tr>
+					<tr>
+						<td>사진</td>
+						<td><img src="./images/${fileView.hImage}" style="width:200px; height:400px;"></td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<a href="HostRegMapApi.jsp"> 
+								<button type="submit" class="btn btn-primary">캠핑장 등록하기 
+								</button>
+							</a>
+						</td>
+					</tr>
+				</table>
+			</form>
+			</div>
+	</main>
 </body>
 </html>

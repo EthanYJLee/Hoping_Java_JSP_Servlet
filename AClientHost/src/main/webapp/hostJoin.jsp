@@ -26,23 +26,28 @@
 	<div style="margin-bottom: 20px; font-weight: 500; font-size: 25px;">호스트 정보등록</div>
 	
 	
+	<!--  22-11-15 hosik text field 없애고 td에서 바로 보여줌.
+		form 값은 hidden으로 처리 --> 
+	
 	<form action="insert.do" method="post">
 	<input type="hidden" name="hId" value="${mypage.cId}">
 	<input type="hidden" name="hImage" value="${mypage.cImage}">
-	
+	<input type="hidden" name="cEmail" value="${mypage.cEmail}" >
+	<input type="hidden" name="cPhone"  value="${mypage.cPhone}" >
+	<input type="hidden" name="cId"  value="${mypage.cId}">
 		<table border="0">
 			<tr>
 				<td style="width: 80px;">아이디</td>
-				<td><input type="text" name="cId" size="20" value="${mypage.cId}"></td>
+				<td>${mypage.cId}</td>
 			</tr>
 			
 			<tr>
 				<td>전화번호</td>
-				<td><input type="text" name="cPhone" size="50" value="${mypage.cPhone}"></td>
+				<td>${mypage.cPhone}</td>
 			</tr>
 			<tr>
 				<td>이메일</td>
-				<td><input type="text" name="cEmail" size="50" value="${mypage.cEmail}"></td>
+				<td>${mypage.cEmail}</td>
 			</tr>
 
 			<tr>
