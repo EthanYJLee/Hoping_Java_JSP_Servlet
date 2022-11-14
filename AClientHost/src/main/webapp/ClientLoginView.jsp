@@ -17,7 +17,7 @@
 </style>
 
 
-<%--로그인 alert --%>
+<%--로그인 alert 
 <script>
 	function ok(){
 		
@@ -31,7 +31,7 @@
 		}
 	}
 
-</script>
+</script>--%>
 	
 </head>
 <body>

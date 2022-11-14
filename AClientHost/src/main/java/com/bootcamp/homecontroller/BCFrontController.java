@@ -76,7 +76,9 @@ public class BCFrontController extends HttpServlet {
 		String uri = request.getRequestURI();
 		String conPath = request.getContextPath();
 		String com = uri.substring(conPath.length());
-
+		HttpSession session = request.getSession();
+		
+		
 		switch (com) {
 
 		case ("/check.do"):
@@ -175,6 +177,11 @@ public class BCFrontController extends HttpServlet {
 			}
 			break;
 
+		//logout
+		case("/ClientLogout.do"):
+			session.invalidate();
+			viewPage = "ClientLoginView.jsp";
+		break;
 		// 회원등록
 		case ("/Clientwrite.do"):
 			command = new Clientwrite_Command();
@@ -344,7 +351,7 @@ public class BCFrontController extends HttpServlet {
 				viewPage = "TermsAgree.jsp";
 			} else {
 				// 나중에 클라이언트랑 연결되면 client 메인페이지로 이동
-				viewPage = "#"; // 22-11-14 Hosik . list.jsp 있던거 #으로 바꿔놈
+				viewPage = "main.do"; // 22-11-14 Hosik . list.jsp 있던거 #으로 바꿔놈
 
 			}
 
@@ -452,7 +459,7 @@ public class BCFrontController extends HttpServlet {
 			int hSeq = dao3.checkHostLogin(cId, cPw1);
 			if (hSeq != 0) {
 				hId = cId;
-				HttpSession session = request.getSession();
+				
 				session.setAttribute("HID", hId);
 				session.setAttribute("HSEQ", hSeq);
 				viewPage = "host_main.do";
@@ -463,7 +470,7 @@ public class BCFrontController extends HttpServlet {
 
 		case ("/host_modify_camp.do"):
 			// 호스트 통합 메인 페이지에서 캠핑장 정보 수정 버튼 클릭시 hSeq와 regName 받아오기
-			HttpSession session = request.getSession();
+			
 			int myHSeq = (int) session.getAttribute("HSEQ");
 			int myRegSeq = Integer.parseInt(request.getParameter("regSeq"));
 			HostCheckDao myCamp = new HostCheckDao();
@@ -480,8 +487,9 @@ public class BCFrontController extends HttpServlet {
 
 		case ("/host_confirm_delete.do"): // 캠핑장 최종삭제 전 확인절차
 			// 남은 예약이 있으면 삭제 불가
-			HttpSession delsession = request.getSession();
-			int regSeq = (int) delsession.getAttribute("REGSEQ");
+			//주현:HttpSession case문 밖으로 보내고 session 이름통일시킴 delsession>>>session
+			
+			int regSeq = (int) session.getAttribute("REGSEQ");
 			HostRegDDao chkBook = new HostRegDDao();
 			HostRegcampDto dto = chkBook.checkRemainingReservation(regSeq);
 			if (dto == null) {

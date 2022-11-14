@@ -11,6 +11,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
 
 </style>
+
+
+<script type="text/javascript">
+    
+    function confirmLogout() {
+        if( confirm("정말 로그아웃 하시겠습니까?") ) {
+            location.href = "<c:url value ='ClientLogout.do'/>";
+        }
+    }
+    
+</script>
+
+
 </head>
 <body>
 	<!-- 2022-11-8 Hosik - Hoping svg 클릭시 메인화면으로 링크 달았음 --> 
@@ -52,7 +65,7 @@
 			    <li><a class="dropdown-item" href="bookingView.do">예약 정보 관리</a></li>
 			    <li><a class="dropdown-item" href="wishList_View.do">위시 리스트</a></li>
 			    <li><a class="dropdown-item" href="mypageView.do">마이페이지</a></li>
-			    <li><a class="dropdown-item" href="ClientLogout.jsp">로그아웃</a></li>
+			    <li><a class="dropdown-item" href="javascript:void(0);" onclick="confirmLogout();">로그아웃</a></li>
         <% } %>
 			  </ul>
 			</li>
