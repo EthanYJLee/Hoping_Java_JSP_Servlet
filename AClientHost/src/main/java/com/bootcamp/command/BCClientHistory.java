@@ -24,7 +24,7 @@ public class BCClientHistory implements BCCommand {
 			클라이언트의 예약내역 확인 페이지 생성
 		*/
 		HttpSession session = request.getSession();
-		String CID = (String)session.getAttribute("cId");
+		String CID = (String)session.getAttribute("CID");
 		System.out.println("BCClientHistory session id check CID = "+CID);
 		ClientDao dao = new ClientDao();
 		ArrayList<checkdate2Dto> dtos = dao.clientHistory(CID);

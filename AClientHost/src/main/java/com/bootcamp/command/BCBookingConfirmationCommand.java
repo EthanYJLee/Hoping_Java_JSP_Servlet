@@ -17,9 +17,9 @@ public class BCBookingConfirmationCommand implements BCCommand {
 		System.out.println("BCBookingConfirmationCommand___________________________________");
 		String regName = request.getParameter("regName");
 		String roNum = request.getParameter("roNum");
-		session.setAttribute("roNum",roNum);
+		session.setAttribute("RONUM",roNum);
 		String roPrice = request.getParameter("roPrice");
-		session.setAttribute("roPrice",roPrice);
+		session.setAttribute("ROPRICE",roPrice);
 		System.out.println("BCBookingConfirmationCommand 에서 regName : "+regName);
 		System.out.println("BCBookingConfirmationCommand 에서 roNum : "+roNum);
 		BCBookDao dao = new BCBookDao();

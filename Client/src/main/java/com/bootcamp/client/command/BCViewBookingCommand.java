@@ -17,7 +17,7 @@ public class BCViewBookingCommand implements BCCommand {
 		
 		HttpSession session = request.getSession();
 		System.out.println("BCViewBookingCommand--------------------------------------------");
-		String cId = (String)session.getAttribute("cId");
+		String cId = (String)session.getAttribute("CID");
 		System.out.println("BCViewBookingCommand------------------------------session.setAttribute(\"cId\", cId);"+cId);
 
 		CampDao dao = new CampDao();

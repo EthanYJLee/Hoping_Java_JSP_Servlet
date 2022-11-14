@@ -22,7 +22,7 @@ public class WishList_View_Command implements BCCommand {
 		WishList_ViewDao dao = new WishList_ViewDao();
 		
 		
-		ArrayList<WishList_ViewDto> dtos = dao.wishList_view((String)session.getAttribute("cId"));
+		ArrayList<WishList_ViewDto> dtos = dao.wishList_view((String)session.getAttribute("CID"));
 		
 	
 		request.setAttribute("wishList_view", dtos);
