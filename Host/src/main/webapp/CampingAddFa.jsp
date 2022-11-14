@@ -43,18 +43,30 @@
  	<%-- 편의시설 select해서 for문 돌리기 --%>
  	<%-- 편의시설 채크박스, form start --%>
  	<form action="campingAddFa.do">
-		<input type="checkbox" class="btn-check" name="facility" id="option1" value="화장실"  autocomplete="off">
-		<label class="btn btn-outline-primary" for="option1" >화장실</label>
-		
-		<input type="checkbox" class="btn-check" name="facility" id="option2"value="캠핑 용품 판매 및 대여" autocomplete="off">
-		<label class="btn btn-outline-primary" for="option2">캠핑 용품 판매 및 대여</label>
-		
-		<input type="checkbox" class="btn-check" name="facility" id="option3" value="샤워장" autocomplete="off">
-		<label class="btn btn-outline-primary" for="option3" >샤워장</label>
-		
-		<input type="checkbox" class="btn-check" name="facility" id="option4" value="개수대" autocomplete="off">
-		<label class="btn btn-outline-primary" for="option4">개수대</label> <br> <br>
-		
+				<input type="checkbox" class="btn-check" name="facility" id="option1" value="전기"  autocomplete="off">
+				<label class="btn btn-outline-primary" for="option1" >전기</label>
+			 	<input type="checkbox" class="btn-check" name="facility" id="option2" value="온수"  autocomplete="off">
+				<label class="btn btn-outline-primary" for="option2" >온수</label>
+			 	<input type="checkbox" class="btn-check" name="facility" id="option3" value="용품 판매 및 대여"  autocomplete="off">
+				<label class="btn btn-outline-primary" for="option3" >용품 판매 및 대여</label>
+			 	<input type="checkbox" class="btn-check" name="facility" id="option4" value="반려동물 동반 가능"  autocomplete="off">
+				<label class="btn btn-outline-primary" for="option4" >반려동물 동반 가능</label>
+			 	<input type="checkbox" class="btn-check" name="facility" id="option5" value="개수대"  autocomplete="off">
+				<label class="btn btn-outline-primary" for="option5" >개수대</label>
+			 	<input type="checkbox" class="btn-check" name="facility" id="option6" value="샤워장"  autocomplete="off">
+				<label class="btn btn-outline-primary" for="option6" >샤워장</label>
+			 	<input type="checkbox" class="btn-check" name="facility" id="option7" value="화장실"  autocomplete="off">
+				<label class="btn btn-outline-primary" for="option7" >화장실</label>
+			 	<input type="checkbox" class="btn-check" name="facility" id="option8" value="취사시설"  autocomplete="off">
+				<label class="btn btn-outline-primary" for="option8" >취사시설</label>
+			 	<input type="checkbox" class="btn-check" name="facility" id="option9" value="주차장"  autocomplete="off">
+				<label class="btn btn-outline-primary" for="option9" >주차장</label>
+			 	<input type="checkbox" class="btn-check" name="facility" id="option10" value="와이파이"  autocomplete="off">
+				<label class="btn btn-outline-primary" for="option10" >와이파이</label>
+			 	<input type="checkbox" class="btn-check" name="facility" id="option11" value="운동시설"  autocomplete="off">
+				<label class="btn btn-outline-primary" for="option11" >운동시설</label>
+			 	<input type="checkbox" class="btn-check" name="facility" id="option12" value="물놀이장"  autocomplete="off">
+				<label class="btn btn-outline-primary" for="option12" >물놀이장</label>
 	 	<div class="d-flex justify-content-center">
 	 		<div class="p-2">
 	 		<%-- submit 버튼 --%>
