@@ -173,6 +173,8 @@ public class BCFrontController extends HttpServlet {
 				viewPage = "ClientLoginView.jsp";
 			} else {
 				JOptionPane.showInternalMessageDialog(null, "환영합니다 ", "로그인", 0, null);
+				HttpSession session = request.getSession();
+				session.setAttribute("CID", cId4);
 				// page = "ClientMainView.jsp";
 				viewPage = "main.do";
 			}

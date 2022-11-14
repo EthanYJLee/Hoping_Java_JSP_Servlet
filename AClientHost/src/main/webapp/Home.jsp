@@ -58,7 +58,7 @@
 		  <div class="col-md">
 		    <div class="card mycard">
 		    <a href="detailView.do?regSeq=${dto.regSeq}">
-		      <img src="./images/${dto.regImage2}" class="card-img-top myimage" alt="...">
+		      <img src="./images/${dto.regImage1}" class="card-img-top myimage" alt="...">
 		    </a> 
 			 <!-- 22-11-14 호식
 			 		현석씨 AddWish 버튼 추가 및 세션값이 있을때만 나오도록 추가 

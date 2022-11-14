@@ -50,7 +50,7 @@ public class CampDao {
 		try {
 			connection = dataSource.getConnection();
 			System.out.println("Query start");
-			String query = "select distinct * from rch where regSeq = "+strregSeq;;
+			String query = "select distinct * from rch where regSeq = "+strregSeq;
 			preparedStatement = connection.prepareStatement(query);
 			resultSet = preparedStatement.executeQuery();
 			System.out.println("Query Execute");
@@ -283,33 +283,35 @@ public class CampDao {
 	} //insertPay
 
 	// 예약에 앞서 Pay를 추가하는 메소드 상혁
-	public int pay(int room_roSeq, int room_regcamp_regSeq, int room_regcamp_host_hseq, String client_cId) {
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-		int result = 0;
-		try {
-			connection = dataSource.getConnection();
-			String query = "select cid, room_roSeq, room_regcamp_regSeq, room_regcamp_host_hseq, client_cId from pay where client_cId = '"+client_cId +"' and cid = ";
-			System.out.println("room_roSeq"+room_roSeq);
-			System.out.println("room_regcamp_regSeq"+room_regcamp_regSeq);
-			System.out.println("room_regcamp_host_hseq"+room_regcamp_host_hseq);
-			System.out.println("client_cId"+client_cId);
-			result = preparedStatement.executeUpdate(query);
-			System.out.println("insertpay executeUpdate---------------------------"+result);	
-			
-		}catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			try {
-				if(preparedStatement != null) preparedStatement.close();
-				if(connection != null) connection.close();
-				
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
-		}
-		return result;
-	} //insertpay	
+	// 22-11-15 호식
+//				상혁형님이랑 얘기해서 안쓰이는거 같아서 주석처리, 나중에 확인해서 필요하다 싶으면 살리고, 아니면 죽임 
+//	public int pay(int room_roSeq, int room_regcamp_regSeq, int room_regcamp_host_hseq, String client_cId) {
+//		Connection connection = null;
+//		PreparedStatement preparedStatement = null;
+//		int result = 0;
+//		try {
+//			connection = dataSource.getConnection();
+//			String query = "select cid, room_roSeq, room_regcamp_regSeq, room_regcamp_host_hseq, client_cId from pay where client_cId = '"+client_cId +"' and cid = ";
+//			System.out.println("room_roSeq"+room_roSeq);
+//			System.out.println("room_regcamp_regSeq"+room_regcamp_regSeq);
+//			System.out.println("room_regcamp_host_hseq"+room_regcamp_host_hseq);
+//			System.out.println("client_cId"+client_cId);
+//			result = preparedStatement.executeUpdate(query);
+//			System.out.println("insertpay executeUpdate---------------------------"+result);	
+//			
+//		}catch (Exception e) {
+//			e.printStackTrace();
+//		}finally {
+//			try {
+//				if(preparedStatement != null) preparedStatement.close();
+//				if(connection != null) connection.close();
+//				
+//			}catch(Exception e) {
+//				e.printStackTrace();
+//			}
+//		}
+//		return result;
+//	} //insertpay	
 	
 	
 	
@@ -323,7 +325,7 @@ public class CampDao {
 			String query = "insert into book (boPrice, boDate, boCheckindate, boGroup, boCount, ";
 			String query2 = "pay_cid, pay_room_roseq, pay_room_regcamp_regSeq, pay_room_regcamp_host_hSeq, pay_client_cid ) values ";
 			String query3 = "("+boPrice+",now(),'"+boCheckindate+"',"+boGroup+","+boCount+",'"+cId+"', "+roseq+","+regSeq+","+host_hSeq+",'"+client_cId+"') ";
-			System.out.println("boPrice"+boPrice);
+			System.out.println("CampDao 의 insertBook method , boPrice"+boPrice);
 			System.out.println("boCheckindate"+boCheckindate);
 			System.out.println("boGroup"+boGroup);
 			System.out.println("boCount"+boCount);
