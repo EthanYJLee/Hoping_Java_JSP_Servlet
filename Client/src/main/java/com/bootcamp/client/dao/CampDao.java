@@ -38,6 +38,7 @@ public class CampDao {
 				쿼리문 수정 
 				select * from regcamp where regSeq = "+strregSeq;;
 			->> select * from camp where regSeq = "+strregSeq;;	
+					
 	*/
 	public ArrayList<campDto> listCamp(String strregSeq){
 		ArrayList<campDto> dtos = new ArrayList<campDto>();
@@ -50,6 +51,15 @@ public class CampDao {
 		try {
 			connection = dataSource.getConnection();
 			System.out.println("Query start");
+/*
+ * 
+ *  		View Table RCH 는 Room 과 RegCamp 와 Host를 아래 조건으로 연결한 뷰 테이블입니다. 상혁
+        (`room`
+        JOIN `ch` ON (((`room`.`regcamp_regSeq` = `ch`.`regSeq`)
+            AND (`room`.`regcamp_host_hSeq` = `ch`.`host_hSeq`))))
+ * 
+ * 
+ */
 			String query = "select distinct * from rch where regSeq = "+strregSeq;;
 			preparedStatement = connection.prepareStatement(query);
 			resultSet = preparedStatement.executeQuery();
@@ -153,7 +163,7 @@ public class CampDao {
 		try {
 			connection = dataSource.getConnection();
 			
-			// Max Seq 읽는 SQL문 - alias로 읽히도록 수정함. - 상혁
+			// 마지막 자리 예약 번호를 (Max Seq) 읽는 SQL문 - alias로 읽히도록 수정함. - 상혁
 			String query = "select max(boSeq) as result from book ";
 			preparedStatement = connection.prepareStatement(query);
 			System.out.println("Query:"+query);
@@ -189,7 +199,7 @@ public class CampDao {
 		int result = 0;
 		try {
 			connection = dataSource.getConnection();
-			
+			// SQL 내장 함수로 TimeStampdiff 체크인날짜와 체크아웃날짜의 차이를 구하는 SQL - 상혁
 			String query = "select TimeStampdiff(day,'"+Startdate+"','"+Stopdate+"') as result";
 			preparedStatement = connection.prepareStatement(query);
 			resultSet = preparedStatement.executeQuery();
@@ -223,7 +233,7 @@ public class CampDao {
 		String result = null;
 		try {
 			connection = dataSource.getConnection();
-			
+			// 하루 하루마다 예약이 필요해서 원하는 날짜에 하루를 더한 값을 리턴하는 메소드 adddate를 사용함. -상혁 
 			String query = "select adddate('"+Startdate+"',1) as result;";
 			preparedStatement = connection.prepareStatement(query);
 			resultSet = preparedStatement.executeQuery();
@@ -282,7 +292,7 @@ public class CampDao {
 		return result;
 	} //insertPay
 
-	// 예약에 앞서 Pay를 추가하는 메소드 상혁
+	// PAY TABLE에서 SELECT 하는 함수.(안 쓰는 것같음)
 	public int pay(int room_roSeq, int room_regcamp_regSeq, int room_regcamp_host_hseq, String client_cId) {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -309,7 +319,7 @@ public class CampDao {
 			}
 		}
 		return result;
-	} //insertpay	
+	} //pay	
 	
 	
 	
@@ -484,6 +494,7 @@ public class CampDao {
 			preparedStatement = connection.prepareStatement(query);
 			resultSet = preparedStatement.executeQuery();
 			System.out.println("Query Execute");
+			
 			
 			while(resultSet.next()) {
 
