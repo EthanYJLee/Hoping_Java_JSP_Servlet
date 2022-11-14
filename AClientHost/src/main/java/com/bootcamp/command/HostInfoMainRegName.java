@@ -17,6 +17,7 @@ public class HostInfoMainRegName implements BCCommand {
 		HostRegMDao dao = new HostRegMDao();
 		
 		int regSeq = (int) session.getAttribute("REGSEQ");
+			System.out.println("me regSeq: " +regSeq);
 		String regName = dao.selectRegName(regSeq);
 		
 		request.setAttribute("regName", regName);
