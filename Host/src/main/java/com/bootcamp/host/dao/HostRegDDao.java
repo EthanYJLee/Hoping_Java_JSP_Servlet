@@ -78,7 +78,7 @@ public class HostRegDDao {
 
 		try {
 			connection = dataSource.getConnection();
-			String query = "update regcamp set regDdate = now() where hSeq = ? and regSeq = ?";
+			String query = "update regcamp set regDdate = now() where host_hSeq = ? and regSeq = ?";
 			ps = connection.prepareStatement(query);
 			ps.setInt(1, hSeq);
 			ps.setInt(2, regSeq);
