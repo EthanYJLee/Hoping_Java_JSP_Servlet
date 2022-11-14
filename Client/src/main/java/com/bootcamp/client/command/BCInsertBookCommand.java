@@ -61,7 +61,7 @@ public class BCInsertBookCommand implements BCCommand {
 				// 체크인 날짜 다음 날짜를 구한다.
 				String nextdate = dao.Nextday(startdate);
 				// boPrice(가격정보), boCheckindate(체크인 날짜), boGroup(예약그룹의 Seq Number), boCount(예약인원), Client Id,intdiff(예약한기간), regcamp의 regSeq, HostSeq
-				for(int i=0; i<intdiff;i++) {
+				for(int i=1; i<intdiff;i++) {
 					// 다음 체크인 날짜의 예약을 추가한다.
 					System.out.println("9.-------------------roomPrice:"+roomPrice+"-------------------");
 					System.out.println("9.-------------------nextdate:"+nextdate+"-------------------");
