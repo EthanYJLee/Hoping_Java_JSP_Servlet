@@ -27,6 +27,7 @@ import com.bootcamp.host.command.HostBookListCommand;
 import com.bootcamp.host.command.HostBookTotalPagingCommand;
 import com.bootcamp.host.command.HostCampNameList_Command;
 import com.bootcamp.host.command.HostCampProfileList_Command;
+import com.bootcamp.host.command.HostChartDetail_Command;
 import com.bootcamp.host.command.HostDeleteMyCamp_Command;
 import com.bootcamp.host.command.HostInfoFaInDelCommand;
 import com.bootcamp.host.command.HostInfoFaSelectCommand;
@@ -109,7 +110,8 @@ public class BCFrontController extends HttpServlet {
 
 			} else {
 				// 나중에 클라이언트랑 연결되면 client 메인페이지로 이동
-				viewPage = "list.jsp";
+				viewPage = "#";  // 22-11-14 Hosik . list.jsp 있던거 #으로 바꿔놈 
+				
 
 			}
 
@@ -262,6 +264,11 @@ public class BCFrontController extends HttpServlet {
 			viewPage = "HostDeleteCampCompleted.jsp";
 			break;
 			
+		case ("/detail_stat_view.do"):	// 차트 상세 (모든 캠핑장)
+			command = new HostChartDetail_Command();
+			command.execute(request, response);
+			viewPage = "HostDetailStatView.jsp";
+			break;
 
 		// --------------------------호스트 마이페이지에 정보 불러오기--------------------------
 
@@ -269,6 +276,8 @@ public class BCFrontController extends HttpServlet {
 		case ("/askList.do"):
 			command = new askListCommand();
 			command.execute(request, response);
+//			command = new askListCommand();
+//			command.execute1(request, response);
 			viewPage = "askList.jsp";
 			break;
 		case ("/askDetail.do"):

@@ -60,7 +60,7 @@
  <%-- 본문 시작 --%>
  <div class="container myscontainer">
  	<div class="row myhdrow">
- 		<h5 class="col-12" style="margin: 20px 0 20px 0">캠핑장의 이미지를 수정하기</h5>
+ 		<h5 class="col-12" style="margin: 20px 0 20px 0">캠핑장의 이미지를 추가하기</h5>
  	</div>
  	
  	<%-- 기존 이미지 불러오기 --%>
@@ -80,22 +80,23 @@
  	</div>
  	
  	<%-- 수정할 이미지 업로드 --%>
-	 <h5 class="row" style="margin: 25px 0 30px 0">수정할 이미지를 업로드해주세요.</h5>
+	 <h5 class="row" style="margin: 25px 0 30px 0">추가할 이미지를 업로드해주세요.</h5>
+	 <p>*사진을 선택 후 Upload 버튼을 눌러 주세요.</p>
  	<div class="row myscontainer">
 	 	<form class="card col-4" action = "hiddenImgUp.jsp?link=cImage1Up.do" method = "post" enctype = "multipart/form-data">
 			<input type = "file" name = "file" size = "50" />
 			<input type="hidden">
-			<input type = "submit" value = "Upload File" size="50" />
+			<input type = "submit" value = "Upload" size="50" />
 		</form>
 	 	<form class="card col-4" action = "hiddenImgUp.jsp?link=cImage2Up.do" method = "post" enctype = "multipart/form-data">
 			<input type = "file" name = "file" size = "50" />
 			<input type="hidden">
-			<input type = "submit" value = "Upload File" size="50" />
+			<input type = "submit" value = "Upload" size="50" />
 		</form>
 	 	<form class="card col-4" action = "hiddenImgUp.jsp?link=cImage3Up.do" method = "post" enctype = "multipart/form-data">
 			<input type = "file" name = "file" size = "50" />
 			<input type="hidden">
-			<input type = "submit" value = "Upload File" size="50" />
+			<input type = "submit" value = "Upload" size="50" />
 		</form>
 	</div>
 	

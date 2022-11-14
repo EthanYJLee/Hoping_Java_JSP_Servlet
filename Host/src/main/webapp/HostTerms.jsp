@@ -11,8 +11,8 @@
 	rel="stylesheet">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-
-<style type="text/css">
+<link rel="stylesheet" href="css/style.css"> 
+<!-- <style type="text/css">
 @import
 	url('https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800')
 	;
@@ -87,62 +87,25 @@ body {
 	margin-bottom: 50px;
 }
 </style>
-
+ -->
 
 </head>
 <body>
-
-	<%-- nav --%>
-	<div class="container">
-		<header
-			class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-			<a href="/"
-				class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-				<svg class="mysvg" xmlns="http://www.w3.org/2000/svg" width="28"
-					height="28" fill="currentColor" class="bi bi-house-heart"
-					viewBox="0 0 16 16">
-	  <path
-						d="M8 6.982C9.664 5.309 13.825 8.236 8 12 2.175 8.236 6.336 5.309 8 6.982Z" />
-	  <path
-						d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.707L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.646a.5.5 0 0 0 .708-.707L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5 5 5Z" />
-	</svg> <span class="mytitle"><b>Hoping</b></span>
-			</a>
-
-			<ul class="nav nav-pills">
-				<li class="nav-item" style="font-size: 14px;"><a href="#"
-					class="link-dark nav-link">호스트 모드</a></li>
-
-				<li class="nav-item"><svg class="dropdown-toggle"
-						data-bs-toggle="dropdown" aria-expanded="false"
-						xmlns="http://www.w3.org/2000/svg" width="28" height="28"
-						fill="currentColor" class="bi bi-person-lines-fill"
-						viewBox="0 0 16 16">
-				<path
-							d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z" />
-			</a>
-			<ul class="dropdown-menu">
-		    <li><a class="dropdown-item" href="#">Action</a></li>
-		    <li><a class="dropdown-item" href="#">Another action</a></li>
-		    <li><a class="dropdown-item" href="#">Something else here</a></li>
-		  </ul>
-		</li>
-			</ul>
-		</header>
-	</div>
+<%-- nav include   22.11.14 호식 수정 --%>
+<%@ include file = "hnav1.jsp" %>
+<%-- nav include End --%>
 
 
-
-	<div class="box container mymcontainer">
+<main class="form-signin w-50 m-auto">
+	<!-- <div align="center"> -->
 		<form action="termsAD.do" method="get">
-			<table width="160" height="650">
-
+			<table>
 				<tr>
 					<td width="100%" height="50%" align="center">
 						<p align="left">
-						<div
-							style="margin-bottom: 20px; font-weight: 500; font-size: 25px;">Hoping
-							호스트 이용 약관</div>
-						</p> <br> <textarea rows="20" cols="100">
+						<div style="margin-bottom: 20px; font-weight: 500; font-size: 25px;">
+						<b> Hoping 호스트 이용 약관</b></div><br>
+						 <textarea rows="20" cols="100">
 Hoping을 이용해주셔서 감사합니다.
 
 본 이용 약관(이하 '약관')은 Hoping 웹사이트, 애플리케이션 및 기타 Hoping 제공 서비스(총칭하여 'Hoping 플랫폼') 이용에 관한 사용자의 권리에 적용되는 회원님과 Hoping 사이의 구속력 있는 법적 계약입니다. 
@@ -169,17 +132,15 @@ Hoping은 당사의 개인정보 수집 및 사용 방식을 설명하는개인�
 					</td>
 				</tr>
 				<tr>
-					<td align="center" valign="top"><input type="radio"
-						name="agree" value="agree">동의 함 &nbsp;&nbsp;&nbsp; <input
-						type="radio" name="agree" value="disagree">동의 하지 않음 <br>
-						<br> <input type="submit" value="확인"></td>
+					<td align="center" valign="top">
+						<input type="radio" name="agree" value="agree">동의 함 &nbsp;&nbsp;&nbsp; 
+						<input type="radio" name="agree" value="disagree" checked="checked">동의 하지 않음 <br><br> 
+						<input type="submit" value="확인">
+					</td>
 				</tr>
 			</table>
-
 		</form>
-	</div>
-	
-	
+</main>	
 	
 </body>
 </html>

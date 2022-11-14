@@ -10,6 +10,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import com.bootcamp.dto.AskDto;
+import com.bootcamp.dto.ClientDto;
 
 public class HAskDao {
 	
@@ -42,7 +43,7 @@ public class HAskDao {
 		try {
 			connection = dataSource.getConnection();
 			
-			String query = "select aSeq, aCId, aTitle, aContent, aTime, aRegSeq from ask";
+			String query = "select aSeq, aCId, aTitle, aContent, aTime, aRegSeq from ask ";
 			preparedStatement = connection.prepareStatement(query);
 			resultSet = preparedStatement.executeQuery();
 			
@@ -147,7 +148,41 @@ public class HAskDao {
 			}
 		}
 	} 	
+
 	
-	//문의 답변 완료 여부 확인 쿼리(view table 사용..)
+	//문의 답변 완료 여부 확인(미완성 ㅠㅠ) 
+	public boolean commentCheck(int aSeq){
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		boolean Result=true;
+		
+		try {
+			connection = dataSource.getConnection();
+			
+			String query = "select count(*) from acomment, ask where ask_aSeq=aSeq and aSeq=? ";
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setInt(1, aSeq); // 위에 커리문에 물음표 갯수 만큼 작성
+			
+			resultSet = preparedStatement.executeQuery();
+			if(resultSet.next()) {
+				String count = resultSet.getString("count(*)"); //count(*)값을 가져와야 하기때문에
+				Result = count.equals("1"); // 답변완료= 1, 답변미완료 = 0
+			
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(resultSet != null) resultSet.close();
+				if(preparedStatement != null) preparedStatement.close();
+				if(connection != null) connection.close();
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return Result;
+	} // 
 	
 }

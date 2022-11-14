@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title> 네비게이션바 2 </title>
 <link href="css/style.css" rel="stylesheet" >
 <style type="text/css">
 @import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800'); 
