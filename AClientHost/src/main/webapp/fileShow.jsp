@@ -28,6 +28,7 @@
  <main class="form-signin w-50 m-auto">
 	<div align="center">
  
+<<<<<<< Updated upstream
 		<div style="margin-bottom: 20px; font-weight: 500; font-size: 25px;">호스트 사진확인</div>
 	
 			<form action="fileView.do" method="get" enctype="multipart/form-data">
@@ -59,5 +60,32 @@
 			</form>
 			</div>
 	</main>
+=======
+ 
+	<div class="box container mymcontainer">
+	<div style="margin-bottom: 20px; font-weight: 500; font-size: 25px;">호스트 사진확인</div>
+
+	<form action="fileView.do" method="get" enctype="multipart/form-data">
+		
+		<table border="0">
+			<tr>
+				<td>아이디</td>
+				<td><input type="text" name="hId" size="20" value="${fileView.hId}"></td>
+			</tr>
+			<tr>
+				<td>소개</td>
+				<td><textarea name="hSummary" rows="10" cols="50">${fileView.hSummary}</textarea></td>
+			</tr>
+			<tr>
+				<td>사진</td>
+				<td><img src="./images/${fileView.hImage}" style="width:200px; height:400px;"></td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type="submit" value="호스트 회원가입" class="btn btn-primary" style="WIDTH: 210pt; HEIGHT: 40pt"></td>
+			</tr>
+		</table>
+	</form>
+	</div>
+>>>>>>> Stashed changes
 </body>
 </html>
