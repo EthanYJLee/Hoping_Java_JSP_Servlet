@@ -34,7 +34,7 @@
 <%-- nav --%>
 	<%@ include file="hnav1.jsp"%>
  
- 
+ <main class="form-signin w-50 m-auto" style="margin: 20px">
 	<div class="box container mymcontainer">
 	<div style="margin-bottom: 20px; font-weight: 500; font-size: 25px;">호스트 정보수정</div>
 	
@@ -77,5 +77,8 @@
 		</table>
 	
 	</form>
+	
+	</div>
+	</main>
 </body>
 </html>

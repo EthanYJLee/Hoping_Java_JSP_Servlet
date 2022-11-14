@@ -18,7 +18,8 @@
 <%-- nav include   22.11.14 호식 수정 --%>
 <%@ include file = "hnav1.jsp" %>
 <%-- nav include End --%>
-<main class="form-signin w-50 m-auto">
+
+<main class="form-signin w-50 m-auto" style="margin: 20px">
 <div class="container">
 	<div class="box container mymcontainer">
 

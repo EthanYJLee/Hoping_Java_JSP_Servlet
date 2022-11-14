@@ -5,6 +5,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+
+<script type="text/javascript">
+    
+    function confirmLogout() {
+        if( confirm("정말 로그아웃 하시겠습니까?") ) {
+            location.href = "<c:url value ='ClientLogout.do'/>";
+        }
+    }
+    
+</script>
 </head>
 <body>
 
@@ -31,7 +42,7 @@
             <li><a class="dropdown-item" href="#">수입 및 예약건 통계</a></li>
             <li><a class="dropdown-item" href="host_review_list.do">후기관리</a></li>
             <li><a class="dropdown-item" href="campingAdd.do">캠핑장 추가</a></li>
-            <li><a class="dropdown-item" href="#">로그아웃</a></li>
+            <li><a class="dropdown-item" href="javascript:void(0);" onclick="confirmLogout();">로그아웃</a></li>
 		</ul>
 		
 		</svg>

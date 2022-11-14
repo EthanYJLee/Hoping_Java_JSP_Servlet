@@ -31,6 +31,19 @@
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
+<%--회원가입 alert창 
+
+<script type="text/javascript">
+    
+    function checkMember() {
+        if( confirm("회원가입 완료되었습니다.") ) {
+            onclick=location.href = "<c:url value ='Clientwrite.do'/>";
+        }
+    }
+    
+</script>--%>
+
+
 <script>
     function daum_zipcode() {
         new daum.Postcode({
@@ -236,8 +249,10 @@
 						<tr>
 							<td colspan="2">
 								<div class="container-md d-flex justify-content-center">
-									<input type="button" value="회원가입"  class="btn btn-primary"
+									<input type="submit" value="회원가입"  class="btn btn-primary"
 								onclick="checkMember()" style="WIDTH: 210pt; HEIGHT: 40pt">
+								<div id='alert' />
+								
 								</div>
 							</td>
 						</tr>
@@ -254,6 +269,13 @@
 		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
 		crossorigin="anonymous"></script>
 		
+	<script>
+	function checkMember()  {
+		alert('회원가입이 완료되었습니다.');
+	}
+	</script>
+	
+	
 	<script>
 		$('.pw').focusout(function() {
 			var pwd1 = $("#password_1").val();

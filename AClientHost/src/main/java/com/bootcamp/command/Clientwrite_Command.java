@@ -24,7 +24,7 @@ public class Clientwrite_Command implements BCCommand {
 		
 		ClientDao dao = new ClientDao();
 		dao.Clientwrite(cId, cPw, cName, cPhone, cEmail, zonecode,address,buildingName,detailAddress);
-		JOptionPane.showMessageDialog(null, "회원가입이 완료되었습니다.");
+		//JOptionPane.showMessageDialog(null, "회원가입이 완료되었습니다.");
 		
 	}
 	public Boolean execute1(HttpServletRequest request, HttpServletResponse response) {
