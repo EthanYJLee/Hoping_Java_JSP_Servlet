@@ -114,7 +114,7 @@ function checkMember(){
 	
 	//전화번호 숫자만 입력
 	if(!regExTel.test(regTel)){
-		alert("전화번호는 숫자만 입력해주세요.")
+		alert("전화번호 형식으로 입력해주세요. \nex.02-000-0000")
 		form.regTel.select();
 		return
 	}

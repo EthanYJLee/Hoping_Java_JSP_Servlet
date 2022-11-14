@@ -435,7 +435,7 @@ public class CampDao {
 				System.out.println("roSeq"+roSeq);
 				int roNum = resultSet.getInt("roNum");
 				System.out.println("roNum"+roNum);
-				int roPrice = resultSet.getInt("roPrice");
+				String roPrice = resultSet.getString("roPrice").replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
 				System.out.println("roPrice"+roPrice);
 				int roMax = resultSet.getInt("roMax");
 				System.out.println("roMax"+roMax);

@@ -3,7 +3,7 @@ package com.bootcamp.dto;
 public class roomDto {
 	int roSeq;
 	int roNum;
-	int roPrice;
+	String roPrice;
 	int roMax;
 	int roOccupied;
 	int regcamp_regSeq;
@@ -14,7 +14,7 @@ public class roomDto {
 		// TODO Auto-generated constructor stub
 	}
 
-	public roomDto(int roSeq, int roNum, int roPrice, int roMax, int roOccupied, int regcamp_regSeq,
+	public roomDto(int roSeq, int roNum, String roPrice, int roMax, int roOccupied, int regcamp_regSeq,
 			int regcamp_host_hSeq) {
 		super();
 		this.roSeq = roSeq;
@@ -26,7 +26,7 @@ public class roomDto {
 		this.regcamp_host_hSeq = regcamp_host_hSeq;
 	}
 
-	public roomDto(int roSeq, int roNum, int roPrice, int roMax, int roOccupied) {
+	public roomDto(int roSeq, int roNum, String roPrice, int roMax, int roOccupied) {
 		super();
 		this.roSeq = roSeq;
 		this.roNum = roNum;
@@ -35,7 +35,7 @@ public class roomDto {
 		this.roOccupied = roOccupied;
 	}
 
-	public roomDto(int roPrice, int roMax, int regcamp_regSeq) {
+	public roomDto(String roPrice, int roMax, int regcamp_regSeq) {
 		super();
 		this.roPrice = roPrice;
 		this.roMax = roMax;
@@ -58,11 +58,11 @@ public class roomDto {
 		this.roNum = roNum;
 	}
 
-	public int getRoPrice() {
+	public String getRoPrice() {
 		return roPrice;
 	}
 
-	public void setRoPrice(int roPrice) {
+	public void setRoPrice(String roPrice) {
 		this.roPrice = roPrice;
 	}
 

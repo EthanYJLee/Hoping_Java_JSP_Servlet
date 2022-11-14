@@ -100,7 +100,7 @@
 		 	
 		 	<%-- 캠핑장의 전화번호 등록 --%>
 		 	<h5 class="col-12" style="margin: 20px 0 20px 0">캠핑장의 전화번호를 등록하기</h5>
-	 		<input name="regTel" type="text" class="form-control" aria-label="text">
+	 		<input name="regTel" type="text" class="form-control" aria-label="text" placeholder="ex.010-0000-0000">
 		 	
 		 	<%-- 카테고리 등록하기 --%>
 		 	<h5 class="col-12 myscontainer" style="margin: 20px 0 20px 0">카테고리 등록하기</h5>
@@ -165,7 +165,7 @@ function checkMember(){
 	
 	//전화번호 숫자만 입력
 	if(!regExTel.test(regTel)){
-		alert("전화번호는 숫자만 입력해주세요.")
+		alert("전화번호 형식을 확인해주세요.")
 		form.regTel.select();
 		return
 	}

@@ -71,7 +71,7 @@
  	
  	<%-- 약도 디폴트 이미지 불러오기 --%>
  	<div class="row">
- 		<div class="col-6">
+ 		<div class="card col-md-5" style="border: 0px;">
  			<img class="myscontainer" alt="약도" src="./images/${roughMap.regImage4 }">
  		</div>
  	</div>

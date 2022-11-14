@@ -59,7 +59,7 @@ public class BookJoinDao {
 				int boGroup = resultSet.getInt("boGroup");
 				String regName = resultSet.getString("regName");
 				String pay_client_cId = resultSet.getString("pay_client_cId");
-				int total = resultSet.getInt("total");
+				String total = resultSet.getString("total").replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
 				Timestamp boDate = resultSet.getTimestamp("boDate");
 				int roNum = resultSet.getInt("roNum");
 				Timestamp mcheckin = resultSet.getTimestamp("mcheckin");
@@ -157,7 +157,7 @@ public class BookJoinDao {
 				int boGroup = resultSet.getInt("boGroup");
 				String regName = resultSet.getString("regName");
 				String pay_client_cId = resultSet.getString("pay_client_cId");
-				int total = resultSet.getInt("total");
+				String total = resultSet.getString("total").replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
 				Timestamp boDate = resultSet.getTimestamp("boDate");
 				int roNum = resultSet.getInt("roNum");
 				Timestamp mcheckin = resultSet.getTimestamp("mcheckin");
@@ -212,7 +212,7 @@ public class BookJoinDao {
 				int boGroup = resultSet.getInt("boGroup");
 				String regName = resultSet.getString("regName");
 				String pay_client_cId = resultSet.getString("pay_client_cId");
-				int total = resultSet.getInt("total");
+				String total = resultSet.getString("total").replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
 				Timestamp boDate = resultSet.getTimestamp("boDate");
 				int roNum = resultSet.getInt("roNum");
 				Timestamp mcheckin = resultSet.getTimestamp("mcheckin");
@@ -262,12 +262,12 @@ public class BookJoinDao {
 			
 			while(resultSet.next()) {
 				
+				String boPrice = resultSet.getString("boPrice").replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
 				int boGroup = resultSet.getInt("boGroup");
 				String regName = resultSet.getString("regName");
 				String pay_client_cId = resultSet.getString("pay_client_cId");
-				int total = resultSet.getInt("total");
+				String total = resultSet.getString("total").replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
 				Timestamp boDate = resultSet.getTimestamp("boDate");
-				int boPrice = resultSet.getInt("boPrice");
 				int roNum = resultSet.getInt("roNum");
 				Timestamp mcheckin = resultSet.getTimestamp("mcheckin");
 				Timestamp checkout = resultSet.getTimestamp("mcheckout");
