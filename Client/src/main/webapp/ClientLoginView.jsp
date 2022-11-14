@@ -29,10 +29,12 @@
 			    <h1 class="h3 mb-3 fw-normal" >로그인</h1>
 			
 			    <div class="form-floating"  style="margin: 10px;">아이디 
-			      <input type="text" class="form-control" id="floatingInput" name="cId" placeholder="ID" style="margin: 5px;">
+			      <input type="text" class="form-control" id="floatingInput" name="cId" placeholder="ID" style="margin: 5px;"  onkeyup="noSpaceForm(this);"
+						onchange="noSpaceForm(this);">
 			    </div>
 			    <div class="form-floating"  style="margin: 10px;">비밀번호
-			      <input type="password" class="form-control" id="floatingPassword" name="cPw" placeholder="PW"style="margin: 5px;">
+			      <input type="password" class="form-control" id="floatingPassword" name="cPw" placeholder="PW"style="margin: 5px;"  onkeyup="noSpaceForm(this);"
+						onchange="noSpaceForm(this);">
 			    </div>
 			
 			    <div class="checkbox mb-3">
@@ -52,6 +54,19 @@
 <!-- Foot -->
 <%@ include file = "Foot.jsp" %>
 <!-- Foot End -->
+
+<script>
+		// 공백 사용 못 하게하는 함수
+		function noSpaceForm(obj) {
+			var str_space = /\s/; // 공백 체크
+			if (str_space.exec(obj.value)) { // 공백 체크
+				alert("해당 항목에는 공백을 사용할 수 없습니다.\n\n공백 제거됩니다.");
+				obj.focus();
+				obj.value = obj.value.replace(' ', ''); // 공백제거
+				return false;
+			}
+		}
+	</script>
 </body>
 
 
