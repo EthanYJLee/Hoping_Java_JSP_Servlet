@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -473,7 +475,12 @@ public class CampDao {
 			connection = dataSource.getConnection();
 			System.out.println("Query start");
 
-			String query = "select distinct regSeq, regName, regCategory, roNum, roPrice, boCheckindate, boGroup, client_cId, regImage2 from BPRCH where boCheckindate > now() and client_cId = '"+cId+"'";
+			//String query = "select distinct regSeq, regName, regCategory, roNum, roPrice, boCheckindate, boGroup, client_cId, regImage2 from BPRCH where boCheckindate > now() and client_cId = '"+cId+"'";
+			//select distinct regSeq, regName, regCategory, roNum, roPrice, boCheckindate,boCheckindate+max(boSeq)-boGroup-1 as boCheckoutdate, boGroup, max(boSeq)-boGroup, client_cId, regImage2 from BPRCH where boCheckindate > now() and client_cId = 'pisal' group by boGroup
+			
+			// Checkout 계산해서 boCheckoutdate 컬럼을 추가함. 상혁
+			String query = "select distinct regSeq, regName, regCategory, roNum, roPrice, boCheckindate,adddate(boCheckindate,max(boSeq)-boGroup) as boCheckoutdate, boGroup, (max(boSeq)-boGroup+1) as days, client_cId, regImage2 from BPRCH where boCheckindate > now() and client_cId = '"+cId+"' group by boGroup";
+			
 			preparedStatement = connection.prepareStatement(query);
 			resultSet = preparedStatement.executeQuery();
 			System.out.println("Query Execute");
@@ -486,14 +493,17 @@ public class CampDao {
 				int roNum = resultSet.getInt("roNum");
 				int roPrice = resultSet.getInt("roPrice");	
 				Timestamp boCheckindate = resultSet.getTimestamp("boCheckindate");
+				System.out.println("boCheckindate"+boCheckindate);
 				int boGroup = resultSet.getInt("boGroup");
-				//int boSeq = resultSet.getInt("boSeq");	
+				Timestamp boCheckoutdate = resultSet.getTimestamp("boCheckoutdate");
+				System.out.println("boCheckoutdate"+boCheckoutdate);
 				String client_cId = resultSet.getString("client_cId");
 				String regImage2 = resultSet.getString("regImage2");
+				int days = resultSet.getInt("days");
 				
 				System.out.println("cId:"+cId+":");
 
-				dto = new BookJoinDto(regSeq, regName, regCategory, roNum, roPrice, boCheckindate, boGroup, client_cId, regImage2);
+				dto = new BookJoinDto(regSeq, regName, regCategory, roNum, roPrice, boCheckindate, boCheckoutdate, boGroup, client_cId, regImage2,days);
 				dtos.add(dto);
 				System.out.println("DTO bookingView Add");
 			}

@@ -236,7 +236,7 @@ public class BCFrontController extends HttpServlet {
 
 			if (result != 0) {
 				session.setAttribute("REGSEQ", myRegSeq);
-				viewPage = "HostRInfo.do";
+				viewPage = "HostInfoMMain.jsp";
 			} else {
 				JOptionPane.showMessageDialog(null, "잘못된 접근입니다", "Error", JOptionPane.ERROR_MESSAGE);
 				response.sendRedirect("HostError.jsp");
@@ -263,7 +263,11 @@ public class BCFrontController extends HttpServlet {
 		case ("/host_delete_camp.do"):	// 캠핑장 정보 최종 삭제 (update regDdate=now())
 			command = new HostDeleteMyCamp_Command();
 			command.execute(request, response);
-			viewPage = "HostDeleteCampCompleted.jsp";
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('삭제되었습니다'); location.href='host_main.do'; </script>");
+			out.flush();
+			viewPage = "host_main.do";
 			break;
 			
 		case ("/detail_stat_view.do"):	// 차트 상세 (모든 캠핑장)

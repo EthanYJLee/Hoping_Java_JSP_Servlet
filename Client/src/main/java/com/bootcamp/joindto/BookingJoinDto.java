@@ -9,6 +9,7 @@ public class BookingJoinDto {
 	int roPrice;
 	String boCheckindate;
 	String boCheckoutdate;
+	
 
 	public BookingJoinDto(){
 		super();

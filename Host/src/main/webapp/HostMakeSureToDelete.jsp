@@ -17,10 +17,15 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+<script type="text/javascript">
+ window.history.forward();
+ function noBack(){window.history.forward();}
+</script>
 </head>
 
 <body>
+<body onload="noBack();" onpageshow="if(event.persisted) noBack();" onunload="">
+
 
 <%-- nav include --%>
 <%@ include file = "hnav2.jsp" %>
