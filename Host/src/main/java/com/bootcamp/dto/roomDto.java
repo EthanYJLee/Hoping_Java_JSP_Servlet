@@ -8,7 +8,7 @@ public class roomDto {
 	int roOccupied;
 	int regcamp_regSeq;
 	int regcamp_host_hSeq;
-	
+
 	public roomDto() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -25,7 +25,7 @@ public class roomDto {
 		this.regcamp_regSeq = regcamp_regSeq;
 		this.regcamp_host_hSeq = regcamp_host_hSeq;
 	}
-	
+
 	public roomDto(int roSeq, int roNum, int roPrice, int roMax, int roOccupied) {
 		super();
 		this.roSeq = roSeq;
@@ -33,6 +33,13 @@ public class roomDto {
 		this.roPrice = roPrice;
 		this.roMax = roMax;
 		this.roOccupied = roOccupied;
+	}
+
+	public roomDto(int roPrice, int roMax, int regcamp_regSeq) {
+		super();
+		this.roPrice = roPrice;
+		this.roMax = roMax;
+		this.regcamp_regSeq = regcamp_regSeq;
 	}
 
 	public int getRoSeq() {
@@ -90,6 +97,5 @@ public class roomDto {
 	public void setRegcamp_host_hSeq(int regcamp_host_hSeq) {
 		this.regcamp_host_hSeq = regcamp_host_hSeq;
 	}
-	
-	
+
 }
