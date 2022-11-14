@@ -11,7 +11,12 @@
 <%
 	session.invalidate();
 	response.sendRedirect("ClientLoginView.jsp");
-	JOptionPane.showMessageDialog(null, "로그아웃 되었습니다");
+	
+	//JOptionPane.showMessageDialog(null, "로그아웃 되었습니다");
 %>
+
+
+
+
 </body>
 </html>
