@@ -77,12 +77,12 @@
  	</div>
  	
  	<%-- 수정할 약도 업로드 --%>
-	<h5 class="row" style="margin: 25px 0 30px 0">약도 이미지를 업로드해주세요.</h5>
+	<p style="font-size: 13px; color: blue;">*사진을 선택 후 Upload 버튼을 눌러 주세요.</p>
 	<%-- map form --%>
  	<form action = "hiddenImgUp.jsp?link=addRoughMapUp.do" method = "post" enctype = "multipart/form-data">
 		<input type = "file" name = "file" size = "50" />
 		<br>
-		<input type = "submit" value = "Upload File" size="50" />
+		<input type = "submit" value = "Upload" size="50" />
 		<input type="hidden" name="link" value="addRoughMapUp.do">
 	</form>
 	

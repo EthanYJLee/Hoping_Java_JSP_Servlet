@@ -12,89 +12,15 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 <link rel="stylesheet" href="css/style.css"> 
-<!-- <style type="text/css">
-@import
-	url('https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800')
-	;
-
-@import
-	url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
-
-body {
-	font-family: 'Nanum Gothic';
-}
-
-.mybtn {
-	transition: background-color .5s;
-	border-radius: 15px;
-}
-
-.mybtn:hover {
-	border: 0 solid black;
-	background-color: #E94560;
-}
-
-.myscontainer {
-	margin-bottom: 25px;
-}
-
-.mysearch {
-	border-radius: 15px;
-	border: 0.5px solid #808080;
-	box-shadow: 1px 1px 3px 2px #E6E6E6;
-	height: 33px;
-	width: 500px;
-}
-
-.mytitle {
-	font-family: 'Ubuntu', sans-serif;
-	color: #E94560;
-	font-size: 20px;
-	font-weight: bold;
-}
-
-.mysvg {
-	margin-right: 5px;
-	color: #E94560;
-}
-
-.mycard {
-	border: 0px solid black;
-	margin-bottom: 20px;
-}
-
-.mycbody {
-	padding: 20px 0 0 0;
-}
-
-.myimage {
-	border-radius: 15px;
-	width: 250px;
-	height: 250px;
-}
-
-.myctitle {
-	font-size: 15px;
-	font-weight: 600;
-}
-
-.myctext {
-	font-weight: 100;
-	color: gray;
-}
-
-.mymcontainer {
-	margin-bottom: 50px;
-}
-</style>
- -->
 
 </head>
 <body>
 <%-- nav include   22.11.14 호식 수정 --%>
 <%@ include file = "hnav1.jsp" %>
-<%-- nav include End --%>
 
+	<div class="box container mymcontainer">
+		<form action="termsAD.do" method="get">
+			<table width="160" height="650">
 
 <main class="form-signin w-50 m-auto">
 	<!-- <div align="center"> -->
@@ -132,11 +58,10 @@ Hoping은 당사의 개인정보 수집 및 사용 방식을 설명하는개인�
 					</td>
 				</tr>
 				<tr>
-					<td align="center" valign="top">
-						<input type="radio" name="agree" value="agree">동의 함 &nbsp;&nbsp;&nbsp; 
-						<input type="radio" name="agree" value="disagree" checked="checked">동의 하지 않음 <br><br> 
-						<input type="submit" value="확인">
-					</td>
+					<td align="center" valign="top"><input type="radio"
+						name="agree" value="agree" checked="checked">동의 함 &nbsp;&nbsp;&nbsp; <input
+						type="radio" name="agree" value="disagree">동의 하지 않음 <br>
+						<br> <input type="submit" value="확인"></td>
 				</tr>
 			</table>
 		</form>

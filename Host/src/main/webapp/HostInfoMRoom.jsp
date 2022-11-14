@@ -115,7 +115,7 @@
 					</div>
 				</form>
 				<div class="row justify-content-end">
-					<a href="HostInfoMMain.jsp" style="border-radius: 15px; width:100px;" class="col-2 btn mbtn">완료</a>
+					<a href="HostRInfo.do" style="border-radius: 15px; width:100px;" class="col-2 btn mbtn">완료</a>
 				</div>
 			</div>
 		</div>

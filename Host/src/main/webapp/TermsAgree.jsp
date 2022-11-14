@@ -17,12 +17,6 @@
 
 </head>
 <body>
-<%-- nav include   22.11.14 호식 수정 --%>
-<%@ include file = "hnav1.jsp" %>
-<%-- nav include End --%>
-	
-
-<main class="form-signin w-50 m-auto">
 	<div class="box container mymcontainer">
 		<form action="show.do" method="get">
 			<div style="margin-bottom: 20px; font-weight: 500; font-size: 25px;">Hoping 호스트 가입을 진행하시겠습니까?</div>

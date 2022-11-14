@@ -76,7 +76,7 @@
 			<div id="pagination"></div>
 		</div>
 		
-		<form action="HostInfoMLo.do" class="myscontainer">
+		<form name="Member" action="HostInfoMLo.do" class="myscontainer">
 		
 			<input type="hidden" value="" id="hostlongitude" name="hostlongitude">
 			<input type="hidden" value="" id="hostlatitude" name="hostlatitude">
@@ -97,11 +97,40 @@
 		 	</div>
 		 	<div class="d-flex flex-row-reverse">
 		 		<div class="p-2">
-		 		<button type="submit" style="border-radius: 15px; width:100px;" class="btn mybtns btn-secondary">완료</button>
+		 		<button type="button" onclick="checkMember()" style="border-radius: 15px; width:100px;" class="btn mybtns btn-secondary">완료</button>
 		 		</div>
 		 	</div>
 		 	
 		 </form>
+		 
+		<script type="text/javascript">
+
+		function checkMember(){
+			
+			const form = document.Member;
+			
+			let regDetailaddress = form.regDetailaddress.value;
+			let regSummary = form.regSummary.value;
+			
+			//null check
+			if(regDetailaddress == ""){
+				alert("위치를 등록해주세요.")
+				form.regDetailaddress.focus();
+				return false;
+			}
+			
+			if(regSummary == ""){
+				alert("설명을 등록해주세요.")
+				form.regSummary.focus();
+				return false;
+			}
+
+			alert("수정되었습니다.");
+			form.submit();
+			
+		}
+		
+		</script>
 	 	
 	 	<%-- ----------------------------------------------맵 js------------------------------------------------------- --%>
 
@@ -202,7 +231,6 @@
 			function searchPlaces() {
 				var keyword = document.getElementById('keyword').value;
 				if (!keyword.replace(/^\s+|\s+$/g, '')) {
-					alert('장소를 입력해주세요!');
 					return false;
 				}
 				// 장소검색 객체를 통해 키워드로 장소검색을 요청합니다

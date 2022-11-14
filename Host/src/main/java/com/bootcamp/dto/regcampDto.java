@@ -7,14 +7,14 @@ public class regcampDto {
 	
 	//캠핑장 등록
 	int regSeq;
-	String regTel = "";
-	String regCategory = "";
-	String regDetailaddress = "";
-	String regName = "";
+	String regTel;
+	String regCategory;
+	String regDetailaddress;
+	String regName;
 	Timestamp regDate;
 	Timestamp regMdate;
 	Timestamp regDdate;
-	String regSummary = "";
+	String regSummary;
 	String regImage1;
 	String regImage2;
 	String regImage3;
@@ -22,11 +22,22 @@ public class regcampDto {
 	int host_hSeq;
 	
 
-	
-	
 	public regcampDto() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+	public regcampDto(int regSeq, String regImage1, String regName, String regDetailaddress) {
+		super();
+		this.regSeq = regSeq;
+		this.regImage1 = regImage1;
+		this.regName = regName;
+		this.regDetailaddress = regDetailaddress;
+	}
+
+
+
+
 
 
 
