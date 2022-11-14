@@ -65,7 +65,7 @@
 			<p>오늘 체크인 예정 : ${todayIn}</p>
 			<p>오늘 체크아웃 예정 : ${todayOut}</p>
 			<div class="form-row float-right">
-			<button type="button" class="btn text-secondary">상세보기</button>
+			<button type="button" class="btn text-secondary" onclick="location.href='bookList.do'">상세보기</button>
 			</div>
 		</div>
 	</div>
@@ -77,7 +77,7 @@
 			<p>답변 완료 : ${trq}</p>
 			<p>답변 미완료 : ${tnrq}</p>
 			<div class="form-row float-right">
-			<button type="button" class="btn text-secondary">상세보기</button>
+			<button type="button" class="btn text-secondary" onclick="location.href='askList.do'">상세보기</button>
 			</div>
 		</div>
 	</div>
@@ -178,7 +178,7 @@ var reserveChart = new Chart(chartArea, {
 			<p>답변 미완료 : ${tnrr}</p>
 			<p>평균 별점</p>
 			<div class="form-row float-right">
-			<button type="button" class="btn text-secondary">상세보기</button>
+			<button type="button" class="btn text-secondary" onclick="location.href='host_review_list.do'">상세보기</button>
 			</div>
 		</div>
 	</div>
