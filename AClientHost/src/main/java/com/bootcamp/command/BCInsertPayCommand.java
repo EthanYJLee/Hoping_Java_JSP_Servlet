@@ -17,7 +17,7 @@ public class BCInsertPayCommand implements BCCommand {
 		HttpSession session = request.getSession();
 		System.out.println("BCInsertPayCommand______________________________________________________");
 	
-		String cId = (String)session.getAttribute("cId");
+		String cId = (String)session.getAttribute("CID");
 		String roNum = (String)session.getAttribute("roNum");
 		String regSeq = (String)session.getAttribute("regSeq");
 		// InputPay 의 Dao 를 생성함.  		

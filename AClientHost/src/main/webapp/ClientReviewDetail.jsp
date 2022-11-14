@@ -131,6 +131,9 @@
 					<td><input type="text" name="rvTime" size="30"
 						value="${reviewDetail.rvTime}" readonly="readonly"></td>
 				</tr>
+				<tr>
+					<td><button onclick="history.back()">뒤로가기</button></td>
+				</tr>
 
 
 

@@ -212,8 +212,8 @@ public class BCFrontController extends HttpServlet {
 			command.execute(request, response);
 			break;
 
-		// Hosik ----------------------------------------------------------------
-		// 상세 페이지 보기
+		// // ------------호식 : 상세페이지, 문의하기 ------------------------------------
+			
 		// 상세 페이지 보기
 		case ("/detailView.do"):
 			command = new BCDetailCommand();
@@ -253,6 +253,8 @@ public class BCFrontController extends HttpServlet {
 			command.execute(request, response);
 			viewPage = "ClientCheckHistory.jsp";
 			break;
+			
+			
 
 		// ———————————리뷰—————주현————————————
 
@@ -287,6 +289,48 @@ public class BCFrontController extends HttpServlet {
 //			   viewPage = "Review_List.jsp";
 //			   break;
 
+			
+			//wishList 등록 삭제 리스트
+			
+			case ("/wishList_View.do"):
+				command = new WishList_View_Command();
+				command.execute(request, response);
+				viewPage = "WishList_view.jsp";
+				break; 
+					
+					
+				  //위시리스트 등록
+					
+			case ("/wish_write.do"): //wish리스트에 등록
+				command = new wish_write_Command();
+			command.execute(request, response);
+			  break; //위시리스트 등록
+			  
+			  
+			  
+			case ("/wish_delete.do")://wish리스트에서 삭제
+				command = new wish_delete_Command();
+			command.execute(request, response);
+			break;//위시리스트 삭제
+
+			
+			case ("/count.do"): // 먼저 wish리스트에 해당 캠핑장이 등록되어 있는지 확인
+				   command = new count_Command();
+				  Boolean check = command.execute1(request, response);
+				   
+				  	//만약 wish리스트에 등록이 되어있지 않다면 check값이 false가 되어 등록이 됨
+			if (check == false) {
+				JOptionPane.showInternalMessageDialog(null, "위시리스트에 등록됐습니다.", "위시리스트", 0, null);
+				viewPage = "wish_write.do";
+			} else {//만ㅇ냑 wish리스트에 등록이 되어있으면 check값이 true가 되어 삭제가 됨
+				JOptionPane.showInternalMessageDialog(null, "위시리스트에서 삭제되었습니다 ", "위시리스트", 0, null);
+				viewPage = "wish_delete.do";
+			}
+			break;// 위시리스트에 있는지 없는지 확인 후 등록 or 삭제 결정
+			
+			
+			
+			
 		// --------------------주현: 약관동의 후 호스트 가입(호스트 정보 insert)--------------------
 
 		// 약관보여주기
@@ -296,11 +340,10 @@ public class BCFrontController extends HttpServlet {
 		// 약관 동의/비동의
 		case ("/termsAD.do"):
 			command = new HostTermsADCommand();
-			Boolean check = command.execute1(request, response);
+			Boolean check2 = command.execute1(request, response);
 
-			if (check == true) {
+			if (check2 == true) {
 				viewPage = "TermsAgree.jsp";
-
 			} else {
 				// 나중에 클라이언트랑 연결되면 client 메인페이지로 이동
 				viewPage = "#"; // 22-11-14 Hosik . list.jsp 있던거 #으로 바꿔놈

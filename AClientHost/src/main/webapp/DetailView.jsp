@@ -126,7 +126,7 @@
 		    <!-- 예약하러 가기 --> 
 	  		<div class="container-md d-flex justify-content-center" style="margin-top: 10px;">
 	  		
-	  		<% if (session.getAttribute("cId") == null) { %>
+	  		<% if (session.getAttribute("CID") == null) { %>
 	  			<a href="ClientLoginView.jsp">
 			    <button type="submit" class="btn btn-primary">로그인을 하셔야 예약이나 문의를 하실 수 있어요</button>
 			    </a>
@@ -151,7 +151,7 @@
 
 				<div>
 					후기보기 &nbsp;&nbsp;&nbsp;
-					<div>${reviewAvg.rvStar}</div>
+					<div>후기 평균 : ${reviewAvg.rvStar}</div>
 
 
 					<div class="container">
