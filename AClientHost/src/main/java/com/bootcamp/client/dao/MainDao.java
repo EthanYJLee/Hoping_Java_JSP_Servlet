@@ -158,7 +158,7 @@ public class MainDao {
 			while(resultSet.next()) {
 				int roSeq = resultSet.getInt("roSeq");
 				int roNum = resultSet.getInt("roNum");
-				int roPrice = resultSet.getInt("roPrice");
+				String roPrice = resultSet.getString("roPrice").replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
 				int roMax = resultSet.getInt("roMax");
 				int roOccupied = resultSet.getInt("roOccupied");
 				int regcamp_regSeq = resultSet.getInt("regcamp_regSeq");

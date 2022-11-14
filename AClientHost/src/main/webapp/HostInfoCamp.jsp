@@ -95,22 +95,21 @@
  		<hr style="background-color: gray;">
  		<%-- 키워드 --%>
  		<div class="mydtitle">등록된 키워드</div>
- 		<div class="row myscontainer d-flex justify-content-center">
- 			<c:forEach items="${keywords}" var="dto">
-	 			<div class="col-2">
-	 				<label class="btn btn-secondary">${dto.kName }</label>
-	 			</div>
- 			</c:forEach>
- 		</div>
+ 		<div class="container myscontainer">
+	 		<c:forEach items="${keywords}" var="dto">
+		 		<input type="checkbox" class="btn-check" name="keys" id="option1" value="조용한"  autocomplete="off">
+				<label class="btn btn-secondary" for="option1" >${dto.kName }</label>
+	 		</c:forEach>
+	 	</div> 	
+
  		<hr style="background-color: gray;">
  		<%-- 편의시설 --%>
  		<div class="mydtitle">등록된 편의시설</div>
- 		<div class="row myscontainer d-flex justify-content-center">
- 			<c:forEach items="${facility}" var="dto">
-	 			<div class="col-2">
-	 				<label class="btn btn-secondary">${dto.fName }</label>
-	 			</div>
- 			</c:forEach>
+ 		<div class="container myscontainer">
+			<c:forEach items="${facility}" var="dto">
+		 		<input type="checkbox" class="btn-check" name="keys" id="option1" value="조용한"  autocomplete="off">
+				<label class="btn btn-secondary" for="option1" >${dto.fName }</label>
+	 		</c:forEach>
  		</div>
  		<hr style="background-color: gray;">
  		<%-- 자리 --%>

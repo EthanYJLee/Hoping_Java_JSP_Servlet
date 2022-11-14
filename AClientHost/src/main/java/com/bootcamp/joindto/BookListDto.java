@@ -5,11 +5,11 @@ import java.sql.Timestamp;
 public class BookListDto {
 	
 	int boSeq;
-	int boPrice;
+	String boPrice;
 	int boGroup;
 	String regName;
 	String pay_client_cId;
-	int total;
+	String total;
 	Timestamp boDate;
 	int roNum;
 	int pay_room_regcamp_regSeq;
@@ -22,8 +22,8 @@ public class BookListDto {
 	public BookListDto() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	public BookListDto(int boGroup, String regName, String pay_client_cId, int total, Timestamp boDate, int roNum,
+
+	public BookListDto(int boGroup, String regName, String pay_client_cId, String total, Timestamp boDate, int roNum,
 			Timestamp checkin, Timestamp checkout, int boCount) {
 		super();
 		this.boGroup = boGroup;
@@ -36,9 +36,9 @@ public class BookListDto {
 		this.checkout = checkout;
 		this.boCount = boCount;
 	}
-	
-	public BookListDto(int boPrice, int boGroup, String regName, String pay_client_cId, int total, Timestamp boDate,
-			int roNum, Timestamp checkin, Timestamp checkout, int boCount) {
+
+	public BookListDto(String boPrice, int boGroup, String regName, String pay_client_cId, String total,
+			Timestamp boDate, int roNum, Timestamp checkin, Timestamp checkout, int boCount) {
 		super();
 		this.boPrice = boPrice;
 		this.boGroup = boGroup;
@@ -60,11 +60,11 @@ public class BookListDto {
 		this.boSeq = boSeq;
 	}
 
-	public int getBoPrice() {
+	public String getBoPrice() {
 		return boPrice;
 	}
 
-	public void setBoPrice(int boPrice) {
+	public void setBoPrice(String boPrice) {
 		this.boPrice = boPrice;
 	}
 
@@ -92,11 +92,11 @@ public class BookListDto {
 		this.pay_client_cId = pay_client_cId;
 	}
 
-	public int getTotal() {
+	public String getTotal() {
 		return total;
 	}
 
-	public void setTotal(int total) {
+	public void setTotal(String total) {
 		this.total = total;
 	}
 
@@ -163,5 +163,6 @@ public class BookListDto {
 	public void setPay_room_roSeq(int pay_room_roSeq) {
 		this.pay_room_roSeq = pay_room_roSeq;
 	}
+	
 	
 }

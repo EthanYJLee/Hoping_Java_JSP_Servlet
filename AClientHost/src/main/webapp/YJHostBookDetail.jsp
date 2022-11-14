@@ -61,7 +61,7 @@
  			<div class="myhdth">날짜</div><div class="myhdtd">${bookDetail.checkin } ~ ${bookDetail.checkout }</div>
  		</div>
  		<div class="card col-md-6" style="border: 0px solid black;">
- 			<div class="myhdth">총인원</div><div class="myhdtd">${bookDetail.boCount }</div>
+ 			<div class="myhdth">총인원</div><div class="myhdtd">${bookDetail.boCount }명</div>
  		</div>
  	</div>
  	<div class="row myhdrow">

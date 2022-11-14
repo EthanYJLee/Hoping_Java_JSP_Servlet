@@ -55,7 +55,7 @@ public class RoomDao {
 			while(resultSet.next()) {
 				
 				int roNum = resultSet.getInt("roNum");
-				int roPrice = resultSet.getInt("roPrice");
+				String roPrice = resultSet.getString("roPrice").replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
 				int roMax = resultSet.getInt("roMax");
 				int roOccupied = resultSet.getInt("roOccupied");
 				int roSeq = resultSet.getInt("roSeq");

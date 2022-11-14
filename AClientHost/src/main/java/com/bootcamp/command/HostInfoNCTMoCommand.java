@@ -16,7 +16,6 @@ public class HostInfoNCTMoCommand implements BCCommand {
 		HttpSession session = request.getSession();
 		
 		String regName = request.getParameter("regName");
-		System.out.println("regName: " + regName);
 		String regCategory = request.getParameter("regCategory");
 		String regTel = request.getParameter("regTel");
 		int regSeq = (int) session.getAttribute("REGSEQ");
