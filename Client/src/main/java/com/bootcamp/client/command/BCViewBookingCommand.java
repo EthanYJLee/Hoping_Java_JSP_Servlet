@@ -7,9 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.bootcamp.client.dao.CampDao;
-import com.bootcamp.dto.bookDto;
 import com.bootcamp.joindto.BookJoinDto;
-import com.bootcamp.joindto.BookingJoinDto;
 
 
 public class BCViewBookingCommand implements BCCommand {

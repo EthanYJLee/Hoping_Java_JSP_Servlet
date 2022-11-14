@@ -36,8 +36,9 @@
 					${dto.regCategory}
 				</p>
 				<h5 class="card-title myctitle">자리 번호 : ${dto.roNum}</h5>
-				<p class="card-text myctext">가격 : <fmt:formatNumber value="${dto.roPrice}" pattern="#,###"/>원 </p>
-				<p class="card-text myctext">예약일 : <fmt:formatDate value="${dto.boCheckindate}" pattern="yyyy-MM-dd"/> </p>
+				<p class="card-text myctext">가격 : <fmt:formatNumber value="${dto.roPrice}" pattern="#,###"/>원 x ${dto.days} = <fmt:formatNumber value="${dto.roPrice*dto.days}" pattern="#,###"/>원</p>
+				<p class="card-text myctext">예약일 : <fmt:formatDate value="${dto.boCheckindate}" pattern="yyyy-MM-dd"/>
+				~ <fmt:formatDate value="${dto.boCheckoutdate}" pattern="yyyy-MM-dd"/></p>
 		      </div>
 		    </div>
 		  </div>
