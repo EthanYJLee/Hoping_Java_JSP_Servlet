@@ -15,11 +15,14 @@ public class reviewDetailCommand implements BCCommand {
 		// TODO Auto-generated method stub
 		
 		int bId =Integer.parseInt(request.getParameter("rvSeq"));
-		System.out.println("reviewDetailCommand syso Check -hosik rvSeq = "+bId);
+		
 		ReviewDao dao = new ReviewDao();
 		reviewDto dto = dao.reviewView(bId);
 		
 		request.setAttribute("reviewDetail", dto);
+		
+		System.out.println("reviewDetailCommand" + bId);
+		System.out.println("reviewDetailCommanddto" + dto);
 	}
 
 	@Override

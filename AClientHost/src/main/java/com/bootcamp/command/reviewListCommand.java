@@ -17,7 +17,6 @@ public class reviewListCommand implements BCCommand {
 		
 		int regSeq = Integer.parseInt(request.getParameter("regSeq"));
 		
-		System.out.println("reviewListCommand sysoout -hosik ");
 		
 		ReviewDao dao = new ReviewDao();
 		ArrayList<reviewDto> dtos = dao.reviewList(regSeq);
@@ -30,6 +29,7 @@ public class reviewListCommand implements BCCommand {
 		
 		request.setAttribute("reviewAvg", dtos1);
 		
+		System.out.println("reviewListCommand sysoout -hosik "+regSeq);
 		
 		
 		

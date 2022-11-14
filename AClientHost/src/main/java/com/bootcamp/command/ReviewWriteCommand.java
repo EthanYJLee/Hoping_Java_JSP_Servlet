@@ -13,7 +13,7 @@ public class ReviewWriteCommand implements BCCommand {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 
-		String rvCId = (String)session.getAttribute("cId");
+		String rvCId = (String)session.getAttribute("CID");
 		String rvCName = request.getParameter("rvCName");
 		String rvTitle = request.getParameter("rvTitle");
 		String rvContent = request.getParameter("rvContent");
