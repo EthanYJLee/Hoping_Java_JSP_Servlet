@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%-- nav include --%>
+<%@ include file = "hnav2.jsp" %>
 <form action="host_check.do" method="post">
 아이디 : <input type="text" name="cId"><br>
 비번 : <input type="text" name="cPw"><br>
