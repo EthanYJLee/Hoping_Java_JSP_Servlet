@@ -17,7 +17,7 @@ public class ListMain_Command implements BCCommand {
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		
 		HttpSession session = request.getSession();
-		String cId = (String)session.getAttribute("cId");
+		String cId = (String)session.getAttribute("CID");
 		/*		BCustomerDao dao = new BCustomerDao();
 		BCustomerDto dto = dao.contentCustomerView(cId);
 		

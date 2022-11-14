@@ -91,7 +91,7 @@ System.out.println("/reviewDao 에 reviewList reSeq = "+regSeq);
 		try {
 			connection = dataSource.getConnection();
 			
-			String query = "select * from review, regcamp where regcamp_regSeq = regseq and regSeq=? ";
+			String query = "select * from review, regcamp where regcamp_regSeq = regseq and rvSeq=? ";
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setInt(1, sbId);
 			resultSet = preparedStatement.executeQuery();
@@ -110,6 +110,8 @@ System.out.println("/reviewDao 에 reviewList reSeq = "+regSeq);
 				int regcamp_host_hSeq = resultSet.getInt("regcamp_host_hSeq");
 				
 				dto = new reviewDto(rvSeq, rvCId, rvCName, rvTitle, rvContent, rvStar, rvTime, rvMtime, rvDtime, regcamp_regSeq, regcamp_host_hSeq);
+				
+				System.out.println("리뷰상세dao"+rvSeq);
 			}
 			
 		}catch (Exception e) {

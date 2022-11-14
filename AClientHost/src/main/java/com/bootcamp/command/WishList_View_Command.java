@@ -1,28 +1,33 @@
 package com.bootcamp.command;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.bootcamp.client.dao.ReviewDao;
+import com.bootcamp.client.dao.WishList_ViewDao;
+import com.bootcamp.dto.WishList_ViewDto;
 import com.bootcamp.dto.reviewDto;
 
-
-public class reviewDetailCommand implements BCCommand {
+public class WishList_View_Command implements BCCommand {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
 		
-		int bId =Integer.parseInt(request.getParameter("rvSeq"));
+		HttpSession session = request.getSession();
 		
-		ReviewDao dao = new ReviewDao();
-		reviewDto dto = dao.reviewView(bId);
+		WishList_ViewDao dao = new WishList_ViewDao();
 		
-		request.setAttribute("reviewDetail", dto);
 		
-		System.out.println("reviewDetailCommand" + bId);
-		System.out.println("reviewDetailCommanddto" + dto);
+		ArrayList<WishList_ViewDto> dtos = dao.wishList_view((String)session.getAttribute("cId"));
+		
+	
+		request.setAttribute("wishList_view", dtos);
+			
+
 	}
 
 	@Override
