@@ -66,11 +66,15 @@
 	<div class="card myhcard" style="border-radius: 20px;">
 		<table>
 			<tr class="myhtr">
-				<td class="myth">캠핑장 이름</td><td class="myth">사이트 넘버</td><td class="myth">카테고리</td><td class="myth">사이트 가격</td><td class="myth">최대수용 인원</td>
+				<td class="myth">캠핑장 이름</td><td class="myth">자리 번호</td><td class="myth">카테고리</td><td class="myth">자리 가격</td><td class="myth">최대수용 인원</td>
 			</tr>
 			<c:forEach items="${Camp}" var="dto">
 			<tr class="myhtr">
-				<td class="mytd">${dto.regName}</td><td class="mytd">${dto.roNum}</td><td class="mytd">${dto.regCategory}</td><td class="mytd"><fmt:formatNumber value="${dto.roPrice}" pattern="#,###"/>원</td><td class="mytd">${dto.roMax}명</td>
+				<td class="mytd">${dto.regName}</td>
+				<td class="mytd">${dto.roNum}</td>
+				<td class="mytd">${dto.regCategory}</td>
+				<td class="mytd"><fmt:formatNumber value="${dto.roPrice}" pattern="#,###"/>원</td>
+				<td class="mytd">${dto.roMax}명</td>
 			<%--	<td class="mytd">${dto.regName}</td><td class="mytd"><a href="pay.do?roNum=${dto.roNum}">${dto.roNum}</a></td><td class="mytd">${dto.regCategory}</td><td class="mytd"><fmt:formatNumber value="${dto.roPrice}" pattern="#,###"/>원</td>><td class="mytd">${dto.roMax}명</td> --%>
 
 			</tr>

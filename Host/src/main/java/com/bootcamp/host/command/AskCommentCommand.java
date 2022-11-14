@@ -16,8 +16,8 @@ public class AskCommentCommand implements BCCommand {
 		String acTitle = request.getParameter("acTitle");
 		String acContent = request.getParameter("acContent");
 		String acTime = request.getParameter("acTime");
-		int ask_aSeq = Integer.parseInt(request.getParameter("ask_aSeq"));
-		int host_hSeq = Integer.parseInt(request.getParameter("host_hSeq"));
+		int ask_aSeq = Integer.parseInt((String)request.getParameter("ask_aSeq"));
+		int host_hSeq = Integer.parseInt((String)request.getParameter("host_hSeq"));
 
 		HAskDao dao = new HAskDao();
 		dao.aWrite(acTitle, acContent, acTime, ask_aSeq, host_hSeq);

@@ -269,6 +269,8 @@ public class BCFrontController extends HttpServlet {
 		case ("/askList.do"):
 			command = new askListCommand();
 			command.execute(request, response);
+//			command = new askListCommand();
+//			command.execute1(request, response);
 			viewPage = "askList.jsp";
 			break;
 		case ("/askDetail.do"):
@@ -279,7 +281,7 @@ public class BCFrontController extends HttpServlet {
 		case ("/aComment.do"):
 			command = new AskCommentCommand();
 			command.execute(request, response);
-			viewPage = "AskDetail.jsp";
+			viewPage = "askList.do";
 			break;
 
 		// ------------예진 : 예약 리스트 페이지 ------------------------------------

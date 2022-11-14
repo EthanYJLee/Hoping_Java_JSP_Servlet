@@ -29,7 +29,7 @@
 	<div class="row row-cols-1 row-cols-md-2 g-4">
 														<!-- Img좌석표로 들어갈 수 있도록 체크 해야댐 --> 
 	      <img class="col-md" style="height:300px; border-radius:20px;" 
-	      src="${bookingInfo.regImage4}" 
+	      src="./images/${bookingInfo.regImage4}" 
 	      
 	      alt="${bookingInfo.regName}캠핑장 약도">
 	 
