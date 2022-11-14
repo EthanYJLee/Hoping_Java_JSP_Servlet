@@ -38,8 +38,8 @@ public class wish_writeDao {
 			connection = dataSource.getConnection();
 			String query = "SET foreign_key_checks =0; ";
 			String query2 = "insert into wish (wDate, client_cId, regcamp_regSeq, regcamp_host_hSeq) ";
-			//String query3 = "select curdate(), ?, r.regSeq, 1 ";
-			String query3 = "value( curdate(), ?, r.regSeq, 1 )";
+			String query3 = "select curdate(), ?, r.regSeq, 1 ";
+			//String query3 = "value( curdate(), ?, r.regSeq, 1 )";
 			String query4 = "from regcamp r, host h ";
 			String query5 = "where r.host_hSeq = h.hSeq and r.regSeq = "+ regSeq1 +" and h.hSeq = "+ host_hSeq1;
 			
