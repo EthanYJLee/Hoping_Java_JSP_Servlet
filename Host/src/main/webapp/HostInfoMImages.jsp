@@ -80,27 +80,27 @@
  	</div>
  	
  	<%-- 수정할 이미지 업로드 --%>
-	 <h5 class="row" style="margin: 25px 0 30px 0">수정할 이미지를 업로드해주세요.</h5>
+	 <p style="font-size: 13px; color: blue;">*사진을 선택 후 Upload 버튼을 눌러 주세요.</p>
  	<div class="row myscontainer">
-	 	<form class="card col-4" action = "hiddenImgUp.jsp?link=image1Up.do" method = "post" enctype = "multipart/form-data">
+	 	<form class="card col-4" style="border: 0px"  action = "hiddenImgUp.jsp?link=image1Up.do" method = "post" enctype = "multipart/form-data">
 			<input type = "file" name = "file" size = "50" />
 			<input type="hidden">
-			<input type = "submit" value = "Upload File" size="50" />
+			<input type = "submit" value = "Upload" size="50" />
 		</form>
-	 	<form class="card col-4" action = "hiddenImgUp.jsp?link=image2Up.do" method = "post" enctype = "multipart/form-data">
+	 	<form class="card col-4" style="border: 0px"  action = "hiddenImgUp.jsp?link=image2Up.do" method = "post" enctype = "multipart/form-data">
 			<input type = "file" name = "file" size = "50" />
 			<input type="hidden">
-			<input type = "submit" value = "Upload File" size="50" />
+			<input type = "submit" value = "Upload" size="50" />
 		</form>
-	 	<form class="card col-4" action = "hiddenImgUp.jsp?link=image3Up.do" method = "post" enctype = "multipart/form-data">
+	 	<form class="card col-4" style="border: 0px"  action = "hiddenImgUp.jsp?link=image3Up.do" method = "post" enctype = "multipart/form-data">
 			<input type = "file" name = "file" size = "50" />
 			<input type="hidden">
-			<input type = "submit" value = "Upload File" size="50" />
+			<input type = "submit" value = "Upload" size="50" />
 		</form>
 	</div>
 	<div class="d-flex flex-row-reverse">
  		<div class="p-2">
- 		<a href="HostInfoMMain.jsp" type="submit" style="border-radius: 15px; width:100px;" class="btn mybtns btn-secondary">완료</a>
+ 		<a href="HostRInfo.do" type="submit" style="border-radius: 15px; width:100px;" class="btn mybtns btn-secondary">완료</a>
  		</div>
  	</div>
  </div>

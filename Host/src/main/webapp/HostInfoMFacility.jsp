@@ -50,39 +50,51 @@
  	</div>
  	<%-- 편의시설 채크박스 --%>
  	<form class="container" name="Member" action="HostInfoFaInDel.do">
-			 	<input type="checkbox" class="btn-check" name="facility" id="option1" value="전기"  autocomplete="off">
-				<label class="btn btn-outline-primary" for="option1" >전기</label>
-			 	<input type="checkbox" class="btn-check" name="facility" id="option2" value="온수"  autocomplete="off">
-				<label class="btn btn-outline-primary" for="option2" >온수</label>
-			 	<input type="checkbox" class="btn-check" name="facility" id="option3" value="용품 판매 및 대여"  autocomplete="off">
-				<label class="btn btn-outline-primary" for="option3" >용품 판매 및 대여</label>
-			 	<input type="checkbox" class="btn-check" name="facility" id="option4" value="반려동물 동반 가능"  autocomplete="off">
-				<label class="btn btn-outline-primary" for="option4" >반려동물 동반 가능</label>
-			 	<input type="checkbox" class="btn-check" name="facility" id="option5" value="개수대"  autocomplete="off">
-				<label class="btn btn-outline-primary" for="option5" >개수대</label>
-			 	<input type="checkbox" class="btn-check" name="facility" id="option6" value="샤워장"  autocomplete="off">
-				<label class="btn btn-outline-primary" for="option6" >샤워장</label>
-			 	<input type="checkbox" class="btn-check" name="facility" id="option7" value="화장실"  autocomplete="off">
-				<label class="btn btn-outline-primary" for="option7" >화장실</label>
-			 	<input type="checkbox" class="btn-check" name="facility" id="option8" value="취사시설"  autocomplete="off">
-				<label class="btn btn-outline-primary" for="option8" >취사시설</label>
-			 	<input type="checkbox" class="btn-check" name="facility" id="option9" value="주차장"  autocomplete="off">
-				<label class="btn btn-outline-primary" for="option9" >주차장</label>
-			 	<input type="checkbox" class="btn-check" name="facility" id="option10" value="와이파이"  autocomplete="off">
-				<label class="btn btn-outline-primary" for="option10" >와이파이</label>
-			 	<input type="checkbox" class="btn-check" name="facility" id="option11" value="운동시설"  autocomplete="off">
-				<label class="btn btn-outline-primary" for="option11" >운동시설</label>
-			 	<input type="checkbox" class="btn-check" name="facility" id="option12" value="물놀이장"  autocomplete="off">
-				<label class="btn btn-outline-primary" for="option12" >물놀이장</label>
+		<input type="checkbox" class="btn-check" name="facility" id="option1" value="전기"  autocomplete="off">
+		<label class="btn btn-outline-primary" for="option1" >전기</label>
+		<input type="checkbox" class="btn-check" name="facility" id="option2" value="온수"  autocomplete="off">
+		<label class="btn btn-outline-primary" for="option2" >온수</label>
+	 	<input type="checkbox" class="btn-check" name="facility" id="option3" value="용품 판매 및 대여"  autocomplete="off">
+		<label class="btn btn-outline-primary" for="option3" >용품 판매 및 대여</label>
+	 	<input type="checkbox" class="btn-check" name="facility" id="option4" value="반려동물 동반 가능"  autocomplete="off">
+		<label class="btn btn-outline-primary" for="option4" >반려동물 동반 가능</label>
+	 	<input type="checkbox" class="btn-check" name="facility" id="option5" value="개수대"  autocomplete="off">
+		<label class="btn btn-outline-primary" for="option5" >개수대</label>
+	 	<input type="checkbox" class="btn-check" name="facility" id="option6" value="샤워장"  autocomplete="off">
+		<label class="btn btn-outline-primary" for="option6" >샤워장</label>
+	 	<input type="checkbox" class="btn-check" name="facility" id="option7" value="화장실"  autocomplete="off">
+		<label class="btn btn-outline-primary" for="option7" >화장실</label>
+	 	<input type="checkbox" class="btn-check" name="facility" id="option8" value="취사시설"  autocomplete="off">
+		<label class="btn btn-outline-primary" for="option8" >취사시설</label>
+	 	<input type="checkbox" class="btn-check" name="facility" id="option9" value="주차장"  autocomplete="off">
+		<label class="btn btn-outline-primary" for="option9" >주차장</label>
+	 	<input type="checkbox" class="btn-check" name="facility" id="option10" value="와이파이"  autocomplete="off">
+		<label class="btn btn-outline-primary" for="option10" >와이파이</label>
+	 	<input type="checkbox" class="btn-check" name="facility" id="option11" value="운동시설"  autocomplete="off">
+		<label class="btn btn-outline-primary" for="option11" >운동시설</label>
+	 	<input type="checkbox" class="btn-check" name="facility" id="option12" value="물놀이장"  autocomplete="off">
+		<label class="btn btn-outline-primary" for="option12" >물놀이장</label>
 		<%-- 완료 버튼 --%>
 	 	<div class="d-flex flex-row-reverse">
 		 	<div class="p-2">
-		 		<button type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal" style="border-radius: 15px; width:100px;" class="btn mybtns btn-secondary">완료</button>
+		 		<button type="button" onclick="checkMember()" style="border-radius: 15px; width:100px;" class="btn mybtns btn-secondary">완료</button>
 			</div>
-	 </div>
+		</div>
  	</form>
  </div>
- 
+
+<script type="text/javascript">
+
+function checkMember(){
+	
+	const form = document.Member;
+	
+	alert("수정되었습니다");
+	form.submit(); 
+	
+}
+
+</script>
 
 
 </body>
