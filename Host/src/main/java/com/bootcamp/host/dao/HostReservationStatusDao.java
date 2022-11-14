@@ -96,7 +96,8 @@ public class HostReservationStatusDao {
 		try {
 			connection = dataSource.getConnection();
 			String query = "select count(checkout) from (select max(boCheckindate) as checkout ";
-			String query2 = "from book where boCheckindate = curdate() group by boGroup) as result";
+			String query2 = "from book where boCheckindate = curdate() "
+					+ "and and pay_room_regcamp_host_hSeq = ? group by boGroup) as result";
 			ps = connection.prepareStatement(query + query2);
 			ps.setInt(1, hSeq);
 
