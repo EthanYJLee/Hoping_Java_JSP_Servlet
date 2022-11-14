@@ -21,11 +21,13 @@ public class BCInsertBookCommand implements BCCommand {
 		String stopdate = (String)session.getAttribute("STOPDATE");
 						System.out.println(stopdate);
 		String cId = (String)session.getAttribute("CID");
-						System.out.println("2.cId:"+cId);
+		/*
+		System.out.println("2.cId:"+cId);
 		String cId2 = (String)session.getAttribute("CID");
 						System.out.println("2-1.cId2:"+cId2);
 		String cId3 = (String)request.getAttribute("cId");
 						System.out.println("2-1.cId3:"+cId3);
+		*/
 		String roPrice = (String)session.getAttribute("ROPRICE");
 		String roPrice2 =request.getParameter("roPrice");
 		System.out.println("3.request:roPrice:"+request.getAttribute("roPrice"));
