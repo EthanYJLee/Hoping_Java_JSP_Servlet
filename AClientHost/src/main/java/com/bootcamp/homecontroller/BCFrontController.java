@@ -160,6 +160,7 @@ public class BCFrontController extends HttpServlet {
 		case ("/login.do"):
 			command = new Clientlogin_Command();
 			command.execute1(request, response);
+			//homecontroller host랑 client랑 합칠 때 겹치는 변수명 있어서 바꿈요 (cId>>cId4)
 			String cId4 = request.getParameter("cId");
 			String cPw = request.getParameter("cPw");
 
@@ -401,6 +402,7 @@ public class BCFrontController extends HttpServlet {
 			break;
 
 		case ("/host_check.do"):
+			//homecontroller host랑 client랑 합칠 때 겹치는 변수명 있어서 바꿈요 (cPw>>cPw1)
 			String cId = request.getParameter("cId");
 			String cPw1 = request.getParameter("cPw");
 			String hId = null;
