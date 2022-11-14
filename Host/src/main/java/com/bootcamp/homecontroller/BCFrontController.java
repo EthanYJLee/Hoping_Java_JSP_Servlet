@@ -278,7 +278,7 @@ public class BCFrontController extends HttpServlet {
 		case ("/aComment.do"):
 			command = new AskCommentCommand();
 			command.execute(request, response);
-			viewPage = "AskDetail.jsp";
+			viewPage = "askList.do";
 			break;
 
 		// ------------예진 : 예약 리스트 페이지 ------------------------------------
