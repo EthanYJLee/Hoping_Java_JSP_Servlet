@@ -22,7 +22,7 @@ public class HostInfoNCTSelectCommand implements BCCommand {
 		HostRegMDao dao = new HostRegMDao();
 		MyregcampDto dto = dao.selectInfoNCT(regSeq, hSeq);
 
-		request.setAttribute("detail", dto);
+		request.setAttribute("nct", dto);
 
 	}
 

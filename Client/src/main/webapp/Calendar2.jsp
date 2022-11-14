@@ -70,7 +70,11 @@
 			</tr>
 			<c:forEach items="${Camp}" var="dto">
 			<tr class="myhtr">
-				<td class="mytd">${dto.regName}</td><td class="mytd">${dto.roNum}</td><td class="mytd">${dto.regCategory}</td><td class="mytd"><fmt:formatNumber value="${dto.roPrice}" pattern="#,###"/>원</td><td class="mytd">${dto.roMax}명</td>
+				<td class="mytd">${dto.regName}</td>
+				<td class="mytd">${dto.roNum}</td>
+				<td class="mytd">${dto.regCategory}</td>
+				<td class="mytd"><fmt:formatNumber value="${dto.roPrice}" pattern="#,###"/>원</td>
+				<td class="mytd">${dto.roMax}명</td>
 			<%--	<td class="mytd">${dto.regName}</td><td class="mytd"><a href="pay.do?roNum=${dto.roNum}">${dto.roNum}</a></td><td class="mytd">${dto.regCategory}</td><td class="mytd"><fmt:formatNumber value="${dto.roPrice}" pattern="#,###"/>원</td>><td class="mytd">${dto.roMax}명</td> --%>
 
 			</tr>

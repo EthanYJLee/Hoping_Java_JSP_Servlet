@@ -12,16 +12,16 @@ public class BCInsertBookCommand implements BCCommand {
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		
 		HttpSession session = request.getSession();
-		System.out.println("BCInsertBookCommand______________________________________________________");
+						System.out.println("BCInsertBookCommand______________________________________________________");
 	
 		String startdate = (String)session.getAttribute("startdate");
 		String startdate2 = request.getParameter("startdate");
-		System.out.println("1."+startdate);
-		System.out.println("1-2."+startdate2);
+						System.out.println("1."+startdate);
+						System.out.println("1-2."+startdate2);
 		String stopdate = (String)session.getAttribute("stopdate");
-		System.out.println(stopdate);
+						System.out.println(stopdate);
 		String cId = (String)session.getAttribute("cId");
-		System.out.println("2."+cId);
+						System.out.println("2."+cId);
 		String roPrice = (String)session.getAttribute("roPrice");
 		String roPrice2 =request.getParameter("roPrice");
 		System.out.println("3.request:roPrice:"+request.getAttribute("roPrice"));
@@ -34,9 +34,9 @@ public class BCInsertBookCommand implements BCCommand {
 		CampDao dao = new CampDao();
 		// 체크인 날짜와 체크 아웃 날짜의 날 수를 계산.
 		int intdiff = dao.diffDate(startdate, stopdate);
-		System.out.println("6.intdiff:"+intdiff+":");
+				System.out.println("6.intdiff:"+intdiff+":");
 		// 체크인 날짜의 예약을 추가한다.
-		System.out.println("7.roPrice:"+roPrice+":");
+				System.out.println("7.roPrice:"+roPrice+":");
 		int roomPrice = dao.readRoomPrice(regSeq, roNum);
 		System.out.println("7.1.-------------------roomPrice:"+roomPrice+"-------------------");
 		System.out.println("7.2.-------------------startdate:"+startdate+"-------------------");
@@ -53,7 +53,7 @@ public class BCInsertBookCommand implements BCCommand {
 		if (result == 1) {
 			// 체크인 날짜의 예약의 Seq를 읽어온다.
 			int maxBookSeq = dao.readMaxSeq();
-			System.out.println("8.maxBookSeq:"+maxBookSeq+":");
+				System.out.println("8.maxBookSeq:"+maxBookSeq+":");
 			// boGroup 의 
 			dao.updateBook(maxBookSeq);				
 			// 예약 날짜가 하루 이상이면
@@ -74,10 +74,10 @@ public class BCInsertBookCommand implements BCCommand {
 					dao.insertBook(roomPrice, nextdate, maxBookSeq, 3, strcId, roSeq,cId,Integer.parseInt(regSeq), regcamp_host_hSeq);
 					// 체크인 날짜 다음 날짜를 구한다.
 					nextdate = dao.Nextday(nextdate);
-				}
-			}
-		}
-	}
+				}//for end
+			}//if intdiff >1 end 
+		}//if(result ==1 end 
+	}//excute end 
 
 	@Override
 	public Boolean execute1(HttpServletRequest request, HttpServletResponse response) {
@@ -85,5 +85,5 @@ public class BCInsertBookCommand implements BCCommand {
 		return null;
 	}
 
-}
+}//class end 
 

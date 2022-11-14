@@ -29,6 +29,14 @@ public class CampDao {
 		}
 	}	
 
+	
+	
+	/* 22-11-14 호식 
+				room table에 roNum이 없음. roNum 주석처리 
+				쿼리문 수정 
+				select * from regcamp where regSeq = "+strregSeq;;
+			->> select * from camp where regSeq = "+strregSeq;;	
+	*/
 	public ArrayList<campDto> listCamp(String strregSeq){
 		ArrayList<campDto> dtos = new ArrayList<campDto>();
 		Connection connection = null;
@@ -49,14 +57,14 @@ public class CampDao {
 				int regSeq = resultSet.getInt("regSeq");
 				String regName = resultSet.getString("regName");
 				String regCategory = resultSet.getString("regCategory");
-		
-				int roNum = resultSet.getInt("roNum");
+
+				int roNum = resultSet.getInt("roNum");  //-호식 주석처리 
 				int roPrice = resultSet.getInt("roPrice");
 				int roMax = resultSet.getInt("roMax");
 
 				System.out.println("regSeq:"+strregSeq+":");
 
-				dto = new campDto(regSeq, regName, regCategory, roNum, roPrice, roMax);
+				dto = new campDto(regSeq, regName, regCategory,roNum, roPrice, roMax); // 
 				dtos.add(dto);
 				System.out.println("DTO Add");
 			}

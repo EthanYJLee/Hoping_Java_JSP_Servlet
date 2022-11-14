@@ -30,7 +30,7 @@ public class ReviewDao {
 		ArrayList<reviewDto> dtos = new ArrayList<reviewDto>();
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
-
+System.out.println("/reviewDao 에 reviewList reSeq = "+regSeq);
 		ResultSet resultSet = null;
 
 		reviewDto dto;
@@ -45,6 +45,7 @@ public class ReviewDao {
 			resultSet = preparedStatement.executeQuery();
 
 			while (resultSet.next()) {
+				System.out.println("ReviewDao - reviewList - in while sysoCheck");
 				int rvSeq = resultSet.getInt("rvSeq");
 				String rvCId = resultSet.getString("rvCId");
 				String rvCName = resultSet.getString("rvCName");

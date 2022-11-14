@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>캠핑장의 정보 수정하기</title>
 <link rel="stylesheet" href="css/yjstyle.css">
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -32,6 +32,7 @@
 .mybtns:hover {
 	background-color: #E94560;
 }
+
 </style>
 </head>
 <body>
@@ -40,8 +41,12 @@
 <%@ include file = "hnav1.jsp" %>
  
  <%-- 본문 --%>
+ 
  <div class="container">
- 	<h4 style="margin: 50px 0 50px 0">캠핑장의 어떤 정보를 수정할까요?</h4>
+ 	<h4 style="margin: 50px 0 50px 0;">${regName}의 어떤 정보를 수정할까요?</h4>
+ 	<div class="row myhdrow">
+ 		<div class="col-12"><a href="HostInfoRegView.do" type="button" style="border-radius: 10px; width:400px; height: 60px; background-color: #E94560; border: 0px;" class="btn btn-secondary">기존 정보 보기</a></div>
+ 	</div>
  	<div class="row myhdrow">
  		<div class="col-6 "><a href="HostInfoMLoView.do" type="button" style="border-radius: 10px; width:400px; height: 60px;" class="btn mybtns btn-secondary">캠핑장 위치 / 설명</a></div>
  		<div class="col-6 "><a href="HostInfoMNCTView.do" type="button" style="border-radius: 10px; width:400px; height: 60px;" class="btn mybtns btn-secondary">이름 / 카테고리 / 전화번호</a></div>

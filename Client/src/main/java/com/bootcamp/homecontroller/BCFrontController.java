@@ -17,6 +17,7 @@ import com.bootcamp.client.command.BCBookingConfirmationCommand;
 import com.bootcamp.client.command.BCCalcDateCommand;
 import com.bootcamp.client.command.BCCampDateCheckCommand;
 import com.bootcamp.client.command.BCCampListCommand;
+import com.bootcamp.client.command.BCClientHistory;
 import com.bootcamp.client.command.BCCommand;
 import com.bootcamp.client.command.BCDetailCommand;
 import com.bootcamp.client.command.BCInsertBookCommand;
@@ -204,7 +205,9 @@ public class BCFrontController extends HttpServlet {
 		case ("/detailView.do"):
 			command = new BCDetailCommand();
 			command.execute(request, response);
+			System.out.println("controller Hosik detailVeiw execute check ");
 			command = new reviewListCommand();
+			System.out.println("controller Hosik reviewListCommand execute check ");
 			command.execute(request, response);
 			viewPage = "DetailView.jsp";
 			break;
@@ -232,8 +235,14 @@ public class BCFrontController extends HttpServlet {
 			viewPage = "main.do";
 			break;	
 			
+			// 문의하는 페이지에서 문의등록 하는 커맨드 
+		case ("/history.do"):
+			command = new BCClientHistory();
+			command.execute(request, response);
+			viewPage = "ClientCheckHistory.jsp";
+			break;	
 			
-		// ———————————리뷰—————————————————————
+		// ———————————리뷰—————주현————————————
 
 		// reviewList 상세 캠핑페이지에 보여주기
 		case ("/reviewDetailView.do"):
