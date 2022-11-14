@@ -215,7 +215,7 @@
 							<th>비밀번호</th>
 							<td>	
 								<input type="password" name="cPw" id="password_1" class="pw"
-									placeholder="ex) ld1397">
+									placeholder="ex) ld1397" onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this);">
 							</td>
 						</tr>
 
@@ -223,7 +223,7 @@
 							<th>비밀번호 확인</th>
 							<td>
 								<input type="password" name="cPw2" id="password_2" class="pw" placeholder="ex) ld1397"> 
-								<span id="alert-success" style="display: none;">
+								<span id="alert-success" style="display: none;" onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this);">
 									<font size="2">비밀번호가 일치합니다.</font>
 								</span> 
 								<span id="alert-danger" style="display: none; font-weight:;">
@@ -233,15 +233,15 @@
 						</tr>
 						<tr>
 							<th>이름</th>
-							<td><input type="text" name="cName" size="40" placeholder= "한글로 이름을 작성해 주세요"></td>
+							<td><input type="text" name="cName" size="40" placeholder= "한글로 이름을 작성해 주세요" onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this);"></td>
 						</tr>
 						<tr>
 							<th>전화번호</th>
-							<th><input type="text" name="cPhone" size="40"placeholder="000-0000-0000"></th>
+							<th><input type="text" name="cPhone" size="40"placeholder="000-0000-0000" onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this);"></th>
 						</tr>
 						<tr>
 							<th>이메일</th>
-							<td><input type="text" name="cEmail" size="40" placeholder= "example@example.com / E-mail 형식으로 작성해주세요 "></td>
+							<td><input type="text" name="cEmail" size="40" placeholder= "example@example.com / E-mail 형식으로 작성해주세요 " onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this);"></td>
 						</tr>
 
 						<tr>
@@ -275,6 +275,7 @@
 		crossorigin="anonymous"></script>
 		
 	<script>
+	//비밀번호 확인하는 함수
 		$('.pw').focusout(function() {
 			var pwd1 = $("#password_1").val();
 			var pwd2 = $("#password_2").val();
@@ -293,37 +294,6 @@
 			}
 		});
 	</script>
-	<!--  <script src = "js/jquery-3.6.0.min.js"></script> -->
-	<!-- <script>
-		$('.cId').focusout(function() {
-			let cId = $('.cId').val(); // input_id에 입력되는 값
-
-			$.ajax({
-				url : "./IdCheckService",
-				type : "post",
-				data : {
-					cId : cId
-				},
-				dataType : 'json',
-				success : function(result) {
-					if (result == 0) {
-						$("#checkId").html('중복된 아이디입니다.');
-						$("#checkId").attr('color', 'red');
-						$(':text:not([id=cName]):not([id=cPhone])').val('');
-						alert("중복된 아이디입니다. 다시 입력해주세요.")
-
-					} else {
-						$("#checkId").html('중복되지 않은 아이디입니다.');
-						$("#checkId").attr('color', 'green');
-					}
-				},
-				error : function() {
-					alert("서버요청실패");
-				}
-			})
-
-		})
-	</script> -->
 	<script>
 		//아이디 중복확인 함수
 		$('.cId').focusout(function() {
