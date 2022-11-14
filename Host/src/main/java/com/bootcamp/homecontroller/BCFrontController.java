@@ -110,7 +110,8 @@ public class BCFrontController extends HttpServlet {
 
 			} else {
 				// 나중에 클라이언트랑 연결되면 client 메인페이지로 이동
-				viewPage = "list.jsp";
+				viewPage = "#";  // 22-11-14 Hosik . list.jsp 있던거 #으로 바꿔놈 
+				
 
 			}
 

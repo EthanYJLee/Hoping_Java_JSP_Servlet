@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title> 네비게이션 바 </title>
 <link href="css/style.css" rel="stylesheet" >
 <style type="text/css">
 @import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800'); 
@@ -32,9 +32,8 @@
 	     
 	     <ul class="nav nav-pills">
 	     	<li class="nav-item" style="font-size: 14px;">
-	     		<a href="../../../../Host/src/main/webapp/HostTerms.jsp" class="link-dark nav-link">호스트 모드</a>
 	     			<% if (session.getAttribute("cId") != null) { %>
-	     		<a href="../../../../Host/show.do" class="link-dark nav-link">호스트 모드로 전환하기</a>
+	     		<a href="../../../../Host/src/main/webapp/HostTerms.jsp" class="link-dark nav-link">호스트 모드로 전환하기</a>
 	     			  <% } %>	
 	     	</li>
 	     	
