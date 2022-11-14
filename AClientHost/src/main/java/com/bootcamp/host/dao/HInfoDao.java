@@ -112,7 +112,7 @@ public class HInfoDao {
 	public void imageUpdate(String hImage, String hId) {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
-
+System.out.println("imageUpdate dao");
 		try {
 			connection = dataSource.getConnection();
 
