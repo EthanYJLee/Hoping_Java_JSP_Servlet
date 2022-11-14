@@ -72,16 +72,17 @@ public class HostRegDDao {
 		return dto;
 	}
 	
-	public void deleteRegcamp(int regSeq) {
+	public void deleteRegcamp(int hSeq, int regSeq) {
 		Connection connection = null;
 		PreparedStatement ps = null;
 
 		try {
 			connection = dataSource.getConnection();
-			String query = "update regcamp set regDdate = curdate() where regSeq = ? ";
+			String query = "update regcamp set regDdate = now() where hSeq = ? and regSeq = ?";
 			ps = connection.prepareStatement(query);
-			ps.setInt(1, regSeq);
-			ps.executeQuery();
+			ps.setInt(1, hSeq);
+			ps.setInt(2, regSeq);
+			ps.executeUpdate();
 
 		} catch (Exception e) {
 			e.printStackTrace();

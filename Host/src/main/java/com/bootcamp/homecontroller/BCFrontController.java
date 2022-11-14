@@ -260,7 +260,11 @@ public class BCFrontController extends HttpServlet {
 		case ("/host_delete_camp.do"):	// 캠핑장 정보 최종 삭제 (update regDdate=now())
 			command = new HostDeleteMyCamp_Command();
 			command.execute(request, response);
-			viewPage = "HostDeleteCampCompleted.jsp";
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('삭제되었습니다'); location.href='host_main.do'; </script>");
+			out.flush();
+			viewPage = "host_main.do";
 			break;
 			
 		case ("/detail_stat_view.do"):	// 차트 상세 (모든 캠핑장)
