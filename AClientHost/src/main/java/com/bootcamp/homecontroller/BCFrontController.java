@@ -140,6 +140,7 @@ public class BCFrontController extends HttpServlet {
 			System.out.println("pay for Booking");
 			command = new BCInsertPayCommand();
 			command.execute(request, response);
+			System.out.println("insert for Booking");
 			command = new BCInsertBookCommand();
 			command.execute(request, response);
 			viewPage = "bookingView.do";

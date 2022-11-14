@@ -18,7 +18,7 @@ public class BCCampListCommand implements BCCommand {
 		System.out.println("BCCampListCommand--------------------------------------------");
 		//String cId = (String)session.getAttribute("cId");
 		String regSeq = request.getParameter("regSeq");
-		session.setAttribute("regSeq", regSeq);
+		session.setAttribute("REGSEQ", regSeq);
 		System.out.println("BCCampListCommand------------------------------session.setAttribute(\"regSeq\", regSeq);"+regSeq);
 		//String startdate = request.getParameter("startdate");
 		//String stopdate = request.getParameter("stopdate");

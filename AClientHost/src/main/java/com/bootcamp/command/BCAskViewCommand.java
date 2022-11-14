@@ -18,7 +18,7 @@ public class BCAskViewCommand implements BCCommand {
 		
 		HttpSession session = request.getSession();
 		
-		String cId = (String) session.getAttribute("cId");
+		String cId = (String) session.getAttribute("CID");
 		String regName = (String) request.getParameter("regName");
 		String regSeq = request.getParameter("regSeq");
 		

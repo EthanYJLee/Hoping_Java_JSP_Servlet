@@ -14,22 +14,26 @@ public class BCInsertBookCommand implements BCCommand {
 		HttpSession session = request.getSession();
 						System.out.println("BCInsertBookCommand______________________________________________________");
 	
-		String startdate = (String)session.getAttribute("startdate");
+		String startdate = (String)session.getAttribute("STARTDATE");
 		String startdate2 = request.getParameter("startdate");
-						System.out.println("1."+startdate);
-						System.out.println("1-2."+startdate2);
-		String stopdate = (String)session.getAttribute("stopdate");
+						System.out.println("1.startdate:"+startdate);
+						System.out.println("1-2.startdate2:"+startdate2);
+		String stopdate = (String)session.getAttribute("STOPDATE");
 						System.out.println(stopdate);
-		String cId = (String)session.getAttribute("cId");
-						System.out.println("2."+cId);
-		String roPrice = (String)session.getAttribute("roPrice");
+		String cId = (String)session.getAttribute("CID");
+						System.out.println("2.cId:"+cId);
+		String cId2 = (String)session.getAttribute("CID");
+						System.out.println("2-1.cId2:"+cId2);
+		String cId3 = (String)request.getAttribute("cId");
+						System.out.println("2-1.cId3:"+cId3);
+		String roPrice = (String)session.getAttribute("ROPRICE");
 		String roPrice2 =request.getParameter("roPrice");
 		System.out.println("3.request:roPrice:"+request.getAttribute("roPrice"));
-		System.out.println("4.session:roPrice:"+session.getAttribute("roPrice"));
+		System.out.println("4.session:roPrice:"+session.getAttribute("ROPRICE"));
 		System.out.println("roPrice2 리퀘스트 파라미터"+roPrice2);
-		System.out.println("5.session:roNum:"+session.getAttribute("roNum"));
-		String roNum = (String)session.getAttribute("roNum");
-		String regSeq = (String)session.getAttribute("regSeq");
+		System.out.println("5.session:roNum:"+session.getAttribute("RONUM"));
+		String roNum = (String)session.getAttribute("RONUM");
+		String regSeq = (String)session.getAttribute("REGSEQ");
 		// InputBook 의 Dao 를 생성함.  		
 		CampDao dao = new CampDao();
 		// 체크인 날짜와 체크 아웃 날짜의 날 수를 계산.
@@ -42,11 +46,11 @@ public class BCInsertBookCommand implements BCCommand {
 		System.out.println("7.2.-------------------startdate:"+startdate+"-------------------");
 		System.out.println("7.3.-------------------cId:"+cId+"-------------------");
 		System.out.println("7.4.-------------------regSeq:"+regSeq+"-------------------");
-		int regcamp_host_hSeq = (int)session.getAttribute("regcamp_host_hSeq");
+		int regcamp_host_hSeq = (int)session.getAttribute("REGCAMP_HOST_HSEQ");
 		System.out.println("7.5.-------------------Integer.parseInt(regcamp_host_hSeq):"+regcamp_host_hSeq+"-------------------");		
-		int roSeq = (int)session.getAttribute("roSeq");
+		int roSeq = (int)session.getAttribute("ROSEQ");
 		System.out.println("7.6.-------------------Integer.parseInt(roSeq):"+roSeq+"-------------------");
-		String strcId = (String)session.getAttribute("strcId");
+		String strcId = (String)session.getAttribute("STRCID");
 		System.out.println("7.7.-------------------strcId:"+strcId+"-------------------");
 		int result = dao.insertBook(roomPrice, startdate, 0, 3, strcId, roSeq, cId,Integer.parseInt(regSeq), regcamp_host_hSeq);
 		System.out.println("7.8.-----dao.insertBook(roomPrice, startdate, 0, 3, strcId, Integer.parseInt(regSeq), cId, Integer.parseInt(regSeq), Integer.parseInt(host_hSeq))result:"+result+"-------------------");

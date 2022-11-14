@@ -17,13 +17,13 @@ public class ClientmypageView_Command implements BCCommand {
 		
 		HttpSession session = request.getSession();
 		
-		String cId = (String) session.getAttribute("cId");
+		String cId = (String) session.getAttribute("CID");
 		System.out.println("ClientmypageView_Command 에서 보내는 cId : "+cId);
 		ClientDao dao = new ClientDao();
 		ClientDto dto = dao.mypageView(cId);
 		
 //		request.setAttribute("mypageview", dto);
-		session.setAttribute("mypageview", dto);
+		session.setAttribute("MYPAGEVIEW", dto);
 
 	}
 	public Boolean execute1(HttpServletRequest request, HttpServletResponse response) {

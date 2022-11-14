@@ -15,7 +15,7 @@ public class ReviewerNameCommand implements BCCommand {
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
-		String cId = (String) session.getAttribute("cId");
+		String cId = (String) session.getAttribute("CID");
 		
 		ReviewDao dao = new ReviewDao();
 		reviewDto dto = dao.reviewerName(cId); // 다오한테 받은 bId를 dto에 보냄 

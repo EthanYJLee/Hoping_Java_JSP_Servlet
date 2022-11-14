@@ -18,8 +18,8 @@ public class BCCalcDateCommand implements BCCommand {
 	*/
 		HttpSession session = request.getSession();
 		System.out.println("BCCalcDateCommand___________________________________");
-		String startdate = (String)session.getAttribute("startdate");
-		String stopdate = (String)session.getAttribute("stopdate");
+		String startdate = (String)session.getAttribute("STARTDATE");
+		String stopdate = (String)session.getAttribute("STOPDATE");
 	
 		CampDao dao = new CampDao();
 		int result = dao.diffDate(startdate, stopdate);

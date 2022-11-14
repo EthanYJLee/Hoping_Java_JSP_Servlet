@@ -18,8 +18,8 @@ public class BCInsertPayCommand implements BCCommand {
 		System.out.println("BCInsertPayCommand______________________________________________________");
 	
 		String cId = (String)session.getAttribute("CID");
-		String roNum = (String)session.getAttribute("roNum");
-		String regSeq = (String)session.getAttribute("regSeq");
+		String roNum = (String)session.getAttribute("RONUM");
+		String regSeq = (String)session.getAttribute("REGSEQ");
 		// InputPay 의 Dao 를 생성함.  		
 		CampDao dao = new CampDao();
 		roomDto dto = dao.readRoom(regSeq, roNum);
@@ -28,9 +28,10 @@ public class BCInsertPayCommand implements BCCommand {
 		String strRandom = randomCharacter(3);
 
 		dao.insertPay(strRandom,dto.getRoSeq(), dto.getRegcamp_regSeq(), dto.getRegcamp_host_hSeq(), cId);
-		session.setAttribute("roSeq", dto.getRoSeq());
-		session.setAttribute("regcamp_host_hSeq", dto.getRegcamp_host_hSeq());
-		session.setAttribute("strcId", strRandom+dto.getRoSeq()+cId+dto.getRegcamp_regSeq()+dto.getRegcamp_host_hSeq());
+		session.setAttribute("ROSEQ", dto.getRoSeq());
+		session.setAttribute("REGCAMP_HOST_HSEQ", dto.getRegcamp_host_hSeq());
+		session.setAttribute("STRCID", strRandom+dto.getRoSeq()+cId+dto.getRegcamp_regSeq()+dto.getRegcamp_host_hSeq());
+		session.setAttribute("CID",cId);
 	}
 
 	@Override

@@ -19,11 +19,11 @@ public class BCCampDateCheckCommand implements BCCommand {
 		String startdate = request.getParameter("startdate");
 		String stopdate = request.getParameter("stopdate");
 				
-		session.setAttribute("startdate",startdate);
-		session.setAttribute("stopdate",stopdate);
-		System.out.println("startdate:"+startdate);
-		System.out.println("stopdate:"+stopdate);	
-		String regSeq = (String)session.getAttribute("regSeq");
+		session.setAttribute("STARTDATE",startdate);
+		session.setAttribute("STOPDATE",stopdate);
+		System.out.println("STARTDATE:"+startdate);
+		System.out.println("STOPDATE:"+stopdate);	
+		String regSeq = (String)session.getAttribute("REGSEQ");
 		
 		CampDao dao = new CampDao();
 		ArrayList<campDto> dtos = dao.dateCheck(regSeq,startdate,stopdate);
