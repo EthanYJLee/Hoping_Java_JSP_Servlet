@@ -17,6 +17,7 @@
 
 </head>
 <body>
+<main>
 	<div class="box container mymcontainer">
 		<form action="show.do" method="get">
 			<div style="margin-bottom: 20px; font-weight: 500; font-size: 25px;">Hoping 호스트 가입을 진행하시겠습니까?</div>

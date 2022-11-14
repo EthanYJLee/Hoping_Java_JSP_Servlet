@@ -17,12 +17,7 @@
 <body>
 <%-- nav include   22.11.14 호식 수정 --%>
 <%@ include file = "hnav1.jsp" %>
-
-	<div class="box container mymcontainer">
-		<form action="termsAD.do" method="get">
-			<table width="160" height="650">
-
-<main class="form-signin w-50 m-auto">
+	<main class="form-signin w-50 m-auto">
 	<!-- <div align="center"> -->
 		<form action="termsAD.do" method="get">
 			<table>
@@ -59,8 +54,8 @@ Hoping은 당사의 개인정보 수집 및 사용 방식을 설명하는개인�
 				</tr>
 				<tr>
 					<td align="center" valign="top"><input type="radio"
-						name="agree" value="agree" checked="checked">동의 함 &nbsp;&nbsp;&nbsp; <input
-						type="radio" name="agree" value="disagree">동의 하지 않음 <br>
+						name="agree" value="agree" >동의 함 &nbsp;&nbsp;&nbsp; <input
+						type="radio" name="agree" value="disagree" checked="checked">동의 하지 않음 <br>
 						<br> <input type="submit" value="확인"></td>
 				</tr>
 			</table>
