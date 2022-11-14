@@ -25,6 +25,17 @@ public class campDto {
 		this.roPrice = roPrice;
 		this.roMax = roMax;
 	}
+	
+
+
+	public campDto(int regSeq, String regName, String regCategory, int roPrice, int roMax) {
+		super();
+		this.regSeq = regSeq;
+		this.regName = regName;
+		this.regCategory = regCategory;
+		this.roPrice = roPrice;
+		this.roMax = roMax;
+	}
 
 
 	public int getBoSeq() {

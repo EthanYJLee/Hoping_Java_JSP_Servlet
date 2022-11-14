@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Detail View - ${DetailView.regName}</title>
+<title>Hoping에 로그인 하기</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/navbar-fixed/">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" 
@@ -48,7 +48,6 @@
 		        </div>
 			  
 		  </form>
-		
     	     </div><!-- DIV row End -->
 		    </div><!-- DIV row End -->
 	    </div> <!-- DIV container End -->

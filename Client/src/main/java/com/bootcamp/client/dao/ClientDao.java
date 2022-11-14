@@ -13,6 +13,8 @@ import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import com.bootcamp.dto.ClientDto;
+import com.bootcamp.dto.regcampDto;
+import com.bootcamp.joindto.checkdate2Dto;
 
 public class ClientDao {
 
@@ -340,8 +342,53 @@ public class ClientDao {
 
 		}
 		return cPw;
-	}
+	}//pwsearch End 
+	
+	
+	
+	/*22-11-14 hosik 
+			고객이 예약한 목록들을 불러오는 Dao. 일단 미완성 하나하나 하면서 추가예정 임 
+			추가할것 : 일정, 금액, 이름, 메인사진1개 
+	
+	*/
+	public ArrayList<checkdate2Dto> clientHistory(String CID) {
+		ArrayList<checkdate2Dto> dtos = new ArrayList<checkdate2Dto>();
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		
+		checkdate2Dto dto;
+		
+		try {
+			String query = "select boSeq, roNum, regName, regImage1 from checkdate2 where pay_client_cId = '"+CID+"'";
+			
+			connection = dataSource.getConnection();
+			preparedStatement = connection.prepareStatement(query);
+			resultSet = preparedStatement.executeQuery();
+			
+			while (resultSet.next()) {
+				int boSeq = Integer.parseInt(resultSet.getString("boSeq"));
+				int roNum = Integer.parseInt(resultSet.getString("roNum"));
+				String regName = (String)resultSet.getString("regName");
+				String regImage1 = (String)resultSet.getString("regImage1");
+				
+				dto = new checkdate2Dto(boSeq,roNum,regName,regImage1);
+				dtos.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 
+		}finally {
+			try {
+				if(preparedStatement != null) preparedStatement.close();
+				if(connection != null) connection.close();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return dtos;
+	
+	}//clientHistory ENd
 	
 	
 	
