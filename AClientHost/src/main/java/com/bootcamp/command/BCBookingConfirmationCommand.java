@@ -33,6 +33,8 @@ public class BCBookingConfirmationCommand implements BCCommand {
 				지웠음
 				
 		*/
+		request.setAttribute("startdate",session.getAttribute("SATARTDATE"));
+		request.setAttribute("stopdate",session.getAttribute("STOPDATE"));
 	}
 	
 	public Boolean execute1(HttpServletRequest request, HttpServletResponse response) {

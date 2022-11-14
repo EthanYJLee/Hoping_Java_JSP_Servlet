@@ -481,7 +481,7 @@ public class CampDao {
 			//select distinct regSeq, regName, regCategory, roNum, roPrice, boCheckindate,boCheckindate+max(boSeq)-boGroup-1 as boCheckoutdate, boGroup, max(boSeq)-boGroup, client_cId, regImage2 from BPRCH where boCheckindate > now() and client_cId = 'pisal' group by boGroup
 			
 			// Checkout 계산해서 boCheckoutdate 컬럼을 추가함. 상혁
-			String query = "select distinct regSeq, regName, regCategory, roNum, roPrice, boCheckindate,adddate(boCheckindate,max(boSeq)-boGroup) as boCheckoutdate, boGroup, (max(boSeq)-boGroup+1) as days, client_cId, regImage2 from BPRCH where boCheckindate > now() and client_cId = '"+cId+"' group by boGroup";
+			String query = "select regSeq, regName, regCategory, roNum, roPrice, boCheckindate,boCheckoutdate, boGroup, days, client_cId, regImage2 from viewBooking where boCheckindate > now() and client_cId = '"+cId+"'";
 			
 			preparedStatement = connection.prepareStatement(query);
 			resultSet = preparedStatement.executeQuery();
