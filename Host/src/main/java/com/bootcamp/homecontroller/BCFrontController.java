@@ -269,6 +269,8 @@ public class BCFrontController extends HttpServlet {
 		case ("/askList.do"):
 			command = new askListCommand();
 			command.execute(request, response);
+//			command = new askListCommand();
+//			command.execute1(request, response);
 			viewPage = "askList.jsp";
 			break;
 		case ("/askDetail.do"):
