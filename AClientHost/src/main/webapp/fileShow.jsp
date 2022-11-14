@@ -39,7 +39,7 @@
 			</tr>
 			<tr>
 				<td>소개</td>
-				<td><input type="text" name="hSummary" size="20" value="${fileView.hSummary}"></td>
+				<td><textarea name="hSummary" rows="10" cols="50">${fileView.hSummary}</textarea></td>
 			</tr>
 			<tr>
 				<td>사진</td>

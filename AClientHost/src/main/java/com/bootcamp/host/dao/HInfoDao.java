@@ -56,7 +56,8 @@ public class HInfoDao {
 				String cImage = resultSet.getString("cImage");
 
 				dto = new ClientDto(cId, cName, cPhone, cEmail, cImage);
-				System.out.println("hID:" + cId);
+				System.out.println("hID다오:" + cId);
+				System.out.println("클라이언트다오 cName:" + cName);
 			}
 
 		} catch (Exception e) {

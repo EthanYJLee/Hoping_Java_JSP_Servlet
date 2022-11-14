@@ -472,7 +472,7 @@ public class BCFrontController extends HttpServlet {
 
 			if (result1 != 0) {
 				session.setAttribute("REGSEQ", myRegSeq);
-				viewPage = "HostInfoMMain.jsp";
+				viewPage = "HostRInfo.do";
 			} else {
 				JOptionPane.showMessageDialog(null, "잘못된 접근입니다", "Error", JOptionPane.ERROR_MESSAGE);
 				response.sendRedirect("HostError.jsp");
