@@ -15,7 +15,24 @@
 @import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800'); 
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
 </style>
+
+
+<%--로그인 alert --%>
+<script>
+	function ok(){
 		
+		if (result == false) {
+			JOptionPane.showInternalMessageDialog(null, "아이디와 비밀번호를 확인해주세요 ", "로그인", 0, null);
+			viewPage = "ClientLoginView.jsp";
+		} else {
+			JOptionPane.showInternalMessageDialog(null, "환영합니다 ", "로그인", 0, null);
+			// page = "ClientMainView.jsp";
+			viewPage = "main.do";
+		}
+	}
+
+</script>
+	
 </head>
 <body>
 	<!-- Header Start -->
@@ -38,6 +55,11 @@
 			    <div class="checkbox mb-3">
 			    </div>
 			    <button class="w-100 btn btn-lg btn-primary" type="submit" >로그인</button>
+			    <c:if test="${RESULT == false}">
+			    	<script>alert("아이디와 비밀번호가 맞지 않습니다.")</script>
+			  	</c:if>
+			  	<c:if test="${RESULT == null}">
+			  	</c:if>
 			  	
 			  	<div class="links" style="text-decoration: none">
 		            <a href="ClientSignupView.jsp" style="text-decoration: none">회원가입</a>

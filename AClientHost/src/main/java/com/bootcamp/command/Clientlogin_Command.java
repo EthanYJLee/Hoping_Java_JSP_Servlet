@@ -33,7 +33,13 @@ public class Clientlogin_Command implements BCCommand {
 		session.setAttribute("CID", cId);
 		System.out.println("clientlogin_command에서 보내는 session = " + session.getAttribute("CID"));
 
-		return null;
+		if(result == true) {
+			return true;
+		}else {
+			return false;
+		}
+
+		
 	}
 
 }
