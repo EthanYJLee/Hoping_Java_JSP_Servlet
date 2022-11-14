@@ -78,7 +78,6 @@
 						</tr>
 						<%-- for문 돌리기 --%>
 						<c:forEach items="${list}" var="dto">
-							<%-- modal 열리는 버튼 --%>
 							<tr class="myhtr ">
 								<td class="mytd">${dto.roNum }</td>
 								<td class="mytd">${dto.roPrice }</td>

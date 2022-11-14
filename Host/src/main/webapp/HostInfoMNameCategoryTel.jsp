@@ -43,17 +43,17 @@
  	<form name="Member" action="HostInfoMNCT.do">
 	 	<div class="row myhdrow">
 	 		<h5 class="col-12" style="margin: 20px 0 20px 0">이름을 수정하기</h5>
-	 		<div >기존 이름은 "${detail.regName }"</div>
-	 		<input name="regName" value="${detail.regName }" type="text" class="form-control" aria-label="text">
+	 		<div >기존 이름은 "${nct.regName }"</div>
+	 		<input name="regName" value="${nct.regName }" type="text" class="form-control" aria-label="text">
 	 	</div>
 	 	<div class="row myhdrow">
 	 		<h5 class="col-12" style="margin: 20px 0 20px 0">전화번호를 수정하기</h5>
-	 		<div>기존 전화번호는 "${detail.regTel }"</div>
-	 		<input name="regTel" value="${detail.regTel }" type="text" class="form-control" aria-label="text">
+	 		<div>기존 전화번호는 "${nct.regTel }"</div>
+	 		<input name="regTel" value="${nct.regTel }" type="text" class="form-control" aria-label="text">
 	 	</div>
 	 	<div class="row myhdrow">
 	 		<h5 class="col-12" style="margin: 20px 0 20px 0">카테고리를 수정하기</h5>
-	 		<div>기존 카테고리는 "${detail.regCategory }"</div>
+	 		<div>기존 카테고리는 "${nct.regCategory }"</div>
 	 		<%-- 라디오버튼 --%>
 	 		<div class="form-check">
 			  <input class="form-check-input" type="radio" name="regCategory" value="숲 근처" id="flexRadioDefault1">
