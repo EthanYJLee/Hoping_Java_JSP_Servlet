@@ -21,7 +21,7 @@ public class IdCheckService extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("EUC-KR");
 				
-		String cId = request.getParameter("cId");
+		String cId = request.getParameter("CID");
 		response.getWriter().write(new ClientDao().checkId(cId)+"");
 
 		}

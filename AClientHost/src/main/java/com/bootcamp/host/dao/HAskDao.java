@@ -34,7 +34,7 @@ public class HAskDao {
 	
 	
 	// 전체 검색
-	public ArrayList<AskDto> askList(){
+	public ArrayList<AskDto> askList(String askcId){
 	ArrayList<AskDto> dtos = new ArrayList<AskDto>();
 	Connection connection = null;
 	PreparedStatement preparedStatement = null;
@@ -43,7 +43,7 @@ public class HAskDao {
 		try {
 			connection = dataSource.getConnection();
 			
-			String query = "select aSeq, aCId, aTitle, aContent, aTime, aRegSeq from ask ";
+			String query = "select aSeq, aCId, aTitle, aContent, aTime, aRegSeq from ask where = '"+askcId+"'";
 			preparedStatement = connection.prepareStatement(query);
 			resultSet = preparedStatement.executeQuery();
 			
