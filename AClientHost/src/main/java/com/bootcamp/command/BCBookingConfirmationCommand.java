@@ -25,6 +25,8 @@ public class BCBookingConfirmationCommand implements BCCommand {
 		BCBookDao dao = new BCBookDao();
 		checkdate2Dto dto = dao.confirmation(roNum, regName);
 		request.setAttribute("bookingInfo", dto);
+		request.setAttribute("startdate",session.getAttribute("SATARTDATE"));
+		request.setAttribute("stopdate",session.getAttribute("STOPDATE"));
 		
 //		22-11-11 호식 
 //		세션값으로 start,end date가져와서 일수 구한다음에 요금에 곱하려고 

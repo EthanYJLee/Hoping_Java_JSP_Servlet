@@ -31,7 +31,7 @@ public class BCInsertPayCommand implements BCCommand {
 		session.setAttribute("ROSEQ", dto.getRoSeq());
 		session.setAttribute("REGCAMP_HOST_HSEQ", dto.getRegcamp_host_hSeq());
 		session.setAttribute("STRCID", strRandom+dto.getRoSeq()+cId+dto.getRegcamp_regSeq()+dto.getRegcamp_host_hSeq());
-		session.setAttribute("CID",cId);
+		//session.setAttribute("CID",cId);
 	}
 
 	@Override
