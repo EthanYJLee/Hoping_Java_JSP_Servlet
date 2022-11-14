@@ -19,7 +19,7 @@ public class HInfoCommand implements BCCommand {
 		HttpSession session = request.getSession(); 
 
 		//나중에 client랑 연결되면 세션으로 받기
-		String cId = "a";
+		String cId = (String) session.getAttribute("CID");
 		HInfoDao dao = new HInfoDao();
 		ClientDto dto = dao.joinView(cId);
 		//hId session으로 넘겨주기(호스트 가입 시)
@@ -30,6 +30,7 @@ public class HInfoCommand implements BCCommand {
 		request.setAttribute("mypage", dto);
 		
 		System.out.println("HID ; " + cId);
+		
 		
 	}
 	public Boolean execute1(HttpServletRequest request, HttpServletResponse response) throws IOException {
