@@ -28,6 +28,48 @@ public class HostRegMDao {
 		
 	}//생성자
 	
+	//메인페이지에 캠핑장 이름 보여주기 
+	//regSeq로 regName select
+	public String selectRegName(int regSeq) {
+		
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		String regName = null;
+		
+		try {
+
+			connection = dataSource.getConnection();
+			String query = "select regName from regcamp where regSeq = ?";
+			
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setInt(1, regSeq);
+			resultSet = preparedStatement.executeQuery();
+			
+			if(resultSet.next()) {
+				
+				regName = resultSet.getString("regName");
+				
+			}
+			
+		}catch(Exception e){
+			
+			e.printStackTrace();
+			
+		}finally {
+			try {
+				if(resultSet != null) resultSet.close();
+				if(preparedStatement != null) preparedStatement.close();
+				if(connection != null) connection.close();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return regName;
+	}//selectRegSeq
+
+	
+	
 	//1. ------------------------------캠핑장 추가 등록------------------------------
 	//위치, 설명, 이름, 전화번호, 카테고리 insert ---------
 	public void inCampLo(String regDetailaddress, String regSummary, String regName, String regTel, String regCategory, int hSeq) {

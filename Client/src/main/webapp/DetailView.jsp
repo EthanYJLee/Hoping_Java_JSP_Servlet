@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -142,20 +143,9 @@
 		    	</form>
         <% } %>
 	  		
-	  		
-	  			
-		    	
-		    	
-		    	
-		    	
-		    	
 		    </div>
-		    		    	     <hr class="featurette-divider"> 
 		    
 		    
-		    	     <div> 
-		    	     	이 캠핑장이랑 비슷한 캠핑장 둘러보기!
-		    	     </div>
 		    	     <hr class="featurette-divider">
 
 
@@ -168,20 +158,16 @@
 						<div class="card myhcard" style="border-radius: 20px;">
 							<table>
 								<tr class="myhtr">
-									<td class="myth">번호</td>
 									<td class="myth">작성자</td>
 									<td class="myth">제목</td>
 									<td class="myth">작성 시간</td>
 								</tr>
 								<c:forEach items="${reviewList}" var="dto">
 									<tr class="myhtr">
-										<td class="mytd"><a
-											href="reviewDetailView.do?rvSeq=${dto.rvSeq}">${dto.rvSeq}</a></td>
 										<td class="mytd">${dto.rvCId}</td>
-										<td class="mytd">${dto.rvTitle}</td>
+										<td class="mytd"><a href="reviewDetailView.do?rvSeq=${dto.rvSeq}">${dto.rvTitle}</a></td>
 										<td class="mytd">${dto.rvTime}</td>
 										<%--	<td class="mytd">${dto.regName}</td><td class="mytd"><a href="pay.do?roNum=${dto.roNum}">${dto.roNum}</a></td><td class="mytd">${dto.regCategory}</td><td class="mytd"><fmt:formatNumber value="${dto.roPrice}" pattern="#,###"/>원</td>><td class="mytd">${dto.roMax}명</td> --%>
-
 									</tr>
 								</c:forEach>
 							</table>

@@ -38,32 +38,34 @@
 <%@ include file = "hnav1.jsp" %>
  
  <%-- 본문 --%>
- <div class="container myicontainer" >
+ <div class="container" >
  	<h5 class="col-12" style="margin: 20px 0 20px 0">캠핑장의 키워드를 수정하기</h5>
  	<%-- 키워드 select해서 for문 돌리기 --%>
- 	<div class="myscontainer">기존 키워드는 
-	 	<c:forEach items="${keywords}" var="dto">
-	 		"${dto.kName }" , 
-	 	</c:forEach>이에요 
- 	</div>
+ 	<div class="row myscontainer d-flex justify-content-center">
+ 		<c:forEach items="${keywords}" var="dto">
+	 		<div class="col-1">
+	 			<label class="btn btn-secondary" style="width: 60px;">${dto.kName }</label>
+	 		</div>
+ 		</c:forEach>
+ 	</div> 	
  	<%-- 키워드 채크박스 --%>
  	<form action="HostInfoKeyInDel.do">
-	 	<div class="row">
-			<div class="col-2 form-check">
-				<input class="form-check-input" name="keys" type="checkbox" value="안락" id="flexCheckDefault">
-				<label class="form-check-label" for="flexCheckDefault">안락</label>
+ 		<div class="row d-flex justify-content-center">
+ 			<div class="col-1">
+				<input type="checkbox" class="btn-check" name="keys" id="option1" value="안락"  autocomplete="off">
+				<label class="btn btn-outline-primary" style="width: 60px;" for="option1" >안락</label>
 			</div>
-			<div class="col-2 form-check">
-				<input class="form-check-input" name="keys" type="checkbox" value="편안" id="flexCheckChecked">
-				<label class="form-check-label" for="flexCheckChecked">편안</label>
+			<div class="col-1">
+				<input type="checkbox" class="btn-check" name="keys" id="option2"value="편안" autocomplete="off">
+				<label class="btn btn-outline-primary" style="width: 60px;" for="option2">편안</label>
 			</div>
-			<div class="col-2 form-check">
-				<input class="form-check-input" name="keys" type="checkbox" value="화려" id="flexCheckDefault">
-				<label class="form-check-label" for="flexCheckDefault">화려</label>
+			<div class="col-1">
+				<input type="checkbox" class="btn-check" name="keys" id="option3" value="화려" autocomplete="off">
+				<label class="btn btn-outline-primary" style="width: 60px;" for="option3" >화려</label>
 			</div>
-			<div class="col-2 form-check">
-				<input class="form-check-input" name="keys" type="checkbox" value="깔끔" id="flexCheckDefault">
-				<label class="form-check-label" for="flexCheckDefault">깔끔</label>
+			<div class="col-1">
+				<input type="checkbox" class="btn-check" name="keys" id="option4" value="깔끔" autocomplete="off">
+				<label class="btn btn-outline-primary" style="width: 60px;" for="option4">깔끔</label>
 			</div>
 		</div>
 		

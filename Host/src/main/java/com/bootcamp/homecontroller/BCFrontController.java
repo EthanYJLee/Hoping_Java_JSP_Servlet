@@ -40,6 +40,7 @@ import com.bootcamp.host.command.HostInfoLMoCommand;
 import com.bootcamp.host.command.HostInfoLSelectCommand;
 import com.bootcamp.host.command.HostInfoMRMSelectCommand;
 import com.bootcamp.host.command.HostInfoMRMUpdateCommand;
+import com.bootcamp.host.command.HostInfoMainRegName;
 import com.bootcamp.host.command.HostInfoNCTMoCommand;
 import com.bootcamp.host.command.HostInfoNCTSelectCommand;
 import com.bootcamp.host.command.HostInfoRoomDelCommand;
@@ -231,7 +232,7 @@ public class BCFrontController extends HttpServlet {
 
 			if (result != 0) {
 				session.setAttribute("REGSEQ", myRegSeq);
-				viewPage = "HostInfoMMain.jsp";
+				viewPage = "HostRInfo.do";
 			} else {
 				JOptionPane.showMessageDialog(null, "잘못된 접근입니다", "Error", JOptionPane.ERROR_MESSAGE);
 				response.sendRedirect("HostError.jsp");
@@ -305,6 +306,12 @@ public class BCFrontController extends HttpServlet {
 
 		// ------------예진 : 캠핑장 추가 페이지 ------------------------------------
 			
+		// 메뉴에서 등록 페이지로 
+		//이름, 설명, 카테고리 등록
+		case ("/campingAdd.do"):
+			viewPage = "CampingAdd.jsp";
+			break;
+				
 		// 이름, 설명, 카테고리 등록하고 -> 편의시설 등록 페이지로 이동
 
 		case ("/campingAddLo.do"):
@@ -393,24 +400,34 @@ public class BCFrontController extends HttpServlet {
 			viewPage = "campingAddImgView.do";
 			break;
 		
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-
 		// ------------예진 : 캠핑장 정보수정 페이지 ------------------------------------
 
 		// 정보 수정 메인페이지 열기
 		case ("/HostRInfo.do"):
+			command = new HostInfoMainRegName();
+			command.execute(request, response);
 			viewPage = "HostInfoMMain.jsp";
+			break;
+			
+		// 정보 수정 메인페이지 -> 기존 정보 보기
+		case ("/HostInfoRegView.do"):
+			command = new HostInfoMainRegName();
+			command.execute(request, response);
+			command = new HostInfoImagesSelectCommand();
+			command.execute(request, response);
+			command = new HostInfoNCTSelectCommand();
+			command.execute(request, response);
+			command = new HostInfoKeySelectCommand();
+			command.execute(request, response);
+			command = new HostInfoFaSelectCommand();
+			command.execute(request, response);
+			command = new HostInfoRoomSelectCommand();
+			command.execute(request, response);
+			command = new HostInfoMRMSelectCommand();
+			command.execute(request, response);
+			command = new HostInfoLSelectCommand();
+			command.execute(request, response);
+			viewPage = "HostInfoCamp.jsp";
 			break;
 
 		// 정보 수정 메인페이지 -> 위치, 설명 수정 페이지
