@@ -136,7 +136,7 @@
  	</div>
  	<hr style="background-color: gray;">
 	<div class="d-flex justify-content-end">
-		<a href="bookList.do" type="button" style="border-radius: 15px; width:70px;" class="btn mybtns btn-secondary">확인</a>
+		<a href="HostRInfo.do" type="button" style="border-radius: 15px; width:70px;" class="btn mybtns btn-secondary">확인</a>
 	</div>
 </div>
 
