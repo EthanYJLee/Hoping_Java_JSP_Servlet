@@ -84,15 +84,9 @@ public class BCFrontController extends HttpServlet {
 			command = new ClientToHostCommand();
 			command.execute(request, response);
 			command = new ClientToHostCommand();
-			command.execute1(request, response);
-			System.out.println("command");
-
-			HttpSession session1 = request.getSession();
-			String cId1 = (String) session1.getAttribute("CID");
-
-			HInfoDao dao1 = new HInfoDao();
-			Boolean Result = dao1.arHost(cId1);
-			System.out.println("clientcontroller" + cId1);
+			Boolean Result = command.execute1(request, response);
+			
+			System.out.println("clientcontroller: " + Result);
 			if (Result == true) {
 				viewPage = "/host_main.do";
 			} else {
@@ -160,21 +154,22 @@ public class BCFrontController extends HttpServlet {
 		// 22-11-10 주현씨 수정함
 		case ("/login.do"):
 			command = new Clientlogin_Command();
-			command.execute1(request, response);
+			boolean result = command.execute1(request, response);
 			//homecontroller host랑 client랑 합칠 때 겹치는 변수명 있어서 바꿈요 (cId>>cId4)
-			String cId4 = request.getParameter("cId");
-			String cPw = request.getParameter("cPw");
-
-			ClientDao dao = new ClientDao();
-			Boolean result = dao.login(cId4, cPw);
+//			String cId4 = request.getParameter("cId");
+//			String cPw = request.getParameter("cPw");
+//
+//			ClientDao dao = new ClientDao();
+//			Boolean result = dao.login(cId4, cPw);
 
 			if (result == false) {
-				JOptionPane.showInternalMessageDialog(null, "아이디와 비밀번호를 확인해주세요 ", "로그인", 0, null);
+				request.setAttribute("RESULT", result);
+//				JOptionPane.showInternalMessageDialog(null, "아이디와 비밀번호를 확인해주세요 ", "로그인", 0, null);
 				viewPage = "ClientLoginView.jsp";
 			} else {
-				JOptionPane.showInternalMessageDialog(null, "환영합니다 ", "로그인", 0, null);
-				HttpSession session = request.getSession();
-				session.setAttribute("CID", cId4);
+
+				//JOptionPane.showInternalMessageDialog(null, "환영합니다 ", "로그인", 0, null);
+
 				// page = "ClientMainView.jsp";
 				viewPage = "main.do";
 			}
