@@ -142,6 +142,8 @@ public class BCFrontController extends HttpServlet {
 		case ("/myPage.do"):
 			command = new HmyInfoCommand();
 			command.execute(request, response);
+			command = new HImageCommand();
+			command.execute(request, response);
 			viewPage = "HostmyPage.jsp";
 			break;
 		// 마이페이지 내정보 수정
