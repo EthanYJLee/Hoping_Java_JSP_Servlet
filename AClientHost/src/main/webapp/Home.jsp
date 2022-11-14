@@ -60,7 +60,10 @@
 		    <a href="detailView.do?regSeq=${dto.regSeq}">
 		      <img src="./images/${dto.regImage2}" class="card-img-top myimage" alt="...">
 		    </a> 
-			 <!-- 버튼추가 ----------------------- -->
+			 <!-- 22-11-14 호식
+			 		현석씨 AddWish 버튼 추가 및 세션값이 있을때만 나오도록 추가 
+			 -->
+					<% if (session.getAttribute("CID") != null) { %>
 					<div>
 					
 					<div>
@@ -77,19 +80,17 @@
 					<input type="hidden" name="regSeq"	value="${dto.regSeq}" >
 					<input type="hidden" name="host_hSeq" value="${dto.host_hSeq}">
 					<input type="hidden" name="cId"	value=<%=session.getAttribute("CID") %> >
-					
-					
-					  <input 
-					         type='submit'   id='btn2' value="wish" onclick='toggleBtn1()'/>
-					</div>
-					
+					 <input type="submit" id="btn2" value="wish" onclick='toggleBtn1()'/>
+					  
 					</form>
-					
-					<iframe id="if" name="param"></iframe> <%--submit해도 창이 바뀌지 않고 데이터만 넘겨주기 위해 보이지 않는 ifram을 삽입함--%>
 					</div>
 					
+					<iframe id="if" name="param"></iframe> 
+					<%--submit해도 창이 바뀌지 않고 데이터만 넘겨주기 위해 보이지 않는 ifram을 삽입함--%>
+					</div>
 					
-			<!-- 버튼추가 ----------------------- -->
+					<% } %>
+			<!-- AddWish End  ----------------------- -->
 		    
 		      <div class="card-body mycbody">
 				<p class="card-text">
