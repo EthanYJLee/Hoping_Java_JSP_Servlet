@@ -34,8 +34,15 @@ public class HAskDao {
 	
 	
 	// 전체 검색
-	public ArrayList<AskDto> askList(String askcId){
+
+	/*22-11-15 AM 03:41 호식 수정
+			접속한 호스트의 캠핑장으로 온 문의만 보여야 되는거 같아서 그렇게 수정함		
+			(이전)모든 문의가 다 보임 -> (현재) 내가 운영중인 캠핑장에 온 문의만 보임 
+		
+	*/
+	public ArrayList<AskDto> askList(String askcId){ //askcId = session 으로 받아온 CID 
 	ArrayList<AskDto> dtos = new ArrayList<AskDto>();
+	ArrayList<AskDto> dtos2 = new ArrayList<AskDto>();
 	Connection connection = null;
 	PreparedStatement preparedStatement = null;
 	ResultSet resultSet = null;
@@ -43,8 +50,9 @@ public class HAskDao {
 		try {
 			connection = dataSource.getConnection();
 			
-			String query = "select aSeq, aCId, aTitle, aContent, aTime, aRegSeq from ask where = '"+askcId+"'";
-			preparedStatement = connection.prepareStatement(query);
+			String query = "select aSeq, aCId, aTitle, aContent, aTime, aRegSeq from ";
+			String query2 = " ask a, regcamp r , host h where a.aRegSeq = r.regSeq and h.hSeq=r.host_hSeq and h.hId='"+askcId +"'" ;
+			preparedStatement = connection.prepareStatement(query+query2);
 			resultSet = preparedStatement.executeQuery();
 			
 			while(resultSet.next()) {
@@ -59,7 +67,6 @@ public class HAskDao {
 				AskDto dto = new AskDto(aSeq, aCId, aTitle, aContent, aTime, aRegSeq);
 				dtos.add(dto);
 				
-			
 			}
 			
 		}catch (Exception e) {
@@ -151,24 +158,64 @@ public class HAskDao {
 
 	
 	//문의 답변 완료 여부 확인(미완성 ㅠㅠ) 
-	public boolean commentCheck(int aSeq){
+//	public boolean commentCheck(int aSeq){
+//		Connection connection = null;
+//		PreparedStatement preparedStatement = null;
+//		ResultSet resultSet = null;
+//		boolean Result=true;
+//		
+//		try {
+//			connection = dataSource.getConnection();
+//			
+//			String query = "select count(*) from acomment, ask where ask_aSeq=aSeq and aSeq=? ";
+//			preparedStatement = connection.prepareStatement(query);
+//			preparedStatement.setInt(1, aSeq); // 위에 커리문에 물음표 갯수 만큼 작성
+//			
+//			resultSet = preparedStatement.executeQuery();
+//			if(resultSet.next()) {
+//				String count = resultSet.getString("count(*)"); //count(*)값을 가져와야 하기때문에
+//				Result = count.equals("1"); // 답변완료= 1, 답변미완료 = 0
+//			
+//			}
+//		}catch (Exception e) {
+//			e.printStackTrace();
+//		}finally {
+//			try {
+//				if(resultSet != null) resultSet.close();
+//				if(preparedStatement != null) preparedStatement.close();
+//				if(connection != null) connection.close();
+//				
+//			}catch(Exception e) {
+//				e.printStackTrace();
+//			}
+//		}
+//		return Result;
+//	} // 
+	
+	// 22-11-15 hosik 이어서 테스트 작업 해봄  오메..힘드네 
+	
+
+	public ArrayList<Boolean> commentCheck(String cId){
+		ArrayList<Boolean> dtosAnswer = new ArrayList<Boolean>();
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
-		boolean Result=true;
 		
 		try {
 			connection = dataSource.getConnection();
 			
-			String query = "select count(*) from acomment, ask where ask_aSeq=aSeq and aSeq=? ";
+			String query = "select count(*)\n"
+					+ "from acomment, ask where ask_aSeq=aSeq \n"
+					+ "and host_hSeq=(select hSeq from host where hId = ?);? ";
 			preparedStatement = connection.prepareStatement(query);
-			preparedStatement.setInt(1, aSeq); // 위에 커리문에 물음표 갯수 만큼 작성
-			
+			preparedStatement.setString(1, cId); // 위에 커리문에 물음표 갯수 만큼 작성
 			resultSet = preparedStatement.executeQuery();
-			if(resultSet.next()) {
-				String count = resultSet.getString("count(*)"); //count(*)값을 가져와야 하기때문에
-				Result = count.equals("1"); // 답변완료= 1, 답변미완료 = 0
 			
+			while(resultSet.next()) {
+				String count = resultSet.getString("count(*)"); //count(*)값을 가져와야 하기때문에
+				boolean anwer = count.equals("1"); // 답변완료= 1, 답변미완료 = 0
+				
+				dtosAnswer.add(anwer);
 			}
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -182,7 +229,8 @@ public class HAskDao {
 				e.printStackTrace();
 			}
 		}
-		return Result;
-	} // 
+		return dtosAnswer;
+	}// commentcheck end 
 	
-}
+	
+}//end

@@ -1,6 +1,5 @@
 package com.bootcamp.dto;
 
-import java.sql.Timestamp;
 
 public class AskDto {
 	
@@ -12,6 +11,11 @@ public class AskDto {
 	String aMtime;
 	String aDtime;
 	int aRegSeq;
+	
+	//22-11-15 호식 
+	// 문의 답변용으로 만듬
+	boolean answer = false;
+	
 	
 	public AskDto() {
 		// TODO Auto-generated constructor stub
@@ -26,9 +30,31 @@ public class AskDto {
 		this.aTime = aTime;
 		this.aRegSeq = aRegSeq;
 	}
+	//22-11-15 hosik
+	//anwer용으로 만듬 
+	public AskDto(boolean answer) {
+		super();
+		this.answer = answer;
+	}
+	
+	
+	
+
+	public int getaRegSeq() {
+		return aRegSeq;
+	}
 
 	public int getaSeq() {
 		return aSeq;
+	}
+
+
+	public boolean isAnswer() {
+		return answer;
+	}
+
+	public void setAnswer(boolean answer) {
+		this.answer = answer;
 	}
 
 	public void setaSeq(int aSeq) {
@@ -83,10 +109,7 @@ public class AskDto {
 		this.aDtime = aDtime;
 	}
 
-	public int getaRegSeq() {
-		return aRegSeq;
-	}
-
+	
 	public void setaRegSeq(int aRegSeq) {
 		this.aRegSeq = aRegSeq;
 	}

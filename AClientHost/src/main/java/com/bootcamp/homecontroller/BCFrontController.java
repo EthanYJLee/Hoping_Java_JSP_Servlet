@@ -523,10 +523,10 @@ public class BCFrontController extends HttpServlet {
 
 		// --------------------------주현 : 고객문의 리스트 페이지--------------------------
 		case ("/askList.do"):
-			command = new askListCommand();
+			command = new askListCommand();// 22-11-15 호식 수정함 
 			command.execute(request, response);
-//				command = new askListCommand();
-//				command.execute1(request, response);
+			command = new askListCommand();
+			command.execute1(request, response);
 			viewPage = "askList.jsp";
 			break;
 		case ("/askDetail.do"):
