@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>캠핑장 등록하기 - 위치, 설명, 이름, 전화번호, 카테고리</title>
 <link rel="stylesheet" href="css/yjstyle.css">
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -131,8 +131,7 @@
 function checkMember(){
 	
 	const form = document.Member;
-		console.log("js");
-	const regExTel = /^[0-9]+$/;
+	const regExTel = /^\d{3}-\d{3,4}-\d{4}$/;
 	
 	let regDetailaddress = form.regDetailaddress.value;
 	let regSummary = form.regSummary.value;
