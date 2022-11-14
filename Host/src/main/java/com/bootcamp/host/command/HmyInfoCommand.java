@@ -22,7 +22,7 @@ public class HmyInfoCommand implements BCCommand {
 		
 		request.setAttribute("hInfo", dto);
 
-		
+		System.out.println("hmyinfocommand:" + hId);
 
 	}
 

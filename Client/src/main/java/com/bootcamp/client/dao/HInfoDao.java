@@ -1,4 +1,4 @@
-package com.bootcamp.host.dao;
+package com.bootcamp.client.dao;
 
 import java.security.Timestamp;
 import java.sql.Connection;
@@ -197,7 +197,7 @@ public class HInfoDao {
 
 			String query = "select hId, cName, cPhone, cEmail, hImage, hSummary from host, client where hId=cId and hId=? ";
 			preparedStatement = connection.prepareStatement(query);
-			preparedStatement.setString(1, hcId);
+			// preparedStatement.setString(1, hcId);
 			resultSet = preparedStatement.executeQuery();
 
 			if (resultSet.next()) {
@@ -209,8 +209,6 @@ public class HInfoDao {
 				String hSummary = resultSet.getString("hSummary");
 
 				dto = new HostClientDto(hId, cName, cPhone, cEmail, hImage, hSummary);
-				
-				System.out.println("hInfodao"+hSummary);
 
 			}
 
@@ -263,5 +261,90 @@ public class HInfoDao {
 		}
 
 	}
+	// 호스트모드 넘어갈 때 호스트 가입 여부 확인 
+		public Boolean arHost(String scId) {
+
+			Connection connection = null;
+			PreparedStatement preparedStatement = null;
+			ResultSet resultSet = null;
+			HostClientDto dto = null;
+			boolean Result=true;
+
+			try {
+				connection = dataSource.getConnection();
+
+				String query = "select count(*) from client, host where cId=hId and cId=? ";
+				preparedStatement = connection.prepareStatement(query);
+				preparedStatement.setString(1, scId);
+				resultSet = preparedStatement.executeQuery();
+
+				if (resultSet.next()) {
+					String count = resultSet.getString("count(*)"); //count(*)값을 가져와야 하기때문에
+					Result = count.equals("1");//1이면 host 계정 있음>호스트 메인페이지, 0이면 없음>호스트가입을 위한 약관 
+					
+				}
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					if (resultSet != null)
+						resultSet.close();
+					if (preparedStatement != null)
+						preparedStatement.close();
+					if (connection != null)
+						connection.close();
+
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+			return Result;
+		} // Content
+
+		
+		//클라이언트>호스트 넘길 때 세션 (아이디, 호스트아이디, hseq)
+		public HostClientDto arHost1(String shId) {
+			HostClientDto dto = null;
+			Connection connection = null;
+
+			PreparedStatement preparedStatement = null;
+			ResultSet resultSet = null;
+
+			try {
+				connection = dataSource.getConnection();
+				String query = "select hSeq, hId, cId from client, host where cId=hId and cId=? ";
+
+				preparedStatement = connection.prepareStatement(query);
+				preparedStatement.setString(1, shId);
+				resultSet = preparedStatement.executeQuery();
+
+				if (resultSet.next()) {
+					// 하나니까 if로.
+					int hSeq = resultSet.getInt("hSeq");
+					String hId = resultSet.getString("hId");
+					String cId = resultSet.getString("cId");
+
+					dto = new HostClientDto(hSeq, hId, cId);
+				}
+
+			} catch (Exception e) {
+
+				e.printStackTrace();
+
+			} finally {
+				try {
+					if (resultSet != null)
+						resultSet.close();
+					if (preparedStatement != null)
+						preparedStatement.close();
+					if (connection != null)
+						connection.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+			return dto;
+		}// detail_view
 
 }
