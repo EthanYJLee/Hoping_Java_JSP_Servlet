@@ -449,7 +449,7 @@ public class BCFrontController extends HttpServlet {
 		case ("/HostInfoMLo.do"):
 			command = new HostInfoLMoCommand();
 			command.execute(request, response);
-			viewPage = "HostInfoMMain.jsp";
+			viewPage = "HostRInfo.do";
 			break;
 
 		// 정보 수정 메인페이지 -> 이름, 카테고리, 전화번호 수정 페이지
@@ -463,7 +463,7 @@ public class BCFrontController extends HttpServlet {
 		case ("/HostInfoMNCT.do"):
 			command = new HostInfoNCTMoCommand();
 			command.execute(request, response);
-			viewPage = "HostInfoMMain.jsp";
+			viewPage = "HostRInfo.do";
 			break;
 
 		// 정보 수정 메인페이지 -> 키워드 수정 페이지
@@ -477,7 +477,7 @@ public class BCFrontController extends HttpServlet {
 		case ("/HostInfoKeyInDel.do"):
 			command = new HostInfoKeyInDelCommand();
 			command.execute(request, response);
-			viewPage = "HostInfoMMain.jsp";
+			viewPage = "HostRInfo.do";
 			break;
 
 		// 정보 수정 메인페이지 -> 편의시설 수정 페이지로
@@ -491,7 +491,7 @@ public class BCFrontController extends HttpServlet {
 		case ("/HostInfoFaInDel.do"):
 			command = new HostInfoFaInDelCommand();
 			command.execute(request, response);
-			viewPage = "HostInfoMMain.jsp";
+			viewPage = "HostRInfo.do";
 			break;
 
 		// 정보 수정 메인페이지 -> 자리 수정 페이지

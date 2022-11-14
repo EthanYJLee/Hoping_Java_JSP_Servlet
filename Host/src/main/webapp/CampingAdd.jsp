@@ -73,7 +73,7 @@
 			<div id="pagination"></div>
 		</div>
 		
-		<form action="campingAddLo.do" class="myscontainer">
+		<form action="campingAddLo.do" name="Member" class="myscontainer">
 		
 			<input type="hidden" value="" id="hostlongitude" name="hostlongitude">
 			<input type="hidden" value="" id="hostlatitude" name="hostlatitude">
@@ -84,7 +84,7 @@
 			<%--- map --%>
 			<div id="map" style="width: 100%; height: 60vh;"></div>
 	
-			<p id="result"></p>
+				<p id="result"></p>
 			
 	 		<%-- 캠핑장 설명 수정 --%>
 		 	</div>
@@ -106,30 +106,76 @@
 		 	<h5 class="col-12 myscontainer" style="margin: 20px 0 20px 0">카테고리 등록하기</h5>
 	 		<%-- 라디오버튼 --%>
 	 		<div class="container myscontainer">
-		 		<input type="radio" class="btn-check" name="regCategory" id="option1" value="바다 근처"  autocomplete="off">
-				<label class="btn btn-outline-secondary" for="option1" >바다 근처</label>
+		 		<input type="radio" class="btn-check" name="regCategory" id="option1" value="글램핑장"  autocomplete="off">
+				<label class="btn btn-outline-primary" for="option1" >글램핑장</label>
 
-				<input type="radio" class="btn-check" name="regCategory" id="option2"value="계곡 근처" autocomplete="off">
-				<label class="btn btn-outline-secondary" for="option2">계곡 근처</label>
+				<input type="radio" class="btn-check" name="regCategory" id="option2"value="카라반" autocomplete="off">
+				<label class="btn btn-outline-primary" for="option2">카라반</label>
 				
-				<input type="radio" class="btn-check" name="regCategory" id="option3" value="강 근처" autocomplete="off">
-				<label class="btn btn-outline-secondary" for="option3" >강 근처</label>
-				
-				<input type="radio" class="btn-check" name="regCategory" id="option4" value="산 근처" autocomplete="off">
-				<label class="btn btn-outline-secondary" for="option4">산 근처</label> <br> <br>
-
+				<input type="radio" class="btn-check" name="regCategory" id="option3" value="캠핑장" autocomplete="off">
+				<label class="btn btn-outline-primary" for="option3" >캠핑장</label>
 			</div>
 		 	<div class="d-flex flex-row-reverse">
 		 		<div class="p-2">
-		 		<button type="submit" style="border-radius: 15px; width:100px;" class="btn mybtns btn-secondary">다음</button>
+		 			<button type="button" onclick="checkMember()" style="border-radius: 15px; width:100px;" class="btn mybtns btn-secondary">다음</button>
 		 		</div>
 		 	</div>
+		</form>
 		 	
-		 </form>
 	 </div>
 </div>	
-	 	
-	 	
+
+<%-- 정규식 --%>
+<script type="text/javascript">
+
+function checkMember(){
+	
+	const form = document.Member;
+		console.log("js");
+	const regExTel = /^[0-9]+$/;
+	
+	let regDetailaddress = form.regDetailaddress.value;
+	let regSummary = form.regSummary.value;
+	let regName = form.regName.value;
+	let regTel = form.regTel.value;
+	
+	//null 제한 
+	if(regDetailaddress == ""){
+		alert("위치를 등록해주세요.")
+		form.regDetailaddress.focus();
+		return false;
+	}
+	
+	if(regSummary == ""){
+		alert("설명을 입력해주세요.")
+		form.regSummary.focus();
+		return false;
+	}
+	
+	if(regName == ""){
+		alert("캠핑장 이름을 입력해주세요.")
+		form.regName.focus();
+		return false;
+	}
+	
+	if(regTel == ""){
+		alert("전화번호를 입력해주세요.")
+		form.regTel.focus();
+		return false;
+	}
+	
+	//전화번호 숫자만 입력
+	if(!regExTel.test(regTel)){
+		alert("전화번호는 숫자만 입력해주세요.")
+		form.regTel.select();
+		return
+	}
+	
+	form.submit();
+	
+}
+
+</script>
 	 	
 	 	
 <%-- ----------------------------------------------맵 js------------------------------------------------------- --%>

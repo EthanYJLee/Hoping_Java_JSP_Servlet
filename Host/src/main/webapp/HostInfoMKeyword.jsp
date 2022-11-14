@@ -49,7 +49,7 @@
  		</c:forEach>
  	</div> 	
  	<%-- 키워드 채크박스 --%>
- 	<form class="container" action="HostInfoKeyInDel.do">
+ 	<form class="container" name="Member" action="HostInfoKeyInDel.do">
  				<input type="checkbox" class="btn-check" name="keys" id="option1" value="조용한"  autocomplete="off">
 				<label class="btn btn-outline-primary" for="option1" >조용한</label>
 			 	<input type="checkbox" class="btn-check" name="keys" id="option2" value="자연 속"  autocomplete="off">
@@ -77,11 +77,25 @@
 		<%-- 완료 버튼 --%>
 	 	<div class="d-flex flex-row-reverse">
 	 		<div class="p-2">
-	 		<button type="submit" style="border-radius: 15px; width:100px;" class="btn mybtns btn-secondary">완료</button>
+	 		<button type="button" onclick="checkMember()" style="border-radius: 15px; width:100px;" class="btn mybtns btn-secondary">완료</button>
 	 		</div>
 	 	</div>
  	</form>
 </div>
+
+<script type="text/javascript">
+
+function checkMember(){
+	
+	const form = document.Member;
+	
+	alert("수정되었습니다");
+	form.submit(); 
+	
+}
+
+</script>
+
 
 </body>
 </html>
