@@ -351,7 +351,7 @@ public class BCFrontController extends HttpServlet {
 				viewPage = "TermsAgree.jsp";
 			} else {
 				// 나중에 클라이언트랑 연결되면 client 메인페이지로 이동
-				viewPage = "#"; // 22-11-14 Hosik . list.jsp 있던거 #으로 바꿔놈
+				viewPage = "main.do"; // 22-11-14 Hosik . list.jsp 있던거 #으로 바꿔놈
 
 			}
 
