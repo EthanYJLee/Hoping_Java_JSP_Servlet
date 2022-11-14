@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Hoping에 로그인 하기</title>
+<title>아이디 찾기</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/navbar-fixed/">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" 
@@ -21,32 +21,41 @@
 	<!-- Header Start -->
     <%@ include file = "Nav2.jsp" %>
     <!-- Header End --> 
-    <!-- Main Start -->
+
 		<main class="form-signin w-50 m-auto">
 	<div align="center">
+			<form action="idsearch.do" method="post">
+				<h1 class="h3 mb-3 fw-normal">아이디찾기</h1>
 
-		 <form action="login.do" method="post">
-			    <h1 class="h3 mb-3 fw-normal" >로그인</h1>
+				<div class="form-floating" style="margin: 5px;">
+				이름을 입력해 주세요
+				<div class="form-floating">
+					<input type="text" class="form-control" id="floatingInput"
+						name="cName" placeholder="이름을 적어주세요">
+				</div>	
+				</div>
+				<div class="form-floating" style="margin: 5px;">
+				E-Mail을 입력해 주세요
+					<input type="email" class="form-control" id="floatingPassword"
+						name="cEmail" placeholder="이메일을 적어주세요">
+				</div>
+
+				<div class="checkbox mb-3" style="margin: 10px;">
+					<button class="w-100 btn btn-lg btn-primary" type="submit"
+					style="WIDTH: 100pt; HEIGHT: 40pt">확인</button>
+				</div>
+					</form>
 			
-			    <div class="form-floating"  style="margin: 10px;">아이디 
-			      <input type="text" class="form-control" id="floatingInput" name="cId" placeholder="ID" style="margin: 5px;">
-			    </div>
-			    <div class="form-floating"  style="margin: 10px;">비밀번호
-			      <input type="password" class="form-control" id="floatingPassword" name="cPw" placeholder="PW"style="margin: 5px;">
-			    </div>
 			
-			    <div class="checkbox mb-3">
-			    </div>
-			    <button class="w-100 btn btn-lg btn-primary" type="submit" >로그인</button>
-			  	
-			  	<div class="links" style="text-decoration: none">
-		            <a href="ClientSignupView.jsp" style="text-decoration: none">회원가입</a>
-		            <a href="ClientFindidView.jsp" style="text-decoration: none">아이디 찾기</a>
-		            <a href="ClientFindpwView.jsp" style="text-decoration: none">비밀번호 찾기</a>
-		        </div>
-			  
-		  </form>
-    	 </div>
+				<div class="checkbox mb-3" style="margin: 10px;">
+					<a href="ClientLoginView.jsp">
+						<button class="w-100 btn btn-lg btn-primary" type="submit"
+						style="WIDTH: 100pt; HEIGHT: 40pt">
+						로그인 페이지로 가기</button>
+					</a>
+				</div>
+			
+	</div>
 		</main>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>	
 <!-- Foot -->

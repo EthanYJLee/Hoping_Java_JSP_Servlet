@@ -237,7 +237,7 @@
 						</tr>
 						<tr>
 							<th>전화번호</th>
-							<th><input type="text" name="cPhone" size="40"></th>
+							<th><input type="text" name="cPhone" size="40"placeholder="000-0000-0000"></th>
 						</tr>
 						<tr>
 							<th>이메일</th>
@@ -294,7 +294,7 @@
 		});
 	</script>
 	<!--  <script src = "js/jquery-3.6.0.min.js"></script> -->
-	<script>
+	<!-- <script>
 		$('.cId').focusout(function() {
 			let cId = $('.cId').val(); // input_id에 입력되는 값
 
@@ -323,6 +323,50 @@
 			})
 
 		})
+	</script> -->
+	<script>
+		//아이디 중복확인 함수
+		$('.cId').focusout(function() {
+			let cId = $('.cId').val(); // input_id에 입력되는 값
+
+			$.ajax({
+				url : "./IdCheckService", //요청할 url
+				type : "post",
+				data : {cId : cId},  //불러올 데이터
+				dataType : 'json',
+				success : function(result) {
+					if (result == 0) {
+						$("#checkId").html('사용할 수 없는 아이디입니다.');
+						$("#checkId").attr('color', 'red');
+						$(':text:not([id=cName]):not([id=cPhone])').val(''); //텍스트가 지워지는걸 제외
+						/* alert("중복된 아이디입니다. 다시 입력해주세요.") */
+
+					} else {
+						$("#checkId").html('사용 가능한 아이디입니다.');
+						$("#checkId").attr('color', 'green');
+					}
+				},
+				error : function() {
+					alert("서버요청실패");
+				}
+			})
+
+		})
+	</script>
+	
+	
+	
+	<script>
+		// 공백 사용 못 하게하는 함수
+		function noSpaceForm(obj) {
+			var str_space = /\s/; // 공백 체크
+			if (str_space.exec(obj.value)) { // 공백 체크
+				alert("해당 항목에는 공백을 사용할 수 없습니다.\n\n공백 제거됩니다.");
+				obj.focus();
+				obj.value = obj.value.replace(' ', ''); // 공백제거
+				return false;
+			}
+		}
 	</script>
 		
 	<!-- Foot -->
