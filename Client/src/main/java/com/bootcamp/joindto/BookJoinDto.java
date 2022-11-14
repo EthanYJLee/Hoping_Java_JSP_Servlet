@@ -10,10 +10,12 @@ public class BookJoinDto {
 	int roNum;
 	int roPrice;
 	Timestamp boCheckindate;
+	Timestamp boCheckoutdate;
 	int boGroup;
 	int boSeq;
 	String client_cId;
 	String regImage2;
+	int days;
 
 	public BookJoinDto(){
 		super();
@@ -21,7 +23,7 @@ public class BookJoinDto {
 	}
 
 	public BookJoinDto(String regSeq, String regName, String regCategory, int roNum, int roPrice,
-			Timestamp boCheckindate, int boGroup, String client_cId, String regImage2) {
+			Timestamp boCheckindate, Timestamp boCheckoutdate,int boGroup, String client_cId, String regImage2, int days) {
 		super();
 		this.regSeq = regSeq;
 		this.regName = regName;
@@ -29,12 +31,12 @@ public class BookJoinDto {
 		this.roNum = roNum;
 		this.roPrice = roPrice;
 		this.boCheckindate = boCheckindate;
+		this.boCheckoutdate = boCheckoutdate;
 		this.boGroup = boGroup;
 		this.client_cId = client_cId;
 		this.regImage2 = regImage2;
+		this.days = days;
 	}
-	
-	
 	
 	public BookJoinDto(String regSeq, String regName, String regCategory, int roNum, int roPrice,
 			Timestamp boCheckindate, int boGroup, int boSeq, String client_cId) {
@@ -97,6 +99,13 @@ public class BookJoinDto {
 	public void setBoCheckindate(Timestamp boCheckindate) {
 		this.boCheckindate = boCheckindate;
 	}
+	public Timestamp getBoCheckoutdate() {
+		return boCheckoutdate;
+	}
+
+	public void setBoCheckoutdate(Timestamp boCheckoutdate) {
+		this.boCheckoutdate = boCheckoutdate;
+	}
 
 	public int getBoGroup() {
 		return boGroup;
@@ -128,6 +137,14 @@ public class BookJoinDto {
 
 	public void setRegImage2(String regImage2) {
 		this.regImage2 = regImage2;
+	}
+
+	public int getDays() {
+		return days;
+	}
+
+	public void setDays(int days) {
+		this.days = days;
 	}
 
 }
