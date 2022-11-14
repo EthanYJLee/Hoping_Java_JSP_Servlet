@@ -87,9 +87,6 @@
 	<div class="col-md-6">
 		<div class="h-100 p-5 bg-light border rounded-3">
 			<h2>월별 매출 및 예약건</h2>
-			<div class="form-row float-right">
-			<button type="button" class="btn text-secondary" onclick="location.href='detail_stat_view.do'">상세보기</button>
-			</div>
 			<br>
 <canvas id="profitChart" width="150" height="60"></canvas>
 <script>
@@ -163,7 +160,9 @@ var reserveChart = new Chart(chartArea, {
     }
 });
 </script>
-
+<div class="form-row float-right">
+	<button type="button" class="btn text-secondary" onclick="location.href='detail_stat_view.do'">상세보기</button>
+</div>
 
 
 
@@ -176,9 +175,10 @@ var reserveChart = new Chart(chartArea, {
 			<p>신규후기 : ${tr}</p>
 			<p>답변 완료 : ${trr}</p>
 			<p>답변 미완료 : ${tnrr}</p>
-			<p>평균 별점</p>
+			<%@ include file = "HostMyStar.jsp" %>
+			<p></p>
 			<div class="form-row float-right">
-			<button type="button" class="btn text-secondary" onclick="location.href='host_review_list.do'">상세보기</button>
+			<button type="button" class="btn text-secondary">상세보기</button>
 			</div>
 		</div>
 	</div>
