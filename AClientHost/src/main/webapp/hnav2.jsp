@@ -34,7 +34,7 @@
     	<ul class="nav nav-pills">
      	<li class="nav-item" style="font-size: 14px;">
 	     			<% if (session.getAttribute("CID") != null) { %>
-	     		<a href="main.do" class="link-dark nav-link"> Change Client Mode</a>
+	     		<a href="main.do" class="link-dark nav-link"> 일반 회원 모드로 전환하기</a>
 	     			  <% } %>	
 	     	</li>
      	<li class="nav-item">
